@@ -57,13 +57,12 @@ const Hero = () => {
             className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight"
             style={{ fontFamily: "'Roboto Slab', serif" }}
           >
-            Find Your Dream Property in Roatan
+            Should You Invest or Move to Roatan? Start With Clarity
           </h1>
 
           {/* Subheading */}
           <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-            Your trusted partner for buying and selling properties in the Caribbean. 
-            20+ years of experience helping clients find their perfect home.
+            Strategic real estate guidance for investors and buyers considering property in Roatan, Honduras.
           </p>
 
           {/* CTA Buttons */}
