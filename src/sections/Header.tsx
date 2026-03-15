@@ -5,17 +5,11 @@ interface NavLink {
   label: string;
   action?: () => void;
   href?: string;
-  dropdown?: Array<{
-    label: string;
-    action?: () => void;
-    href?: string;
-  }>;
 }
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,21 +29,7 @@ const Header = () => {
 
   const navLinks: NavLink[] = [
     { label: 'Home', action: () => scrollToSection('hero') },
-    { 
-      label: 'Properties', 
-      action: () => scrollToSection('properties'),
-      dropdown: [
-        { label: 'All Listings', action: () => scrollToSection('properties') },
-        { label: 'Luxury Homes', action: () => scrollToSection('properties') },
-        { label: 'Beachfront', action: () => scrollToSection('properties') },
-      ]
-    },
-    { 
-      label: 'New Developments', 
-      dropdown: [
-        { label: 'Blue Vista', href: '/#/blue-vista' },
-      ]
-    },
+    { label: 'New Developments', href: '/#/new-developments' },
     { label: 'About', href: '/#/about' },
     { 
       label: 'Resources', 
@@ -108,12 +88,7 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
-              <div 
-                key={link.label}
-                className="relative"
-                onMouseEnter={() => link.dropdown && setActiveDropdown(link.label)}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
+              <div key={link.label}>
                 {'action' in link && link.action ? (
                   <button 
                     onClick={link.action}
@@ -122,7 +97,6 @@ const Header = () => {
                     }`}
                   >
                     {link.label}
-                    {link.dropdown && <ChevronDown className="w-4 h-4" />}
                   </button>
                 ) : (
                   <a 
@@ -132,33 +106,7 @@ const Header = () => {
                     }`}
                   >
                     {link.label}
-                    {link.dropdown && <ChevronDown className="w-4 h-4" />}
                   </a>
-                )}
-                
-                {/* Dropdown */}
-                {link.dropdown && activeDropdown === link.label && (
-                  <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-50">
-                    {link.dropdown.map((item) => (
-                      'action' in item && item.action ? (
-                        <button
-                          key={item.label}
-                          onClick={item.action}
-                          className="block w-full text-left px-4 py-2 text-[#1d1d1d] hover:bg-gray-100"
-                        >
-                          {item.label}
-                        </button>
-                      ) : (
-                        <a
-                          key={item.label}
-                          href={item.href}
-                          className="block px-4 py-2 text-[#1d1d1d] hover:bg-gray-100"
-                        >
-                          {item.label}
-                        </a>
-                      )
-                    ))}
-                  </div>
                 )}
               </div>
             ))}
@@ -210,29 +158,6 @@ const Header = () => {
                   >
                     {link.label}
                   </a>
-                )}
-                {link.dropdown && (
-                  <div className="pl-4 space-y-2 mt-2">
-                    {link.dropdown.map((item) => (
-                      'action' in item && item.action ? (
-                        <button
-                          key={item.label}
-                          onClick={item.action}
-                          className="block w-full text-left py-1 text-gray-600"
-                        >
-                          {item.label}
-                        </button>
-                      ) : (
-                        <a
-                          key={item.label}
-                          href={item.href}
-                          className="block py-1 text-gray-600"
-                        >
-                          {item.label}
-                        </a>
-                      )
-                    ))}
-                  </div>
                 )}
               </div>
             ))}
