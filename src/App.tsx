@@ -2,52 +2,20 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import Header from './sections/Header';
 import Hero from './sections/Hero';
 import Properties from './sections/Properties';
-import Neighborhoods from './sections/Neighborhoods';
 import Newsletter from './sections/Newsletter';
 import CTA from './sections/CTA';
 import Footer from './sections/Footer';
+import About from './pages/About';
+import NewDevelopments from './pages/NewDevelopments';
 
 // Home Page Component
 const HomePage = () => (
   <>
     <Hero />
     <Properties />
-    <Neighborhoods />
     <Newsletter />
     <CTA />
   </>
-);
-
-// Simple About Page
-const About = () => (
-  <div className="min-h-screen pt-32 pb-20 bg-white">
-    <div className="section-container max-w-4xl">
-      <h1 className="text-4xl md:text-5xl font-bold text-[#1d1d1d] mb-8" style={{ fontFamily: "'Roboto Slab', serif" }}>
-        About Tomas Figueroa
-      </h1>
-      <div className="prose prose-lg max-w-none text-gray-600">
-        <p className="mb-6">
-          With over 20 years of experience in Roatan real estate, I've helped hundreds of clients 
-          find their dream properties in this Caribbean paradise. My deep knowledge of the local market, 
-          combined with a commitment to exceptional service, makes me your ideal partner for all your 
-          real estate needs.
-        </p>
-        <p className="mb-6">
-          Whether you're looking for a vacation home, investment property, or your permanent residence, 
-          I provide personalized guidance throughout the entire process. From property search to closing, 
-          I'm here to ensure a smooth and successful transaction.
-        </p>
-        <h2 className="text-2xl font-bold text-[#1d1d1d] mt-10 mb-4">Why Work With Me?</h2>
-        <ul className="list-disc pl-6 space-y-2 mb-6">
-          <li>20+ years of local market expertise</li>
-          <li>Personalized, one-on-one service</li>
-          <li>Fluent in English and Spanish</li>
-          <li>Extensive network of local contacts</li>
-          <li>Proven track record of successful transactions</li>
-        </ul>
-      </div>
-    </div>
-  </div>
 );
 
 // Simple Blog Page
@@ -76,45 +44,6 @@ const Guides = () => (
         Coming soon! Comprehensive guides to help you navigate the process of buying 
         property in Roatan, Honduras.
       </p>
-    </div>
-  </div>
-);
-
-// Blue Vista Development Page
-const BlueVista = () => (
-  <div className="min-h-screen pt-32 pb-20 bg-white">
-    <div className="section-container max-w-4xl">
-      <h1 className="text-4xl md:text-5xl font-bold text-[#1d1d1d] mb-8" style={{ fontFamily: "'Roboto Slab', serif" }}>
-        Blue Vista Development
-      </h1>
-      <img 
-        src="/bluevista-hero.webp" 
-        alt="Blue Vista" 
-        className="w-full h-64 md:h-96 object-cover rounded-2xl mb-8"
-      />
-      <div className="prose prose-lg max-w-none text-gray-600">
-        <p className="mb-6">
-          Blue Vista is an exclusive new development offering stunning ocean views and 
-          modern Caribbean living. Located in one of Roatan's most desirable areas, 
-          this development features luxury homes designed for comfort and elegance.
-        </p>
-        <h2 className="text-2xl font-bold text-[#1d1d1d] mt-10 mb-4">Development Features</h2>
-        <ul className="list-disc pl-6 space-y-2 mb-6">
-          <li>Panoramic ocean views</li>
-          <li>Modern architectural design</li>
-          <li>High-end finishes</li>
-          <li>Private community</li>
-          <li>Close to beaches and amenities</li>
-        </ul>
-        <a 
-          href="https://savvycal.com/tomasfigueroa/chat-with-tomas"
-          target="_blank"
-          rel="noopener"
-          className="inline-block bg-[#04649b] text-white px-8 py-4 rounded-lg font-medium hover:bg-[#03527d] transition-all mt-6"
-        >
-          Schedule a Viewing
-        </a>
-      </div>
     </div>
   </div>
 );
@@ -165,7 +94,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/guides" element={<Guides />} />
-            <Route path="/blue-vista" element={<BlueVista />} />
+            <Route path="/new-developments" element={<NewDevelopments />} />
             <Route path="/success" element={<FormSuccess />} />
           </Routes>
         </main>
