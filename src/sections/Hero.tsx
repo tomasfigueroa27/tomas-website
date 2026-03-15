@@ -67,7 +67,7 @@ const Hero = () => {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
               onClick={() => scrollToSection('properties')}
               className="flex items-center justify-center gap-2 bg-[#04649b] hover:bg-[#03527d] text-white px-8 py-4 rounded-lg font-medium text-lg transition-all"
@@ -82,22 +82,6 @@ const Hero = () => {
               <TrendingUp className="w-5 h-5" />
               Sell
             </button>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold mb-1">20+</div>
-              <div className="text-sm text-white/70">Years Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold mb-1">500+</div>
-              <div className="text-sm text-white/70">Properties Sold</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold mb-1">100%</div>
-              <div className="text-sm text-white/70">Client Satisfaction</div>
-            </div>
           </div>
         </div>
       </div>
