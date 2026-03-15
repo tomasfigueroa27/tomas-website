@@ -101,7 +101,7 @@ const Header = () => {
             <img 
               src={isScrolled ? "/logo-blue.webp" : "/logo-white.webp"} 
               alt="Tomas Figueroa Real Estate" 
-              className="h-12 md:h-16 w-auto"
+              className="h-16 md:h-24 w-auto"
             />
           </a>
 
