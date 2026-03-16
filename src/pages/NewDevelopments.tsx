@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { MapPin, Home, TrendingUp, Calendar } from 'lucide-react';
+import { MapPin, Home, TrendingUp, Calendar, Phone } from 'lucide-react';
 
 const NewDevelopments = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
