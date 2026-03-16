@@ -49,17 +49,19 @@ const CTA = () => {
             }`}
           >
             <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6">
-              Ready to Make a Move?
+              Ready to Sell in Roatan?
             </span>
             <h2 
               className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
               style={{ fontFamily: "'Roboto Slab', serif" }}
             >
-              Work With Tomas
+              Position Your Property for Maximum Value
             </h2>
             <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-              Whether you're buying your dream home or selling your property, 
-              I'm here to guide you every step of the way. Let's make your real estate goals a reality.
+              Selling property in Roatan requires more than listing it — it requires 
+              positioning, strategy, and disciplined execution. I guide you through pricing, 
+              marketing, and negotiation to ensure your property is presented correctly and 
+              achieves its full market potential.
             </p>
           </div>
 
