@@ -87,15 +87,14 @@ const About = () => {
                 </a>
               </div>
             </div>
+            {/* Portrait Photo */}
             <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-white/10 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-5xl font-bold">TF</span>
-                  </div>
-                  <p className="text-white/80">Tomas Figueroa</p>
-                  <p className="text-white/60 text-sm">Real Estate Agent</p>
-                </div>
+              <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="/tomas-portrait.jpg" 
+                  alt="Tomas Figueroa" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
