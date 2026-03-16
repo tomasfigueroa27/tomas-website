@@ -24,29 +24,41 @@ const About = () => {
   }, []);
 
   const stats = [
-    { number: '20+', label: 'Years Experience', icon: Award },
-    { number: '500+', label: 'Properties Sold', icon: Users },
-    { number: '100%', label: 'Client Satisfaction', icon: Award },
+    { number: '20+', label: 'Years Sales Experience', icon: Award },
+    { number: '50+', label: 'Properties Sold', icon: Users },
+    { number: '30MM+', label: 'Sales Volume', icon: Award },
   ];
 
-  const values = [
-    {
-      title: 'Integrity',
-      description: 'I believe in honest, transparent communication throughout every transaction.',
-    },
-    {
-      title: 'Expertise',
-      description: 'Deep knowledge of the Roatan market helps you make informed decisions.',
-    },
-    {
-      title: 'Dedication',
-      description: 'Your goals become my mission. I work tirelessly to exceed expectations.',
-    },
-    {
-      title: 'Personal Service',
-      description: 'Every client receives one-on-one attention tailored to their unique needs.',
-    },
-  ];
+const values = [
+  {
+    title: "Positioning Roatan Correctly",
+    description: `Roatan remains under the radar for many serious investors and relocation buyers. 
+
+My role is to help you evaluate the island in context — alongside other Caribbean markets — based on infrastructure, growth trajectory, regulation, and long-term potential. 
+
+Before choosing a property, the first question is whether Roatan is the right market for you.`,
+  },
+  {
+    title: "Goal-Driven Strategy",
+    description: `Every buyer has a different objective — cash flow, long-term appreciation, lifestyle flexibility, or permanent relocation. 
+
+We define your goal first, then align strategy, location, and timing accordingly.`,
+  },
+  {
+    title: "Forward-Looking Market Insight",
+    description: `Through active involvement with developers, business leaders, and investment groups, we track what is coming — not just what exists today. 
+
+Understanding how the island will evolve is essential to giving informed, forward-looking advice.`,
+  },
+  {
+    title: "Long-Term Perspective",
+    description: `This is not transactional. I aim to build relationships based on clarity, professionalism, and strategic thinking — so years from now, you feel confident in the decision you made.`,
+  },
+  {
+    title: "Professionalism & Continuous Expertise",
+    description: `Buying property in Roatan is a significant financial decision. We approach it with structure, transparency, and discipline — continuously refining our knowledge through exposure to other markets and emerging trends.`,
+  },
+];
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-white">
@@ -65,8 +77,9 @@ const About = () => {
                 Tomas Figueroa
               </h1>
               <p className="text-lg md:text-xl text-white/90 mb-6">
-                Your trusted real estate partner in Roatan, Honduras. With over two decades of experience, 
-                I've helped hundreds of clients find their dream properties in this Caribbean paradise.
+                Strategic real estate guidance in Roatan, Honduras. Backed by over 20 years 
+                of international business experience, I help investors and high-end buyers 
+                evaluate opportunities with clarity and long-term perspective.
               </p>
               <div className="flex flex-wrap gap-4">
                 <a 
@@ -136,19 +149,22 @@ const About = () => {
               </h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  With over 20 years of experience in Roatan real estate, I bring unparalleled knowledge 
-                  of the local market, neighborhoods, and investment opportunities. My deep understanding 
-                  of the island's unique characteristics helps clients make informed decisions.
+                  With over 20 years of experience in international sales, business development, and leadership,
+                  I bring a strategic and disciplined approach to real estate in Roatan. As a licensed agent with 
+                  Keller Williams Roatan, I advise buyers, sellers, and developers with clarity, structure, and a 
+                  long-term perspective.
                 </p>
                 <p>
-                  Whether you're looking for a vacation home, investment property, or your permanent 
-                  residence in paradise, I provide personalized guidance throughout the entire process. 
-                  From property search to closing, I'm here to ensure a smooth and successful transaction.
+                  For buyers and investors, I focus on aligning property selection with clearly defined 
+                  objectives — whether that means cash flow, long-term appreciation, lifestyle flexibility, 
+                  or relocation. Every opportunity is evaluated through market fundamentals, positioning, 
+                  and future development patterns.
                 </p>
                 <p>
-                  Fluent in both English and Spanish, I bridge communication gaps and ensure nothing 
-                  is lost in translation. My extensive network of local contacts - from attorneys and 
-                  inspectors to contractors and property managers - means you have access to the best 
+                  For sellers and developers, I combine strategic pricing, global exposure, professional marketing, 
+                  and strong negotiation to maximize positioning and value in Roatan’s evolving market. Real estate 
+                  in Roatan is not just a transaction — it is a strategic decision. My role is to ensure you make it 
+                  with clarity and confidence.
                   resources on the island.
                 </p>
               </div>
@@ -158,7 +174,7 @@ const About = () => {
                 className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-6"
                 style={{ fontFamily: "'Roboto Slab', serif" }}
               >
-                My Values
+                My Approach to Roatan Real Estate
               </h2>
               <div className="space-y-4">
                 {values.map((value) => (
@@ -189,10 +205,10 @@ const About = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: 'Property Sales', desc: 'Sell your property with expert marketing and negotiation.' },
-              { title: 'Buyer Representation', desc: 'Find your dream home with personalized property searches.' },
-              { title: 'Investment Consulting', desc: 'Identify high-ROI opportunities in Roatan real estate.' },
-              { title: 'Relocation Services', desc: 'Seamless transition to island living.' },
+              { title: 'Property Sales', desc: 'Sell your property with strategic marketing and negotiation.' },
+              { title: 'Buyer Representation', desc: 'Find the right property with objective guidance and strategic evaluation.' },
+              { title: 'Investment Consulting', desc: 'Identify high-quality opportunities through disciplined analysis and forward-looking market insight.' },
+              { title: 'Relocation Services', desc: 'Relocate with confidence through structured guidance and local insight.' },
             ].map((service) => (
               <div key={service.title} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
                 <h3 className="text-lg font-semibold text-[#1d1d1d] mb-2">{service.title}</h3>
@@ -211,10 +227,10 @@ const About = () => {
               className="text-3xl md:text-4xl font-bold mb-4"
               style={{ fontFamily: "'Roboto Slab', serif" }}
             >
-              Let's Work Together
+              Ready to Explore Roatan Real Estate?
             </h2>
             <p className="text-white/90 max-w-2xl mx-auto mb-8">
-              Ready to find your dream property in Roatan? I'm here to help every step of the way.
+              Let’s define your objectives and build a strategy aligned with your long-term goals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
