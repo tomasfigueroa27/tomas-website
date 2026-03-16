@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   const navLinks: NavLink[] = [
-    { label: 'Home', action: () => scrollToSection('hero') },
+    { label: 'Home', href: '/#/' },
     { label: 'New Developments', href: '/#/new-developments' },
     { label: 'About', href: '/#/about' },
     { label: 'Resources', href: '/#/resources' },
@@ -70,12 +70,12 @@ const Header = () => {
       {/* Main Navigation */}
       <div className="section-container">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <a href="/" className="flex items-center">
+          {/* Logo - DOUBLED SIZE */}
+          <a href="/#/" className="flex items-center">
             <img 
               src={isScrolled ? "/logo-blue.webp" : "/logo-white.webp"} 
               alt="Tomas Figueroa Real Estate" 
-              className="h-12 md:h-16 w-auto"
+              className="h-24 md:h-32 w-auto"
             />
           </a>
 
