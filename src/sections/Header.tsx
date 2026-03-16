@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Phone, Mail } from 'lucide-react';
+import { Menu, X, Phone, Mail } from 'lucide-react';
 
 interface NavLink {
   label: string;
@@ -31,13 +31,7 @@ const Header = () => {
     { label: 'Home', action: () => scrollToSection('hero') },
     { label: 'New Developments', href: '/#/new-developments' },
     { label: 'About', href: '/#/about' },
-    { 
-      label: 'Resources', 
-      dropdown: [
-        { label: 'Blog', href: '/#/blog' },
-        { label: 'Guides', href: '/#/guides' },
-      ]
-    },
+    { label: 'Resources', href: '/#/resources' },
     { label: 'Contact', action: () => scrollToSection('newsletter') },
   ];
 
