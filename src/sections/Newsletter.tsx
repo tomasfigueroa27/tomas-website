@@ -138,10 +138,9 @@ const Newsletter = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                Receive Market Insights
                 className="w-full btn-dark justify-center"
               >
-                <span>Submit</span>
+                <span>Receive Market Insights</span>
                 <Send className="w-5 h-5 ml-2" />
               </button>
             </form>
