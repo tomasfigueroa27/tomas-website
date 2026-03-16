@@ -101,15 +101,15 @@ Understanding how the island will evolve is essential to giving informed, forwar
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-white/10 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-5xl font-bold">TF</span>
-                  </div>
-                  <p className="text-white/80">Tomas Figueroa</p>
-                  <p className="text-white/60 text-sm">Real Estate Agent</p>
-                </div>
-              </div>
+              <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                <img
+                  src="/tomaswebsitecompressed.jpg"
+                  alt="Tomas Figueroa - Real Estate Advisor in Roatan, Honduras"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+               </div>
+             </div>
             </div>
           </div>
         </div>
