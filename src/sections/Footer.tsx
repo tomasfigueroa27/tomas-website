@@ -10,10 +10,17 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
+            {/* Logo - DOUBLED SIZE */}
             <img 
               src="/logo-white.webp" 
               alt="Tomas Figueroa Real Estate" 
-              className="h-16 w-auto mb-6"
+              className="h-32 w-auto mb-6"
+            />
+            {/* KW Logo - Same size */}
+            <img 
+              src="/kw-logo-white.png" 
+              alt="KW Roatan" 
+              className="h-32 w-auto mb-6"
             />
             <p className="text-gray-400 mb-6 max-w-md">
               Your trusted partner for buying and selling properties in Roatan, Honduras. 
@@ -61,10 +68,10 @@ const Footer = () => {
               Quick Links
             </h4>
             <ul className="space-y-3">
-              <li><a href="/#properties" className="text-gray-400 hover:text-white transition-colors">Properties</a></li>
-              <li><a href="/#neighborhoods" className="text-gray-400 hover:text-white transition-colors">Neighborhoods</a></li>
-              <li><a href="/#/blue-vista" className="text-gray-400 hover:text-white transition-colors">Blue Vista</a></li>
+              <li><a href="/#/" className="text-gray-400 hover:text-white transition-colors">Home</a></li>
+              <li><a href="/#/new-developments" className="text-gray-400 hover:text-white transition-colors">New Developments</a></li>
               <li><a href="/#/about" className="text-gray-400 hover:text-white transition-colors">About</a></li>
+              <li><a href="/#/resources" className="text-gray-400 hover:text-white transition-colors">Resources</a></li>
               <li><a href="/#/blog" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
               <li><a href="/#/guides" className="text-gray-400 hover:text-white transition-colors">Guides</a></li>
             </ul>
