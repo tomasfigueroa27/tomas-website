@@ -137,7 +137,8 @@ const Newsletter = () => {
 
               {/* Submit Button */}
               <button
-                type="Receive Market Insights"
+                type="Submit"
+                Receive Market Insights
                 className="w-full btn-dark justify-center"
               >
                 <span>Submit</span>
