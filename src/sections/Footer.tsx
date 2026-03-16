@@ -16,8 +16,8 @@ const Footer = () => {
               className="h-16 w-auto mb-6"
             />
             <p className="text-gray-400 mb-6 max-w-md">
-              Your trusted partner for buying and selling properties in Roatan, Honduras. 
-              With over 20 years of experience, I help clients find their dream homes in paradise.
+              Strategic real estate guidance in Roatan, Honduras — helping investors and 
+              relocation buyers make disciplined, informed decisions.
             </p>
             <div className="flex gap-4">
               <a 
@@ -45,7 +45,7 @@ const Footer = () => {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a 
-                href="https://www.youtube.com/@TomasFigueroa.realtor/featured" 
+                href="https://www.youtube.com/channel/UCfH3CqrQxYKPBlXVzw6Sz_Q" 
                 target="_blank" 
                 rel="noopener"
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#04649b] transition-colors"
@@ -62,8 +62,7 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <li><a href="/#properties" className="text-gray-400 hover:text-white transition-colors">Properties</a></li>
-              <li><a href="/#neighborhoods" className="text-gray-400 hover:text-white transition-colors">Neighborhoods</a></li>
-              <li><a href="/#/blue-vista" className="text-gray-400 hover:text-white transition-colors">Blue Vista</a></li>
+              <li><a href="/#/new-developments" className="text-gray-400 hover:text-white transition-colors">Blue Vista</a></li>
               <li><a href="/#/about" className="text-gray-400 hover:text-white transition-colors">About</a></li>
               <li><a href="/#/blog" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
               <li><a href="/#/guides" className="text-gray-400 hover:text-white transition-colors">Guides</a></li>
