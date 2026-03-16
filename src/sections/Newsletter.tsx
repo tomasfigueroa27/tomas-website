@@ -129,7 +129,7 @@ const Newsletter = () => {
                   className="mt-1 w-4 h-4 text-[#04649b] border-gray-300 rounded focus:ring-[#04649b]"
                 />
                 <label htmlFor="agreement" className="text-sm text-gray-600">
-                  I consent to receive market updates and real estate insights from <strong>Tomas Figueroa<strong>. 
+                  I consent to receive market updates and real estate insights from <strong>Tomas Figueroa</strong>. 
                   You may unsubscribe at any time.
                   <a href="#" className="text-[#04649b] hover:underline">Privacy Policy</a>.
                 </label>
