@@ -48,9 +48,9 @@ const Newsletter = () => {
             
             {/* Decorative Content */}
             <div className="absolute bottom-8 left-8 text-white">
-              <p className="text-sm uppercase tracking-wider mb-2 opacity-80">Stay Updated</p>
+              <p className="text-sm uppercase tracking-wider mb-2 opacity-80">INSIGHTS & OPPORTUNITIES</p>
               <p className="text-2xl font-bold" style={{ fontFamily: "'Roboto Slab', serif" }}>
-                Your Dream Home Awaits
+                Roatan Real Estate, Clearly Explained
               </p>
             </div>
           </div>
@@ -65,12 +65,13 @@ const Newsletter = () => {
               className="text-2xl lg:text-3xl font-bold text-[#1d1d1d] mb-4"
               style={{ fontFamily: "'Roboto Slab', serif" }}
             >
-              Get Roatan Real Estate Updates
+              Roatan Real Estate Insights & Opportunities
             </h3>
             
             <p className="text-gray-600 mb-8">
-              Are you interested in buying a home? Look no further than working with a real estate expert. 
-              Subscribe to get the latest listings and market updates.
+              Stay informed with curated market insights, new opportunities, development updates, and 
+              strategic analysis of Roatan’s evolving real estate landscape.
+              Designed for investors and relocation buyers who want clarity before making a decision.
             </p>
 
             {/* Netlify Form */}
@@ -128,16 +129,15 @@ const Newsletter = () => {
                   className="mt-1 w-4 h-4 text-[#04649b] border-gray-300 rounded focus:ring-[#04649b]"
                 />
                 <label htmlFor="agreement" className="text-sm text-gray-600">
-                  I agree to be contacted by <strong>Tomas Figueroa</strong> via call, email, and text 
-                  for real estate services. To opt out, you can reply &apos;stop&apos; at any time. 
-                  Message and data rates may apply.{' '}
+                  I consent to receive market updates and real estate insights from <strong>Tomas Figueroa<strong>. 
+                  You may unsubscribe at any time.
                   <a href="#" className="text-[#04649b] hover:underline">Privacy Policy</a>.
                 </label>
               </div>
 
               {/* Submit Button */}
               <button
-                type="submit"
+                type="Receive Market Insights"
                 className="w-full btn-dark justify-center"
               >
                 <span>Submit</span>
