@@ -23,7 +23,7 @@ const Footer = () => {
             <img 
               src="/KW Logos (white).png" 
               alt="Keller Williams Roatan" 
-              className="h-12 w-auto mb-6 opacity-80"
+              className="h-32 w-auto mb-6 opacity-80"
             />
 
             <p className="text-gray-400 mb-6 max-w-md">
