@@ -8,17 +8,29 @@ const Footer = () => {
       {/* Main Footer */}
       <div className="section-container py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+
           {/* Brand */}
           <div className="lg:col-span-2">
+            
+            {/* Main Logo (2x bigger) */}
             <img 
               src="/logo-white.webp" 
               alt="Tomas Figueroa Real Estate" 
-              className="h-16 w-auto mb-6"
+              className="h-32 w-auto mb-4"
             />
+
+            {/* KW Logo */}
+            <img 
+              src="/KW Logos (white).png" 
+              alt="Keller Williams Roatan" 
+              className="h-12 w-auto mb-6 opacity-80"
+            />
+
             <p className="text-gray-400 mb-6 max-w-md">
               Strategic real estate guidance in Roatan, Honduras — helping investors and 
               relocation buyers make disciplined, informed decisions.
             </p>
+
             <div className="flex gap-4">
               <a 
                 href="https://www.facebook.com/profile.php?id=61557310059412" 
@@ -28,6 +40,7 @@ const Footer = () => {
               >
                 <Facebook className="w-5 h-5" />
               </a>
+
               <a 
                 href="https://www.instagram.com/roatanbytomas/" 
                 target="_blank" 
@@ -36,6 +49,7 @@ const Footer = () => {
               >
                 <Instagram className="w-5 h-5" />
               </a>
+
               <a 
                 href="https://www.linkedin.com/in/roatanbytomas/" 
                 target="_blank" 
@@ -44,6 +58,7 @@ const Footer = () => {
               >
                 <Linkedin className="w-5 h-5" />
               </a>
+
               <a 
                 href="https://www.youtube.com/channel/UCfH3CqrQxYKPBlXVzw6Sz_Q" 
                 target="_blank" 
@@ -62,14 +77,14 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <li><a href="/#properties" className="text-gray-400 hover:text-white transition-colors">Properties</a></li>
-              <li><a href="/#/new-developments" className="text-gray-400 hover:text-white transition-colors">Blue Vista</a></li>
+              <li><a href="/#/new-developments" className="text-gray-400 hover:text-white transition-colors">New Developments</a></li>
               <li><a href="/#/about" className="text-gray-400 hover:text-white transition-colors">About</a></li>
               <li><a href="/#/blog" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
               <li><a href="/#/guides" className="text-gray-400 hover:text-white transition-colors">Guides</a></li>
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact (unchanged) */}
           <div>
             <h4 className="text-lg font-semibold mb-6" style={{ fontFamily: "'Roboto Slab', serif" }}>
               Contact
@@ -83,12 +98,14 @@ const Footer = () => {
                   Honduras
                 </span>
               </li>
+
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-[#04649b] flex-shrink-0" />
                 <a href="tel:+50488488326" className="text-gray-400 hover:text-white transition-colors">
                   (504) 8848-8326
                 </a>
               </li>
+
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-[#04649b] flex-shrink-0" />
                 <a href="mailto:tomas@kwroatan.com" className="text-gray-400 hover:text-white transition-colors">
@@ -97,10 +114,11 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+
         </div>
       </div>
 
-      {/* Bottom Bar */}
+      {/* Bottom Bar unchanged */}
       <div className="border-t border-white/10">
         <div className="section-container py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
