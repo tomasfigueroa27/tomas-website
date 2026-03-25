@@ -5,6 +5,7 @@ import Properties from './sections/Properties';
 import Newsletter from './sections/Newsletter';
 import CTA from './sections/CTA';
 import Footer from './sections/Footer';
+import HomeAbout from './sections/HomeAbout';
 import About from './pages/About';
 import NewDevelopments from './pages/NewDevelopments';
 
@@ -12,6 +13,7 @@ import NewDevelopments from './pages/NewDevelopments';
 const HomePage = () => (
   <>
     <Hero />
+    <HomeAbout />
     <Properties />
     <Newsletter />
     <CTA />

@@ -106,14 +106,13 @@ Understanding how the island will evolve is essential to giving informed, forwar
                 </a>
               </div>
             </div>
-
+            {/* Portrait Photo */}
             <div className="relative">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-                <img
-                  src="/tomaswebsitecompressed.jpg"
-                  alt="Tomas Figueroa - Real Estate Advisor in Roatan, Honduras"
+              <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="/tomas-portrait.jpg" 
+                  alt="Tomas Figueroa" 
                   className="w-full h-full object-cover"
-                  loading="lazy"
                 />
               </div>
             </div>
