@@ -9,6 +9,7 @@ import HomeAbout from './sections/HomeAbout';
 import About from './pages/About';
 import NewDevelopments from './pages/NewDevelopments';
 import Resources from './pages/Resources';
+import Guides from './pages/Guides';
 
 // Home Page Component
 const HomePage = () => (
@@ -31,21 +32,6 @@ const Blog = () => (
       <p className="text-gray-600 text-lg">
         Coming soon! Stay tuned for articles about Roatan real estate, market trends, 
         investment opportunities, and lifestyle tips.
-      </p>
-    </div>
-  </div>
-);
-
-// Guides Page
-const Guides = () => (
-  <div className="min-h-screen pt-32 pb-20 bg-white">
-    <div className="section-container max-w-4xl">
-      <h1 className="text-4xl md:text-5xl font-bold text-[#1d1d1d] mb-8" style={{ fontFamily: "'Roboto Slab', serif" }}>
-        Buyer's Guides
-      </h1>
-      <p className="text-gray-600 text-lg">
-        Coming soon! Comprehensive guides to help you navigate the process of buying 
-        property in Roatan, Honduras.
       </p>
     </div>
   </div>
