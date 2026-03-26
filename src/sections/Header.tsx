@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Mail } from 'lucide-react';
 
 interface NavLink {
@@ -10,6 +11,8 @@ interface NavLink {
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isHomePage = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +21,9 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // On non-home pages there's no dark hero, so always use the solid/scrolled style
+  const solidHeader = !isHomePage || isScrolled;
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -36,15 +42,15 @@ const Header = () => {
   ];
 
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white shadow-lg py-4' 
+        solidHeader
+          ? 'bg-white shadow-lg py-4'
           : 'bg-transparent py-6'
       }`}
     >
       {/* Top Bar */}
-      <div className={`${isScrolled ? 'hidden' : 'block'} bg-[#04649b] text-white py-2`}>
+      <div className={`${solidHeader ? 'hidden' : 'block'} bg-[#04649b] text-white py-2`}>
         <div className="section-container flex justify-between items-center text-sm">
           <div className="flex items-center gap-4">
             <a href="tel:+50488488326" className="flex items-center gap-1 hover:underline">
@@ -72,9 +78,9 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo - DOUBLED SIZE */}
           <a href="/#/" className="flex items-center">
-            <img 
-              src={isScrolled ? "/logo-blue.webp" : "/logo-white.webp"} 
-              alt="Tomas Figueroa Real Estate" 
+            <img
+              src={solidHeader ? "/logo-blue.webp" : "/logo-white.webp"}
+              alt="Tomas Figueroa Real Estate"
               className="h-24 md:h-32 w-auto"
             />
           </a>
@@ -84,19 +90,19 @@ const Header = () => {
             {navLinks.map((link) => (
               <div key={link.label}>
                 {'action' in link && link.action ? (
-                  <button 
+                  <button
                     onClick={link.action}
                     className={`flex items-center gap-1 font-medium hover:opacity-80 transition-opacity ${
-                      isScrolled ? 'text-[#1d1d1d]' : 'text-white'
+                      solidHeader ? 'text-[#1d1d1d]' : 'text-white'
                     }`}
                   >
                     {link.label}
                   </button>
                 ) : (
-                  <a 
+                  <a
                     href={link.href}
                     className={`flex items-center gap-1 font-medium hover:opacity-80 transition-opacity ${
-                      isScrolled ? 'text-[#1d1d1d]' : 'text-white'
+                      solidHeader ? 'text-[#1d1d1d]' : 'text-white'
                     }`}
                   >
                     {link.label}
@@ -108,13 +114,13 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <a 
+            <a
               href="https://savvycal.com/tomasfigueroa/chat-with-tomas"
               target="_blank"
               rel="noopener"
               className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                isScrolled 
-                  ? 'bg-[#04649b] text-white hover:bg-[#03527d]' 
+                solidHeader
+                  ? 'bg-[#04649b] text-white hover:bg-[#03527d]'
                   : 'bg-white text-[#04649b] hover:bg-gray-100'
               }`}
             >
@@ -123,9 +129,9 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden p-2 ${isScrolled ? 'text-[#1d1d1d]' : 'text-white'}`}
+            className={`lg:hidden p-2 ${solidHeader ? 'text-[#1d1d1d]' : 'text-white'}`}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -139,14 +145,14 @@ const Header = () => {
             {navLinks.map((link) => (
               <div key={link.label}>
                 {'action' in link && link.action ? (
-                  <button 
+                  <button
                     onClick={link.action}
                     className="block w-full text-left py-2 text-[#1d1d1d] font-medium"
                   >
                     {link.label}
                   </button>
                 ) : (
-                  <a 
+                  <a
                     href={link.href}
                     className="block py-2 text-[#1d1d1d] font-medium"
                   >
@@ -155,7 +161,7 @@ const Header = () => {
                 )}
               </div>
             ))}
-            <a 
+            <a
               href="https://savvycal.com/tomasfigueroa/chat-with-tomas"
               target="_blank"
               rel="noopener"
