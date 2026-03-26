@@ -8,6 +8,7 @@ import Footer from './sections/Footer';
 import HomeAbout from './sections/HomeAbout';
 import About from './pages/About';
 import NewDevelopments from './pages/NewDevelopments';
+import Resources from './pages/Resources';
 
 // Home Page Component
 const HomePage = () => (
@@ -18,27 +19,6 @@ const HomePage = () => (
     <Newsletter />
     <CTA />
   </>
-);
-
-// Resources Page
-const Resources = () => (
-  <div className="min-h-screen pt-32 pb-20 bg-white">
-    <div className="section-container max-w-4xl">
-      <h1 className="text-4xl md:text-5xl font-bold text-[#1d1d1d] mb-8" style={{ fontFamily: "'Roboto Slab', serif" }}>
-        Resources
-      </h1>
-      <div className="grid md:grid-cols-2 gap-6">
-        <a href="/#/blog" className="block bg-[#f5f5f5] rounded-xl p-6 hover:shadow-lg transition-shadow">
-          <h2 className="text-xl font-semibold text-[#1d1d1d] mb-2">Blog</h2>
-          <p className="text-gray-600">Read articles about Roatan real estate, market trends, and lifestyle tips.</p>
-        </a>
-        <a href="/#/guides" className="block bg-[#f5f5f5] rounded-xl p-6 hover:shadow-lg transition-shadow">
-          <h2 className="text-xl font-semibold text-[#1d1d1d] mb-2">Buyer's Guides</h2>
-          <p className="text-gray-600">Comprehensive guides to help you navigate buying property in Roatan.</p>
-        </a>
-      </div>
-    </div>
-  </div>
 );
 
 // Blog Page
