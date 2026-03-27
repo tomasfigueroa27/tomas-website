@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { FileText, Download, X, Send, Loader2 } from 'lucide-react';
+import { Download, X, Send, Loader2 } from 'lucide-react';
 
 interface Guide {
   id: string;
   title: string;
   description: string;
   file: string;
+  cover: string;
   pages: string;
 }
 
@@ -15,6 +16,7 @@ const guides: Guide[] = [
     title: "Buyer's Guide to Roatan Real Estate",
     description: 'Everything you need to know before purchasing property in Roatan — from legal process to neighborhood selection and financing.',
     file: '/guides/buyers-guide.pdf',
+    cover: '/guides/buyers-guide-cover.jpg',
     pages: 'Comprehensive Guide',
   },
 ];
@@ -102,10 +104,14 @@ const Guides = () => {
                 className="group text-left bg-[#f5f5f5] hover:bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100"
               >
                 {/* Thumbnail */}
-                <div className="relative bg-gradient-to-br from-[#04649b] to-[#03527d] aspect-[3/4] flex flex-col items-center justify-center p-8">
-                  <FileText className="w-16 h-16 text-white/80 mb-4" />
-                  <span className="text-white/60 text-xs uppercase tracking-widest">{guide.pages}</span>
-                  <div className="absolute bottom-4 right-4 bg-white/20 backdrop-blur-sm rounded-lg px-3 py-1.5 flex items-center gap-1.5 group-hover:bg-white group-hover:text-[#04649b] transition-all duration-300">
+                <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                  <img
+                    src={guide.cover}
+                    alt={`${guide.title} cover`}
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  <div className="absolute bottom-4 right-4 bg-white/20 backdrop-blur-sm rounded-lg px-3 py-1.5 flex items-center gap-1.5 group-hover:bg-white transition-all duration-300">
                     <Download className="w-3.5 h-3.5 text-white group-hover:text-[#04649b] transition-colors" />
                     <span className="text-white group-hover:text-[#04649b] text-xs font-medium transition-colors">Free Download</span>
                   </div>
