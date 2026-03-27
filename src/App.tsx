@@ -1,4 +1,5 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Header from './sections/Header';
 import Hero from './sections/Hero';
 import Properties from './sections/Properties';
@@ -10,6 +11,14 @@ import About from './pages/About';
 import NewDevelopments from './pages/NewDevelopments';
 import Resources from './pages/Resources';
 import Guides from './pages/Guides';
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 // Home Page Component
 const HomePage = () => (
@@ -76,6 +85,7 @@ function App() {
   return (
     <HashRouter>
       <div className="min-h-screen bg-white">
+        <ScrollToTop />
         <Header />
         <main>
           <Routes>
