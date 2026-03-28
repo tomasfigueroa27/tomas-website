@@ -35,6 +35,10 @@ const HomeAbout = () => {
                 src="/tomas-about.jpg"
                 alt="Tomas Figueroa – Roatan Real Estate Agent"
                 className="w-full h-full object-cover object-top"
+                loading="lazy"
+                decoding="async"
+                width="800"
+                height="1000"
               />
             </div>
             {/* Floating stat card */}

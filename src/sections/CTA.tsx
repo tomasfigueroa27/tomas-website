@@ -24,21 +24,11 @@ const CTA = () => {
   }, []);
 
   return (
-    <section 
+    <section
       id="cta"
       ref={sectionRef}
-      className="relative w-full py-20 lg:py-32 overflow-hidden"
+      className="relative w-full py-20 lg:py-32 overflow-hidden bg-gradient-to-r from-[#04649b] to-[#03527d]"
     >
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src="/cta-new-bg.jpg"
-          alt="Roatan coastal view"
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#04649b]/90 to-[#04649b]/70" />
-      </div>
 
       {/* Content */}
       <div className="relative z-10 section-container">
