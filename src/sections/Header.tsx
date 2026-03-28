@@ -82,6 +82,9 @@ const Header = () => {
               src={solidHeader ? "/logo-blue.webp" : "/logo-white.webp"}
               alt="Tomas Figueroa Real Estate"
               className="h-24 md:h-32 w-auto"
+              width="200"
+              height="128"
+              decoding="async"
             />
           </a>
 
