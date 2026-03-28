@@ -35,12 +35,16 @@ const HomeAbout = () => {
                 src="/tomas-about.jpg"
                 alt="Tomas Figueroa – Roatan Real Estate Agent"
                 className="w-full h-full object-cover object-top"
+                loading="lazy"
+                decoding="async"
+                width="800"
+                height="1000"
               />
             </div>
             {/* Floating stat card */}
             <div className="absolute -bottom-6 -right-4 lg:-right-8 bg-white rounded-xl shadow-xl px-6 py-4">
               <p className="text-3xl font-bold text-[#04649b]" style={{ fontFamily: "'Roboto Slab', serif" }}>20+</p>
-              <p className="text-sm text-gray-500 mt-0.5">Years of Sales Experience</p>
+              <p className="text-sm text-gray-500 mt-0.5">Years of Experience</p>
             </div>
           </div>
 
@@ -53,12 +57,12 @@ const HomeAbout = () => {
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1d1d1d] mt-3 mb-6 leading-tight"
               style={{ fontFamily: "'Roboto Slab', serif" }}
             >
-              Your Guide to Real Estate in Roatan
+              Your Local Guide to Roatan Real Estate
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-4">
-              I’m Tomas Figueroa, a real estate advisor based in Roatan, Honduras, with over 20 years of experience 
-              in international sales and business development. I help investors and buyers navigate one of the Caribbean’s 
-              most compelling emerging markets.
+              I'm Tomas Figueroa, a real estate agent based in Roatan, Honduras with over 20 years of
+              experience helping investors and buyers navigate one of the Caribbean's most exciting
+              emerging markets.
             </p>
             <p className="text-gray-600 text-lg leading-relaxed mb-8">
               My approach is strategic, not transactional — I help you decide whether Roatan is the right
