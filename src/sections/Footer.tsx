@@ -30,40 +30,44 @@ const Footer = () => {
             </p>
 
             <div className="flex gap-4">
-              <a 
-                href="https://www.facebook.com/profile.php?id=61557310059412" 
-                target="_blank" 
+              <a
+                href="https://www.facebook.com/profile.php?id=61557310059412"
+                target="_blank"
                 rel="noopener"
+                aria-label="Facebook"
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#04649b] transition-colors"
               >
-                <Facebook className="w-5 h-5" />
+                <Facebook className="w-5 h-5" aria-hidden="true" />
               </a>
 
-              <a 
-                href="https://www.instagram.com/roatanbytomas/" 
-                target="_blank" 
+              <a
+                href="https://www.instagram.com/roatanbytomas/"
+                target="_blank"
                 rel="noopener"
+                aria-label="Instagram"
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#04649b] transition-colors"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="w-5 h-5" aria-hidden="true" />
               </a>
 
-              <a 
-                href="https://www.linkedin.com/in/roatanbytomas/" 
-                target="_blank" 
+              <a
+                href="https://www.linkedin.com/in/roatanbytomas/"
+                target="_blank"
                 rel="noopener"
+                aria-label="LinkedIn"
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#04649b] transition-colors"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-5 h-5" aria-hidden="true" />
               </a>
 
-              <a 
-                href="https://www.youtube.com/channel/UCfH3CqrQxYKPBlXVzw6Sz_Q" 
-                target="_blank" 
+              <a
+                href="https://www.youtube.com/channel/UCfH3CqrQxYKPBlXVzw6Sz_Q"
+                target="_blank"
                 rel="noopener"
+                aria-label="YouTube"
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#04649b] transition-colors"
               >
-                <Youtube className="w-5 h-5" />
+                <Youtube className="w-5 h-5" aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -90,7 +94,7 @@ const Footer = () => {
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-[#04649b] flex-shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 text-[#04649b] flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <span className="text-gray-400">
                   Lawson Rock, Sandy Bay<br />
                   Roatan, Bay Islands<br />
@@ -99,14 +103,14 @@ const Footer = () => {
               </li>
 
               <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-[#04649b] flex-shrink-0" />
+                <Phone className="w-5 h-5 text-[#04649b] flex-shrink-0" aria-hidden="true" />
                 <a href="tel:+50488488326" className="text-gray-400 hover:text-white transition-colors">
                   (504) 8848-8326
                 </a>
               </li>
 
               <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-[#04649b] flex-shrink-0" />
+                <Mail className="w-5 h-5 text-[#04649b] flex-shrink-0" aria-hidden="true" />
                 <a href="mailto:tomas@kwroatan.com" className="text-gray-400 hover:text-white transition-colors">
                   tomas@kwroatan.com
                 </a>
