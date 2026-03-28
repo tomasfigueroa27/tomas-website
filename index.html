@@ -46,8 +46,9 @@
     <link rel="preload" href="/hero-bg.webp" as="image" fetchpriority="high">
     <link rel="preload" href="/logo-white.webp" as="image" fetchpriority="high">
     
-    <!-- Fonts with display=swap for faster rendering -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Fonts: non-blocking load to eliminate render-blocking -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap"></noscript>
     
     <!-- Structured Data -->
     <script type="application/ld+json">
