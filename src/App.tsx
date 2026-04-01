@@ -15,6 +15,9 @@ import Guides from './pages/Guides';
 import SEO from './components/SEO';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import Neighborhoods from './pages/Neighborhoods';
+import NeighborhoodDetail from './pages/NeighborhoodDetail';
+import RoatanMarket from './pages/RoatanMarket';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -144,6 +147,9 @@ function App() {
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/guides" element={<Guides />} />
               <Route path="/new-developments" element={<NewDevelopments />} />
+              <Route path="/neighborhoods" element={<Neighborhoods />} />
+              <Route path="/neighborhoods/:slug" element={<NeighborhoodDetail />} />
+              <Route path="/roatan-market" element={<RoatanMarket />} />
               <Route path="/success" element={<FormSuccess />} />
             </Routes>
           </main>

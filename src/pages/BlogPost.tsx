@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Calendar, Tag, ArrowLeft } from 'lucide-react';
 import SEO from '@/components/SEO';
 import posts, { type ContentBlock } from '@/data/blog';
@@ -77,6 +78,56 @@ const BlogPost = () => {
     );
   }
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      '@type': 'Person',
+      name: 'Tomas Figueroa',
+      url: 'https://tomasfigueroa.com/about',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Tomas Figueroa Real Estate',
+      url: 'https://tomasfigueroa.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://tomasfigueroa.com/logo-blue.webp',
+      },
+    },
+    url: `https://tomasfigueroa.com/blog/${post.slug}`,
+    ...(post.image ? { image: post.image } : {}),
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://tomasfigueroa.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://tomasfigueroa.com/blog',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: `https://tomasfigueroa.com/blog/${post.slug}`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen pt-24 pb-20 bg-white">
       <SEO
@@ -85,6 +136,10 @@ const BlogPost = () => {
         url={`/blog/${post.slug}`}
         image={post.image}
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+      </Helmet>
 
       {/* Hero */}
       <section className="relative py-16 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
@@ -130,6 +185,26 @@ const BlogPost = () => {
 
       {/* Body */}
       <article className="section-container max-w-3xl py-12">
+        {/* At a glance summary box */}
+        {post.summary && post.summary.length > 0 && (
+          <div className="bg-[#f5f5f5] border-l-4 border-[#04649b] rounded-2xl p-6 mb-10">
+            <h2
+              className="text-lg font-bold text-[#04649b] mb-4"
+              style={{ fontFamily: "'Roboto Slab', serif" }}
+            >
+              At a Glance
+            </h2>
+            <ul className="space-y-2">
+              {post.summary.map((point, i) => (
+                <li key={i} className="flex items-start gap-3 text-gray-700">
+                  <span className="mt-1.5 w-2 h-2 rounded-full bg-[#04649b] shrink-0" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         {post.body.map((block, i) => renderBlock(block, i))}
       </article>
 

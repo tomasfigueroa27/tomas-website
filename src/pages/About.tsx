@@ -1,6 +1,113 @@
 import { useEffect, useRef, useState } from 'react';
-import { Award, Users, MapPin, Phone, Mail, Calendar, TrendingUp } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+import { Award, Users, MapPin, Phone, Mail, Calendar, TrendingUp, ChevronDown, ChevronUp } from 'lucide-react';
 import SEO from '@/components/SEO';
+
+interface FAQItemProps {
+  q: string;
+  a: string;
+}
+
+const FAQItem = ({ q, a }: FAQItemProps) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border border-gray-200 rounded-xl overflow-hidden">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-[#f5f5f5] transition-colors"
+        aria-expanded={open}
+      >
+        <span className="font-semibold text-[#1d1d1d]">{q}</span>
+        {open ? (
+          <ChevronUp className="w-5 h-5 text-[#04649b] shrink-0" aria-hidden="true" />
+        ) : (
+          <ChevronDown className="w-5 h-5 text-[#04649b] shrink-0" aria-hidden="true" />
+        )}
+      </button>
+      {open && (
+        <div className="px-6 py-5 bg-[#f5f5f5] text-gray-700 leading-relaxed border-t border-gray-200">
+          {a}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const faqs = [
+  {
+    q: 'Can foreigners buy property in Roatan?',
+    a: 'Yes — Honduras law allows foreigners to own real property outright with the same rights as Honduran citizens. There are no restrictions on foreign ownership in Roatan. You can hold title directly in your personal name or through a Honduran corporation, with no need for a local partner or intermediary.',
+  },
+  {
+    q: 'What is the process for buying property in Roatan?',
+    a: 'The process involves finding a property with a local agent, engaging a licensed Honduran attorney to conduct a title search and draft the purchase agreement, paying a deposit (typically 10–20%), completing due diligence, and then closing with a final deed (escritura) executed before a notary and registered in the Public Property Registry. The process typically takes 60–120 days from agreement to completed title transfer.',
+  },
+  {
+    q: 'Do I need a lawyer to buy property in Honduras?',
+    a: 'Yes — a licensed Honduran attorney is essential for any real estate transaction. Your attorney will conduct the title search, draft and review legal documents, represent you at closing, and register the title transfer with the Public Property Registry. Attempting to purchase without proper legal representation in Honduras carries significant risk.',
+  },
+  {
+    q: 'What fees should I expect when buying property in Roatan?',
+    a: 'Closing costs in Roatan typically run 5–8% of the purchase price. This includes the transfer tax (approximately 1.5%), attorney fees (1–2%), property registration fees, and other administrative costs. Agent commissions are typically paid by the seller. Budget for these costs in addition to the purchase price when calculating your total investment.',
+  },
+  {
+    q: 'Is Roatan a good real estate investment?',
+    a: 'Roatan offers a compelling combination of factors: 100% foreign ownership rights, consistent tourism demand (1.2M+ annual visitors), rental yields of 6–8% in top areas, property appreciation of 5–8% annually, and significantly lower prices than comparable Caribbean destinations. Like any market, it rewards buyers who do proper due diligence and align their purchase with clear investment goals.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.a,
+    },
+  })),
+};
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': 'https://tomasfigueroa.com/#person',
+  name: 'Tomas Figueroa',
+  jobTitle: 'Licensed Real Estate Agent',
+  description:
+    'Tomas Figueroa is a licensed real estate agent with Keller Williams Roatan, specializing in helping international buyers, investors, and relocation clients navigate the Roatan, Honduras property market. With over 20 years of international sales and business development experience, he brings a strategic, goal-driven approach to Caribbean real estate.',
+  url: 'https://tomasfigueroa.com',
+  image: 'https://tomasfigueroa.com/tomas-about.jpg',
+  telephone: '+50488488326',
+  email: 'tomas@kwroatan.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Lawson Rock, Sandy Bay',
+    addressLocality: 'Roatan',
+    addressRegion: 'Bay Islands',
+    addressCountry: 'HN',
+  },
+  knowsAbout: [
+    'Roatan real estate',
+    'Caribbean property investment',
+    'Honduras property law',
+    'Vacation rental investment',
+    'Real estate relocation',
+    'New development projects in Roatan',
+    'Bay Islands Honduras',
+  ],
+  worksFor: {
+    '@type': 'RealEstateAgent',
+    name: 'Keller Williams Roatan',
+    url: 'https://tomasfigueroa.com',
+  },
+  sameAs: [
+    'https://www.facebook.com/profile.php?id=61557310059412',
+    'https://www.instagram.com/roatanbytomas/',
+    'https://www.linkedin.com/in/roatanbytomas/',
+  ],
+};
 
 const About = () => {
   const statsRef = useRef<HTMLDivElement>(null);
@@ -69,6 +176,10 @@ Understanding how the island will evolve is essential to giving informed, forwar
         url="/about"
         image="https://tomasfigueroa.com/tomas-about.jpg"
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(personSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+      </Helmet>
 
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
@@ -234,6 +345,28 @@ Understanding how the island will evolve is essential to giving informed, forwar
                 <h3 className="text-lg font-semibold text-[#1d1d1d] mb-2">{service.title}</h3>
                 <p className="text-gray-600 text-sm">{service.desc}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20">
+        <div className="section-container max-w-3xl">
+          <div className="text-center mb-10">
+            <h2
+              className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-4"
+              style={{ fontFamily: "'Roboto Slab', serif" }}
+            >
+              Frequently Asked Questions
+            </h2>
+            <p className="text-gray-600">
+              Common questions from buyers and investors considering Roatan real estate.
+            </p>
+          </div>
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <FAQItem key={i} q={faq.q} a={faq.a} />
             ))}
           </div>
         </div>
