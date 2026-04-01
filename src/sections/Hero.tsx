@@ -41,7 +41,7 @@ const Hero = () => {
             className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight"
             style={{ fontFamily: "'Roboto Slab', serif" }}
           >
-            Should You Invest or Move to Roatan? Start With Clarity
+            Roatan, Honduras Real Estate — Invest or Relocate With Clarity
           </h1>
 
           {/* Subheading */}
