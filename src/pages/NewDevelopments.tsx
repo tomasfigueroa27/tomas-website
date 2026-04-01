@@ -1,6 +1,73 @@
 import { useEffect, useRef, useState } from 'react';
-import { MapPin, TrendingUp, Calendar, Phone } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+import { MapPin, TrendingUp, Calendar, Phone, ChevronDown, ChevronUp } from 'lucide-react';
 import SEO from '@/components/SEO';
+
+interface FAQItemProps {
+  q: string;
+  a: string;
+}
+
+const FAQItem = ({ q, a }: FAQItemProps) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border border-gray-200 rounded-xl overflow-hidden">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-[#f5f5f5] transition-colors"
+        aria-expanded={open}
+      >
+        <span className="font-semibold text-[#1d1d1d]">{q}</span>
+        {open ? (
+          <ChevronUp className="w-5 h-5 text-[#04649b] shrink-0" aria-hidden="true" />
+        ) : (
+          <ChevronDown className="w-5 h-5 text-[#04649b] shrink-0" aria-hidden="true" />
+        )}
+      </button>
+      {open && (
+        <div className="px-6 py-5 bg-[#f5f5f5] text-gray-700 leading-relaxed border-t border-gray-200">
+          {a}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const faqs = [
+  {
+    q: 'What new developments are currently available in Roatan?',
+    a: 'Roatan has several active new development projects across different price points and locations — from luxury resort-style communities on the west end to emerging residential projects further east. The development landscape changes frequently. Contact Tomas directly for an up-to-date overview of what is available and coming to market.',
+  },
+  {
+    q: 'What is the typical price range for new developments in Roatan?',
+    a: 'New development prices in Roatan vary widely by location and project type. Entry-level units in emerging areas can start around $150,000–$200,000, while luxury units in established communities like Pristine Bay or premium West Bay projects can reach $1 million or more. Pre-construction pricing typically offers a discount relative to completed units.',
+  },
+  {
+    q: 'Can I get financing for a new development in Roatan?',
+    a: 'Developer financing is available on some new development projects, often requiring 20–30% down with the balance paid in installments during construction. Traditional bank financing through Honduran banks is available but less common for foreign buyers. Most international buyers use a combination of personal capital, home equity from their primary residence, or developer payment plans.',
+  },
+  {
+    q: 'What areas of Roatan have the best new developments?',
+    a: 'The west end of the island — particularly West Bay Beach and Sandy Bay — continues to see strong new development activity due to its tourism infrastructure and established demand. The east end, including the Pristine Bay corridor, is also seeing significant investment. Emerging areas further east offer more speculative opportunities for buyers willing to take a longer view.',
+  },
+  {
+    q: 'What is the process for purchasing a pre-construction property?',
+    a: 'Pre-construction purchases typically begin with a reservation deposit to lock in pricing, followed by a purchase agreement and a construction draw schedule. A Honduran attorney should review all documents before you commit. Title is transferred after construction is completed and the property is registered. It is critical to work with reputable developers and have legal representation throughout the process.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.a,
+    },
+  })),
+};
 
 const NewDevelopments = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -31,6 +98,9 @@ const NewDevelopments = () => {
         description="Explore the latest new real estate developments in Roatan, Honduras. Pre-construction investment opportunities in prime Caribbean beachfront and hillside locations."
         url="/new-developments"
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+      </Helmet>
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
         <div className="section-container text-center">
@@ -147,6 +217,28 @@ const NewDevelopments = () => {
                 Open Full Map
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20">
+        <div className="section-container max-w-3xl">
+          <div className="text-center mb-10">
+            <h2
+              className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-4"
+              style={{ fontFamily: "'Roboto Slab', serif" }}
+            >
+              Frequently Asked Questions
+            </h2>
+            <p className="text-gray-600">
+              Common questions about buying new developments and pre-construction properties in Roatan.
+            </p>
+          </div>
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <FAQItem key={i} q={faq.q} a={faq.a} />
+            ))}
           </div>
         </div>
       </section>

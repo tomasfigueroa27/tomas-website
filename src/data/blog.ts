@@ -12,6 +12,7 @@ export interface BlogPost {
   category: string;
   excerpt: string;
   image?: string;
+  summary?: string[];
   body: ContentBlock[];
 }
 
@@ -23,6 +24,13 @@ const posts: BlogPost[] = [
     category: 'About Roatan',
     excerpt:
       'Roatan is the largest of the Bay Islands, located in the western Caribbean Sea about 35 miles off the northern coast of Honduras — and home to the second-largest coral reef system in the world.',
+    summary: [
+      'Roatan is located 35 miles off the northern coast of Honduras in the western Caribbean Sea.',
+      'The island is approximately 40 miles long and sits along the Mesoamerican Barrier Reef.',
+      'Temperatures stay between 70°F and 80°F year-round with minimal hurricane risk.',
+      'Direct flights are available from major U.S. cities including Houston, Miami, Atlanta, and Dallas.',
+      'U.S. dollars are widely accepted and English is commonly spoken throughout the island.',
+    ],
     body: [
       {
         type: 'p',
