@@ -30,19 +30,19 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 section-container text-center text-white pt-32 pb-20">
         <div className="max-w-4xl mx-auto">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+          {/* Badge — semantic H1 for keyword targeting */}
+          <h1 className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 text-sm font-medium">
             <span className="w-2 h-2 bg-green-400 rounded-full motion-safe:animate-pulse" />
-            <span className="text-sm font-medium">Roatan, Honduras Real Estate</span>
-          </div>
+            Roatan, Honduras Real Estate
+          </h1>
 
           {/* Main Heading */}
-          <h1
+          <p
             className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight"
             style={{ fontFamily: "'Roboto Slab', serif" }}
           >
-            Roatan, Honduras Real Estate — Invest or Relocate With Clarity
-          </h1>
+            Should You Invest or Move to Roatan? Start With Clarity
+          </p>
 
           {/* Subheading */}
           <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto">
