@@ -168,6 +168,24 @@ const NeighborhoodDetail = () => {
             </div>
           </div>
 
+          {/* Cross-links */}
+          <div className="mt-10 pt-8 border-t border-gray-200 mb-10">
+            <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
+              Explore More
+            </p>
+            <div className="flex flex-wrap gap-6">
+              <Link to="/neighborhoods" className="text-[#04649b] font-medium hover:underline text-sm">
+                ← All Roatan Neighborhoods
+              </Link>
+              <Link to="/roatan-market" className="text-[#04649b] font-medium hover:underline text-sm">
+                View Roatan Market Data →
+              </Link>
+              <Link to="/guides" className="text-[#04649b] font-medium hover:underline text-sm">
+                Download the Buyer's Guide →
+              </Link>
+            </div>
+          </div>
+
           {/* CTA */}
           <div className="bg-gradient-to-r from-[#04649b] to-[#03527d] rounded-2xl p-8 text-white text-center">
             <h2

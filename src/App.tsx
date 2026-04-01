@@ -74,6 +74,41 @@ const jsonLd = {
       },
       priceRange: '$$',
     },
+    {
+      '@type': 'LocalBusiness',
+      '@id': 'https://tomasfigueroa.com/#localbusiness',
+      name: 'Tomas Figueroa Real Estate',
+      description: 'Licensed real estate agent in Roatan, Honduras specializing in Caribbean property sales, investment properties, and new developments at Keller Williams Roatan.',
+      url: 'https://tomasfigueroa.com',
+      telephone: '+50488488326',
+      email: 'tomas@kwroatan.com',
+      image: 'https://tomasfigueroa.com/logo-blue.webp',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Lawson Rock, Sandy Bay',
+        addressLocality: 'Roatan',
+        addressRegion: 'Bay Islands',
+        addressCountry: 'HN',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 16.3279,
+        longitude: -86.5358,
+      },
+      openingHours: 'Mo-Su 08:00-18:00',
+      currenciesAccepted: 'USD',
+      paymentAccepted: 'Cash, Wire Transfer',
+      areaServed: {
+        '@type': 'Place',
+        name: 'Roatan, Bay Islands, Honduras',
+      },
+      hasMap: 'https://maps.google.com/?q=Roatan,+Bay+Islands,+Honduras',
+      sameAs: [
+        'https://www.facebook.com/profile.php?id=61557310059412',
+        'https://www.instagram.com/roatanbytomas/',
+        'https://www.linkedin.com/in/roatanbytomas/',
+      ],
+    },
   ],
 };
 

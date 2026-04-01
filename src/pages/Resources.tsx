@@ -1,5 +1,12 @@
-import { BookOpen, FileText } from 'lucide-react';
+import { BookOpen, FileText, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import SEO from '@/components/SEO';
+import posts from '@/data/blog';
+
+const formatDate = (iso: string) =>
+  new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const recentPosts = posts.slice(0, 3);
 
 const Resources = () => {
   return (
@@ -25,6 +32,51 @@ const Resources = () => {
             Articles, market insights, and guides to help you make informed decisions about
             Roatan real estate.
           </p>
+        </div>
+      </section>
+
+      {/* Recent Articles */}
+      <section className="py-16 bg-[#f5f5f5]">
+        <div className="section-container max-w-5xl">
+          <h2
+            className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-10 text-center"
+            style={{ fontFamily: "'Roboto Slab', serif" }}
+          >
+            Latest Articles
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {recentPosts.map((post) => (
+              <Link
+                key={post.slug}
+                to={`/blog/${post.slug}`}
+                className="bg-white rounded-2xl p-6 hover:shadow-lg transition-shadow group"
+              >
+                <span className="text-xs font-semibold uppercase tracking-wide text-[#04649b] bg-[#04649b]/10 px-3 py-1 rounded-full">
+                  {post.category}
+                </span>
+                <h3
+                  className="text-lg font-bold text-[#1d1d1d] mt-4 mb-2 leading-snug"
+                  style={{ fontFamily: "'Roboto Slab', serif" }}
+                >
+                  {post.title}
+                </h3>
+                <p className="text-gray-500 text-sm mb-4 line-clamp-2">{post.excerpt}</p>
+                <div className="flex items-center justify-between text-xs text-gray-400">
+                  <span>{formatDate(post.date)}</span>
+                  <ArrowRight className="w-4 h-4 text-[#04649b] group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center">
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-2 text-[#04649b] font-medium hover:underline"
+            >
+              View all articles
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </section>
 
