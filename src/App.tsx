@@ -176,6 +176,45 @@ const HomePage = () => (
     />
     <Hero />
     <HomeAbout />
+
+    {/* Why Roatan? */}
+    <section className="py-20 bg-white">
+      <div className="section-container max-w-5xl">
+        <div className="text-center mb-12">
+          <span className="text-[#04649b] font-medium uppercase tracking-wider text-sm">
+            Why Roatan
+          </span>
+          <h2
+            className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mt-3 mb-4"
+            style={{ fontFamily: "'Roboto Slab', serif" }}
+          >
+            Why Buyers Choose Roatan Real Estate
+          </h2>
+          <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
+            Roatan is the largest of Honduras' Bay Islands — a 40-mile island in the western Caribbean, sitting along the Mesoamerican Barrier Reef. It is one of the few remaining Caribbean markets where foreign buyers can own property outright with 100% title, no restrictions, and prices well below Belize, Cayman Islands, or Turks and Caicos. Annual tourism exceeds 1.2 million visitors, driving consistent vacation rental demand in a market that continues to grow. The island offers world-class diving, a stable tropical climate, direct US flights from Houston, Miami, Atlanta, and Dallas, an established expat community, and full English language infrastructure — making it one of the most accessible and practical emerging Caribbean markets available to international buyers today.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            { stat: '$150K+', label: 'Entry-level condos', sub: 'Well below comparable Caribbean markets' },
+            { stat: '6–8%', label: 'Average rental yield', sub: 'In top areas like West Bay Beach' },
+            { stat: '100%', label: 'Foreign ownership', sub: 'Same rights as Honduran citizens' },
+          ].map((item) => (
+            <div key={item.stat} className="bg-[#f5f5f5] rounded-2xl p-6 text-center">
+              <div
+                className="text-4xl font-bold text-[#04649b] mb-1"
+                style={{ fontFamily: "'Roboto Slab', serif" }}
+              >
+                {item.stat}
+              </div>
+              <div className="font-semibold text-[#1d1d1d] mb-1">{item.label}</div>
+              <div className="text-gray-500 text-sm">{item.sub}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <Properties />
     <Newsletter />
     <section className="py-20 bg-[#f5f5f5]">
