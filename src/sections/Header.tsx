@@ -35,6 +35,7 @@ const Header = () => {
 
   const navLinks: NavLink[] = [
     { label: 'Home', href: '/' },
+    { label: 'Browse MLS', href: '/properties' },
     { label: 'New Developments', href: '/new-developments' },
     { label: 'About', href: '/about' },
     { label: 'Resources', href: '/resources' },

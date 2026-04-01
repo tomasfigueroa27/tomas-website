@@ -1,4 +1,5 @@
 import { Search, TrendingUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -51,13 +52,13 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => scrollToSection('properties')}
+            <Link
+              to="/properties"
               className="flex items-center justify-center gap-2 bg-[#04649b] hover:bg-[#03527d] text-white px-8 py-4 rounded-lg font-medium text-lg transition-all"
             >
               <Search className="w-5 h-5" />
-              Buy
-            </button>
+              Browse MLS
+            </Link>
             <button
               onClick={() => scrollToSection('cta')}
               className="flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-[#04649b] px-8 py-4 rounded-lg font-medium text-lg transition-all"
