@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Award, Users, MapPin, Phone, Mail, Calendar, TrendingUp } from 'lucide-react';
+import SEO from '@/components/SEO';
 
 const About = () => {
   const statsRef = useRef<HTMLDivElement>(null);
@@ -62,6 +63,12 @@ Understanding how the island will evolve is essential to giving informed, forwar
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-white">
+      <SEO
+        title="About Tomas Figueroa | Roatan Real Estate Agent"
+        description="Meet Tomas Figueroa, a trusted real estate agent in Roatan, Honduras at Keller Williams. Specializing in helping investors and relocators find the right Caribbean property."
+        url="/about"
+        image="https://tomasfigueroa.com/tomas-about.jpg"
+      />
 
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">

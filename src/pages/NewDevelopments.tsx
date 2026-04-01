@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { MapPin, TrendingUp, Calendar, Phone } from 'lucide-react';
+import SEO from '@/components/SEO';
 
 const NewDevelopments = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -25,6 +26,11 @@ const NewDevelopments = () => {
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-white">
+      <SEO
+        title="New Developments in Roatan | Pre-Construction Properties"
+        description="Explore the latest new real estate developments in Roatan, Honduras. Pre-construction investment opportunities in prime Caribbean beachfront and hillside locations."
+        url="/new-developments"
+      />
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
         <div className="section-container text-center">

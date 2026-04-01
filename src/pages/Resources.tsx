@@ -1,8 +1,14 @@
 import { BookOpen, FileText } from 'lucide-react';
+import SEO from '@/components/SEO';
 
 const Resources = () => {
   return (
     <div className="min-h-screen pt-24 pb-20 bg-white">
+      <SEO
+        title="Real Estate Resources | Roatan Honduras"
+        description="Articles, market insights, and buyer's guides to help you make informed decisions about Roatan, Honduras real estate. Free resources for investors and relocators."
+        url="/resources"
+      />
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
         <div className="section-container text-center">
