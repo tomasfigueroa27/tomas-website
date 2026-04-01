@@ -198,7 +198,7 @@ const HomePage = () => (
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { stat: '$150K+', label: 'Entry-level condos', sub: 'Well below comparable Caribbean markets' },
+            { stat: '$150K+', label: 'Accessible entry points', sub: 'Well below comparable Caribbean markets' },
             { stat: '6–8%', label: 'Average rental yield', sub: 'In top areas like West Bay Beach' },
             { stat: '100%', label: 'Foreign ownership', sub: 'Same rights as Honduran citizens' },
           ].map((item) => (
