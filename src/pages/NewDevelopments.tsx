@@ -100,6 +100,14 @@ const NewDevelopments = () => {
       />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tomasfigueroa.com/' },
+            { '@type': 'ListItem', position: 2, name: 'New Developments', item: 'https://tomasfigueroa.com/new-developments' },
+          ],
+        })}</script>
       </Helmet>
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">

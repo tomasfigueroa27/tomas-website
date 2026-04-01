@@ -147,6 +147,64 @@ const Neighborhoods = () => {
         </div>
       </section>
 
+      {/* Comparison Table */}
+      <section className="py-16">
+        <div className="section-container">
+          <h2
+            className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-4 text-center"
+            style={{ fontFamily: "'Roboto Slab', serif" }}
+          >
+            Neighborhood Comparison
+          </h2>
+          <p className="text-gray-500 text-center mb-10 max-w-2xl mx-auto">
+            A quick side-by-side view of every Roatan neighborhood to help you find the right fit.
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gray-200">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-[#04649b] text-white">
+                  <th className="text-left px-5 py-4 font-semibold">Neighborhood</th>
+                  <th className="text-left px-5 py-4 font-semibold">Price Range</th>
+                  <th className="text-left px-5 py-4 font-semibold hidden md:table-cell">Vibe</th>
+                  <th className="text-left px-5 py-4 font-semibold hidden lg:table-cell">Best For</th>
+                </tr>
+              </thead>
+              <tbody>
+                {neighborhoods.map((n, i) => (
+                  <tr
+                    key={n.slug}
+                    className={i % 2 === 0 ? 'bg-white' : 'bg-[#f5f5f5]'}
+                  >
+                    <td className="px-5 py-4">
+                      <Link
+                        to={`/neighborhoods/${n.slug}`}
+                        className="font-semibold text-[#04649b] hover:underline"
+                      >
+                        {n.name}
+                      </Link>
+                    </td>
+                    <td className="px-5 py-4 text-gray-700">{n.priceRange}</td>
+                    <td className="px-5 py-4 text-gray-600 hidden md:table-cell">{n.vibe}</td>
+                    <td className="px-5 py-4 hidden lg:table-cell">
+                      <div className="flex flex-wrap gap-1">
+                        {n.bestFor.slice(0, 2).map((tag) => (
+                          <span
+                            key={tag}
+                            className="bg-[#04649b]/10 text-[#04649b] text-xs px-2 py-0.5 rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="py-16 bg-[#f5f5f5]">
         <div className="section-container max-w-4xl">

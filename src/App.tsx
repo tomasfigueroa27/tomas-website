@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import Header from './sections/Header';
 import Hero from './sections/Hero';
@@ -112,6 +112,60 @@ const jsonLd = {
   ],
 };
 
+const homeFaqs = [
+  {
+    q: 'Can foreigners buy property in Roatan?',
+    a: 'Yes. Honduras law grants foreigners the same ownership rights as Honduran citizens. You can hold title directly in your name with no restrictions, no local partner required, and no limit on the percentage of the property you can own.',
+  },
+  {
+    q: 'Is Roatan a good real estate investment?',
+    a: 'Roatan offers a compelling combination: 100% foreign ownership, 6–8% average rental yields in top areas, 5–8% annual property appreciation, and entry prices well below comparable Caribbean markets. Over 1.2 million tourists visit annually, driving consistent vacation rental demand.',
+  },
+  {
+    q: 'What types of properties are available in Roatan?',
+    a: 'You will find beachfront condos, hillside homes, luxury villas, gated community lots, and pre-construction units across different price points and neighborhoods. Entry-level condos start around $150,000, while luxury oceanfront properties reach $3M+.',
+  },
+  {
+    q: 'How long does the buying process take in Roatan?',
+    a: 'A typical Roatan property transaction takes 60–120 days from signed agreement to completed title transfer. The process includes a title search by a licensed Honduran attorney, due diligence period, deposit payment, and final closing before a notary.',
+  },
+  {
+    q: 'How do I get started with Tomas Figueroa?',
+    a: 'The best first step is a 30-minute strategy call. Tomas will listen to your goals, walk you through current market conditions, and explain how to approach finding the right property in Roatan — at no cost or obligation.',
+  },
+];
+
+const homeFaqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: homeFaqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: { '@type': 'Answer', text: faq.a },
+  })),
+};
+
+const HomeFAQItem = ({ q, a }: { q: string; a: string }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border border-gray-200 rounded-xl overflow-hidden">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-[#f5f5f5] transition-colors"
+        aria-expanded={open}
+      >
+        <span className="font-semibold text-[#1d1d1d]">{q}</span>
+        <span className={`text-[#04649b] text-xl leading-none shrink-0 transition-transform ${open ? 'rotate-45' : ''}`}>+</span>
+      </button>
+      {open && (
+        <div className="px-6 py-5 bg-[#f5f5f5] text-gray-700 leading-relaxed border-t border-gray-200">
+          {a}
+        </div>
+      )}
+    </div>
+  );
+};
+
 // Home Page Component
 const HomePage = () => (
   <>
@@ -124,6 +178,27 @@ const HomePage = () => (
     <HomeAbout />
     <Properties />
     <Newsletter />
+    <section className="py-20 bg-[#f5f5f5]">
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(homeFaqSchema)}</script>
+      </Helmet>
+      <div className="section-container max-w-3xl">
+        <h2
+          className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-4 text-center"
+          style={{ fontFamily: "'Roboto Slab', serif" }}
+        >
+          Common Questions About Roatan Real Estate
+        </h2>
+        <p className="text-gray-500 text-center mb-10">
+          Quick answers to what buyers and investors ask most.
+        </p>
+        <div className="space-y-3">
+          {homeFaqs.map((faq, i) => (
+            <HomeFAQItem key={i} q={faq.q} a={faq.a} />
+          ))}
+        </div>
+      </div>
+    </section>
     <CTA />
   </>
 );
