@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import Header from './sections/Header';
 import Hero from './sections/Hero';
-import Properties from './sections/Properties';
 import Newsletter from './sections/Newsletter';
 import CTA from './sections/CTA';
 import Footer from './sections/Footer';
@@ -18,6 +17,7 @@ import BlogPost from './pages/BlogPost';
 import Neighborhoods from './pages/Neighborhoods';
 import NeighborhoodDetail from './pages/NeighborhoodDetail';
 import RoatanMarket from './pages/RoatanMarket';
+import PropertiesPage from './pages/PropertiesPage';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -215,7 +215,6 @@ const HomePage = () => (
       </div>
     </section>
 
-    <Properties />
     <Newsletter />
     <section className="py-20 bg-[#f5f5f5]">
       <Helmet>
@@ -299,6 +298,7 @@ function App() {
               <Route path="/neighborhoods" element={<Neighborhoods />} />
               <Route path="/neighborhoods/:slug" element={<NeighborhoodDetail />} />
               <Route path="/roatan-market" element={<RoatanMarket />} />
+              <Route path="/properties" element={<PropertiesPage />} />
               <Route path="/success" element={<FormSuccess />} />
             </Routes>
           </main>
