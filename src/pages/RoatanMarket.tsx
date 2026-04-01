@@ -133,6 +133,20 @@ const marketSchema = {
   dateModified: '2026-04-01',
 };
 
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to Buy Property in Roatan, Honduras',
+  description: 'Step-by-step guide to purchasing real estate in Roatan as a foreign buyer.',
+  totalTime: 'P90D',
+  step: buyingSteps.map((item) => ({
+    '@type': 'HowToStep',
+    position: item.step,
+    name: item.title,
+    text: item.description,
+  })),
+};
+
 const RoatanMarket = () => {
   return (
     <div className="min-h-screen pt-24 pb-20 bg-white">
@@ -144,6 +158,7 @@ const RoatanMarket = () => {
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(marketSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
       </Helmet>
 
       {/* Hero */}
@@ -226,7 +241,7 @@ const RoatanMarket = () => {
             ))}
           </div>
           <p className="text-center text-sm text-gray-400 mt-6">
-            Market data reflects 2025–2026 averages. Prices vary by neighborhood, property type, and condition.
+            Market data reflects 2025–2026 averages based on Keller Williams Roatan transaction data and local MLS records. Prices vary by neighborhood, property type, and condition.
           </p>
         </div>
       </section>
