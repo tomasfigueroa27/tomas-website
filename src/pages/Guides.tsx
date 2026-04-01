@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Download, X, Send, Loader2 } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import SEO from '@/components/SEO';
 
 interface Guide {
@@ -80,6 +81,17 @@ const Guides = () => {
         description="Download free guides to buying property in Roatan, Honduras. Everything foreign investors and relocators need to know about the Roatan real estate market."
         url="/guides"
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tomasfigueroa.com/' },
+            { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://tomasfigueroa.com/resources' },
+            { '@type': 'ListItem', position: 3, name: 'Guides', item: 'https://tomasfigueroa.com/guides' },
+          ],
+        })}</script>
+      </Helmet>
       {/* Hero */}
       <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
         <div className="section-container text-center">

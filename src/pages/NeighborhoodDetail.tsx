@@ -31,6 +31,15 @@ const FAQItem = ({ faq }: { faq: NeighborhoodFAQ }) => {
   );
 };
 
+const neighborhoodCoords: Record<string, { lat: number; lng: number }> = {
+  'west-bay-beach': { lat: 16.3027, lng: -86.5647 },
+  'west-end': { lat: 16.3002, lng: -86.5702 },
+  'sandy-bay': { lat: 16.3279, lng: -86.5358 },
+  'pristine-bay': { lat: 16.3444, lng: -86.4012 },
+  'french-harbour': { lat: 16.3558, lng: -86.4738 },
+  'coxen-hole': { lat: 16.3180, lng: -86.5525 },
+};
+
 const NeighborhoodDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const neighborhood = neighborhoods.find((n) => n.slug === slug);
@@ -48,6 +57,7 @@ const NeighborhoodDetail = () => {
     );
   }
 
+  const coords = neighborhoodCoords[neighborhood.slug];
   const placeSchema = {
     '@context': 'https://schema.org',
     '@type': 'Place',
@@ -58,6 +68,17 @@ const NeighborhoodDetail = () => {
       name: 'Roatan, Bay Islands, Honduras',
     },
     url: `https://tomasfigueroa.com/neighborhoods/${neighborhood.slug}`,
+    ...(coords ? { geo: { '@type': 'GeoCoordinates', latitude: coords.lat, longitude: coords.lng } } : {}),
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tomasfigueroa.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Neighborhoods', item: 'https://tomasfigueroa.com/neighborhoods' },
+      { '@type': 'ListItem', position: 3, name: neighborhood.name, item: `https://tomasfigueroa.com/neighborhoods/${neighborhood.slug}` },
+    ],
   };
 
   const faqSchema = {
@@ -83,6 +104,7 @@ const NeighborhoodDetail = () => {
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(placeSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
       {/* Hero */}

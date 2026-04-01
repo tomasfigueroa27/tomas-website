@@ -135,6 +135,9 @@ const BlogPost = () => {
         description={post.excerpt}
         url={`/blog/${post.slug}`}
         image={post.image}
+        type="article"
+        publishedTime={post.date}
+        articleSection={post.category}
       />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
@@ -207,6 +210,41 @@ const BlogPost = () => {
 
         {post.body.map((block, i) => renderBlock(block, i))}
       </article>
+
+      {/* Related Posts */}
+      {posts.filter((p) => p.slug !== post.slug).length > 0 && (
+        <div className="section-container max-w-3xl mb-10">
+          <h2
+            className="text-xl font-bold text-[#1d1d1d] mb-5"
+            style={{ fontFamily: "'Roboto Slab', serif" }}
+          >
+            Read Next
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {posts
+              .filter((p) => p.slug !== post.slug)
+              .slice(0, 2)
+              .map((related) => (
+                <Link
+                  key={related.slug}
+                  to={`/blog/${related.slug}`}
+                  className="group bg-[#f5f5f5] hover:bg-white rounded-xl p-5 border border-transparent hover:border-gray-200 hover:shadow-md transition-all"
+                >
+                  <span className="text-xs font-semibold uppercase tracking-wide text-[#04649b]">
+                    {related.category}
+                  </span>
+                  <h3
+                    className="text-base font-bold text-[#1d1d1d] mt-2 mb-1 leading-snug group-hover:text-[#04649b] transition-colors"
+                    style={{ fontFamily: "'Roboto Slab', serif" }}
+                  >
+                    {related.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm line-clamp-2">{related.excerpt}</p>
+                </Link>
+              ))}
+          </div>
+        </div>
+      )}
 
       {/* CTA */}
       <div className="section-container max-w-3xl">
