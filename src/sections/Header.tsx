@@ -34,10 +34,10 @@ const Header = () => {
   };
 
   const navLinks: NavLink[] = [
-    { label: 'Home', href: '/#/' },
-    { label: 'New Developments', href: '/#/new-developments' },
-    { label: 'About', href: '/#/about' },
-    { label: 'Resources', href: '/#/resources' },
+    { label: 'Home', href: '/' },
+    { label: 'New Developments', href: '/new-developments' },
+    { label: 'About', href: '/about' },
+    { label: 'Resources', href: '/resources' },
     { label: 'Contact', action: () => scrollToSection('newsletter') },
   ];
 
@@ -77,7 +77,7 @@ const Header = () => {
       <div className="section-container">
         <div className="flex items-center justify-between">
           {/* Logo - DOUBLED SIZE */}
-          <a href="/#/" className="flex items-center">
+          <a href="/" className="flex items-center">
             <img
               src={solidHeader ? "/logo-blue.webp" : "/logo-white.webp"}
               alt="Tomas Figueroa Real Estate"

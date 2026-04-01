@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Header from './sections/Header';
 import Hero from './sections/Hero';
@@ -63,7 +63,7 @@ const FormSuccess = () => (
       </p>
       <div className="space-y-3">
         <a 
-          href="/#/"
+          href="/"
           className="block w-full bg-[#04649b] text-white py-3 rounded-lg font-medium hover:bg-[#03527d] transition-all"
         >
           Back to Home
@@ -83,7 +83,7 @@ const FormSuccess = () => (
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <div className="min-h-screen bg-white">
         <ScrollToTop />
         <Header />
@@ -100,7 +100,7 @@ function App() {
         </main>
         <Footer />
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

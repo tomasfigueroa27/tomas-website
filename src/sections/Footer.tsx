@@ -78,12 +78,12 @@ const Footer = () => {
               Quick Links
             </h4>
             <ul className="space-y-3">
-              <li><a href="/#/" className="text-gray-400 hover:text-white transition-colors">Home</a></li>
-              <li><a href="/#/new-developments" className="text-gray-400 hover:text-white transition-colors">New Developments</a></li>
-              <li><a href="/#/about" className="text-gray-400 hover:text-white transition-colors">About</a></li>
-              <li><a href="/#/resources" className="text-gray-400 hover:text-white transition-colors">Resources</a></li>
-              <li><a href="/#/blog" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
-              <li><a href="/#/guides" className="text-gray-400 hover:text-white transition-colors">Guides</a></li>
+              <li><a href="/" className="text-gray-400 hover:text-white transition-colors">Home</a></li>
+              <li><a href="/new-developments" className="text-gray-400 hover:text-white transition-colors">New Developments</a></li>
+              <li><a href="/about" className="text-gray-400 hover:text-white transition-colors">About</a></li>
+              <li><a href="/resources" className="text-gray-400 hover:text-white transition-colors">Resources</a></li>
+              <li><a href="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+              <li><a href="/guides" className="text-gray-400 hover:text-white transition-colors">Guides</a></li>
             </ul>
           </div>
 
