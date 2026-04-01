@@ -27,7 +27,7 @@ const Resources = () => {
         <div className="section-container">
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <a
-              href="/#/blog"
+              href="/blog"
               className="group block bg-[#f5f5f5] hover:bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100"
             >
               <div className="w-12 h-12 bg-[#04649b]/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#04649b] transition-colors duration-300">
@@ -45,7 +45,7 @@ const Resources = () => {
             </a>
 
             <a
-              href="/#/guides"
+              href="/guides"
               className="group block bg-[#f5f5f5] hover:bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100"
             >
               <div className="w-12 h-12 bg-[#04649b]/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#04649b] transition-colors duration-300">
