@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 import Header from './sections/Header';
 import Hero from './sections/Hero';
 import Properties from './sections/Properties';
@@ -11,6 +12,7 @@ import About from './pages/About';
 import NewDevelopments from './pages/NewDevelopments';
 import Resources from './pages/Resources';
 import Guides from './pages/Guides';
+import SEO from './components/SEO';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -20,9 +22,64 @@ const ScrollToTop = () => {
   return null;
 };
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': 'https://tomasfigueroa.com/#person',
+      name: 'Tomas Figueroa',
+      jobTitle: 'Real Estate Agent',
+      url: 'https://tomasfigueroa.com',
+      image: 'https://tomasfigueroa.com/tomas-about.jpg',
+      sameAs: [
+        'https://www.facebook.com/profile.php?id=61557310059412',
+        'https://www.instagram.com/roatanbytomas/',
+        'https://www.linkedin.com/in/roatanbytomas/',
+      ],
+      worksFor: {
+        '@type': 'RealEstateAgent',
+        name: 'Keller Williams Roatan',
+        url: 'https://tomasfigueroa.com',
+      },
+    },
+    {
+      '@type': 'RealEstateAgent',
+      '@id': 'https://tomasfigueroa.com/#business',
+      name: 'Tomas Figueroa Real Estate',
+      url: 'https://tomasfigueroa.com',
+      telephone: '+50488488326',
+      email: 'tomas@kwroatan.com',
+      image: 'https://tomasfigueroa.com/logo-blue.webp',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Lawson Rock, Sandy Bay',
+        addressLocality: 'Roatan',
+        addressRegion: 'Bay Islands',
+        addressCountry: 'HN',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 16.3279,
+        longitude: -86.5358,
+      },
+      areaServed: {
+        '@type': 'Place',
+        name: 'Roatan, Bay Islands, Honduras',
+      },
+      priceRange: '$$',
+    },
+  ],
+};
+
 // Home Page Component
 const HomePage = () => (
   <>
+    <SEO
+      title="Roatan Real Estate | Tomas Figueroa – KW Roatan"
+      description="Buy, sell, or invest in Roatan, Honduras real estate with Tomas Figueroa at Keller Williams Roatan. Expert guidance on Caribbean property, new developments, and investment opportunities."
+      url="/"
+    />
     <Hero />
     <HomeAbout />
     <Properties />
@@ -34,12 +91,17 @@ const HomePage = () => (
 // Blog Page
 const Blog = () => (
   <div className="min-h-screen pt-32 pb-20 bg-white">
+    <SEO
+      title="Real Estate Blog | Roatan Honduras"
+      description="Market trends, investment tips, and lifestyle insights about Roatan, Honduras real estate. Stay informed with the latest news from the Bay Islands property market."
+      url="/blog"
+    />
     <div className="section-container max-w-4xl">
       <h1 className="text-4xl md:text-5xl font-bold text-[#1d1d1d] mb-8" style={{ fontFamily: "'Roboto Slab', serif" }}>
         Real Estate Blog
       </h1>
       <p className="text-gray-600 text-lg">
-        Coming soon! Stay tuned for articles about Roatan real estate, market trends, 
+        Coming soon! Stay tuned for articles about Roatan real estate, market trends,
         investment opportunities, and lifestyle tips.
       </p>
     </div>
@@ -62,13 +124,13 @@ const FormSuccess = () => (
         You've been subscribed to Roatan real estate updates. Check your inbox for confirmation and exclusive listings.
       </p>
       <div className="space-y-3">
-        <a 
+        <a
           href="/"
           className="block w-full bg-[#04649b] text-white py-3 rounded-lg font-medium hover:bg-[#03527d] transition-all"
         >
           Back to Home
         </a>
-        <a 
+        <a
           href="https://savvycal.com/tomasfigueroa/chat-with-tomas"
           target="_blank"
           rel="noopener"
@@ -83,24 +145,29 @@ const FormSuccess = () => (
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-white">
-        <ScrollToTop />
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/resources" element={<Resources />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/guides" element={<Guides />} />
-            <Route path="/new-developments" element={<NewDevelopments />} />
-            <Route path="/success" element={<FormSuccess />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <div className="min-h-screen bg-white">
+          <Helmet>
+            <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+          </Helmet>
+          <ScrollToTop />
+          <Header />
+          <main>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/resources" element={<Resources />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/guides" element={<Guides />} />
+              <Route path="/new-developments" element={<NewDevelopments />} />
+              <Route path="/success" element={<FormSuccess />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Download, X, Send, Loader2 } from 'lucide-react';
+import SEO from '@/components/SEO';
 
 interface Guide {
   id: string;
@@ -74,6 +75,11 @@ const Guides = () => {
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-white">
+      <SEO
+        title="Buyer's Guides | Roatan Real Estate"
+        description="Download free guides to buying property in Roatan, Honduras. Everything foreign investors and relocators need to know about the Roatan real estate market."
+        url="/guides"
+      />
       {/* Hero */}
       <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
         <div className="section-container text-center">
