@@ -13,6 +13,8 @@ import NewDevelopments from './pages/NewDevelopments';
 import Resources from './pages/Resources';
 import Guides from './pages/Guides';
 import SEO from './components/SEO';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -88,26 +90,6 @@ const HomePage = () => (
   </>
 );
 
-// Blog Page
-const Blog = () => (
-  <div className="min-h-screen pt-32 pb-20 bg-white">
-    <SEO
-      title="Real Estate Blog | Roatan Honduras"
-      description="Market trends, investment tips, and lifestyle insights about Roatan, Honduras real estate. Stay informed with the latest news from the Bay Islands property market."
-      url="/blog"
-    />
-    <div className="section-container max-w-4xl">
-      <h1 className="text-4xl md:text-5xl font-bold text-[#1d1d1d] mb-8" style={{ fontFamily: "'Roboto Slab', serif" }}>
-        Real Estate Blog
-      </h1>
-      <p className="text-gray-600 text-lg">
-        Coming soon! Stay tuned for articles about Roatan real estate, market trends,
-        investment opportunities, and lifestyle tips.
-      </p>
-    </div>
-  </div>
-);
-
 // Form Success Page
 const FormSuccess = () => (
   <div className="min-h-screen flex items-center justify-center bg-[#f5f5f5] p-4">
@@ -159,6 +141,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/guides" element={<Guides />} />
               <Route path="/new-developments" element={<NewDevelopments />} />
               <Route path="/success" element={<FormSuccess />} />
