@@ -190,9 +190,11 @@ const HomePage = () => (
           >
             Why Buyers Choose Roatan Real Estate
           </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
-            Roatan is the largest of Honduras' Bay Islands — a 40-mile island in the western Caribbean, sitting along the Mesoamerican Barrier Reef. It is one of the few remaining Caribbean markets where foreign buyers can own property outright with 100% title, no restrictions, and prices well below Belize, Cayman Islands, or Turks and Caicos. Annual tourism exceeds 1.2 million visitors, driving consistent vacation rental demand in a market that continues to grow. The island offers world-class diving, a stable tropical climate, direct US flights from Houston, Miami, Atlanta, and Dallas, an established expat community, and full English language infrastructure — making it one of the most accessible and practical emerging Caribbean markets available to international buyers today.
-          </p>
+          <div className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed space-y-4 text-left">
+            <p>Roatán is the largest of Honduras' Bay Islands — a 40-mile island in the western Caribbean, located along the Mesoamerican Barrier Reef. Foreign buyers can acquire property with full ownership rights, making it a straightforward and secure market for international investment, with pricing that remains competitive compared to destinations such as Belize, the Dominican Republic, and Costa Rica.</p>
+            <p>Tourism continues to grow consistently year over year, supporting strong demand for both vacation and long-term rentals. The island offers world-class diving, a stable tropical climate, an established expat community, and full English-language infrastructure. It is well connected with direct international flights, with additional routes continuing to be added.</p>
+            <p>Together, these factors position Roatán as an increasingly attractive and practical Caribbean destination for both lifestyle buyers and investors.</p>
+          </div>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {[
