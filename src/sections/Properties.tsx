@@ -4,7 +4,7 @@ import { Search, ExternalLink } from 'lucide-react';
 const Properties = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [showIDX, setShowIDX] = useState(false);
+  const [showIDX, setShowIDX] = useState(true);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
