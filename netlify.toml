@@ -2,6 +2,11 @@
   command = "npm install && npm run build"
   publish = "dist"
 
+# Disable pretty URLs to prevent Netlify from redirecting /path → /path/
+# Keeps sitemap URLs and canonical tags in sync (no trailing slash)
+[build.processing.html]
+  pretty_urls = false
+
 # Force www → apex to match canonical URLs (https://tomasfigueroa.com)
 [[redirects]]
   from = "https://www.tomasfigueroa.com/*"
