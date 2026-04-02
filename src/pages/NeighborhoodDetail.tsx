@@ -1,35 +1,8 @@
-import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowLeft, ChevronDown, ChevronUp } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import SEO from '@/components/SEO';
-import neighborhoods, { type NeighborhoodFAQ } from '@/data/neighborhoods';
-
-const FAQItem = ({ faq }: { faq: NeighborhoodFAQ }) => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="border border-gray-200 rounded-xl overflow-hidden">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-[#f5f5f5] transition-colors"
-        aria-expanded={open}
-      >
-        <span className="font-semibold text-[#1d1d1d]">{faq.q}</span>
-        {open ? (
-          <ChevronUp className="w-5 h-5 text-[#04649b] shrink-0" aria-hidden="true" />
-        ) : (
-          <ChevronDown className="w-5 h-5 text-[#04649b] shrink-0" aria-hidden="true" />
-        )}
-      </button>
-      {open && (
-        <div className="px-6 py-5 bg-[#f5f5f5] text-gray-700 leading-relaxed border-t border-gray-200">
-          {faq.a}
-        </div>
-      )}
-    </div>
-  );
-};
+import neighborhoods from '@/data/neighborhoods';
 
 const neighborhoodCoords: Record<string, { lat: number; lng: number }> = {
   'west-bay-beach': { lat: 16.3027, lng: -86.5647 },
@@ -81,19 +54,6 @@ const NeighborhoodDetail = () => {
     ],
   };
 
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: neighborhood.faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.a,
-      },
-    })),
-  };
-
   return (
     <div className="min-h-screen pt-24 pb-20 bg-white">
       <SEO
@@ -103,7 +63,6 @@ const NeighborhoodDetail = () => {
       />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(placeSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
@@ -175,21 +134,6 @@ const NeighborhoodDetail = () => {
             </div>
           </div>
 
-          {/* FAQ Section */}
-          <div className="mb-12">
-            <h2
-              className="text-2xl md:text-3xl font-bold text-[#1d1d1d] mb-6"
-              style={{ fontFamily: "'Roboto Slab', serif" }}
-            >
-              Frequently Asked Questions
-            </h2>
-            <div className="space-y-3">
-              {neighborhood.faqs.map((faq, i) => (
-                <FAQItem key={i} faq={faq} />
-              ))}
-            </div>
-          </div>
-
           {/* Cross-links */}
           <div className="mt-10 pt-8 border-t border-gray-200 mb-10">
             <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
@@ -204,6 +148,9 @@ const NeighborhoodDetail = () => {
               </Link>
               <Link to="/guides" className="text-[#04649b] font-medium hover:underline text-sm">
                 Download the Buyer's Guide →
+              </Link>
+              <Link to="/faq" className="text-[#04649b] font-medium hover:underline text-sm">
+                Browse FAQ →
               </Link>
             </div>
           </div>

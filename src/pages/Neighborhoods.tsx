@@ -1,70 +1,7 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import SEO from '@/components/SEO';
 import neighborhoods from '@/data/neighborhoods';
-
-const faqs = [
-  {
-    q: 'Which Roatan neighborhood is best for vacation rental investment?',
-    a: 'West Bay Beach consistently delivers the highest short-term rental yields on Roatan, driven by its world-class beach and proximity to the cruise port. West End is a strong second for budget-conscious travelers. For premium long-term appreciation, Pristine Bay is the top pick.',
-  },
-  {
-    q: 'What is the most affordable neighborhood in Roatan?',
-    a: 'Coxen Hole and French Harbour offer the most affordable real estate on the island, with condos starting under $100,000 and homes below $200,000 in some cases. These neighborhoods are popular with buyers who prioritize value and local character over beachfront luxury.',
-  },
-  {
-    q: 'Which neighborhood in Roatan is best for expat living?',
-    a: 'West End is widely regarded as the most expat-friendly neighborhood on Roatan. It has a walkable village atmosphere, a well-established community of foreign residents, numerous restaurants and dive shops, and relatively affordable real estate compared to West Bay Beach.',
-  },
-  {
-    q: 'Are there gated communities in Roatan?',
-    a: 'Yes — Pristine Bay Resort is the premier master-planned gated community on the island, offering resort-style amenities, 18-hole golf, and branded residences. Sandy Bay and other areas also have smaller gated or managed residential developments with security and shared facilities.',
-  },
-  {
-    q: 'Can I find beachfront property in Roatan under $300,000?',
-    a: 'Beachfront properties in Roatan range from around $150,000 for smaller condos in developing areas to several million for luxury oceanfront villas. Entry-level beachfront condos in West End or Sandy Bay can occasionally be found under $300,000, though inventory is limited. West Bay Beach beachfront typically starts above that threshold.',
-  },
-];
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((faq) => ({
-    '@type': 'Question',
-    name: faq.q,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: faq.a,
-    },
-  })),
-};
-
-const FAQItem = ({ q, a }: { q: string; a: string }) => {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="border border-gray-200 rounded-xl overflow-hidden">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-[#f5f5f5] transition-colors"
-        aria-expanded={open}
-      >
-        <span className="font-semibold text-[#1d1d1d]">{q}</span>
-        {open ? (
-          <ChevronUp className="w-5 h-5 text-[#04649b] shrink-0" aria-hidden="true" />
-        ) : (
-          <ChevronDown className="w-5 h-5 text-[#04649b] shrink-0" aria-hidden="true" />
-        )}
-      </button>
-      {open && (
-        <div className="px-6 py-5 bg-[#f5f5f5] text-gray-700 leading-relaxed border-t border-gray-200">
-          {a}
-        </div>
-      )}
-    </div>
-  );
-};
 
 const Neighborhoods = () => {
   return (
@@ -74,10 +11,6 @@ const Neighborhoods = () => {
         description="Explore Roatan's top neighborhoods — from West Bay Beach luxury condos to the expat-friendly West End village. Compare price ranges, lifestyle, and investment potential for each area."
         url="/neighborhoods"
       />
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-      </Helmet>
-
       {/* Hero */}
       <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
         <div className="section-container text-center">
@@ -205,20 +138,15 @@ const Neighborhoods = () => {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-16 bg-[#f5f5f5]">
-        <div className="section-container max-w-4xl">
-          <h2
-            className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-10 text-center"
-            style={{ fontFamily: "'Roboto Slab', serif" }}
-          >
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-3">
-            {faqs.map((faq, i) => (
-              <FAQItem key={i} q={faq.q} a={faq.a} />
-            ))}
-          </div>
+      {/* FAQ Link */}
+      <section className="py-10 bg-[#f5f5f5]">
+        <div className="section-container max-w-4xl text-center">
+          <p className="text-gray-600">
+            Have questions about neighborhoods or buying in Roatan?{' '}
+            <Link to="/faq" className="text-[#04649b] font-medium hover:underline">
+              Browse our full FAQ →
+            </Link>
+          </p>
         </div>
       </section>
 

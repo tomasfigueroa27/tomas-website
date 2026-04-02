@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import Header from './sections/Header';
 import Hero from './sections/Hero';
@@ -18,6 +18,7 @@ import Neighborhoods from './pages/Neighborhoods';
 import NeighborhoodDetail from './pages/NeighborhoodDetail';
 import RoatanMarket from './pages/RoatanMarket';
 import PropertiesPage from './pages/PropertiesPage';
+import FAQPage from './pages/FAQPage';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -112,75 +113,6 @@ const jsonLd = {
   ],
 };
 
-const homeFaqs = [
-  {
-    q: 'Can foreigners buy property in Roatán?',
-    a: 'Yes. Foreigners can own property in Honduras and hold title directly in their own name. In general, an individual foreign buyer can purchase up to 3,000 square meters (approximately 0.74 acres) in their personal name. For larger parcels or more complex holdings, a Honduran legal structure may be used, depending on the buyer\'s goals and legal advice.',
-  },
-  {
-    q: 'Is Roatán a good real estate investment?',
-    a: 'It depends on your goals. Roatán can deliver strong returns for vacation rentals, steady appreciation over time, or lifestyle value—but the outcome comes down to buying the right property in the right location.',
-  },
-  {
-    q: 'What types of properties are available in Roatán?',
-    a: 'Roatán offers a broad range of properties—from simple island homes in secluded locations to beachfront condos, hillside homes, luxury villas, gated communities, private cays, pre-construction opportunities, and properties with stunning ocean views.',
-  },
-  {
-    q: 'How long does the buying process take in Roatan?',
-    a: 'A typical Roatan property transaction takes 90–180 days from signed agreement to completed title transfer. The process includes a title search by a licensed Honduran attorney, due diligence period, deposit payment, and final closing before a notary.',
-  },
-  {
-    q: 'How do I get started with Tomas Figueroa?',
-    a: 'The best first step is a 30-minute strategy call. Tomas will listen to your goals, walk you through current market conditions, step by step process review and explain how to approach finding the right property in Roatan.',
-  },
-  {
-    q: 'Can I get financing for a new development in Roatán?',
-    a: 'Financing for foreigners is more limited than in other markets, but options are growing. Some developments offer payment plans (typically 30–50% down, with balances spread over 3–5 years), while traditional bank financing in Honduras is generally not available.',
-  },
-  {
-    q: 'What areas of Roatán have the best new developments?',
-    a: 'The west side of the island continues to have the highest concentration of new developments, as it\'s where demand is strongest. That said, we\'re now seeing new projects expanding across the entire island, all the way to the East End, offering a wider range of opportunities depending on your goals.',
-  },
-  {
-    q: 'What is the process for buying property in Roatán?',
-    a: 'The process starts with working with a knowledgeable realtor, followed by submitting an offer. Once accepted, a 10% earnest money deposit is typically wired within 7 business days to escrow. Your attorney then conducts due diligence, and closing usually takes place around 30 days later with the deed executed before a Honduran notary.',
-  },
-  {
-    q: 'What fees should I expect when buying property in Roatan?',
-    a: 'Closing costs are typically 3–6%, depending on whether the purchase is structured as a direct transfer or a corporate share transfer. This generally includes taxes, legal fees, and registration costs, while agent commissions are paid by the seller.',
-  },
-];
-
-const homeFaqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: homeFaqs.map((faq) => ({
-    '@type': 'Question',
-    name: faq.q,
-    acceptedAnswer: { '@type': 'Answer', text: faq.a },
-  })),
-};
-
-const HomeFAQItem = ({ q, a }: { q: string; a: string }) => {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="border border-gray-200 rounded-xl overflow-hidden">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-[#f5f5f5] transition-colors"
-        aria-expanded={open}
-      >
-        <span className="font-semibold text-[#1d1d1d]">{q}</span>
-        <span className={`text-[#04649b] text-xl leading-none shrink-0 transition-transform ${open ? 'rotate-45' : ''}`}>+</span>
-      </button>
-      {open && (
-        <div className="px-6 py-5 bg-[#f5f5f5] text-gray-700 leading-relaxed border-t border-gray-200">
-          {a}
-        </div>
-      )}
-    </div>
-  );
-};
 
 // Home Page Component
 const HomePage = () => (
@@ -234,27 +166,6 @@ const HomePage = () => (
     </section>
 
     <Newsletter />
-    <section className="py-20 bg-[#f5f5f5]">
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(homeFaqSchema)}</script>
-      </Helmet>
-      <div className="section-container max-w-3xl">
-        <h2
-          className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-4 text-center"
-          style={{ fontFamily: "'Roboto Slab', serif" }}
-        >
-          Common Questions About Roatan Real Estate
-        </h2>
-        <p className="text-gray-500 text-center mb-10">
-          Quick answers to what buyers and investors ask most.
-        </p>
-        <div className="space-y-3">
-          {homeFaqs.map((faq, i) => (
-            <HomeFAQItem key={i} q={faq.q} a={faq.a} />
-          ))}
-        </div>
-      </div>
-    </section>
     <CTA />
   </>
 );
@@ -317,6 +228,7 @@ function App() {
               <Route path="/neighborhoods/:slug" element={<NeighborhoodDetail />} />
               <Route path="/roatan-market" element={<RoatanMarket />} />
               <Route path="/properties" element={<PropertiesPage />} />
+              <Route path="/faq" element={<FAQPage />} />
               <Route path="/success" element={<FormSuccess />} />
             </Routes>
           </main>
