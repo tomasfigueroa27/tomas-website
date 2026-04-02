@@ -114,24 +114,40 @@ const jsonLd = {
 
 const homeFaqs = [
   {
-    q: 'Can foreigners buy property in Roatan?',
-    a: 'Yes. Honduras law grants foreigners the same ownership rights as Honduran citizens. You can hold title directly in your name with no restrictions, no local partner required, and no limit on the percentage of the property you can own.',
+    q: 'Can foreigners buy property in Roatán?',
+    a: 'Yes. Foreigners can own property in Honduras and hold title directly in their own name. In general, an individual foreign buyer can purchase up to 3,000 square meters (approximately 0.74 acres) in their personal name. For larger parcels or more complex holdings, a Honduran legal structure may be used, depending on the buyer\'s goals and legal advice.',
   },
   {
-    q: 'Is Roatan a good real estate investment?',
-    a: 'Roatan offers a compelling combination: 100% foreign ownership, 6–8% average rental yields in top areas, 5–8% annual property appreciation, and entry prices well below comparable Caribbean markets. Over 1.2 million tourists visit annually, driving consistent vacation rental demand.',
+    q: 'Is Roatán a good real estate investment?',
+    a: 'It depends on your goals. Roatán can deliver strong returns for vacation rentals, steady appreciation over time, or lifestyle value—but the outcome comes down to buying the right property in the right location.',
   },
   {
-    q: 'What types of properties are available in Roatan?',
-    a: 'You will find beachfront condos, hillside homes, luxury villas, gated community lots, and pre-construction units across different price points and neighborhoods. Entry-level condos start around $150,000, while luxury oceanfront properties reach $3M+.',
+    q: 'What types of properties are available in Roatán?',
+    a: 'Roatán offers a broad range of properties—from simple island homes in secluded locations to beachfront condos, hillside homes, luxury villas, gated communities, private cays, pre-construction opportunities, and properties with stunning ocean views.',
   },
   {
     q: 'How long does the buying process take in Roatan?',
-    a: 'A typical Roatan property transaction takes 60–120 days from signed agreement to completed title transfer. The process includes a title search by a licensed Honduran attorney, due diligence period, deposit payment, and final closing before a notary.',
+    a: 'A typical Roatan property transaction takes 90–180 days from signed agreement to completed title transfer. The process includes a title search by a licensed Honduran attorney, due diligence period, deposit payment, and final closing before a notary.',
   },
   {
     q: 'How do I get started with Tomas Figueroa?',
-    a: 'The best first step is a 30-minute strategy call. Tomas will listen to your goals, walk you through current market conditions, and explain how to approach finding the right property in Roatan — at no cost or obligation.',
+    a: 'The best first step is a 30-minute strategy call. Tomas will listen to your goals, walk you through current market conditions, step by step process review and explain how to approach finding the right property in Roatan.',
+  },
+  {
+    q: 'Can I get financing for a new development in Roatán?',
+    a: 'Financing for foreigners is more limited than in other markets, but options are growing. Some developments offer payment plans (typically 30–50% down, with balances spread over 3–5 years), while traditional bank financing in Honduras is generally not available.',
+  },
+  {
+    q: 'What areas of Roatán have the best new developments?',
+    a: 'The west side of the island continues to have the highest concentration of new developments, as it\'s where demand is strongest. That said, we\'re now seeing new projects expanding across the entire island, all the way to the East End, offering a wider range of opportunities depending on your goals.',
+  },
+  {
+    q: 'What is the process for buying property in Roatán?',
+    a: 'The process starts with working with a knowledgeable realtor, followed by submitting an offer. Once accepted, a 10% earnest money deposit is typically wired within 7 business days to escrow. Your attorney then conducts due diligence, and closing usually takes place around 30 days later with the deed executed before a Honduran notary.',
+  },
+  {
+    q: 'What fees should I expect when buying property in Roatan?',
+    a: 'Closing costs are typically 3–6%, depending on whether the purchase is structured as a direct transfer or a corporate share transfer. This generally includes taxes, legal fees, and registration costs, while agent commissions are paid by the seller.',
   },
 ];
 
