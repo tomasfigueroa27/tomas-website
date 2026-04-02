@@ -114,24 +114,40 @@ const jsonLd = {
 
 const homeFaqs = [
   {
-    q: 'Can foreigners buy property in Roatan?',
-    a: 'Yes. Honduras law grants foreigners the same ownership rights as Honduran citizens. You can hold title directly in your name with no restrictions, no local partner required, and no limit on the percentage of the property you can own.',
+    q: 'Can foreigners buy property in Roatán?',
+    a: 'Yes. Foreigners can own property in Honduras and hold title directly in their own name. In general, an individual foreign buyer can purchase up to 3,000 square meters (approximately 0.74 acres) in their personal name. For larger parcels or more complex holdings, a Honduran legal structure may be used, depending on the buyer\'s goals and legal advice.',
   },
   {
-    q: 'Is Roatan a good real estate investment?',
-    a: 'Roatan offers a compelling combination: 100% foreign ownership, 6–8% average rental yields in top areas, 5–8% annual property appreciation, and entry prices well below comparable Caribbean markets. Over 1.2 million tourists visit annually, driving consistent vacation rental demand.',
+    q: 'Is Roatán a good real estate investment?',
+    a: 'It depends on your goals. Roatán can deliver strong returns for vacation rentals, steady appreciation over time, or lifestyle value—but the outcome comes down to buying the right property in the right location.',
   },
   {
-    q: 'What types of properties are available in Roatan?',
-    a: 'You will find beachfront condos, hillside homes, luxury villas, gated community lots, and pre-construction units across different price points and neighborhoods. Entry-level condos start around $150,000, while luxury oceanfront properties reach $3M+.',
+    q: 'What types of properties are available in Roatán?',
+    a: 'Roatán offers a broad range of properties—from simple island homes in secluded locations to beachfront condos, hillside homes, luxury villas, gated communities, private cays, pre-construction opportunities, and properties with stunning ocean views.',
   },
   {
     q: 'How long does the buying process take in Roatan?',
-    a: 'A typical Roatan property transaction takes 60–120 days from signed agreement to completed title transfer. The process includes a title search by a licensed Honduran attorney, due diligence period, deposit payment, and final closing before a notary.',
+    a: 'A typical Roatan property transaction takes 90–180 days from signed agreement to completed title transfer. The process includes a title search by a licensed Honduran attorney, due diligence period, deposit payment, and final closing before a notary.',
   },
   {
     q: 'How do I get started with Tomas Figueroa?',
-    a: 'The best first step is a 30-minute strategy call. Tomas will listen to your goals, walk you through current market conditions, and explain how to approach finding the right property in Roatan — at no cost or obligation.',
+    a: 'The best first step is a 30-minute strategy call. Tomas will listen to your goals, walk you through current market conditions, step by step process review and explain how to approach finding the right property in Roatan.',
+  },
+  {
+    q: 'Can I get financing for a new development in Roatán?',
+    a: 'Financing for foreigners is more limited than in other markets, but options are growing. Some developments offer payment plans (typically 30–50% down, with balances spread over 3–5 years), while traditional bank financing in Honduras is generally not available.',
+  },
+  {
+    q: 'What areas of Roatán have the best new developments?',
+    a: 'The west side of the island continues to have the highest concentration of new developments, as it\'s where demand is strongest. That said, we\'re now seeing new projects expanding across the entire island, all the way to the East End, offering a wider range of opportunities depending on your goals.',
+  },
+  {
+    q: 'What is the process for buying property in Roatán?',
+    a: 'The process starts with working with a knowledgeable realtor, followed by submitting an offer. Once accepted, a 10% earnest money deposit is typically wired within 7 business days to escrow. Your attorney then conducts due diligence, and closing usually takes place around 30 days later with the deed executed before a Honduran notary.',
+  },
+  {
+    q: 'What fees should I expect when buying property in Roatan?',
+    a: 'Closing costs are typically 3–6%, depending on whether the purchase is structured as a direct transfer or a corporate share transfer. This generally includes taxes, legal fees, and registration costs, while agent commissions are paid by the seller.',
   },
 ];
 
@@ -190,13 +206,15 @@ const HomePage = () => (
           >
             Why Buyers Choose Roatan Real Estate
           </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
-            Roatan is the largest of Honduras' Bay Islands — a 40-mile island in the western Caribbean, sitting along the Mesoamerican Barrier Reef. It is one of the few remaining Caribbean markets where foreign buyers can own property outright with 100% title, no restrictions, and prices well below Belize, Cayman Islands, or Turks and Caicos. Annual tourism exceeds 1.2 million visitors, driving consistent vacation rental demand in a market that continues to grow. The island offers world-class diving, a stable tropical climate, direct US flights from Houston, Miami, Atlanta, and Dallas, an established expat community, and full English language infrastructure — making it one of the most accessible and practical emerging Caribbean markets available to international buyers today.
-          </p>
+          <div className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed space-y-4 text-left">
+            <p>Roatán is the largest of Honduras' Bay Islands — a 40-mile island in the western Caribbean, located along the Mesoamerican Barrier Reef. Foreign buyers can acquire property with full ownership rights, making it a straightforward and secure market for international investment, with pricing that remains competitive compared to destinations such as Belize, the Dominican Republic, and Costa Rica.</p>
+            <p>Tourism continues to grow consistently year over year, supporting strong demand for both vacation and long-term rentals. The island offers world-class diving, a stable tropical climate, an established expat community, and full English-language infrastructure. It is well connected with direct international flights, with additional routes continuing to be added.</p>
+            <p>Together, these factors position Roatán as an increasingly attractive and practical Caribbean destination for both lifestyle buyers and investors.</p>
+          </div>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { stat: '$150K+', label: 'Entry-level condos', sub: 'Well below comparable Caribbean markets' },
+            { stat: '$150K+', label: 'Accessible entry points', sub: 'Well below comparable Caribbean markets' },
             { stat: '6–8%', label: 'Average rental yield', sub: 'In top areas like West Bay Beach' },
             { stat: '100%', label: 'Foreign ownership', sub: 'Same rights as Honduran citizens' },
           ].map((item) => (
