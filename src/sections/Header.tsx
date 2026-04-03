@@ -39,6 +39,7 @@ const Header = () => {
     { label: 'New Developments', href: '/new-developments' },
     { label: 'About', href: '/about' },
     { label: 'Resources', href: '/resources' },
+    { label: 'FAQ', href: '/faq' },
     { label: 'Contact', action: () => scrollToSection('newsletter') },
   ];
 

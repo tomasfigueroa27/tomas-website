@@ -1,38 +1,6 @@
-import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ChevronDown, ChevronUp, Calendar } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import SEO from '@/components/SEO';
-
-interface FAQItemProps {
-  q: string;
-  a: string;
-}
-
-const FAQItem = ({ q, a }: FAQItemProps) => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="border border-gray-200 rounded-xl overflow-hidden">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-[#f5f5f5] transition-colors"
-        aria-expanded={open}
-      >
-        <span className="font-semibold text-[#1d1d1d]">{q}</span>
-        {open ? (
-          <ChevronUp className="w-5 h-5 text-[#04649b] shrink-0" aria-hidden="true" />
-        ) : (
-          <ChevronDown className="w-5 h-5 text-[#04649b] shrink-0" aria-hidden="true" />
-        )}
-      </button>
-      {open && (
-        <div className="px-6 py-5 bg-[#f5f5f5] text-gray-700 leading-relaxed border-t border-gray-200">
-          {a}
-        </div>
-      )}
-    </div>
-  );
-};
 
 const stats = [
   { label: 'Average Condo Price', value: '$285,000' },
@@ -75,42 +43,6 @@ const buyingSteps = [
       'The final deed (escritura) is executed before a Honduran notary and registered in the Public Property Registry. Upon completion, title transfers to you and you receive the registered deed.',
   },
 ];
-
-const faqs = [
-  {
-    q: 'Can foreigners own property in Roatan?',
-    a: 'Yes — Honduras law allows foreigners to own real property outright with the same rights as Honduran citizens. There are no restrictions on foreign ownership, and you can hold title directly in your name or through a Honduran corporation. Foreign ownership is one of the most attractive features of the Roatan real estate market.',
-  },
-  {
-    q: 'What are closing costs when buying property in Roatan?',
-    a: 'Closing costs in Roatan typically run 5–8% of the purchase price. This includes the transfer tax (approximately 1.5%), attorney fees (1–2%), registration fees, and other administrative costs. Buyers should budget for these costs in addition to the purchase price.',
-  },
-  {
-    q: 'How long does the buying process take in Roatan?',
-    a: 'A typical real estate transaction in Roatan takes 60–120 days from signed purchase agreement to completed title transfer. The timeline depends on the complexity of the title search, responsiveness of both parties, and the speed of the Public Property Registry. Having an experienced local attorney significantly streamlines the process.',
-  },
-  {
-    q: 'Is title insurance available in Honduras?',
-    a: 'Title insurance is available in Honduras but is not as widely used as in the United States. The primary protection comes from a thorough title search conducted by your Honduran attorney, who will verify that the property has clean title and no encumbrances, liens, or competing claims before the purchase is completed.',
-  },
-  {
-    q: 'What taxes apply to property owners in Roatan?',
-    a: 'Property owners in Roatan pay annual municipal property taxes (impuesto sobre bienes inmuebles), which are generally very low compared to North American standards. A transfer tax applies at the time of purchase. Foreign owners are also subject to Honduran income tax on any rental income generated in Honduras, though rates and obligations vary by situation.',
-  },
-];
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((faq) => ({
-    '@type': 'Question',
-    name: faq.q,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: faq.a,
-    },
-  })),
-};
 
 const marketSchema = {
   '@context': 'https://schema.org',
@@ -156,7 +88,6 @@ const RoatanMarket = () => {
         url="/roatan-market"
       />
       <Helmet>
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(marketSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
         <script type="application/ld+json">{JSON.stringify({
@@ -316,20 +247,15 @@ const RoatanMarket = () => {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-20">
-        <div className="section-container max-w-4xl">
-          <h2
-            className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-10 text-center"
-            style={{ fontFamily: "'Roboto Slab', serif" }}
-          >
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-3">
-            {faqs.map((faq, i) => (
-              <FAQItem key={i} q={faq.q} a={faq.a} />
-            ))}
-          </div>
+      {/* FAQ Link */}
+      <section className="py-10">
+        <div className="section-container max-w-4xl text-center">
+          <p className="text-gray-600">
+            Have questions about the buying process or market?{' '}
+            <a href="/faq" className="text-[#04649b] font-medium hover:underline">
+              Browse our full FAQ →
+            </a>
+          </p>
         </div>
       </section>
 
