@@ -1,4 +1,4 @@
-import { BookOpen, FileText, ArrowRight } from 'lucide-react';
+import { BookOpen, FileText, ArrowRight, Calculator } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '@/components/SEO';
 import posts from '@/data/blog';
@@ -16,6 +16,7 @@ const Resources = () => {
         description="Articles, market insights, and buyer's guides to help you make informed decisions about Roatan, Honduras real estate. Free resources for investors and relocators."
         url="/resources"
       />
+
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
         <div className="section-container text-center">
@@ -35,7 +36,68 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* Recent Articles */}
+      {/* Cards Section */}
+      <section className="py-20">
+        <div className="section-container">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <a
+              href="/blog"
+              className="group block bg-[#f5f5f5] hover:bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100"
+            >
+              <div className="w-12 h-12 bg-[#04649b]/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#04649b] transition-colors duration-300">
+                <BookOpen className="w-6 h-6 text-[#04649b] group-hover:text-white transition-colors duration-300" />
+              </div>
+              <h2
+                className="text-2xl font-bold text-[#1d1d1d] mb-3"
+                style={{ fontFamily: "'Roboto Slab', serif" }}
+              >
+                Blog
+              </h2>
+              <p className="text-gray-600 leading-relaxed">
+                Read articles about Roatan real estate, market trends, and lifestyle tips.
+              </p>
+            </a>
+
+            <a
+              href="/guides"
+              className="group block bg-[#f5f5f5] hover:bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100"
+            >
+              <div className="w-12 h-12 bg-[#04649b]/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#04649b] transition-colors duration-300">
+                <FileText className="w-6 h-6 text-[#04649b] group-hover:text-white transition-colors duration-300" />
+              </div>
+              <h2
+                className="text-2xl font-bold text-[#1d1d1d] mb-3"
+                style={{ fontFamily: "'Roboto Slab', serif" }}
+              >
+                Guides
+              </h2>
+              <p className="text-gray-600 leading-relaxed">
+                Comprehensive guides to help you navigate buying property in Roatan.
+              </p>
+            </a>
+
+            <a
+              href="/calculator"
+              className="group block bg-[#f5f5f5] hover:bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100"
+            >
+              <div className="w-12 h-12 bg-[#04649b]/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#04649b] transition-colors duration-300">
+                <Calculator className="w-6 h-6 text-[#04649b] group-hover:text-white transition-colors duration-300" />
+              </div>
+              <h2
+                className="text-2xl font-bold text-[#1d1d1d] mb-3"
+                style={{ fontFamily: "'Roboto Slab', serif" }}
+              >
+                Closing Calculator
+              </h2>
+              <p className="text-gray-600 leading-relaxed">
+                Estimate your closing costs for a Roatan property purchase instantly.
+              </p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Articles */}
       <section className="py-16 bg-[#f5f5f5]">
         <div className="section-container max-w-5xl">
           <h2
@@ -76,49 +138,6 @@ const Resources = () => {
               View all articles
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Cards Section */}
-      <section className="py-20">
-        <div className="section-container">
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <a
-              href="/blog"
-              className="group block bg-[#f5f5f5] hover:bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100"
-            >
-              <div className="w-12 h-12 bg-[#04649b]/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#04649b] transition-colors duration-300">
-                <BookOpen className="w-6 h-6 text-[#04649b] group-hover:text-white transition-colors duration-300" />
-              </div>
-              <h2
-                className="text-2xl font-bold text-[#1d1d1d] mb-3"
-                style={{ fontFamily: "'Roboto Slab', serif" }}
-              >
-                Blog
-              </h2>
-              <p className="text-gray-600 leading-relaxed">
-                Read articles about Roatan real estate, market trends, and lifestyle tips.
-              </p>
-            </a>
-
-            <a
-              href="/guides"
-              className="group block bg-[#f5f5f5] hover:bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100"
-            >
-              <div className="w-12 h-12 bg-[#04649b]/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#04649b] transition-colors duration-300">
-                <FileText className="w-6 h-6 text-[#04649b] group-hover:text-white transition-colors duration-300" />
-              </div>
-              <h2
-                className="text-2xl font-bold text-[#1d1d1d] mb-3"
-                style={{ fontFamily: "'Roboto Slab', serif" }}
-              >
-                Guides
-              </h2>
-              <p className="text-gray-600 leading-relaxed">
-                Comprehensive guides to help you navigate buying property in Roatan.
-              </p>
-            </a>
           </div>
         </div>
       </section>

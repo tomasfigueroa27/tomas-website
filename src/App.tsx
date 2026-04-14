@@ -19,6 +19,7 @@ import NeighborhoodDetail from './pages/NeighborhoodDetail';
 import RoatanMarket from './pages/RoatanMarket';
 import PropertiesPage from './pages/PropertiesPage';
 import FAQPage from './pages/FAQPage';
+import CalculatorPage from './pages/CalculatorPage';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -229,6 +230,7 @@ function App() {
               <Route path="/roatan-market" element={<RoatanMarket />} />
               <Route path="/properties" element={<PropertiesPage />} />
               <Route path="/faq" element={<FAQPage />} />
+              <Route path="/calculator" element={<CalculatorPage />} />
               <Route path="/success" element={<FormSuccess />} />
             </Routes>
           </main>
