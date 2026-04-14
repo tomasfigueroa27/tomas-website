@@ -126,42 +126,58 @@ const HomePage = () => (
     <Hero />
     <HomeAbout />
 
-    {/* Why Roatan? */}
-    <section className="py-20 bg-white">
-      <div className="section-container max-w-5xl">
-        <div className="text-center mb-12">
-          <span className="text-[#04649b] font-medium uppercase tracking-wider text-sm">
-            Why Roatan
-          </span>
-          <h2
-            className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mt-3 mb-4"
-            style={{ fontFamily: "'Roboto Slab', serif" }}
-          >
-            Why Buyers Choose Roatan Real Estate
-          </h2>
-          <div className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed space-y-4 text-left">
-            <p>Roatán is the largest of Honduras' Bay Islands — a 40-mile island in the western Caribbean, located along the Mesoamerican Barrier Reef. Foreign buyers can acquire property with full ownership rights, making it a straightforward and secure market for international investment, with pricing that remains competitive compared to destinations such as Belize, the Dominican Republic, and Costa Rica.</p>
-            <p>Tourism continues to grow consistently year over year, supporting strong demand for both vacation and long-term rentals. The island offers world-class diving, a stable tropical climate, an established expat community, and full English-language infrastructure. It is well connected with direct international flights, with additional routes continuing to be added.</p>
-            <p>Together, these factors position Roatán as an increasingly attractive and practical Caribbean destination for both lifestyle buyers and investors.</p>
-          </div>
-        </div>
-        <div className="grid md:grid-cols-3 gap-6">
-          {[
-            { stat: '$150K+', label: 'Accessible entry points', sub: 'Well below comparable Caribbean markets' },
-            { stat: '6–8%', label: 'Average rental yield', sub: 'In top areas like West Bay Beach' },
-            { stat: '100%', label: 'Foreign ownership', sub: 'Same rights as Honduran citizens' },
-          ].map((item) => (
-            <div key={item.stat} className="bg-[#f5f5f5] rounded-2xl p-6 text-center">
-              <div
-                className="text-4xl font-bold text-[#04649b] mb-1"
-                style={{ fontFamily: "'Roboto Slab', serif" }}
-              >
-                {item.stat}
-              </div>
-              <div className="font-semibold text-[#1d1d1d] mb-1">{item.label}</div>
-              <div className="text-gray-500 text-sm">{item.sub}</div>
+    {/* Quote Band — full-bleed visual break, no formula */}
+    <section className="bg-[#1d1d1d] py-14 md:py-20">
+      <div className="section-container max-w-4xl text-center">
+        <p
+          className="text-2xl md:text-3xl lg:text-4xl text-white leading-snug"
+          style={{ fontFamily: "'Roboto Slab', serif" }}
+        >
+          "Most Caribbean markets are overpriced.{' '}
+          <span className="text-[#04649b]">Roatan isn't — yet.</span>"
+        </p>
+      </div>
+    </section>
+
+    {/* Why Roatan — dark, left-aligned, no eyebrow */}
+    <section className="bg-[#111] py-20 md:py-28">
+      <div className="section-container max-w-6xl">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          {/* Left: heading + copy */}
+          <div>
+            <h2
+              className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight"
+              style={{ fontFamily: "'Roboto Slab', serif" }}
+            >
+              Why Buyers Choose Roatan
+            </h2>
+            <div className="space-y-5 text-white/70 text-lg leading-relaxed">
+              <p>Roatán is the largest of Honduras' Bay Islands — a 40-mile island in the western Caribbean, located along the Mesoamerican Barrier Reef. Foreign buyers can acquire property with full ownership rights, making it a straightforward and secure market for international investment, with pricing that remains competitive compared to destinations such as Belize, the Dominican Republic, and Costa Rica.</p>
+              <p>Tourism continues to grow consistently year over year, supporting strong demand for both vacation and long-term rentals. The island offers world-class diving, a stable tropical climate, an established expat community, and full English-language infrastructure. It is well connected with direct international flights, with additional routes continuing to be added.</p>
+              <p>Together, these factors position Roatán as an increasingly attractive and practical Caribbean destination for both lifestyle buyers and investors.</p>
             </div>
-          ))}
+          </div>
+          {/* Right: stats as typographic items */}
+          <div className="lg:pt-4 space-y-0 divide-y divide-white/10 border-t border-white/10">
+            {[
+              { stat: '$150K+', label: 'Accessible entry points', sub: 'Well below comparable Caribbean markets' },
+              { stat: '6–8%', label: 'Average rental yield', sub: 'In top areas like West Bay Beach' },
+              { stat: '100%', label: 'Foreign ownership', sub: 'Same rights as Honduran citizens' },
+            ].map((item) => (
+              <div key={item.stat} className="py-7 flex items-start gap-6">
+                <span
+                  className="text-4xl md:text-5xl font-bold text-[#04649b] shrink-0 leading-none"
+                  style={{ fontFamily: "'Roboto Slab', serif" }}
+                >
+                  {item.stat}
+                </span>
+                <div>
+                  <p className="text-white font-semibold text-lg leading-snug">{item.label}</p>
+                  <p className="text-white/50 text-sm mt-1">{item.sub}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
