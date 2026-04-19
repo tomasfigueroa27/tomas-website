@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 import { Roboto, Roboto_Slab } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import Header from '@/sections/Header';
 import Footer from '@/sections/Footer';
+
+const GA_ID = 'G-XXXXXXXXXX'; // ← replace with your Measurement ID
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -135,6 +138,13 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-white">
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_ID}');
+        `}</Script>
         <Header />
         <main>{children}</main>
         <Footer />
