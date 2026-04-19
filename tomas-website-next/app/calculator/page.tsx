@@ -4,7 +4,7 @@ import ClosingCalculator from '@/components/ClosingCalculator';
 export const metadata: Metadata = {
   title: 'Roatan Closing Cost Calculator | Estimate Buying Costs',
   description: 'Estimate your closing costs when buying property in Roatan, Honduras. Calculate transfer taxes, attorney fees, and registration costs for direct or corporate share transfers.',
-  alternates: { canonical: 'https://tomasfigueroa.com/calculator' },
+  alternates: { canonical: 'https://www.tomasfigueroa.com/calculator' },
 };
 
 export default function CalculatorPage() {

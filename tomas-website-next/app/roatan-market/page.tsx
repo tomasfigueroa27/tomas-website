@@ -4,7 +4,7 @@ import { Calendar } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Roatan Real Estate Market Guide 2026 | Tomas Figueroa',
   description: 'Up-to-date Roatan real estate market data: average prices, rental yields, foreign ownership rules, buying process, and key investment facts for 2026.',
-  alternates: { canonical: 'https://tomasfigueroa.com/roatan-market' },
+  alternates: { canonical: 'https://www.tomasfigueroa.com/roatan-market' },
 };
 
 const stats = [
@@ -24,7 +24,7 @@ const buyingSteps = [
   { step: 5, title: 'Closing & Title Transfer', description: 'The final deed (escritura) is executed before a Honduran notary and registered in the Public Property Registry. Upon completion, title transfers to you and you receive the registered deed.' },
 ];
 
-const marketSchema = { '@context': 'https://schema.org', '@type': 'Article', headline: 'Roatan Real Estate Market Guide 2026', description: 'Comprehensive overview of the Roatan, Honduras real estate market.', author: { '@type': 'Person', name: 'Tomas Figueroa', url: 'https://tomasfigueroa.com/about' }, publisher: { '@type': 'Organization', name: 'Tomas Figueroa Real Estate', url: 'https://tomasfigueroa.com' }, url: 'https://tomasfigueroa.com/roatan-market', datePublished: '2026-04-01', dateModified: '2026-04-01' };
+const marketSchema = { '@context': 'https://schema.org', '@type': 'Article', headline: 'Roatan Real Estate Market Guide 2026', description: 'Comprehensive overview of the Roatan, Honduras real estate market.', author: { '@type': 'Person', name: 'Tomas Figueroa', url: 'https://www.tomasfigueroa.com/about' }, publisher: { '@type': 'Organization', name: 'Tomas Figueroa Real Estate', url: 'https://www.tomasfigueroa.com' }, url: 'https://www.tomasfigueroa.com/roatan-market', datePublished: '2026-04-01', dateModified: '2026-04-01' };
 const howToSchema = { '@context': 'https://schema.org', '@type': 'HowTo', name: 'How to Buy Property in Roatan, Honduras', description: 'Step-by-step guide to purchasing real estate in Roatan as a foreign buyer.', totalTime: 'P90D', step: buyingSteps.map((item) => ({ '@type': 'HowToStep', position: item.step, name: item.title, text: item.description })) };
 
 export default function RoatanMarketPage() {

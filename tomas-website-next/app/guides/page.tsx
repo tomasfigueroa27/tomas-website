@@ -28,9 +28,9 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tomasfigueroa.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://tomasfigueroa.com/resources' },
-    { '@type': 'ListItem', position: 3, name: 'Guides', item: 'https://tomasfigueroa.com/guides' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tomasfigueroa.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://www.tomasfigueroa.com/resources' },
+    { '@type': 'ListItem', position: 3, name: 'Guides', item: 'https://www.tomasfigueroa.com/guides' },
   ],
 };
 

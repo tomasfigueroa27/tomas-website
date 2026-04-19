@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     'Buy, sell, or invest in Roatan, Honduras real estate with Tomas Figueroa at Keller Williams Roatan. Expert guidance on Caribbean property, new developments, and investment opportunities.',
   alternates: {
-    canonical: 'https://tomasfigueroa.com/',
+    canonical: 'https://www.tomasfigueroa.com/',
   },
   openGraph: {
     title: 'Roatan Real Estate | Tomas Figueroa – KW Roatan',
     description:
       'Buy, sell, or invest in Roatan, Honduras real estate with Tomas Figueroa at Keller Williams Roatan.',
-    url: 'https://tomasfigueroa.com/',
+    url: 'https://www.tomasfigueroa.com/',
     images: [{ url: '/tomas-about.jpg', width: 800, height: 1000 }],
   },
 };

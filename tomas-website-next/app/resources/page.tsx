@@ -6,7 +6,7 @@ import posts from '@/data/blog';
 export const metadata: Metadata = {
   title: 'Real Estate Resources | Roatan Honduras',
   description: 'Articles, market insights, and buyer\'s guides to help you make informed decisions about Roatan, Honduras real estate. Free resources for investors and relocators.',
-  alternates: { canonical: 'https://tomasfigueroa.com/resources' },
+  alternates: { canonical: 'https://www.tomasfigueroa.com/resources' },
 };
 
 const formatDate = (iso: string) =>

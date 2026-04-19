@@ -5,7 +5,7 @@ import posts from '@/data/blog';
 import neighborhoods from '@/data/neighborhoods';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://tomasfigueroa.com';
+  const base = 'https://www.tomasfigueroa.com';
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: base, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },

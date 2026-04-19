@@ -6,15 +6,15 @@ import { Award, Users, MapPin, Phone, Mail, Calendar, TrendingUp } from 'lucide-
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  '@id': 'https://tomasfigueroa.com/#person',
+  '@id': 'https://www.tomasfigueroa.com/#person',
   name: 'Tomas Figueroa',
   jobTitle: 'Licensed Real Estate Agent',
-  url: 'https://tomasfigueroa.com',
-  image: 'https://tomasfigueroa.com/tomas-about.jpg',
+  url: 'https://www.tomasfigueroa.com',
+  image: 'https://www.tomasfigueroa.com/tomas-about.jpg',
   telephone: '+50488488326',
   email: 'tomas@kwroatan.com',
   knowsAbout: ['Roatan real estate', 'Caribbean property investment', 'Honduras property law'],
-  worksFor: { '@type': 'RealEstateAgent', name: 'Keller Williams Roatan', url: 'https://tomasfigueroa.com' },
+  worksFor: { '@type': 'RealEstateAgent', name: 'Keller Williams Roatan', url: 'https://www.tomasfigueroa.com' },
   sameAs: ['https://www.facebook.com/profile.php?id=61557310059412', 'https://www.instagram.com/roatanbytomas/', 'https://www.linkedin.com/in/roatanbytomas/'],
 };
 
@@ -48,7 +48,7 @@ export default function AboutContent() {
   return (
     <div className="min-h-screen pt-24 pb-20 bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tomasfigueroa.com/' }, { '@type': 'ListItem', position: 2, name: 'About', item: 'https://tomasfigueroa.com/about' }] }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tomasfigueroa.com/' }, { '@type': 'ListItem', position: 2, name: 'About', item: 'https://www.tomasfigueroa.com/about' }] }) }} />
 
       <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
         <div className="section-container">
