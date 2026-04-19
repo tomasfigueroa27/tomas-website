@@ -60,13 +60,15 @@ const HomeAbout = () => {
               Your Local Guide to Roatan Real Estate
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-4">
-              I'm Tomas Figueroa, a real estate agent based in Roatan, Honduras with over 20 years of
-              experience helping investors and buyers navigate one of the Caribbean's most exciting
-              emerging markets.
+              I'm Tomas Figueroa, a bilingual real estate agent based in Roatan, Honduras — 
+              and a licensed agent with Keller Williams Roatan. I specialize in helping 
+              international buyers and investors find the right property in the Bay Islands, 
+              one of the Caribbean's fastest-growing real estate markets.
             </p>
             <p className="text-gray-600 text-lg leading-relaxed mb-8">
-              My approach is strategic, not transactional — I help you decide whether Roatan is the right
-              market for you before ever looking at a single property.
+              My approach is strategic, not transactional. Before we ever look at a single listing, 
+              I help you decide whether Roatan is the right market for you — your goals, your timeline, 
+              your risk tolerance. 
             </p>
             <Link
               to="/about"
