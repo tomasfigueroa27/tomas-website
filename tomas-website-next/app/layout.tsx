@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Roboto, Roboto_Slab } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import Header from '@/sections/Header';
@@ -7,18 +7,11 @@ import Footer from '@/sections/Footer';
 
 const GA_ID = 'G-XXXXXXXXXX'; // ← replace with your Measurement ID
 
-const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
+const jakartaSans = Plus_Jakarta_Sans({
+  weight: ['300', '400', '500', '600', '700'],
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-roboto',
-});
-
-const robotoSlab = Roboto_Slab({
-  weight: ['300', '400', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-roboto-slab',
+  variable: '--font-jakarta',
 });
 
 const jsonLd = {
@@ -130,14 +123,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${roboto.variable} ${robotoSlab.variable}`}>
+    <html lang="en" className={jakartaSans.variable}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-white">
+      <body className="min-h-screen bg-[#f5f2ee]">
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];

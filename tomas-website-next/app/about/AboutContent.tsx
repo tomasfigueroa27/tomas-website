@@ -46,19 +46,19 @@ export default function AboutContent() {
   }, []);
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-white">
+    <div className="min-h-screen pt-24 pb-20 bg-[#f5f2ee]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tomasfigueroa.com/' }, { '@type': 'ListItem', position: 2, name: 'About', item: 'https://www.tomasfigueroa.com/about' }] }) }} />
 
-      <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
+      <section className="relative py-20 bg-[#093f4f] text-white">
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6">About Me</span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Tomas Figueroa</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>Tomas Figueroa</h1>
               <p className="text-lg md:text-xl text-white/90 mb-6">Strategic real estate guidance in Roatan, Honduras. Backed by over 20 years of international business experience, I help investors and high-end buyers evaluate opportunities with clarity and long-term perspective.</p>
               <div className="flex flex-wrap gap-4">
-                <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="inline-flex items-center gap-2 bg-white text-[#04649b] px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-all">
+                <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="inline-flex items-center gap-2 bg-white text-[#093f4f] px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-all">
                   <Calendar className="w-5 h-5" /> Schedule a Call
                 </a>
                 <a href="tel:+50488488326" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-medium transition-all">
@@ -75,13 +75,13 @@ export default function AboutContent() {
         </div>
       </section>
 
-      <section ref={statsRef} className="py-16 bg-[#f5f5f5]">
+      <section ref={statsRef} className="py-16 bg-[#f5f2ee]">
         <div className="section-container">
           <div className="grid md:grid-cols-3 gap-8">
             {stats.map((stat, index) => (
               <div key={stat.label} className={`bg-white rounded-xl p-8 text-center shadow-lg transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: `${index * 100}ms` }}>
-                <stat.icon className="w-10 h-10 text-[#04649b] mx-auto mb-4" />
-                <div className="text-4xl font-bold text-[#1d1d1d] mb-2">{stat.number}</div>
+                <stat.icon className="w-10 h-10 text-[#093f4f] mx-auto mb-4" />
+                <div className="text-4xl font-bold text-[#093f4f] mb-2">{stat.number}</div>
                 <div className="text-gray-600">{stat.label}</div>
               </div>
             ))}
@@ -93,7 +93,7 @@ export default function AboutContent() {
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Why Work With Me?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#093f4f] mb-6" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>Why Work With Me?</h2>
               <div className="space-y-4 text-gray-600">
                 <p>With over 20 years of experience in international sales, business development, and leadership, I bring a strategic and disciplined approach to real estate in Roatan. As a licensed agent with Keller Williams Roatan, I advise buyers, sellers, and developers with clarity, structure, and a long-term perspective.</p>
                 <p>For buyers and investors, I focus on aligning property selection with clearly defined objectives — whether that means cash flow, long-term appreciation, lifestyle flexibility, or relocation. Every opportunity is evaluated through market fundamentals, positioning, and future development patterns.</p>
@@ -101,11 +101,11 @@ export default function AboutContent() {
               </div>
             </div>
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>My Approach to Roatan Real Estate</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#093f4f] mb-6" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>My Approach to Roatan Real Estate</h2>
               <div className="space-y-4">
                 {values.map((value) => (
-                  <div key={value.title} className="bg-[#f5f5f5] rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-[#1d1d1d] mb-2">{value.title}</h3>
+                  <div key={value.title} className="bg-[#f5f2ee] rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-[#093f4f] mb-2">{value.title}</h3>
                     <p className="text-gray-600 whitespace-pre-line">{value.description}</p>
                   </div>
                 ))}
@@ -115,10 +115,10 @@ export default function AboutContent() {
         </div>
       </section>
 
-      <section className="py-20 bg-[#f5f5f5]">
+      <section className="py-20 bg-[#f5f2ee]">
         <div className="section-container">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-4" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Services I Offer</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#093f4f] mb-4" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>Services I Offer</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">Comprehensive real estate services tailored to your needs.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -129,7 +129,7 @@ export default function AboutContent() {
               { title: 'Relocation Services', desc: 'Relocate with confidence through structured guidance and local insight.' },
             ].map((service) => (
               <div key={service.title} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-                <h3 className="text-lg font-semibold text-[#1d1d1d] mb-2">{service.title}</h3>
+                <h3 className="text-lg font-semibold text-[#093f4f] mb-2">{service.title}</h3>
                 <p className="text-gray-600 text-sm">{service.desc}</p>
               </div>
             ))}
@@ -139,17 +139,17 @@ export default function AboutContent() {
 
       <section className="py-10">
         <div className="section-container max-w-3xl text-center">
-          <p className="text-gray-600">Have questions about buying in Roatan?{' '}<a href="/faq" className="text-[#04649b] font-medium hover:underline">Browse our full FAQ →</a></p>
+          <p className="text-gray-600">Have questions about buying in Roatan?{' '}<a href="/faq" className="text-[#093f4f] font-medium hover:underline">Browse our full FAQ →</a></p>
         </div>
       </section>
 
       <section className="py-20">
         <div className="section-container">
-          <div className="bg-[#04649b] rounded-2xl p-12 text-center text-white">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Ready to Explore Roatan Real Estate?</h2>
+          <div className="bg-[#093f4f] rounded-2xl p-12 text-center text-white">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>Ready to Explore Roatan Real Estate?</h2>
             <p className="text-white/90 max-w-2xl mx-auto mb-8">Let&apos;s define your objectives and build a strategy aligned with your long-term goals.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="inline-flex items-center justify-center gap-2 bg-white text-[#04649b] px-8 py-4 rounded-lg font-medium hover:bg-gray-100 transition-all">
+              <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="inline-flex items-center justify-center gap-2 bg-white text-[#093f4f] px-8 py-4 rounded-lg font-medium hover:bg-gray-100 transition-all">
                 <Calendar className="w-5 h-5" /> Schedule a Call
               </a>
               <a href="mailto:tomas@kwroatan.com" className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg font-medium transition-all">

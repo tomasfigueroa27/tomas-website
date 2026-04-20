@@ -13,7 +13,7 @@ const parseMoney = (s: string) => parseFloat(s.replace(/[^0-9.]/g, '')) || 0;
 
 const MoneyInput = ({ label, value, onChange, hint }: { label: string; value: string; onChange: (v: string) => void; hint?: string }) => (
   <div>
-    <label className="block text-sm font-semibold text-[#1d1d1d] mb-1">{label}</label>
+    <label className="block text-sm font-semibold text-[#093f4f] mb-1">{label}</label>
     {hint && <p className="text-xs text-gray-400 mb-1">{hint}</p>}
     <div className="relative">
       <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
@@ -25,7 +25,7 @@ const MoneyInput = ({ label, value, onChange, hint }: { label: string; value: st
           onChange(raw ? Number(raw).toLocaleString('en-US', { maximumFractionDigits: 0 }) : '');
         }}
         placeholder="0"
-        className="w-full pl-7 pr-3 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#04649b]"
+        className="w-full pl-7 pr-3 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#093f4f]"
       />
     </div>
   </div>
@@ -33,7 +33,7 @@ const MoneyInput = ({ label, value, onChange, hint }: { label: string; value: st
 
 const PctInput = ({ label, value, onChange, hint }: { label: string; value: string; onChange: (v: string) => void; hint?: string }) => (
   <div>
-    <label className="block text-sm font-semibold text-[#1d1d1d] mb-1">{label}</label>
+    <label className="block text-sm font-semibold text-[#093f4f] mb-1">{label}</label>
     {hint && <p className="text-xs text-gray-400 mb-1">{hint}</p>}
     <div className="relative">
       <input
@@ -42,7 +42,7 @@ const PctInput = ({ label, value, onChange, hint }: { label: string; value: stri
         onChange={(e) => onChange(e.target.value)}
         step="0.1"
         min="0"
-        className="w-full pr-7 pl-3 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#04649b]"
+        className="w-full pr-7 pl-3 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#093f4f]"
       />
       <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">%</span>
     </div>
@@ -50,9 +50,9 @@ const PctInput = ({ label, value, onChange, hint }: { label: string; value: stri
 );
 
 const MetricCard = ({ label, value, sub, accent }: { label: string; value: string; sub?: string; accent?: boolean }) => (
-  <div className={`rounded-xl p-4 ${accent ? 'bg-[#04649b] text-white' : 'bg-[#f5f5f5]'}`}>
+  <div className={`rounded-xl p-4 ${accent ? 'bg-[#093f4f] text-white' : 'bg-[#f5f2ee]'}`}>
     <p className={`text-xs font-semibold uppercase tracking-wide mb-1 ${accent ? 'text-white/70' : 'text-gray-500'}`}>{label}</p>
-    <p className={`text-xl font-bold ${accent ? 'text-white' : 'text-[#1d1d1d]'}`}>{value}</p>
+    <p className={`text-xl font-bold ${accent ? 'text-white' : 'text-[#093f4f]'}`}>{value}</p>
     {sub && <p className={`text-xs mt-0.5 ${accent ? 'text-white/70' : 'text-gray-400'}`}>{sub}</p>}
   </div>
 );
@@ -60,20 +60,20 @@ const MetricCard = ({ label, value, sub, accent }: { label: string; value: strin
 interface LineItem { label: string; amount: number; isTotal?: boolean; isGreen?: boolean; isRed?: boolean }
 
 const Breakdown = ({ lines }: { lines: LineItem[] }) => (
-  <div className="bg-[#f5f5f5] rounded-xl p-5 space-y-2 mt-4">
+  <div className="bg-[#f5f2ee] rounded-xl p-5 space-y-2 mt-4">
     <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3">Itemized Breakdown</p>
     {lines.map((l, i) =>
       l.isTotal ? (
         <div key={i} className="border-t border-gray-300 pt-3 flex justify-between items-center">
-          <span className="font-bold text-[#1d1d1d]">{l.label}</span>
-          <span className={`font-bold text-lg ${l.isGreen ? 'text-green-600' : l.isRed ? 'text-rose-600' : 'text-[#1d1d1d]'}`}>
+          <span className="font-bold text-[#093f4f]">{l.label}</span>
+          <span className={`font-bold text-lg ${l.isGreen ? 'text-green-600' : l.isRed ? 'text-rose-600' : 'text-[#093f4f]'}`}>
             {l.amount < 0 ? '−' : ''}{fmt(Math.abs(l.amount))}
           </span>
         </div>
       ) : (
         <div key={i} className="flex justify-between items-center text-sm">
           <span className="text-gray-600">{l.label}</span>
-          <span className={`font-medium ${l.amount < 0 ? 'text-gray-700' : 'text-[#1d1d1d]'}`}>
+          <span className={`font-medium ${l.amount < 0 ? 'text-gray-700' : 'text-[#093f4f]'}`}>
             {l.amount < 0 ? '−' : ''}{fmt(Math.abs(l.amount))}
           </span>
         </div>
@@ -185,13 +185,13 @@ const BuyerPanel = () => {
       <div className="grid sm:grid-cols-2 gap-4">
         <MoneyInput label="Purchase Price (USD)" value={purchasePrice} onChange={setPurchasePrice} />
         <div>
-          <label className="block text-sm font-semibold text-[#1d1d1d] mb-1">Purchase Structure</label>
+          <label className="block text-sm font-semibold text-[#093f4f] mb-1">Purchase Structure</label>
           <div className="grid grid-cols-2 gap-2 mb-2">
             {(['asset', 'corp'] as const).map((s) => (
               <button
                 key={s}
                 onClick={() => setStructure(s)}
-                className={`py-2.5 px-3 rounded-xl border text-sm font-medium transition-all ${structure === s ? 'bg-[#04649b] text-white border-[#04649b]' : 'bg-white text-gray-600 border-gray-200 hover:border-[#04649b]'}`}
+                className={`py-2.5 px-3 rounded-xl border text-sm font-medium transition-all ${structure === s ? 'bg-[#093f4f] text-white border-[#093f4f]' : 'bg-white text-gray-600 border-gray-200 hover:border-[#093f4f]'}`}
               >
                 {s === 'asset' ? 'Buying the Asset' : 'Buying a Corporation'}
               </button>
@@ -207,7 +207,7 @@ const BuyerPanel = () => {
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-[#1d1d1d] mb-3">Prorated Items</label>
+        <label className="block text-sm font-semibold text-[#093f4f] mb-3">Prorated Items</label>
         <div className="space-y-2">
           {prorated.map((row) => (
             <div key={row.id} className="flex gap-2 items-center">
@@ -216,7 +216,7 @@ const BuyerPanel = () => {
                 value={row.label}
                 onChange={(e) => updateRow(row.id, 'label', e.target.value)}
                 placeholder="Label"
-                className="flex-1 px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#04649b]"
+                className="flex-1 px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#093f4f]"
               />
               <div className="relative w-32 shrink-0">
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
@@ -228,7 +228,7 @@ const BuyerPanel = () => {
                     updateRow(row.id, 'amount', raw ? Number(raw).toLocaleString('en-US', { maximumFractionDigits: 0 }) : '');
                   }}
                   placeholder="0"
-                  className="w-full pl-7 pr-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#04649b]"
+                  className="w-full pl-7 pr-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#093f4f]"
                 />
               </div>
               <button onClick={() => removeRow(row.id)} className="p-2 text-gray-400 hover:text-rose-500 transition-colors" aria-label="Remove">
@@ -237,7 +237,7 @@ const BuyerPanel = () => {
             </div>
           ))}
         </div>
-        <button onClick={addRow} className="mt-3 inline-flex items-center gap-1 text-sm text-[#04649b] font-medium hover:underline">
+        <button onClick={addRow} className="mt-3 inline-flex items-center gap-1 text-sm text-[#093f4f] font-medium hover:underline">
           <Plus className="w-4 h-4" />
           Add item
         </button>
@@ -262,14 +262,14 @@ export default function ClosingCalculator() {
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 p-8 max-w-2xl mx-auto">
-      <h2 className="text-2xl font-bold text-[#1d1d1d] mb-1" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Closing Cost Estimator</h2>
+      <h2 className="text-2xl font-bold text-[#093f4f] mb-1" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Closing Cost Estimator</h2>
       <p className="text-gray-500 text-sm mb-6">Live estimates for buyers and sellers in Roatan. Agent commissions are paid by the seller.</p>
-      <div className="inline-flex bg-[#f5f5f5] rounded-xl p-1 mb-8">
+      <div className="inline-flex bg-[#f5f2ee] rounded-xl p-1 mb-8">
         {(['buyer', 'seller'] as const).map((r) => (
           <button
             key={r}
             onClick={() => setRole(r)}
-            className={`px-6 py-2 rounded-lg text-sm font-semibold transition-all ${role === r ? 'bg-white shadow text-[#04649b]' : 'text-gray-500 hover:text-[#1d1d1d]'}`}
+            className={`px-6 py-2 rounded-lg text-sm font-semibold transition-all ${role === r ? 'bg-white shadow text-[#093f4f]' : 'text-gray-500 hover:text-[#093f4f]'}`}
           >
             {r === 'buyer' ? 'Buyer' : 'Seller'}
           </button>

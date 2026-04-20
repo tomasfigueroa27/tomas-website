@@ -4,6 +4,13 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
+const credentials = [
+  'Licensed at Keller Williams Roatan',
+  '20+ Years of International Sales Experience',
+  '50+ Properties Sold in Roatan',
+  '$30MM+ Career Sales Volume',
+];
+
 const HomeAbout = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -23,7 +30,7 @@ const HomeAbout = () => {
   }, []);
 
   return (
-    <section className="w-full py-20 lg:py-28 bg-[#f5f5f5]" ref={ref}>
+    <section className="w-full py-20 lg:py-28 bg-white" ref={ref}>
       <div className="section-container">
         <div
           className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center transition-all duration-1000 ${
@@ -43,35 +50,49 @@ const HomeAbout = () => {
                 height="1000"
               />
             </div>
-            <div className="absolute -bottom-6 -right-4 lg:-right-8 bg-white rounded-xl shadow-xl px-6 py-4">
-              <p className="text-3xl font-bold text-[#04649b]" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>20+</p>
-              <p className="text-sm text-gray-500 mt-0.5">Years of Experience</p>
+            <div className="absolute -bottom-6 -right-4 lg:-right-8 bg-[#093f4f] rounded-xl shadow-xl px-6 py-4">
+              <p
+                className="text-3xl font-bold text-white"
+                style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
+              >
+                20+
+              </p>
+              <p className="text-xs text-[#d4e8ed] mt-0.5 uppercase tracking-[0.12em]">Years of Experience</p>
             </div>
           </div>
 
           {/* Text */}
           <div className="lg:pl-4">
-            <span className="text-[#04649b] font-medium uppercase tracking-wider text-sm">
-              About Me
-            </span>
+            <span className="label-caps block mb-4">About Me</span>
             <h2
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1d1d1d] mt-3 mb-6 leading-tight"
-              style={{ fontFamily: 'var(--font-roboto-slab), serif' }}
+              className="text-3xl md:text-4xl lg:text-5xl font-normal text-[#093f4f] mt-3 mb-6 leading-tight"
+              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
             >
               Your Local Guide to Roatan Real Estate
             </h2>
-            <p className="text-gray-600 text-lg leading-relaxed mb-4">
+            <p className="text-[#63868d] text-lg leading-relaxed mb-4">
               I&apos;m Tomas Figueroa, a real estate agent based in Roatan, Honduras with over 20 years of
               experience helping investors and buyers navigate one of the Caribbean&apos;s most exciting
               emerging markets.
             </p>
-            <p className="text-gray-600 text-lg leading-relaxed mb-8">
+            <p className="text-[#63868d] text-lg leading-relaxed mb-8">
               My approach is strategic, not transactional — I help you decide whether Roatan is the right
               market for you before ever looking at a single property.
             </p>
+
+            {/* Credentials list with dot markers */}
+            <ul className="mb-8 space-y-2.5">
+              {credentials.map((c) => (
+                <li key={c} className="flex items-center gap-3 text-sm text-[#093f4f]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#789ead] flex-shrink-0" />
+                  {c}
+                </li>
+              ))}
+            </ul>
+
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 bg-[#04649b] hover:bg-[#03527d] text-white px-7 py-4 rounded-lg font-medium text-base transition-all"
+              className="inline-flex items-center gap-2 bg-[#093f4f] hover:bg-[#072f3b] text-white px-7 py-4 rounded-lg font-medium text-base transition-all"
             >
               Learn More About Me
               <ArrowRight className="w-4 h-4" />

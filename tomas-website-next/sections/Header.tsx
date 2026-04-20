@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 
@@ -12,21 +11,7 @@ interface NavLink {
 }
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
-  const isHomePage = pathname === '/';
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // On non-home pages there's no dark hero, so always use the solid/scrolled style
-  const solidHeader = !isHomePage || isScrolled;
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -47,19 +32,13 @@ const Header = () => {
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        solidHeader
-          ? 'bg-white shadow-lg py-4'
-          : 'bg-transparent py-6'
-      }`}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#093f4f] py-4">
       <div className="section-container">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <img
-              src={solidHeader ? '/logo-blue.webp' : '/logo-white.webp'}
+              src="/logo-white.webp"
               alt="Tomas Figueroa Real Estate"
               className="h-14 md:h-20 w-auto"
               width="200"
@@ -75,18 +54,14 @@ const Header = () => {
                 {'action' in link && link.action ? (
                   <button
                     onClick={link.action}
-                    className={`flex items-center gap-1 font-medium hover:opacity-80 transition-opacity ${
-                      solidHeader ? 'text-[#1d1d1d]' : 'text-white'
-                    }`}
+                    className="text-white/80 hover:text-white font-medium transition-colors text-sm tracking-wide"
                   >
                     {link.label}
                   </button>
                 ) : (
                   <Link
                     href={link.href!}
-                    className={`flex items-center gap-1 font-medium hover:opacity-80 transition-opacity ${
-                      solidHeader ? 'text-[#1d1d1d]' : 'text-white'
-                    }`}
+                    className="text-white/80 hover:text-white font-medium transition-colors text-sm tracking-wide"
                   >
                     {link.label}
                   </Link>
@@ -101,11 +76,7 @@ const Header = () => {
               href="https://savvycal.com/tomasfigueroa/chat-with-tomas"
               target="_blank"
               rel="noopener"
-              className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                solidHeader
-                  ? 'bg-[#04649b] text-white hover:bg-[#03527d]'
-                  : 'bg-white text-[#04649b] hover:bg-gray-100'
-              }`}
+              className="px-6 py-2.5 rounded-lg font-semibold text-sm bg-white text-[#093f4f] hover:bg-[#d4e8ed] transition-all"
             >
               Let&apos;s Connect
             </a>
@@ -114,7 +85,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden p-2 ${solidHeader ? 'text-[#1d1d1d]' : 'text-white'}`}
+            className="lg:hidden p-2 text-white"
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileMenuOpen}
           >
@@ -125,21 +96,21 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white shadow-lg">
-          <div className="section-container py-4 space-y-4">
+        <div className="lg:hidden bg-[#072f3b] border-t border-white/10">
+          <div className="section-container py-4 space-y-1">
             {navLinks.map((link) => (
               <div key={link.label}>
                 {'action' in link && link.action ? (
                   <button
                     onClick={link.action}
-                    className="block w-full text-left py-2 text-[#1d1d1d] font-medium"
+                    className="block w-full text-left py-3 text-white/80 hover:text-white font-medium text-sm"
                   >
                     {link.label}
                   </button>
                 ) : (
                   <Link
                     href={link.href!}
-                    className="block py-2 text-[#1d1d1d] font-medium"
+                    className="block py-3 text-white/80 hover:text-white font-medium text-sm"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.label}
@@ -147,14 +118,16 @@ const Header = () => {
                 )}
               </div>
             ))}
-            <a
-              href="https://savvycal.com/tomasfigueroa/chat-with-tomas"
-              target="_blank"
-              rel="noopener"
-              className="block w-full text-center bg-[#04649b] text-white py-3 rounded-lg font-medium"
-            >
-              Let&apos;s Connect
-            </a>
+            <div className="pt-3">
+              <a
+                href="https://savvycal.com/tomasfigueroa/chat-with-tomas"
+                target="_blank"
+                rel="noopener"
+                className="block w-full text-center bg-white text-[#093f4f] py-3 rounded-lg font-semibold text-sm"
+              >
+                Let&apos;s Connect
+              </a>
+            </div>
           </div>
         </div>
       )}

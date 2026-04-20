@@ -9,16 +9,16 @@ const FAQItem = ({ q, a }: { q: string; a: string }) => {
     <div className="border border-gray-200 rounded-xl overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-[#f5f5f5] transition-colors"
+        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-[#f5f2ee] transition-colors"
         aria-expanded={open}
       >
-        <span className="font-semibold text-[#1d1d1d]">{q}</span>
+        <span className="font-semibold text-[#093f4f]">{q}</span>
         {open
-          ? <ChevronUp className="w-5 h-5 text-[#04649b] shrink-0" aria-hidden="true" />
-          : <ChevronDown className="w-5 h-5 text-[#04649b] shrink-0" aria-hidden="true" />}
+          ? <ChevronUp className="w-5 h-5 text-[#093f4f] shrink-0" aria-hidden="true" />
+          : <ChevronDown className="w-5 h-5 text-[#093f4f] shrink-0" aria-hidden="true" />}
       </button>
       {open && (
-        <div className="px-6 py-5 bg-[#f5f5f5] text-gray-700 leading-relaxed border-t border-gray-200">{a}</div>
+        <div className="px-6 py-5 bg-[#f5f2ee] text-gray-700 leading-relaxed border-t border-gray-200">{a}</div>
       )}
     </div>
   );
@@ -106,14 +106,14 @@ const breadcrumbSchema = {
 
 export default function FAQPage() {
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-white">
+    <div className="min-h-screen pt-24 pb-20 bg-[#f5f2ee]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
+      <section className="relative py-20 bg-[#093f4f] text-white">
         <div className="section-container">
           <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6">Frequently Asked Questions</span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Roatan Real Estate FAQ</h1>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>Roatan Real Estate FAQ</h1>
           <p className="text-xl text-white/90 max-w-2xl">Common questions about buying, investing, and living in Roatan — organized by topic.</p>
         </div>
       </section>
@@ -122,7 +122,7 @@ export default function FAQPage() {
         <div className="section-container">
           <div className="flex gap-6 overflow-x-auto py-4 text-sm font-medium scrollbar-hide">
             {themes.map((theme) => (
-              <a key={theme.id} href={`#${theme.id}`} className="whitespace-nowrap text-gray-500 hover:text-[#04649b] transition-colors shrink-0">{theme.title}</a>
+              <a key={theme.id} href={`#${theme.id}`} className="whitespace-nowrap text-gray-500 hover:text-[#093f4f] transition-colors shrink-0">{theme.title}</a>
             ))}
           </div>
         </div>
@@ -132,7 +132,7 @@ export default function FAQPage() {
         <div className="section-container max-w-3xl space-y-16">
           {themes.map((theme) => (
             <div key={theme.id} id={theme.id}>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#1d1d1d] mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>{theme.title}</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#093f4f] mb-6" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>{theme.title}</h2>
               <div className="space-y-3">
                 {theme.faqs.map((faq, i) => <FAQItem key={i} q={faq.q} a={faq.a} />)}
               </div>
@@ -143,10 +143,10 @@ export default function FAQPage() {
 
       <section className="py-12">
         <div className="section-container max-w-3xl">
-          <div className="bg-gradient-to-r from-[#04649b] to-[#03527d] rounded-2xl p-8 text-white text-center">
-            <h2 className="text-2xl font-bold mb-3" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Still have questions?</h2>
+          <div className="bg-[#093f4f] rounded-2xl p-8 text-white text-center">
+            <h2 className="text-2xl font-bold mb-3" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>Still have questions?</h2>
             <p className="text-white/90 mb-6">Schedule a free 30-minute call with Tomas and get straight answers for your specific situation.</p>
-            <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="inline-flex items-center gap-2 bg-white text-[#04649b] px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+            <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="inline-flex items-center gap-2 bg-white text-[#093f4f] px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">
               <Calendar className="w-5 h-5" /> Schedule a Call with Tomas
             </a>
           </div>
