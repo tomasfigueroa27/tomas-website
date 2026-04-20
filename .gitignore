@@ -22,6 +22,10 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
-# Vite
+# Next.js
+.next/
+out/
+
+# Vite (legacy)
 *.local
 package-lock.json
