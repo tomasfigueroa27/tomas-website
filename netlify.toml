@@ -1,14 +1,9 @@
 [build]
-  command = "npm install && npm run build"
-  publish = "dist"
+  command = "npm run build"
+  publish = "out"
 
-# Disable pretty URLs to prevent Netlify from redirecting /path → /path/
-# Keeps sitemap URLs and canonical tags in sync (no trailing slash)
-[build.processing.html]
-  pretty_urls = false
+[build.environment]
+  NODE_VERSION = "18"
 
-# SPA fallback — all paths serve index.html
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Netlify Forms — these hidden forms enable form detection on static export
+# Keep in sync with Newsletter.tsx and Guides.tsx form names
