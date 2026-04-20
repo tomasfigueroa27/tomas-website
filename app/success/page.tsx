@@ -8,28 +8,52 @@ export const metadata: Metadata = {
 
 export default function SuccessPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#f5f5f5] p-4 pt-32">
-      <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 max-w-md text-center">
-        <div className="w-20 h-20 bg-[#04649b] rounded-full flex items-center justify-center mx-auto mb-6">
-          <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#f5f2ee', padding: 16, paddingTop: 128 }}>
+      <div style={{ backgroundColor: '#ffffff', padding: '40px 48px', maxWidth: 440, width: '100%', textAlign: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}>
+        <div style={{ width: 64, height: 64, backgroundColor: '#093f4f', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
+          <svg style={{ width: 32, height: 32, color: '#ffffff' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h1 className="text-2xl md:text-3xl font-bold text-[#1d1d1d] mb-4" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>
+        <h1
+          style={{
+            fontFamily: 'Georgia, "Times New Roman", serif',
+            fontSize: 26,
+            fontWeight: 400,
+            color: '#093f4f',
+            marginTop: 0,
+            marginBottom: 12,
+          }}
+        >
           Thank You!
         </h1>
-        <p className="text-gray-600 mb-8">
+        <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 28 }}>
           You&apos;ve been subscribed to Roatan real estate updates. Check your inbox for confirmation and exclusive listings.
         </p>
-        <div className="space-y-3">
-          <Link href="/" className="block w-full bg-[#04649b] text-white py-3 rounded-lg font-medium hover:bg-[#03527d] transition-all">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <Link href="/" className="btn-primary" style={{ justifyContent: 'center', display: 'flex' }}>
             Back to Home
           </Link>
           <a
             href="https://savvycal.com/tomasfigueroa/chat-with-tomas"
             target="_blank"
             rel="noopener"
-            className="block w-full border-2 border-[#04649b] text-[#04649b] py-3 rounded-lg font-medium hover:bg-[#04649b] hover:text-white transition-all"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              padding: '12px 28px',
+              border: '1px solid #093f4f',
+              color: '#093f4f',
+              fontFamily: 'Arial, Helvetica, sans-serif',
+              fontSize: 11,
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: '0.12em',
+              textDecoration: 'none',
+              transition: 'all 0.2s',
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#093f4f'; e.currentTarget.style.color = '#ffffff'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#093f4f'; }}
           >
             Schedule a Call
           </a>

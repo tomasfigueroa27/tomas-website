@@ -5,7 +5,7 @@ import posts from '@/data/blog';
 
 export const metadata: Metadata = {
   title: 'Real Estate Resources | Roatan Honduras',
-  description: 'Articles, market insights, and buyer\'s guides to help you make informed decisions about Roatan, Honduras real estate. Free resources for investors and relocators.',
+  description: "Articles, market insights, and buyer's guides to help you make informed decisions about Roatan, Honduras real estate. Free resources for investors and relocators.",
   alternates: { canonical: 'https://tomasfigueroa.com/resources' },
 };
 
@@ -16,54 +16,87 @@ const recentPosts = posts.slice(0, 3);
 
 export default function ResourcesPage() {
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-white">
-      <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
-        <div className="section-container text-center">
-          <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6">Knowledge &amp; Insights</span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Resources</h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">Articles, market insights, and guides to help you make informed decisions about Roatan real estate.</p>
+    <div className="min-h-screen" style={{ paddingTop: 80, paddingBottom: 64, backgroundColor: '#ffffff' }}>
+      <section style={{ backgroundColor: '#093f4f', color: '#ffffff', paddingTop: 64, paddingBottom: 64 }}>
+        <div className="section-container" style={{ textAlign: 'center' }}>
+          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>Knowledge &amp; Insights</span>
+          <h1
+            style={{
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontSize: 'clamp(32px, 4vw, 52px)',
+              fontWeight: 400,
+              color: '#ffffff',
+              marginTop: 0,
+              marginBottom: 16,
+              lineHeight: 1.15,
+            }}
+          >
+            Resources
+          </h1>
+          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 520, margin: '0 auto' }}>
+            Articles, market insights, and guides to help you make informed decisions about Roatan real estate.
+          </p>
         </div>
       </section>
 
-      <section className="py-20">
+      {/* Resource Cards */}
+      <section style={{ paddingTop: 64, paddingBottom: 64 }}>
         <div className="section-container">
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-4" style={{ maxWidth: 900, margin: '0 auto' }}>
             {[
               { href: '/blog', icon: BookOpen, title: 'Blog', desc: 'Read articles about Roatan real estate, market trends, and lifestyle tips.' },
               { href: '/guides', icon: FileText, title: 'Guides', desc: 'Comprehensive guides to help you navigate buying property in Roatan.' },
               { href: '/calculator', icon: Calculator, title: 'Closing Calculator', desc: 'Estimate your closing costs for a Roatan property purchase instantly.' },
             ].map(({ href, icon: Icon, title, desc }) => (
-              <a key={href} href={href} className="group block bg-[#f5f5f5] hover:bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100">
-                <div className="w-12 h-12 bg-[#04649b]/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#04649b] transition-colors duration-300">
-                  <Icon className="w-6 h-6 text-[#04649b] group-hover:text-white transition-colors duration-300" />
+              <a
+                key={href}
+                href={href}
+                style={{ display: 'block', backgroundColor: '#f5f2ee', padding: 28, textDecoration: 'none', transition: 'all 0.3s', border: '1px solid transparent' }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.08)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#f5f2ee'; e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.boxShadow = 'none'; }}
+                className="group"
+              >
+                <div style={{ width: 44, height: 44, backgroundColor: 'rgba(120,158,173,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16, transition: 'background-color 0.2s' }}>
+                  <Icon style={{ width: 22, height: 22, color: '#093f4f' }} />
                 </div>
-                <h2 className="text-2xl font-bold text-[#1d1d1d] mb-3" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>{title}</h2>
-                <p className="text-gray-600 leading-relaxed">{desc}</p>
+                <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 20, fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 10 }}>{title}</h2>
+                <p style={{ fontSize: 13, color: '#555555', lineHeight: 1.75, margin: 0 }}>{desc}</p>
               </a>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-[#f5f5f5]">
-        <div className="section-container max-w-5xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-10 text-center" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Latest Articles</h2>
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
+      {/* Latest Articles */}
+      <section style={{ backgroundColor: '#f5f2ee', paddingTop: 64, paddingBottom: 64 }}>
+        <div className="section-container" style={{ maxWidth: 900 }}>
+          <div style={{ textAlign: 'center', marginBottom: 40 }}>
+            <span className="label-caps block mb-4">Latest Content</span>
+            <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 0 }}>Latest Articles</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4 mb-8">
             {recentPosts.map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="bg-white rounded-2xl p-6 hover:shadow-lg transition-shadow group">
-                <span className="text-xs font-semibold uppercase tracking-wide text-[#04649b] bg-[#04649b]/10 px-3 py-1 rounded-full">{post.category}</span>
-                <h3 className="text-lg font-bold text-[#1d1d1d] mt-4 mb-2 leading-snug" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>{post.title}</h3>
-                <p className="text-gray-500 text-sm mb-4 line-clamp-2">{post.excerpt}</p>
-                <div className="flex items-center justify-between text-xs text-gray-400">
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                style={{ display: 'block', backgroundColor: '#ffffff', padding: 20, textDecoration: 'none', transition: 'box-shadow 0.2s' }}
+                onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)')}
+                onMouseLeave={(e) => (e.currentTarget.style.boxShadow = 'none')}
+                className="group"
+              >
+                <span style={{ display: 'inline-block', fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#789ead', backgroundColor: 'rgba(120,158,173,0.12)', padding: '3px 8px' }}>{post.category}</span>
+                <h3 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 16, fontWeight: 400, color: '#093f4f', marginTop: 12, marginBottom: 8, lineHeight: 1.3 }}>{post.title}</h3>
+                <p style={{ fontSize: 12, color: '#555555', lineHeight: 1.75, marginBottom: 12 }} className="line-clamp-2">{post.excerpt}</p>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 11, color: '#999999' }}>
                   <span>{formatDate(post.date)}</span>
-                  <ArrowRight className="w-4 h-4 text-[#04649b] group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                  <ArrowRight style={{ width: 13, height: 13, color: '#093f4f' }} aria-hidden="true" />
                 </div>
               </Link>
             ))}
           </div>
-          <div className="text-center">
-            <Link href="/blog" className="inline-flex items-center gap-2 text-[#04649b] font-medium hover:underline">
-              View all articles <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          <div style={{ textAlign: 'center' }}>
+            <Link href="/blog" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#093f4f', textDecoration: 'none' }}>
+              View all articles <ArrowRight style={{ width: 13, height: 13 }} aria-hidden="true" />
             </Link>
           </div>
         </div>

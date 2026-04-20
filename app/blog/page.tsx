@@ -14,41 +14,70 @@ const formatDate = (iso: string) =>
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-white">
-      <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
-        <div className="section-container text-center">
-          <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6">Knowledge &amp; Insights</span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Real Estate Blog</h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">Market trends, investment tips, and island lifestyle insights to help you make the most of Roatan real estate.</p>
+    <div className="min-h-screen" style={{ paddingTop: 80, paddingBottom: 64, backgroundColor: '#ffffff' }}>
+      <section style={{ backgroundColor: '#093f4f', color: '#ffffff', paddingTop: 64, paddingBottom: 64 }}>
+        <div className="section-container" style={{ textAlign: 'center' }}>
+          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>Knowledge &amp; Insights</span>
+          <h1
+            style={{
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontSize: 'clamp(32px, 4vw, 52px)',
+              fontWeight: 400,
+              color: '#ffffff',
+              marginTop: 0,
+              marginBottom: 16,
+              lineHeight: 1.15,
+            }}
+          >
+            Real Estate Blog
+          </h1>
+          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 520, margin: '0 auto' }}>
+            Market trends, investment tips, and island lifestyle insights to help you make the most of Roatan real estate.
+          </p>
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="section-container max-w-5xl">
-          <div className="grid md:grid-cols-2 gap-8">
+      <section style={{ paddingTop: 64, paddingBottom: 64 }}>
+        <div className="section-container" style={{ maxWidth: 960 }}>
+          <div className="grid md:grid-cols-2 gap-6">
             {posts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group block bg-[#f5f5f5] hover:bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100"
+                style={{ display: 'block', backgroundColor: '#f5f2ee', textDecoration: 'none', transition: 'all 0.3s', border: '1px solid transparent' }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.08)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#f5f2ee'; e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.boxShadow = 'none'; }}
+                className="group"
               >
                 {post.image && (
-                  <img src={post.image} alt={post.title} className="w-full h-48 object-cover" loading="lazy" decoding="async" />
+                  <img src={post.image} alt={post.title} style={{ width: '100%', height: 180, objectFit: 'cover', display: 'block' }} loading="lazy" decoding="async" />
                 )}
-                <div className="p-8">
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="flex items-center gap-1 text-xs text-[#04649b] font-medium bg-[#04649b]/10 px-3 py-1 rounded-full">
-                      <Tag className="w-3 h-3" aria-hidden="true" />
+                <div style={{ padding: '24px 28px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 14 }}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#789ead', backgroundColor: 'rgba(120,158,173,0.12)', padding: '4px 10px' }}>
+                      <Tag style={{ width: 10, height: 10 }} aria-hidden="true" />
                       {post.category}
                     </span>
-                    <span className="flex items-center gap-1 text-xs text-gray-500">
-                      <Calendar className="w-3 h-3" aria-hidden="true" />
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11, color: '#999999' }}>
+                      <Calendar style={{ width: 11, height: 11 }} aria-hidden="true" />
                       {formatDate(post.date)}
                     </span>
                   </div>
-                  <h2 className="text-xl font-bold text-[#1d1d1d] mb-3 group-hover:text-[#04649b] transition-colors" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>{post.title}</h2>
-                  <p className="text-gray-600 leading-relaxed text-sm">{post.excerpt}</p>
-                  <span className="inline-block mt-4 text-sm font-medium text-[#04649b] group-hover:underline">Read article →</span>
+                  <h2
+                    style={{
+                      fontFamily: 'Georgia, "Times New Roman", serif',
+                      fontSize: 18,
+                      fontWeight: 400,
+                      color: '#093f4f',
+                      marginTop: 0,
+                      marginBottom: 10,
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {post.title}
+                  </h2>
+                  <p style={{ fontSize: 13, color: '#555555', lineHeight: 1.75, margin: 0 }}>{post.excerpt}</p>
+                  <span style={{ display: 'inline-block', marginTop: 14, fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#093f4f' }}>Read article →</span>
                 </div>
               </Link>
             ))}

@@ -33,10 +33,10 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
 
   if (!neighborhood) {
     return (
-      <div className="min-h-screen pt-32 pb-20 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-[#1d1d1d] mb-4">Neighborhood not found</h1>
-          <Link href="/neighborhoods" className="text-[#04649b] hover:underline">← Back to neighborhoods</Link>
+      <div className="min-h-screen flex items-center justify-center" style={{ paddingTop: 128 }}>
+        <div style={{ textAlign: 'center' }}>
+          <h1 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 28, fontWeight: 400, color: '#093f4f', marginBottom: 16 }}>Neighborhood not found</h1>
+          <Link href="/neighborhoods" style={{ color: '#093f4f', textDecoration: 'none', fontWeight: 600 }}>← Back to neighborhoods</Link>
         </div>
       </div>
     );
@@ -64,62 +64,97 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-white">
+    <div className="min-h-screen" style={{ paddingTop: 80, paddingBottom: 64, backgroundColor: '#ffffff' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(placeSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
+      <section style={{ backgroundColor: '#093f4f', color: '#ffffff', paddingTop: 48, paddingBottom: 64 }}>
         <div className="section-container">
-          <Link href="/neighborhoods" className="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm mb-8 transition-colors">
-            <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+          <Link
+            href="/neighborhoods"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'rgba(255,255,255,0.65)', textDecoration: 'none', marginBottom: 28, transition: 'color 0.2s' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#ffffff')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.65)')}
+          >
+            <ArrowLeft style={{ width: 14, height: 14 }} aria-hidden="true" />
             All Neighborhoods
           </Link>
-          <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-4">{neighborhood.vibe}</span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>{neighborhood.name}</h1>
-          <p className="text-xl text-white/90">{neighborhood.tagline}</p>
+          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>{neighborhood.vibe}</span>
+          <h1
+            style={{
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontSize: 'clamp(32px, 4vw, 52px)',
+              fontWeight: 400,
+              color: '#ffffff',
+              marginTop: 0,
+              marginBottom: 12,
+              lineHeight: 1.15,
+            }}
+          >
+            {neighborhood.name}
+          </h1>
+          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 560 }}>{neighborhood.tagline}</p>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="section-container max-w-4xl">
-          <div className="bg-[#f5f5f5] rounded-2xl p-6 mb-10 space-y-3">
+      <section style={{ paddingTop: 48, paddingBottom: 48 }}>
+        <div className="section-container" style={{ maxWidth: 800 }}>
+          {/* Facts */}
+          <div style={{ backgroundColor: '#f5f2ee', padding: '20px 24px', marginBottom: 32 }}>
             {neighborhood.facts.map((fact) => (
-              <div key={fact.label} className="flex gap-3">
-                <span className="font-semibold text-[#04649b] min-w-[140px] shrink-0">{fact.label}:</span>
-                <span className="text-gray-700">{fact.value}</span>
+              <div key={fact.label} style={{ display: 'flex', gap: 12, padding: '8px 0', borderBottom: '1px solid #e5e7eb' }}>
+                <span style={{ fontWeight: 600, color: '#093f4f', fontSize: 13, minWidth: 140, flexShrink: 0 }}>{fact.label}:</span>
+                <span style={{ fontSize: 13, color: '#555555' }}>{fact.value}</span>
               </div>
             ))}
           </div>
 
-          <div className="space-y-6 mb-10">
+          {/* Description */}
+          <div style={{ marginBottom: 32 }}>
             {neighborhood.description.map((para, i) => (
-              <p key={i} className="text-gray-700 leading-relaxed text-lg">{para}</p>
+              <p key={i} style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 16 }}>{para}</p>
             ))}
           </div>
 
-          <div className="mb-12">
-            <h2 className="text-xl font-bold text-[#1d1d1d] mb-4" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Best For</h2>
-            <div className="flex flex-wrap gap-3">
+          {/* Best For */}
+          <div style={{ marginBottom: 40 }}>
+            <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 18, fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 14 }}>Best For</h2>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {neighborhood.bestFor.map((tag) => (
-                <span key={tag} className="bg-[#04649b]/10 text-[#04649b] font-medium px-4 py-2 rounded-full text-sm">{tag}</span>
+                <span key={tag} style={{ backgroundColor: 'rgba(120,158,173,0.12)', color: '#093f4f', fontWeight: 600, fontSize: 11, padding: '6px 14px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tag}</span>
               ))}
             </div>
           </div>
 
-          <div className="mt-10 pt-8 border-t border-gray-200 mb-10">
-            <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">Explore More</p>
-            <div className="flex flex-wrap gap-6">
-              <Link href="/neighborhoods" className="text-[#04649b] font-medium hover:underline text-sm">← All Roatan Neighborhoods</Link>
-              <Link href="/roatan-market" className="text-[#04649b] font-medium hover:underline text-sm">View Roatan Market Data →</Link>
-              <Link href="/guides" className="text-[#04649b] font-medium hover:underline text-sm">Download the Buyer&apos;s Guide →</Link>
-              <Link href="/faq" className="text-[#04649b] font-medium hover:underline text-sm">Browse FAQ →</Link>
+          {/* Explore More */}
+          <div style={{ paddingTop: 28, borderTop: '1px solid #e5e7eb', marginBottom: 40 }}>
+            <span className="label-caps block mb-14">Explore More</span>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, marginTop: 12 }}>
+              {[
+                { href: '/neighborhoods', label: '← All Roatan Neighborhoods' },
+                { href: '/roatan-market', label: 'View Roatan Market Data →' },
+                { href: '/guides', label: "Download the Buyer's Guide →" },
+                { href: '/faq', label: 'Browse FAQ →' },
+              ].map(({ href, label }) => (
+                <Link key={href} href={href} style={{ fontSize: 12, fontWeight: 600, color: '#093f4f', textDecoration: 'none' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.textDecoration = 'underline')}
+                  onMouseLeave={(e) => (e.currentTarget.style.textDecoration = 'none')}
+                >
+                  {label}
+                </Link>
+              ))}
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-[#04649b] to-[#03527d] rounded-2xl p-8 text-white text-center">
-            <h2 className="text-2xl font-bold mb-3" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Interested in {neighborhood.name}?</h2>
-            <p className="text-white/90 mb-6">Tomas can walk you through available listings, price trends, and investment potential in {neighborhood.name} — and help you decide if it aligns with your goals.</p>
-            <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="inline-block bg-white text-[#04649b] px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">Schedule a Call with Tomas</a>
+          {/* CTA */}
+          <div style={{ backgroundColor: '#093f4f', padding: '36px 28px', textAlign: 'center', color: '#ffffff' }}>
+            <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(20px, 3vw, 26px)', fontWeight: 400, color: '#ffffff', marginTop: 0, marginBottom: 10 }}>Interested in {neighborhood.name}?</h2>
+            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 480, margin: '0 auto 24px' }}>
+              Tomas can walk you through available listings, price trends, and investment potential in {neighborhood.name} — and help you decide if it aligns with your goals.
+            </p>
+            <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent">
+              Schedule a Call with Tomas
+            </a>
           </div>
         </div>
       </section>

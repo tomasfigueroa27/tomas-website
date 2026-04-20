@@ -65,37 +65,54 @@ export default function GuidesPage() {
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-white">
+    <div className="min-h-screen" style={{ paddingTop: 80, paddingBottom: 64, backgroundColor: '#ffffff' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
-        <div className="section-container text-center">
-          <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6">Free Resources</span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Guides</h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">In-depth guides to help you make informed decisions about buying property in Roatan. Free to download — just enter your name and email.</p>
+      <section style={{ backgroundColor: '#093f4f', color: '#ffffff', paddingTop: 64, paddingBottom: 64 }}>
+        <div className="section-container" style={{ textAlign: 'center' }}>
+          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>Free Resources</span>
+          <h1
+            style={{
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontSize: 'clamp(32px, 4vw, 52px)',
+              fontWeight: 400,
+              color: '#ffffff',
+              marginTop: 0,
+              marginBottom: 16,
+              lineHeight: 1.15,
+            }}
+          >
+            Guides
+          </h1>
+          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 520, margin: '0 auto' }}>
+            In-depth guides to help you make informed decisions about buying property in Roatan. Free to download — just enter your name and email.
+          </p>
         </div>
       </section>
 
-      <section className="py-20">
+      <section style={{ paddingTop: 64, paddingBottom: 64 }}>
         <div className="section-container">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" style={{ maxWidth: 900, margin: '0 auto' }}>
             {guides.map((guide) => (
               <button
                 key={guide.id}
                 onClick={() => openModal(guide)}
-                className="group text-left bg-[#f5f5f5] hover:bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100"
+                style={{ textAlign: 'left', backgroundColor: '#f5f2ee', overflow: 'hidden', border: '1px solid transparent', transition: 'all 0.3s', cursor: 'pointer', padding: 0 }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.1)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#f5f2ee'; e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.boxShadow = 'none'; }}
+                className="group"
               >
-                <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
-                  <img src={guide.cover} alt={`${guide.title} cover`} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                  <div className="absolute bottom-4 right-4 bg-white/20 backdrop-blur-sm rounded-lg px-3 py-1.5 flex items-center gap-1.5 group-hover:bg-white transition-all duration-300">
-                    <Download className="w-3.5 h-3.5 text-white group-hover:text-[#04649b] transition-colors" />
-                    <span className="text-white group-hover:text-[#04649b] text-xs font-medium transition-colors">Free Download</span>
+                <div style={{ position: 'relative', aspectRatio: '3/4', overflow: 'hidden', backgroundColor: '#e5e7eb' }}>
+                  <img src={guide.cover} alt={`${guide.title} cover`} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', transition: 'transform 0.5s' }} className="group-hover:scale-105" />
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 60%)' }} />
+                  <div style={{ position: 'absolute', bottom: 12, right: 12, backgroundColor: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(4px)', padding: '6px 12px', display: 'flex', alignItems: 'center', gap: 6, transition: 'background-color 0.3s' }} className="group-hover:bg-white">
+                    <Download style={{ width: 12, height: 12, color: '#ffffff' }} className="group-hover:!text-[#093f4f]" />
+                    <span style={{ fontSize: 11, color: '#ffffff', fontWeight: 600, fontFamily: 'Arial, Helvetica, sans-serif' }} className="group-hover:!text-[#093f4f]">Free Download</span>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h2 className="text-lg font-bold text-[#1d1d1d] mb-2 group-hover:text-[#04649b] transition-colors" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>{guide.title}</h2>
-                  <p className="text-gray-500 text-sm leading-relaxed">{guide.description}</p>
+                <div style={{ padding: '20px 24px' }}>
+                  <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 16, fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 8 }}>{guide.title}</h2>
+                  <p style={{ fontSize: 13, color: '#555555', lineHeight: 1.75, margin: 0 }}>{guide.description}</p>
                 </div>
               </button>
             ))}
@@ -105,17 +122,20 @@ export default function GuidesPage() {
 
       {selected && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          style={{ position: 'fixed', inset: 0, zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16, backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}
           onClick={(e) => e.target === e.currentTarget && closeModal()}
         >
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md">
-            <div className="flex items-start justify-between p-6 border-b border-gray-100">
+          <div style={{ backgroundColor: '#ffffff', width: '100%', maxWidth: 440, boxShadow: '0 20px 60px rgba(0,0,0,0.3)' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', padding: '20px 24px', borderBottom: '1px solid #e5e7eb' }}>
               <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-[#04649b] mb-1">Free Download</p>
-                <h3 className="text-xl font-bold text-[#1d1d1d]" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>{selected.title}</h3>
+                <p style={{ fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#789ead', margin: '0 0 4px' }}>Free Download</p>
+                <h3 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 18, fontWeight: 400, color: '#093f4f', margin: 0 }}>{selected.title}</h3>
               </div>
-              <button onClick={closeModal} className="text-gray-400 hover:text-gray-600 transition-colors ml-4 mt-1">
-                <X className="w-5 h-5" />
+              <button onClick={closeModal} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#999999', marginLeft: 16, marginTop: 2, padding: 4 }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = '#333333')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = '#999999')}
+              >
+                <X style={{ width: 18, height: 18 }} />
               </button>
             </div>
 
@@ -123,31 +143,39 @@ export default function GuidesPage() {
               onSubmit={handleSubmit}
               name="guide-download"
               data-netlify="true"
-              className="p-6 space-y-5"
+              style={{ padding: '20px 24px' }}
             >
               <input type="hidden" name="form-name" value="guide-download" />
               <input type="hidden" name="guide" value={selected.title} />
-              <p className="text-gray-500 text-sm">Enter your details below to get instant access to this guide.</p>
+              <p style={{ fontSize: 13, color: '#555555', marginBottom: 20, marginTop: 0 }}>Enter your details below to get instant access to this guide.</p>
 
-              <div>
-                <label htmlFor="guide-name" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                <input id="guide-name" type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#04649b] focus:border-transparent" placeholder="Enter your name" required />
+              <div style={{ marginBottom: 16 }}>
+                <label htmlFor="guide-name" style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#333333', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Full Name</label>
+                <input id="guide-name" type="text" name="name" value={name} onChange={(e) => setName(e.target.value)}
+                  style={{ width: '100%', padding: '10px 14px', border: '1px solid #d4e8ed', outline: 'none', fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, color: '#333333', boxSizing: 'border-box' }}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = '#093f4f')}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = '#d4e8ed')}
+                  placeholder="Enter your name" required />
               </div>
 
-              <div>
-                <label htmlFor="guide-email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                <input id="guide-email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#04649b] focus:border-transparent" placeholder="Enter your email" required />
+              <div style={{ marginBottom: 16 }}>
+                <label htmlFor="guide-email" style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#333333', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Email Address</label>
+                <input id="guide-email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)}
+                  style={{ width: '100%', padding: '10px 14px', border: '1px solid #d4e8ed', outline: 'none', fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, color: '#333333', boxSizing: 'border-box' }}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = '#093f4f')}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = '#d4e8ed')}
+                  placeholder="Enter your email" required />
               </div>
 
-              {error && <p className="text-red-500 text-sm">{error}</p>}
+              {error && <p style={{ color: '#dc2626', fontSize: 13, marginBottom: 12 }}>{error}</p>}
 
-              <button type="submit" disabled={submitting} className="w-full flex items-center justify-center gap-2 bg-[#04649b] hover:bg-[#03527d] disabled:opacity-60 text-white py-3.5 rounded-lg font-medium transition-all">
-                {submitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <><Download className="w-4 h-4" /> Download Guide</>}
+              <button type="submit" disabled={submitting} className="btn-primary" style={{ width: '100%', justifyContent: 'center', gap: 8, opacity: submitting ? 0.6 : 1 }}>
+                {submitting ? <Loader2 style={{ width: 18, height: 18 }} className="animate-spin" /> : <><Download style={{ width: 15, height: 15 }} /> Download Guide</>}
               </button>
 
-              <p className="text-xs text-gray-400 text-center">
+              <p style={{ fontSize: 11, color: '#999999', textAlign: 'center', marginTop: 12, marginBottom: 0 }}>
                 By downloading you agree to receive occasional real estate insights from Tomas Figueroa.
-                <Send className="w-3 h-3 inline ml-1 opacity-50" />
+                <Send style={{ width: 11, height: 11, display: 'inline', marginLeft: 4, opacity: 0.5 }} />
               </p>
             </form>
           </div>

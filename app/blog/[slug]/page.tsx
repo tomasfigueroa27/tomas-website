@@ -25,24 +25,34 @@ const formatDate = (iso: string) =>
 function renderBlock(block: ContentBlock, index: number) {
   switch (block.type) {
     case 'h2':
-      return <h2 key={index} className="text-2xl md:text-3xl font-bold text-[#1d1d1d] mt-10 mb-4" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>{block.text}</h2>;
+      return (
+        <h2 key={index} style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(20px, 3vw, 26px)', fontWeight: 400, color: '#093f4f', marginTop: 40, marginBottom: 16 }}>
+          {block.text}
+        </h2>
+      );
     case 'h3':
-      return <h3 key={index} className="text-xl font-bold text-[#1d1d1d] mt-8 mb-3" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>{block.text}</h3>;
+      return (
+        <h3 key={index} style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 18, fontWeight: 400, color: '#093f4f', marginTop: 32, marginBottom: 12 }}>
+          {block.text}
+        </h3>
+      );
     case 'p':
-      return <p key={index} className="text-gray-700 leading-relaxed mb-5">{block.text}</p>;
+      return <p key={index} style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 20 }}>{block.text}</p>;
     case 'ul':
       return (
-        <ul key={index} className="list-disc list-outside pl-6 mb-5 space-y-2">
-          {block.items.map((item, i) => <li key={i} className="text-gray-700 leading-relaxed">{item}</li>)}
+        <ul key={index} style={{ paddingLeft: 20, marginBottom: 20 }}>
+          {block.items.map((item, i) => (
+            <li key={i} style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 8 }}>{item}</li>
+          ))}
         </ul>
       );
     case 'facts':
       return (
-        <div key={index} className="bg-[#f5f5f5] rounded-2xl p-6 mb-6 space-y-3">
+        <div key={index} style={{ backgroundColor: '#f5f2ee', padding: '20px 24px', marginBottom: 24 }}>
           {block.items.map((fact, i) => (
-            <div key={i} className="flex gap-3">
-              <span className="font-semibold text-[#04649b] min-w-[120px] shrink-0">{fact.label}:</span>
-              <span className="text-gray-700">{fact.value}</span>
+            <div key={i} style={{ display: 'flex', gap: 12, padding: '8px 0', borderBottom: i < block.items.length - 1 ? '1px solid #e5e7eb' : 'none' }}>
+              <span style={{ fontWeight: 600, color: '#093f4f', fontSize: 13, minWidth: 120, flexShrink: 0 }}>{fact.label}:</span>
+              <span style={{ fontSize: 13, color: '#555555' }}>{fact.value}</span>
             </div>
           ))}
         </div>
@@ -56,10 +66,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   if (!post) {
     return (
-      <div className="min-h-screen pt-32 pb-20 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-[#1d1d1d] mb-4">Post not found</h1>
-          <Link href="/blog" className="text-[#04649b] hover:underline">← Back to blog</Link>
+      <div className="min-h-screen flex items-center justify-center" style={{ paddingTop: 128 }}>
+        <div style={{ textAlign: 'center' }}>
+          <h1 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 28, fontWeight: 400, color: '#093f4f', marginBottom: 16 }}>Post not found</h1>
+          <Link href="/blog" style={{ color: '#093f4f', fontWeight: 600, textDecoration: 'none' }}>← Back to blog</Link>
         </div>
       </div>
     );
@@ -73,7 +83,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     datePublished: post.date,
     dateModified: post.date,
     author: { '@type': 'Person', name: 'Tomas Figueroa', url: 'https://tomasfigueroa.com/about' },
-    publisher: { '@type': 'Organization', name: 'Tomas Figueroa Real Estate', url: 'https://tomasfigueroa.com', logo: { '@type': 'ImageObject', url: 'https://tomasfigueroa.com/logo-blue.webp' } },
+    publisher: { '@type': 'Organization', name: 'Tomas Figueroa Real Estate', url: 'https://tomasfigueroa.com', logo: { '@type': 'ImageObject', url: 'https://tomasfigueroa.com/logo-white.webp' } },
     url: `https://tomasfigueroa.com/blog/${post.slug}`,
     ...(post.image ? { image: post.image } : {}),
   };
@@ -91,44 +101,60 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const relatedPosts = posts.filter((p) => p.slug !== post.slug).slice(0, 2);
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-white">
+    <div className="min-h-screen" style={{ paddingTop: 80, paddingBottom: 64, backgroundColor: '#ffffff' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <section className="relative py-16 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
-        <div className="section-container max-w-3xl">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm mb-8 transition-colors">
-            <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+      <section style={{ backgroundColor: '#093f4f', color: '#ffffff', paddingTop: 48, paddingBottom: 48 }}>
+        <div className="section-container" style={{ maxWidth: 720 }}>
+          <Link
+            href="/blog"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'rgba(255,255,255,0.65)', textDecoration: 'none', marginBottom: 24, transition: 'color 0.2s' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#ffffff')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.65)')}
+          >
+            <ArrowLeft style={{ width: 14, height: 14 }} aria-hidden="true" />
             Back to blog
           </Link>
-          <div className="flex items-center gap-4 mb-4">
-            <span className="flex items-center gap-1 text-xs font-medium bg-white/20 px-3 py-1 rounded-full">
-              <Tag className="w-3 h-3" aria-hidden="true" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', backgroundColor: 'rgba(255,255,255,0.15)', padding: '4px 10px', color: '#ffffff' }}>
+              <Tag style={{ width: 10, height: 10 }} aria-hidden="true" />
               {post.category}
             </span>
-            <span className="flex items-center gap-1 text-xs text-white/80">
-              <Calendar className="w-3 h-3" aria-hidden="true" />
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11, color: 'rgba(255,255,255,0.6)' }}>
+              <Calendar style={{ width: 11, height: 11 }} aria-hidden="true" />
               {formatDate(post.date)}
             </span>
           </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>{post.title}</h1>
+          <h1
+            style={{
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontSize: 'clamp(26px, 4vw, 40px)',
+              fontWeight: 400,
+              color: '#ffffff',
+              margin: 0,
+              lineHeight: 1.2,
+            }}
+          >
+            {post.title}
+          </h1>
         </div>
       </section>
 
       {post.image && (
-        <div className="section-container max-w-3xl">
-          <img src={post.image} alt={post.title} className="w-full h-64 md:h-96 object-cover rounded-2xl -mt-8 shadow-xl" loading="eager" decoding="async" />
+        <div className="section-container" style={{ maxWidth: 720 }}>
+          <img src={post.image} alt={post.title} style={{ width: '100%', height: 'auto', maxHeight: 380, objectFit: 'cover', display: 'block', marginTop: -32, boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }} loading="eager" decoding="async" />
         </div>
       )}
 
-      <article className="section-container max-w-3xl py-12">
+      <article className="section-container" style={{ maxWidth: 720, paddingTop: 40, paddingBottom: 40 }}>
         {post.summary && post.summary.length > 0 && (
-          <div className="bg-[#f5f5f5] border-l-4 border-[#04649b] rounded-2xl p-6 mb-10">
-            <h2 className="text-lg font-bold text-[#04649b] mb-4" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>At a Glance</h2>
-            <ul className="space-y-2">
+          <div style={{ backgroundColor: '#f5f2ee', borderLeft: '3px solid #093f4f', padding: '20px 24px', marginBottom: 36 }}>
+            <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 16, fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 12 }}>At a Glance</h2>
+            <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
               {post.summary.map((point, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-700">
-                  <span className="mt-1.5 w-2 h-2 rounded-full bg-[#04649b] shrink-0" />
+                <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 13, color: '#555555', lineHeight: 1.75, marginBottom: 8 }}>
+                  <span style={{ marginTop: 6, width: 6, height: 6, backgroundColor: '#093f4f', flexShrink: 0, display: 'inline-block' }} />
                   {point}
                 </li>
               ))}
@@ -139,25 +165,34 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </article>
 
       {relatedPosts.length > 0 && (
-        <div className="section-container max-w-3xl mb-10">
-          <h2 className="text-xl font-bold text-[#1d1d1d] mb-5" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Read Next</h2>
+        <div className="section-container" style={{ maxWidth: 720, marginBottom: 32 }}>
+          <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 18, fontWeight: 400, color: '#093f4f', marginBottom: 16 }}>Read Next</h2>
           <div className="grid sm:grid-cols-2 gap-4">
             {relatedPosts.map((related) => (
-              <Link key={related.slug} href={`/blog/${related.slug}`} className="group bg-[#f5f5f5] hover:bg-white rounded-xl p-5 border border-transparent hover:border-gray-200 hover:shadow-md transition-all">
-                <span className="text-xs font-semibold uppercase tracking-wide text-[#04649b]">{related.category}</span>
-                <h3 className="text-base font-bold text-[#1d1d1d] mt-2 mb-1 leading-snug group-hover:text-[#04649b] transition-colors" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>{related.title}</h3>
-                <p className="text-gray-500 text-sm line-clamp-2">{related.excerpt}</p>
+              <Link
+                key={related.slug}
+                href={`/blog/${related.slug}`}
+                style={{ display: 'block', backgroundColor: '#f5f2ee', padding: 20, textDecoration: 'none', border: '1px solid transparent', transition: 'all 0.2s' }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.06)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#f5f2ee'; e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.boxShadow = 'none'; }}
+                className="group"
+              >
+                <span style={{ display: 'inline-block', fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#789ead' }}>{related.category}</span>
+                <h3 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 15, fontWeight: 400, color: '#093f4f', marginTop: 8, marginBottom: 6, lineHeight: 1.3 }}>{related.title}</h3>
+                <p style={{ fontSize: 12, color: '#555555', lineHeight: 1.75, margin: 0 }} className="line-clamp-2">{related.excerpt}</p>
               </Link>
             ))}
           </div>
         </div>
       )}
 
-      <div className="section-container max-w-3xl">
-        <div className="bg-gradient-to-r from-[#04649b] to-[#03527d] rounded-2xl p-8 text-white text-center">
-          <h2 className="text-2xl font-bold mb-3" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Interested in Roatan Real Estate?</h2>
-          <p className="text-white/90 mb-6">Let&apos;s talk about finding the right property for you.</p>
-          <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="inline-block bg-white text-[#04649b] px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">Schedule a Call</a>
+      <div className="section-container" style={{ maxWidth: 720 }}>
+        <div style={{ backgroundColor: '#093f4f', padding: '36px 28px', textAlign: 'center', color: '#ffffff' }}>
+          <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(20px, 3vw, 26px)', fontWeight: 400, color: '#ffffff', marginTop: 0, marginBottom: 10 }}>Interested in Roatan Real Estate?</h2>
+          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, marginBottom: 24 }}>Let&apos;s talk about finding the right property for you.</p>
+          <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent">
+            Schedule a Call
+          </a>
         </div>
       </div>
     </div>

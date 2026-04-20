@@ -18,34 +18,50 @@ const Properties = () => {
   }, []);
 
   return (
-    <section id="properties" ref={sectionRef} className="relative w-full py-20 lg:py-32 bg-white">
+    <section id="properties" ref={sectionRef} style={{ backgroundColor: '#ffffff', paddingTop: 64, paddingBottom: 64 }}>
       <div className="section-container">
         <div className={`text-center mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <span className="text-[#04649b] font-medium uppercase tracking-wider text-sm">Property Listings</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1d1d1d] mt-3 mb-4" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Search All Properties</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">Browse all available properties in Roatan directly from the MLS. Use the search tools below to filter by price, location, and more.</p>
+          <span className="label-caps block mb-4">Property Listings</span>
+          <h2
+            style={{
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontWeight: 400,
+              color: '#093f4f',
+              marginTop: 8,
+              marginBottom: 12,
+            }}
+          >
+            Search All Properties
+          </h2>
+          <p style={{ fontSize: 14, color: '#555555', maxWidth: 520, margin: '0 auto' }}>Browse all available properties in Roatan directly from the MLS. Use the search tools below to filter by price, location, and more.</p>
         </div>
 
         <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {!showIDX ? (
-            <div onClick={() => setShowIDX(true)} className="relative bg-gradient-to-br from-[#04649b] to-[#03527d] rounded-2xl p-12 text-center text-white cursor-pointer hover:shadow-2xl transition-all group">
-              <div className="absolute inset-0 bg-black/10 rounded-2xl group-hover:bg-black/0 transition-all" />
-              <div className="relative z-10">
-                <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                  <Search className="w-10 h-10" />
-                </div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-3">Load MLS Search</h3>
-                <p className="text-white/80 mb-6">Click to search all Roatan MLS listings</p>
-                <button className="inline-flex items-center gap-2 bg-white text-[#04649b] px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-all">
-                  Start Searching <ExternalLink className="w-4 h-4" />
-                </button>
+            <div
+              onClick={() => setShowIDX(true)}
+              style={{ backgroundColor: '#093f4f', padding: 48, textAlign: 'center', color: '#ffffff', cursor: 'pointer', transition: 'background-color 0.2s' }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#0b5068')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#093f4f')}
+            >
+              <div style={{ width: 72, height: 72, backgroundColor: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+                <Search style={{ width: 36, height: 36 }} />
               </div>
+              <h3 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 24, fontWeight: 400, marginBottom: 8, marginTop: 0 }}>Load MLS Search</h3>
+              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 20 }}>Click to search all Roatan MLS listings</p>
+              <span className="btn-accent" style={{ display: 'inline-flex', gap: 8, pointerEvents: 'none' }}>
+                Start Searching <ExternalLink style={{ width: 14, height: 14 }} />
+              </span>
             </div>
           ) : (
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
-              <div className="bg-[#04649b] text-white px-6 py-4 flex justify-between items-center">
-                <h3 className="font-medium">Roatan MLS Listings</h3>
-                <button onClick={() => setShowIDX(false)} className="text-white/80 hover:text-white">Close</button>
+            <div style={{ backgroundColor: '#ffffff', overflow: 'hidden', border: '1px solid #d4e8ed' }}>
+              <div style={{ backgroundColor: '#093f4f', color: '#ffffff', padding: '14px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h3 style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 12, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>Roatan MLS Listings</h3>
+                <button onClick={() => setShowIDX(false)} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.6)', cursor: 'pointer', fontSize: 12, fontFamily: 'Arial, Helvetica, sans-serif' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#ffffff')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
+                >Close</button>
               </div>
               <iframe src="//link.flexmls.com/1tqd8emfew7q,2" frameBorder={0} width="100%" height="850" title="Roatan MLS Listings" className="w-full" />
             </div>
@@ -53,9 +69,16 @@ const Properties = () => {
         </div>
 
         <div className={`text-center mt-12 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <p className="text-gray-600 mb-4">Can&apos;t find what you&apos;re looking for? Let&apos;s talk about exclusive listings.</p>
-          <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="inline-flex items-center gap-2 text-[#04649b] font-medium hover:underline">
-            LET&apos;S TALK <ExternalLink className="w-4 h-4" />
+          <p style={{ fontSize: 14, color: '#555555', marginBottom: 12 }}>Can&apos;t find what you&apos;re looking for? Let&apos;s talk about exclusive listings.</p>
+          <a
+            href="https://savvycal.com/tomasfigueroa/chat-with-tomas"
+            target="_blank"
+            rel="noopener"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#093f4f', textDecoration: 'none', transition: 'color 0.2s' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#63868d')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = '#093f4f')}
+          >
+            LET&apos;S TALK <ExternalLink style={{ width: 13, height: 13 }} />
           </a>
         </div>
       </div>
