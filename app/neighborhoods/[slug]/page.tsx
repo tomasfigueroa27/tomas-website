@@ -72,9 +72,8 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
         <div className="section-container">
           <Link
             href="/neighborhoods"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'rgba(255,255,255,0.65)', textDecoration: 'none', marginBottom: 28, transition: 'color 0.2s' }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#ffffff')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.65)')}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, marginBottom: 28 }}
+            className="link-dim"
           >
             <ArrowLeft style={{ width: 14, height: 14 }} aria-hidden="true" />
             All Neighborhoods
@@ -136,10 +135,7 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
                 { href: '/guides', label: "Download the Buyer's Guide →" },
                 { href: '/faq', label: 'Browse FAQ →' },
               ].map(({ href, label }) => (
-                <Link key={href} href={href} style={{ fontSize: 12, fontWeight: 600, color: '#093f4f', textDecoration: 'none' }}
-                  onMouseEnter={(e) => (e.currentTarget.style.textDecoration = 'underline')}
-                  onMouseLeave={(e) => (e.currentTarget.style.textDecoration = 'none')}
-                >
+                <Link key={href} href={href} style={{ fontSize: 12 }} className="link-underline">
                   {label}
                 </Link>
               ))}

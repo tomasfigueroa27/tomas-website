@@ -41,10 +41,8 @@ export default function NeighborhoodsPage() {
               <Link
                 key={neighborhood.slug}
                 href={`/neighborhoods/${neighborhood.slug}`}
-                style={{ display: 'block', backgroundColor: '#f5f2ee', padding: 28, textDecoration: 'none', transition: 'all 0.3s', border: '1px solid transparent' }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.08)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#f5f2ee'; e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.boxShadow = 'none'; }}
-                className="group"
+                style={{ display: 'block', padding: 28, textDecoration: 'none' }}
+                className="card-hover group"
               >
                 <div style={{ marginBottom: 14 }}>
                   <span style={{ display: 'inline-block', fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#789ead', backgroundColor: 'rgba(120,158,173,0.12)', padding: '4px 10px', marginBottom: 10 }}>{neighborhood.vibe}</span>
@@ -94,10 +92,7 @@ export default function NeighborhoodsPage() {
                 {neighborhoods.map((n, i) => (
                   <tr key={n.slug} style={{ backgroundColor: i % 2 === 0 ? '#ffffff' : '#f5f2ee' }}>
                     <td style={{ padding: '12px 20px' }}>
-                      <Link href={`/neighborhoods/${n.slug}`} style={{ fontWeight: 600, color: '#093f4f', textDecoration: 'none' }}
-                        onMouseEnter={(e) => (e.currentTarget.style.textDecoration = 'underline')}
-                        onMouseLeave={(e) => (e.currentTarget.style.textDecoration = 'none')}
-                      >{n.name}</Link>
+                      <Link href={`/neighborhoods/${n.slug}`} className="link-underline">{n.name}</Link>
                     </td>
                     <td style={{ padding: '12px 20px', color: '#555555' }}>{n.priceRange}</td>
                     <td style={{ padding: '12px 20px', color: '#555555' }} className="hidden md:table-cell">{n.vibe}</td>

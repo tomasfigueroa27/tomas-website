@@ -51,10 +51,8 @@ export default function ResourcesPage() {
               <a
                 key={href}
                 href={href}
-                style={{ display: 'block', backgroundColor: '#f5f2ee', padding: 28, textDecoration: 'none', transition: 'all 0.3s', border: '1px solid transparent' }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.08)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#f5f2ee'; e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.boxShadow = 'none'; }}
-                className="group"
+                style={{ display: 'block', padding: 28, textDecoration: 'none' }}
+                className="card-hover group"
               >
                 <div style={{ width: 44, height: 44, backgroundColor: 'rgba(120,158,173,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16, transition: 'background-color 0.2s' }}>
                   <Icon style={{ width: 22, height: 22, color: '#093f4f' }} />
@@ -79,10 +77,8 @@ export default function ResourcesPage() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                style={{ display: 'block', backgroundColor: '#ffffff', padding: 20, textDecoration: 'none', transition: 'box-shadow 0.2s' }}
-                onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)')}
-                onMouseLeave={(e) => (e.currentTarget.style.boxShadow = 'none')}
-                className="group"
+                style={{ display: 'block', backgroundColor: '#ffffff', padding: 20, textDecoration: 'none' }}
+                className="card-shadow-hover group"
               >
                 <span style={{ display: 'inline-block', fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#789ead', backgroundColor: 'rgba(120,158,173,0.12)', padding: '3px 8px' }}>{post.category}</span>
                 <h3 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 16, fontWeight: 400, color: '#093f4f', marginTop: 12, marginBottom: 8, lineHeight: 1.3 }}>{post.title}</h3>

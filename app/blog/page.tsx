@@ -44,10 +44,8 @@ export default function BlogPage() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                style={{ display: 'block', backgroundColor: '#f5f2ee', textDecoration: 'none', transition: 'all 0.3s', border: '1px solid transparent' }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.08)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#f5f2ee'; e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.boxShadow = 'none'; }}
-                className="group"
+                style={{ display: 'block', textDecoration: 'none' }}
+                className="card-hover group"
               >
                 {post.image && (
                   <img src={post.image} alt={post.title} style={{ width: '100%', height: 180, objectFit: 'cover', display: 'block' }} loading="lazy" decoding="async" />

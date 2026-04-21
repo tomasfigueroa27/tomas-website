@@ -109,9 +109,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="section-container" style={{ maxWidth: 720 }}>
           <Link
             href="/blog"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'rgba(255,255,255,0.65)', textDecoration: 'none', marginBottom: 24, transition: 'color 0.2s' }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#ffffff')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.65)')}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, marginBottom: 24 }}
+            className="link-dim"
           >
             <ArrowLeft style={{ width: 14, height: 14 }} aria-hidden="true" />
             Back to blog
@@ -172,10 +171,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <Link
                 key={related.slug}
                 href={`/blog/${related.slug}`}
-                style={{ display: 'block', backgroundColor: '#f5f2ee', padding: 20, textDecoration: 'none', border: '1px solid transparent', transition: 'all 0.2s' }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.06)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#f5f2ee'; e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.boxShadow = 'none'; }}
-                className="group"
+                style={{ display: 'block', padding: 20, textDecoration: 'none' }}
+                className="card-hover group"
               >
                 <span style={{ display: 'inline-block', fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#789ead' }}>{related.category}</span>
                 <h3 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 15, fontWeight: 400, color: '#093f4f', marginTop: 8, marginBottom: 6, lineHeight: 1.3 }}>{related.title}</h3>

@@ -38,22 +38,7 @@ export default function SuccessPage() {
             href="https://savvycal.com/tomasfigueroa/chat-with-tomas"
             target="_blank"
             rel="noopener"
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              padding: '12px 28px',
-              border: '1px solid #093f4f',
-              color: '#093f4f',
-              fontFamily: 'Arial, Helvetica, sans-serif',
-              fontSize: 11,
-              fontWeight: 600,
-              textTransform: 'uppercase',
-              letterSpacing: '0.12em',
-              textDecoration: 'none',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#093f4f'; e.currentTarget.style.color = '#ffffff'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#093f4f'; }}
+            className="btn-outline-dark"
           >
             Schedule a Call
           </a>
