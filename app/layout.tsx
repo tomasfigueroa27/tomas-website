@@ -3,6 +3,7 @@ import Script from 'next/script';
 import './globals.css';
 import Header from '@/sections/Header';
 import Footer from '@/sections/Footer';
+import ServiceWorkerRegister from '@/components/ServiceWorkerRegister';
 
 const GA_ID = 'G-XXXXXXXXXX'; // ← replace with your Measurement ID
 
@@ -94,6 +95,19 @@ export const metadata: Metadata = {
   },
   description:
     'Buy, sell, or invest in Roatan, Honduras real estate with Tomas Figueroa at Keller Williams Roatan. Expert guidance on Caribbean property, new developments, and investment opportunities.',
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'TF Roatán',
+  },
+  icons: {
+    icon: [
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [{ url: '/icon-192.png', sizes: '192x192', type: 'image/png' }],
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -117,6 +131,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="theme-color" content="#093f4f" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -130,6 +146,7 @@ export default function RootLayout({
           gtag('js', new Date());
           gtag('config', '${GA_ID}');
         `}</Script>
+        <ServiceWorkerRegister />
         <Header />
         <main>{children}</main>
         <Footer />

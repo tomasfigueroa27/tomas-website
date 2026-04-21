@@ -1,0 +1,44 @@
+{
+  "name": "Tomás Figueroa — Roatán Real Estate",
+  "short_name": "TF Roatán",
+  "description": "Buy, sell, or invest in Roatan, Honduras real estate with Tomas Figueroa at Keller Williams Roatan.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#093f4f",
+  "background_color": "#093f4f",
+  "lang": "en",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "New Developments",
+      "url": "/new-developments",
+      "description": "Browse new development properties in Roatan"
+    },
+    {
+      "name": "Closing Cost Calculator",
+      "url": "/calculator",
+      "description": "Estimate your Roatan closing costs"
+    },
+    {
+      "name": "Schedule a Call",
+      "url": "https://savvycal.com/tomasfigueroa/chat-with-tomas",
+      "description": "Book a call with Tomas Figueroa"
+    }
+  ]
+}
