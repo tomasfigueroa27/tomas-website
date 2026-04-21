@@ -3,9 +3,9 @@
 import Link from 'next/link';
 
 const stats = [
-  { value: '8%', label: 'Annual appreciation 2024' },
-  { value: '$500K', label: 'Avg home price 2025' },
-  { value: '4+', label: 'Years in Roatán RE' },
+  { value: '7%', label: '5-year CAGR of median sold price' },
+  { value: '$400K', label: 'Avg home price 2025' },
+  { value: '20+', label: 'Years of Sales Experience' },
   { value: '#1', label: 'Bitcoin sale in Roatán' },
 ];
 
