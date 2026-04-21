@@ -114,8 +114,8 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tomasfigueroa.com/' },
-    { '@type': 'ListItem', position: 2, name: 'FAQ', item: 'https://tomasfigueroa.com/faq' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tomasfigueroa.com/' },
+    { '@type': 'ListItem', position: 2, name: 'FAQ', item: 'https://www.tomasfigueroa.com/faq' },
   ],
 };
 

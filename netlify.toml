@@ -5,5 +5,26 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Canonical domain redirects — enforce https://www.tomasfigueroa.com/
+# These run before any page is served. Both http and non-www variants
+# are 301'd to the www origin so Google sees a single canonical domain.
+[[redirects]]
+  from   = "https://tomasfigueroa.com/*"
+  to     = "https://www.tomasfigueroa.com/:splat"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "http://tomasfigueroa.com/*"
+  to     = "https://www.tomasfigueroa.com/:splat"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "http://www.tomasfigueroa.com/*"
+  to     = "https://www.tomasfigueroa.com/:splat"
+  status = 301
+  force  = true
+
 # Netlify Forms — these hidden forms enable form detection on static export
 # Keep in sync with Newsletter.tsx and Guides.tsx form names

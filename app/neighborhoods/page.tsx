@@ -6,7 +6,7 @@ import neighborhoods from '@/data/neighborhoods';
 export const metadata: Metadata = {
   title: 'Roatan Neighborhoods Guide | Tomas Figueroa',
   description: "Explore Roatan's top neighborhoods — from West Bay Beach luxury condos to the expat-friendly West End village. Compare price ranges, lifestyle, and investment potential for each area.",
-  alternates: { canonical: 'https://tomasfigueroa.com/neighborhoods' },
+  alternates: { canonical: 'https://www.tomasfigueroa.com/neighborhoods' },
 };
 
 export default function NeighborhoodsPage() {

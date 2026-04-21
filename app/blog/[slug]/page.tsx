@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.title,
     description: post.excerpt,
-    alternates: { canonical: `https://tomasfigueroa.com/blog/${post.slug}` },
+    alternates: { canonical: `https://www.tomasfigueroa.com/blog/${post.slug}` },
     openGraph: { type: 'article', publishedTime: post.date, section: post.category, ...(post.image ? { images: [post.image] } : {}) },
   };
 }
@@ -82,9 +82,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     description: post.excerpt,
     datePublished: post.date,
     dateModified: post.date,
-    author: { '@type': 'Person', name: 'Tomas Figueroa', url: 'https://tomasfigueroa.com/about' },
-    publisher: { '@type': 'Organization', name: 'Tomas Figueroa Real Estate', url: 'https://tomasfigueroa.com', logo: { '@type': 'ImageObject', url: 'https://tomasfigueroa.com/logo-white.webp' } },
-    url: `https://tomasfigueroa.com/blog/${post.slug}`,
+    author: { '@type': 'Person', name: 'Tomas Figueroa', url: 'https://www.tomasfigueroa.com/about' },
+    publisher: { '@type': 'Organization', name: 'Tomas Figueroa Real Estate', url: 'https://www.tomasfigueroa.com', logo: { '@type': 'ImageObject', url: 'https://www.tomasfigueroa.com/logo-white.webp' } },
+    url: `https://www.tomasfigueroa.com/blog/${post.slug}`,
     ...(post.image ? { image: post.image } : {}),
   };
 
@@ -92,9 +92,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tomasfigueroa.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://tomasfigueroa.com/blog' },
-      { '@type': 'ListItem', position: 3, name: post.title, item: `https://tomasfigueroa.com/blog/${post.slug}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tomasfigueroa.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.tomasfigueroa.com/blog' },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `https://www.tomasfigueroa.com/blog/${post.slug}` },
     ],
   };
 
