@@ -12,11 +12,11 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'Person',
-      '@id': 'https://tomasfigueroa.com/#person',
+      '@id': 'https://www.tomasfigueroa.com/#person',
       name: 'Tomas Figueroa',
       jobTitle: 'Real Estate Agent',
-      url: 'https://tomasfigueroa.com',
-      image: 'https://tomasfigueroa.com/tomas-about.jpg',
+      url: 'https://www.tomasfigueroa.com',
+      image: 'https://www.tomasfigueroa.com/tomas-about.jpg',
       sameAs: [
         'https://www.facebook.com/profile.php?id=61557310059412',
         'https://www.instagram.com/roatanbytomas/',
@@ -25,17 +25,17 @@ const jsonLd = {
       worksFor: {
         '@type': 'RealEstateAgent',
         name: 'Keller Williams Roatan',
-        url: 'https://tomasfigueroa.com',
+        url: 'https://www.tomasfigueroa.com',
       },
     },
     {
       '@type': 'RealEstateAgent',
-      '@id': 'https://tomasfigueroa.com/#business',
+      '@id': 'https://www.tomasfigueroa.com/#business',
       name: 'Tomas Figueroa Real Estate',
-      url: 'https://tomasfigueroa.com',
+      url: 'https://www.tomasfigueroa.com',
       telephone: '+50488488326',
       email: 'tomas@kwroatan.com',
-      image: 'https://tomasfigueroa.com/logo-white.webp',
+      image: 'https://www.tomasfigueroa.com/logo-white.webp',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Lawson Rock, Sandy Bay',
@@ -53,14 +53,14 @@ const jsonLd = {
     },
     {
       '@type': 'LocalBusiness',
-      '@id': 'https://tomasfigueroa.com/#localbusiness',
+      '@id': 'https://www.tomasfigueroa.com/#localbusiness',
       name: 'Tomas Figueroa Real Estate',
       description:
         'Licensed real estate agent in Roatan, Honduras specializing in Caribbean property sales, investment properties, and new developments at Keller Williams Roatan.',
-      url: 'https://tomasfigueroa.com',
+      url: 'https://www.tomasfigueroa.com',
       telephone: '+50488488326',
       email: 'tomas@kwroatan.com',
-      image: 'https://tomasfigueroa.com/logo-white.webp',
+      image: 'https://www.tomasfigueroa.com/logo-white.webp',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Lawson Rock, Sandy Bay',
@@ -88,7 +88,7 @@ const jsonLd = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://tomasfigueroa.com'),
+  metadataBase: new URL('https://www.tomasfigueroa.com'),
   title: {
     default: 'Roatan Real Estate | Tomas Figueroa – KW Roatan',
     template: '%s | Tomas Figueroa – KW Roatan',
@@ -111,7 +111,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://tomasfigueroa.com',
+    url: 'https://www.tomasfigueroa.com',
     siteName: 'Tomas Figueroa Real Estate',
   },
   twitter: {

@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${n.name} Real Estate Guide | Roatan | Tomas Figueroa`,
     description: `${n.tagline}. ${n.description[0].slice(0, 120)}...`,
-    alternates: { canonical: `https://tomasfigueroa.com/neighborhoods/${n.slug}` },
+    alternates: { canonical: `https://www.tomasfigueroa.com/neighborhoods/${n.slug}` },
   };
 }
 
@@ -49,7 +49,7 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
     name: `${neighborhood.name}, Roatan`,
     description: neighborhood.description[0],
     containedInPlace: { '@type': 'AdministrativeArea', name: 'Roatan, Bay Islands, Honduras' },
-    url: `https://tomasfigueroa.com/neighborhoods/${neighborhood.slug}`,
+    url: `https://www.tomasfigueroa.com/neighborhoods/${neighborhood.slug}`,
     ...(coords ? { geo: { '@type': 'GeoCoordinates', latitude: coords.lat, longitude: coords.lng } } : {}),
   };
 
@@ -57,9 +57,9 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tomasfigueroa.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Neighborhoods', item: 'https://tomasfigueroa.com/neighborhoods' },
-      { '@type': 'ListItem', position: 3, name: neighborhood.name, item: `https://tomasfigueroa.com/neighborhoods/${neighborhood.slug}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tomasfigueroa.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Neighborhoods', item: 'https://www.tomasfigueroa.com/neighborhoods' },
+      { '@type': 'ListItem', position: 3, name: neighborhood.name, item: `https://www.tomasfigueroa.com/neighborhoods/${neighborhood.slug}` },
     ],
   };
 

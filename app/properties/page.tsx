@@ -4,7 +4,7 @@ import Properties from '@/sections/Properties';
 export const metadata: Metadata = {
   title: 'Browse Roatan MLS Listings | Search All Properties',
   description: 'Search all available properties in Roatan, Honduras directly from the MLS. Filter by price, location, and property type to find your ideal Caribbean real estate investment.',
-  alternates: { canonical: 'https://tomasfigueroa.com/properties' },
+  alternates: { canonical: 'https://www.tomasfigueroa.com/properties' },
 };
 
 export default function PropertiesPage() {

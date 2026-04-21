@@ -6,7 +6,7 @@ import posts from '@/data/blog';
 export const metadata: Metadata = {
   title: 'Real Estate Blog | Roatan Honduras',
   description: 'Market trends, investment tips, and lifestyle insights about Roatan, Honduras real estate. Stay informed with the latest news from the Bay Islands property market.',
-  alternates: { canonical: 'https://tomasfigueroa.com/blog' },
+  alternates: { canonical: 'https://www.tomasfigueroa.com/blog' },
 };
 
 const formatDate = (iso: string) =>
