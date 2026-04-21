@@ -29,22 +29,38 @@ const howToSchema = { '@context': 'https://schema.org', '@type': 'HowTo', name: 
 
 export default function RoatanMarketPage() {
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-white">
+    <div className="min-h-screen" style={{ paddingTop: 80, paddingBottom: 64, backgroundColor: '#ffffff' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(marketSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
 
-      <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
-        <div className="section-container text-center">
-          <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6">Market Guide 2026</span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Roatan Real Estate Market</h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto">Key data, pricing benchmarks, investment fundamentals, and everything you need to understand the Roatan property market before making a decision.</p>
+      <section style={{ backgroundColor: '#093f4f', color: '#ffffff', paddingTop: 64, paddingBottom: 64 }}>
+        <div className="section-container" style={{ textAlign: 'center' }}>
+          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>Market Guide 2026</span>
+          <h1
+            style={{
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontSize: 'clamp(32px, 4vw, 52px)',
+              fontWeight: 400,
+              color: '#ffffff',
+              marginTop: 0,
+              marginBottom: 16,
+              lineHeight: 1.15,
+            }}
+          >
+            Roatan Real Estate Market
+          </h1>
+          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 600, margin: '0 auto' }}>
+            Key data, pricing benchmarks, investment fundamentals, and everything you need to understand the Roatan property market before making a decision.
+          </p>
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="section-container max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Market Overview</h2>
-          <div className="space-y-5 text-gray-700 leading-relaxed text-lg">
+      {/* Overview */}
+      <section style={{ paddingTop: 64, paddingBottom: 64 }}>
+        <div className="section-container" style={{ maxWidth: 800 }}>
+          <span className="label-caps block mb-4">Overview</span>
+          <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 20 }}>Market Overview</h2>
+          <div style={{ fontSize: 14, color: '#555555', lineHeight: 1.75 }} className="space-y-4">
             <p>Roatan&apos;s real estate market has matured steadily over the past two decades, evolving from an undiscovered dive destination into a recognized Caribbean investment market. Property values have appreciated consistently, driven by growing international tourism, increasing direct flight connectivity, and a rising pool of foreign buyers seeking alternatives to more expensive Caribbean markets like the Cayman Islands, Turks and Caicos, and Belize.</p>
             <p>The market is characterized by a wide price range — from affordable entry-level homes in Coxen Hole to ultra-luxury oceanfront villas at Pristine Bay. Foreign buyers make up a significant portion of transactions, particularly in the western end of the island, where tourism infrastructure is most developed.</p>
             <p>Unlike some Caribbean markets, Roatan does not impose restrictions on foreign ownership, and the legal framework for property acquisition — while different from North American processes — is well-established and navigable with the right professional guidance.</p>
@@ -52,25 +68,31 @@ export default function RoatanMarketPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-[#f5f5f5]">
+      {/* Stats */}
+      <section style={{ backgroundColor: '#f5f2ee', paddingTop: 64, paddingBottom: 64 }}>
         <div className="section-container">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-10 text-center" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Key Market Statistics</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div style={{ textAlign: 'center', marginBottom: 40 }}>
+            <span className="label-caps block mb-4">Key Numbers</span>
+            <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 0 }}>Key Market Statistics</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="bg-white rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-3xl font-bold text-[#04649b] mb-2" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>{stat.value}</div>
-                <div className="text-gray-600 font-medium">{stat.label}</div>
+              <div key={stat.label} style={{ backgroundColor: '#ffffff', padding: 28, textAlign: 'center' }}>
+                <div style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 32, fontWeight: 700, color: '#093f4f', marginBottom: 8 }}>{stat.value}</div>
+                <div style={{ fontSize: 13, color: '#63868d', fontWeight: 600 }}>{stat.label}</div>
               </div>
             ))}
           </div>
-          <p className="text-center text-sm text-gray-400 mt-6">Market data reflects 2025–2026 averages based on Keller Williams Roatan transaction data and local MLS records.</p>
+          <p style={{ textAlign: 'center', fontSize: 11, color: '#999999', marginTop: 20 }}>Market data reflects 2025–2026 averages based on Keller Williams Roatan transaction data and local MLS records.</p>
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="section-container max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Foreign Ownership in Roatan</h2>
-          <div className="space-y-5 text-gray-700 leading-relaxed text-lg">
+      {/* Foreign Ownership */}
+      <section style={{ paddingTop: 64, paddingBottom: 64 }}>
+        <div className="section-container" style={{ maxWidth: 800 }}>
+          <span className="label-caps block mb-4">Legal Framework</span>
+          <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 20 }}>Foreign Ownership in Roatan</h2>
+          <div style={{ fontSize: 14, color: '#555555', lineHeight: 1.75 }} className="space-y-4">
             <p>Honduras law grants foreigners the same property ownership rights as Honduran citizens. There are no restrictions on the amount of property a foreigner can own, no requirements to use a local partner or intermediary, and no nationality-based exclusions. You can hold title directly in your personal name or through a Honduran corporation.</p>
             <p>This is a significant advantage compared to some other Latin American and Caribbean countries that restrict foreign ownership or require complex corporate structures. In Roatan, the process is direct: find the property, engage an attorney, complete due diligence, and register the deed in your name at the Public Property Registry.</p>
             <p>It is worth noting that purchasing property in Honduras does not automatically confer permanent residency, though there are separate residency programs available for retirees and investors. Tomas can connect you with the right legal resources to explore both the real estate purchase and residency pathways if relocation is part of your plan.</p>
@@ -78,16 +100,20 @@ export default function RoatanMarketPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-[#f5f5f5]">
-        <div className="section-container max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-10 text-center" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>The Buying Process: 5 Steps</h2>
-          <div className="space-y-6">
+      {/* Buying Steps */}
+      <section style={{ backgroundColor: '#f5f2ee', paddingTop: 64, paddingBottom: 64 }}>
+        <div className="section-container" style={{ maxWidth: 800 }}>
+          <div style={{ textAlign: 'center', marginBottom: 40 }}>
+            <span className="label-caps block mb-4">Process</span>
+            <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 0 }}>The Buying Process: 5 Steps</h2>
+          </div>
+          <div style={{ borderTop: '1px solid #d4e8ed' }}>
             {buyingSteps.map((item) => (
-              <div key={item.step} className="bg-white rounded-2xl p-8 flex gap-6">
-                <div className="shrink-0 w-12 h-12 rounded-full bg-[#04649b] text-white flex items-center justify-center font-bold text-lg">{item.step}</div>
+              <div key={item.step} style={{ padding: '24px 0', borderBottom: '1px solid #d4e8ed', display: 'flex', gap: 20 }}>
+                <div style={{ flexShrink: 0, width: 36, height: 36, backgroundColor: '#093f4f', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Georgia, serif', fontSize: 16, fontWeight: 700 }}>{item.step}</div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#1d1d1d] mb-2" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>{item.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                  <h3 style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, fontWeight: 600, color: '#093f4f', marginBottom: 8, marginTop: 0 }}>{item.title}</h3>
+                  <p style={{ fontSize: 13, color: '#555555', lineHeight: 1.75, margin: 0 }}>{item.description}</p>
                 </div>
               </div>
             ))}
@@ -95,19 +121,21 @@ export default function RoatanMarketPage() {
         </div>
       </section>
 
-      <section className="py-10">
-        <div className="section-container max-w-4xl text-center">
-          <p className="text-gray-600">Have questions about the buying process or market?{' '}<a href="/faq" className="text-[#04649b] font-medium hover:underline">Browse our full FAQ →</a></p>
+      {/* FAQ Link */}
+      <section style={{ paddingTop: 32, paddingBottom: 32 }}>
+        <div className="section-container" style={{ maxWidth: 800, textAlign: 'center' }}>
+          <p style={{ fontSize: 14, color: '#555555' }}>Have questions about the buying process or market?{' '}<a href="/faq" style={{ color: '#093f4f', fontWeight: 600, textDecoration: 'none' }}>Browse our full FAQ →</a></p>
         </div>
       </section>
 
-      <section className="py-12">
-        <div className="section-container max-w-4xl">
-          <div className="bg-gradient-to-r from-[#04649b] to-[#03527d] rounded-2xl p-10 text-white text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Ready to Explore the Roatan Market?</h2>
-            <p className="text-white/90 mb-6 max-w-2xl mx-auto">Tomas can walk you through current listings, neighborhood comparisons, and investment strategy tailored to your specific goals.</p>
-            <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="inline-flex items-center gap-2 bg-white text-[#04649b] px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">
-              <Calendar className="w-5 h-5" aria-hidden="true" /> Schedule a Call with Tomas
+      {/* CTA */}
+      <section style={{ paddingBottom: 64 }}>
+        <div className="section-container" style={{ maxWidth: 800 }}>
+          <div style={{ backgroundColor: '#093f4f', padding: '40px 32px', textAlign: 'center', color: '#ffffff' }}>
+            <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 400, color: '#ffffff', marginTop: 0, marginBottom: 12 }}>Ready to Explore the Roatan Market?</h2>
+            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 480, margin: '0 auto 24px' }}>Tomas can walk you through current listings, neighborhood comparisons, and investment strategy tailored to your specific goals.</p>
+            <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+              <Calendar style={{ width: 16, height: 16 }} aria-hidden="true" /> Schedule a Call with Tomas
             </a>
           </div>
         </div>

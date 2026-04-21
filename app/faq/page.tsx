@@ -6,19 +6,34 @@ import { ChevronDown, ChevronUp, Calendar } from 'lucide-react';
 const FAQItem = ({ q, a }: { q: string; a: string }) => {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border border-gray-200 rounded-xl overflow-hidden">
+    <div style={{ border: '1px solid #e5e7eb', overflow: 'hidden' }}>
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-[#f5f5f5] transition-colors"
+        style={{
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 16,
+          padding: '18px 24px',
+          textAlign: 'left',
+          backgroundColor: '#ffffff',
+          border: 'none',
+          cursor: 'pointer',
+          transition: 'background-color 0.2s',
+          fontFamily: 'Arial, Helvetica, sans-serif',
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#f5f2ee')}
+        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ffffff')}
         aria-expanded={open}
       >
-        <span className="font-semibold text-[#1d1d1d]">{q}</span>
+        <span style={{ fontWeight: 600, color: '#093f4f', fontSize: 14 }}>{q}</span>
         {open
-          ? <ChevronUp className="w-5 h-5 text-[#04649b] shrink-0" aria-hidden="true" />
-          : <ChevronDown className="w-5 h-5 text-[#04649b] shrink-0" aria-hidden="true" />}
+          ? <ChevronUp style={{ width: 18, height: 18, color: '#093f4f', flexShrink: 0 }} aria-hidden="true" />
+          : <ChevronDown style={{ width: 18, height: 18, color: '#093f4f', flexShrink: 0 }} aria-hidden="true" />}
       </button>
       {open && (
-        <div className="px-6 py-5 bg-[#f5f5f5] text-gray-700 leading-relaxed border-t border-gray-200">{a}</div>
+        <div style={{ padding: '16px 24px', backgroundColor: '#f5f2ee', fontSize: 14, color: '#555555', lineHeight: 1.75, borderTop: '1px solid #e5e7eb' }}>{a}</div>
       )}
     </div>
   );
@@ -106,48 +121,97 @@ const breadcrumbSchema = {
 
 export default function FAQPage() {
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-white">
+    <div className="min-h-screen" style={{ paddingTop: 80, paddingBottom: 64, backgroundColor: '#ffffff' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
+      <section style={{ backgroundColor: '#093f4f', color: '#ffffff', paddingTop: 64, paddingBottom: 64 }}>
         <div className="section-container">
-          <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6">Frequently Asked Questions</span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Roatan Real Estate FAQ</h1>
-          <p className="text-xl text-white/90 max-w-2xl">Common questions about buying, investing, and living in Roatan — organized by topic.</p>
+          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>Frequently Asked Questions</span>
+          <h1
+            style={{
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontSize: 'clamp(32px, 4vw, 52px)',
+              fontWeight: 400,
+              color: '#ffffff',
+              marginTop: 0,
+              marginBottom: 12,
+              lineHeight: 1.15,
+            }}
+          >
+            Roatan Real Estate FAQ
+          </h1>
+          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 560 }}>
+            Common questions about buying, investing, and living in Roatan — organized by topic.
+          </p>
         </div>
       </section>
 
-      <section className="border-b border-gray-200 bg-white sticky top-[72px] z-10">
+      {/* Topic nav */}
+      <section style={{ borderBottom: '1px solid #e5e7eb', backgroundColor: '#ffffff', position: 'sticky', top: 72, zIndex: 10 }}>
         <div className="section-container">
-          <div className="flex gap-6 overflow-x-auto py-4 text-sm font-medium scrollbar-hide">
+          <div className="flex gap-6 overflow-x-auto py-4 scrollbar-hide">
             {themes.map((theme) => (
-              <a key={theme.id} href={`#${theme.id}`} className="whitespace-nowrap text-gray-500 hover:text-[#04649b] transition-colors shrink-0">{theme.title}</a>
+              <a
+                key={theme.id}
+                href={`#${theme.id}`}
+                style={{
+                  whiteSpace: 'nowrap',
+                  fontFamily: 'Arial, Helvetica, sans-serif',
+                  fontSize: 11,
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  color: '#999999',
+                  textDecoration: 'none',
+                  flexShrink: 0,
+                  transition: 'color 0.2s',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = '#093f4f')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = '#999999')}
+              >
+                {theme.title}
+              </a>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="section-container max-w-3xl space-y-16">
-          {themes.map((theme) => (
-            <div key={theme.id} id={theme.id}>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#1d1d1d] mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>{theme.title}</h2>
-              <div className="space-y-3">
-                {theme.faqs.map((faq, i) => <FAQItem key={i} q={faq.q} a={faq.a} />)}
+      {/* FAQ sections */}
+      <section style={{ paddingTop: 48, paddingBottom: 48 }}>
+        <div className="section-container" style={{ maxWidth: 720 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
+            {themes.map((theme) => (
+              <div key={theme.id} id={theme.id}>
+                <h2
+                  style={{
+                    fontFamily: 'Georgia, "Times New Roman", serif',
+                    fontSize: 'clamp(22px, 3vw, 28px)',
+                    fontWeight: 400,
+                    color: '#093f4f',
+                    marginTop: 0,
+                    marginBottom: 16,
+                  }}
+                >
+                  {theme.title}
+                </h2>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {theme.faqs.map((faq, i) => <FAQItem key={i} q={faq.q} a={faq.a} />)}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="py-12">
-        <div className="section-container max-w-3xl">
-          <div className="bg-gradient-to-r from-[#04649b] to-[#03527d] rounded-2xl p-8 text-white text-center">
-            <h2 className="text-2xl font-bold mb-3" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Still have questions?</h2>
-            <p className="text-white/90 mb-6">Schedule a free 30-minute call with Tomas and get straight answers for your specific situation.</p>
-            <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="inline-flex items-center gap-2 bg-white text-[#04649b] px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">
-              <Calendar className="w-5 h-5" /> Schedule a Call with Tomas
+      {/* CTA */}
+      <section style={{ paddingBottom: 64 }}>
+        <div className="section-container" style={{ maxWidth: 720 }}>
+          <div style={{ backgroundColor: '#093f4f', padding: '40px 32px', textAlign: 'center', color: '#ffffff' }}>
+            <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 400, color: '#ffffff', marginTop: 0, marginBottom: 10 }}>Still have questions?</h2>
+            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, marginBottom: 24 }}>Schedule a free 30-minute call with Tomas and get straight answers for your specific situation.</p>
+            <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+              <Calendar style={{ width: 16, height: 16 }} /> Schedule a Call with Tomas
             </a>
           </div>
         </div>

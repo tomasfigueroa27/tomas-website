@@ -9,12 +9,26 @@ export const metadata: Metadata = {
 
 export default function PropertiesPage() {
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-white">
-      <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
-        <div className="section-container text-center">
-          <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6">MLS Listings</span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Browse Roatan Properties</h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">Search all available listings in Roatan directly from the MLS — filter by price, neighborhood, and property type.</p>
+    <div className="min-h-screen" style={{ paddingTop: 80, backgroundColor: '#ffffff' }}>
+      <section style={{ backgroundColor: '#093f4f', color: '#ffffff', paddingTop: 64, paddingBottom: 64 }}>
+        <div className="section-container" style={{ textAlign: 'center' }}>
+          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>MLS Listings</span>
+          <h1
+            style={{
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontSize: 'clamp(32px, 4vw, 52px)',
+              fontWeight: 400,
+              color: '#ffffff',
+              marginTop: 0,
+              marginBottom: 16,
+              lineHeight: 1.15,
+            }}
+          >
+            Browse Roatan Properties
+          </h1>
+          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 520, margin: '0 auto' }}>
+            Search all available listings in Roatan directly from the MLS — filter by price, neighborhood, and property type.
+          </p>
         </div>
       </section>
 

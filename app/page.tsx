@@ -27,54 +27,72 @@ export default function HomePage() {
       <HomeAbout />
 
       {/* Quote Band */}
-      <section className="bg-[#1d1d1d] py-14 md:py-20">
-        <div className="section-container max-w-4xl text-center">
+      <section style={{ backgroundColor: '#0a1628', paddingTop: 56, paddingBottom: 56 }}>
+        <div className="section-container" style={{ maxWidth: 800, textAlign: 'center' }}>
           <p
-            className="text-2xl md:text-3xl lg:text-4xl text-white leading-snug"
-            style={{ fontFamily: 'var(--font-roboto-slab), serif' }}
+            style={{
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontSize: 'clamp(22px, 3vw, 32px)',
+              fontWeight: 400,
+              color: '#ffffff',
+              lineHeight: 1.45,
+              margin: 0,
+            }}
           >
             &ldquo;Most Caribbean markets are overpriced.{' '}
-            <span className="text-[#04649b]">Roatan isn&apos;t — yet.</span>&rdquo;
+            <span style={{ color: '#789ead' }}>Roatan isn&apos;t — yet.</span>&rdquo;
           </p>
         </div>
       </section>
 
       {/* Why Roatan */}
-      <section className="bg-[#111] py-20 md:py-28">
-        <div className="section-container max-w-6xl">
+      <section style={{ backgroundColor: '#0a1628', paddingTop: 64, paddingBottom: 64, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+        <div className="section-container" style={{ maxWidth: 1100 }}>
           <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Left: heading + copy */}
             <div>
+              <span className="label-caps block mb-5" style={{ color: '#789ead' }}>Market Overview</span>
               <h2
-                className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight"
-                style={{ fontFamily: 'var(--font-roboto-slab), serif' }}
+                style={{
+                  fontFamily: 'Georgia, "Times New Roman", serif',
+                  fontSize: 'clamp(28px, 3vw, 40px)',
+                  fontWeight: 400,
+                  color: '#ffffff',
+                  marginTop: 0,
+                  marginBottom: 28,
+                  lineHeight: 1.2,
+                }}
               >
                 Why Buyers Choose Roatan
               </h2>
-              <div className="space-y-5 text-white/70 text-lg leading-relaxed">
+              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: 1.75 }} className="space-y-4">
                 <p>Roatán is the largest of Honduras&apos; Bay Islands — a 40-mile island in the western Caribbean, located along the Mesoamerican Barrier Reef. Foreign buyers can acquire property with full ownership rights, making it a straightforward and secure market for international investment, with pricing that remains competitive compared to destinations such as Belize, the Dominican Republic, and Costa Rica.</p>
                 <p>Tourism continues to grow consistently year over year, supporting strong demand for both vacation and long-term rentals. The island offers world-class diving, a stable tropical climate, an established expat community, and full English-language infrastructure. It is well connected with direct international flights, with additional routes continuing to be added.</p>
                 <p>Together, these factors position Roatán as an increasingly attractive and practical Caribbean destination for both lifestyle buyers and investors.</p>
               </div>
             </div>
 
-            {/* Right: stats */}
-            <div className="lg:pt-4 space-y-0 divide-y divide-white/10 border-t border-white/10">
+            <div style={{ paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
               {[
                 { stat: '$150K+', label: 'Accessible entry points', sub: 'Well below comparable Caribbean markets' },
                 { stat: '6–8%', label: 'Average rental yield', sub: 'In top areas like West Bay Beach' },
                 { stat: '100%', label: 'Foreign ownership', sub: 'Same rights as Honduran citizens' },
-              ].map((item) => (
-                <div key={item.stat} className="py-7 flex items-start gap-6">
+              ].map((item, i) => (
+                <div key={item.stat} style={{ paddingTop: 24, paddingBottom: 24, display: 'flex', alignItems: 'flex-start', gap: 20, borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
                   <span
-                    className="text-4xl md:text-5xl font-bold text-[#04649b] shrink-0 leading-none"
-                    style={{ fontFamily: 'var(--font-roboto-slab), serif' }}
+                    style={{
+                      fontFamily: 'Georgia, "Times New Roman", serif',
+                      fontSize: 'clamp(32px, 4vw, 44px)',
+                      fontWeight: 700,
+                      color: '#789ead',
+                      flexShrink: 0,
+                      lineHeight: 1,
+                    }}
                   >
                     {item.stat}
                   </span>
                   <div>
-                    <p className="text-white font-semibold text-lg leading-snug">{item.label}</p>
-                    <p className="text-white/50 text-sm mt-1">{item.sub}</p>
+                    <p style={{ color: '#ffffff', fontWeight: 600, fontSize: 15, margin: 0, lineHeight: 1.3 }}>{item.label}</p>
+                    <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, marginTop: 4, marginBottom: 0 }}>{item.sub}</p>
                   </div>
                 </div>
               ))}

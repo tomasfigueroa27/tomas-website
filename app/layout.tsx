@@ -1,25 +1,10 @@
 import type { Metadata } from 'next';
-import { Roboto, Roboto_Slab } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import Header from '@/sections/Header';
 import Footer from '@/sections/Footer';
 
 const GA_ID = 'G-XXXXXXXXXX'; // ← replace with your Measurement ID
-
-const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-roboto',
-});
-
-const robotoSlab = Roboto_Slab({
-  weight: ['300', '400', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-roboto-slab',
-});
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -49,7 +34,7 @@ const jsonLd = {
       url: 'https://tomasfigueroa.com',
       telephone: '+50488488326',
       email: 'tomas@kwroatan.com',
-      image: 'https://tomasfigueroa.com/logo-blue.webp',
+      image: 'https://tomasfigueroa.com/logo-white.webp',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Lawson Rock, Sandy Bay',
@@ -74,7 +59,7 @@ const jsonLd = {
       url: 'https://tomasfigueroa.com',
       telephone: '+50488488326',
       email: 'tomas@kwroatan.com',
-      image: 'https://tomasfigueroa.com/logo-blue.webp',
+      image: 'https://tomasfigueroa.com/logo-white.webp',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Lawson Rock, Sandy Bay',
@@ -130,7 +115,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${roboto.variable} ${robotoSlab.variable}`}>
+    <html lang="en">
       <head>
         <script
           type="application/ld+json"

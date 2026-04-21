@@ -46,67 +46,99 @@ export default function AboutContent() {
   }, []);
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-white">
+    <div className="min-h-screen" style={{ paddingTop: 80, paddingBottom: 64, backgroundColor: '#ffffff' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tomasfigueroa.com/' }, { '@type': 'ListItem', position: 2, name: 'About', item: 'https://tomasfigueroa.com/about' }] }) }} />
 
-      <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
+      {/* Hero */}
+      <section style={{ backgroundColor: '#093f4f', color: '#ffffff', paddingTop: 64, paddingBottom: 64 }}>
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6">About Me</span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Tomas Figueroa</h1>
-              <p className="text-lg md:text-xl text-white/90 mb-6">Strategic real estate guidance in Roatan, Honduras. Backed by over 20 years of international business experience, I help investors and high-end buyers evaluate opportunities with clarity and long-term perspective.</p>
-              <div className="flex flex-wrap gap-4">
-                <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="inline-flex items-center gap-2 bg-white text-[#04649b] px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-all">
-                  <Calendar className="w-5 h-5" /> Schedule a Call
+              <span className="label-caps block mb-5" style={{ color: '#789ead' }}>About Me</span>
+              <h1
+                style={{
+                  fontFamily: 'Georgia, "Times New Roman", serif',
+                  fontSize: 'clamp(32px, 4vw, 52px)',
+                  fontWeight: 400,
+                  color: '#ffffff',
+                  marginTop: 0,
+                  marginBottom: 20,
+                  lineHeight: 1.15,
+                }}
+              >
+                Tomas Figueroa
+              </h1>
+              <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', lineHeight: 1.75, marginBottom: 28 }}>
+                Strategic real estate guidance in Roatan, Honduras. Backed by over 20 years of international business experience, I help investors and high-end buyers evaluate opportunities with clarity and long-term perspective.
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                  <Calendar style={{ width: 16, height: 16 }} /> Schedule a Call
                 </a>
-                <a href="tel:+50488488326" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-medium transition-all">
-                  <Phone className="w-5 h-5" /> (504) 8848-8326
+                <a href="tel:+50488488326" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', backgroundColor: 'rgba(255,255,255,0.1)', color: '#ffffff', textDecoration: 'none', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'Arial, Helvetica, sans-serif', transition: 'background-color 0.2s' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.18)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)')}
+                >
+                  <Phone style={{ width: 16, height: 16 }} /> (504) 8848-8326
                 </a>
               </div>
             </div>
-            <div className="relative">
-              <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
-                <img src="/tomas-portrait.jpg" alt="Tomas Figueroa" className="w-full h-full object-cover" />
-              </div>
+            <div style={{ overflow: 'hidden', aspectRatio: '3/4' }}>
+              <img src="/tomas-portrait.jpg" alt="Tomas Figueroa" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
       </section>
 
-      <section ref={statsRef} className="py-16 bg-[#f5f5f5]">
+      {/* Stats */}
+      <section ref={statsRef} style={{ backgroundColor: '#f5f2ee', paddingTop: 64, paddingBottom: 64 }}>
         <div className="section-container">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {stats.map((stat, index) => (
-              <div key={stat.label} className={`bg-white rounded-xl p-8 text-center shadow-lg transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: `${index * 100}ms` }}>
-                <stat.icon className="w-10 h-10 text-[#04649b] mx-auto mb-4" />
-                <div className="text-4xl font-bold text-[#1d1d1d] mb-2">{stat.number}</div>
-                <div className="text-gray-600">{stat.label}</div>
+              <div
+                key={stat.label}
+                style={{ backgroundColor: '#ffffff', padding: 32, textAlign: 'center', transition: `all 0.5s ${index * 100}ms` }}
+                className={isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
+              >
+                <stat.icon style={{ width: 36, height: 36, color: '#789ead', margin: '0 auto 16px' }} />
+                <div style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 36, fontWeight: 700, color: '#093f4f', marginBottom: 8 }}>{stat.number}</div>
+                <div style={{ fontSize: 13, color: '#63868d' }}>{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20">
+      {/* Why Work With Me */}
+      <section style={{ paddingTop: 64, paddingBottom: 64 }}>
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Why Work With Me?</h2>
-              <div className="space-y-4 text-gray-600">
+              <span className="label-caps block mb-4">Why Work With Me</span>
+              <h2
+                style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 20 }}
+              >
+                Why Work With Me?
+              </h2>
+              <div style={{ fontSize: 14, color: '#555555', lineHeight: 1.75 }} className="space-y-4">
                 <p>With over 20 years of experience in international sales, business development, and leadership, I bring a strategic and disciplined approach to real estate in Roatan. As a licensed agent with Keller Williams Roatan, I advise buyers, sellers, and developers with clarity, structure, and a long-term perspective.</p>
                 <p>For buyers and investors, I focus on aligning property selection with clearly defined objectives — whether that means cash flow, long-term appreciation, lifestyle flexibility, or relocation. Every opportunity is evaluated through market fundamentals, positioning, and future development patterns.</p>
                 <p>For sellers and developers, I combine strategic pricing, global exposure, professional marketing, and strong negotiation to maximize positioning and value in Roatan&apos;s evolving market.</p>
               </div>
             </div>
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>My Approach to Roatan Real Estate</h2>
-              <div className="space-y-4">
+              <span className="label-caps block mb-4">My Approach</span>
+              <h2
+                style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 20 }}
+              >
+                My Approach to Roatan Real Estate
+              </h2>
+              <div style={{ borderTop: '1px solid #e5e7eb' }}>
                 {values.map((value) => (
-                  <div key={value.title} className="bg-[#f5f5f5] rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-[#1d1d1d] mb-2">{value.title}</h3>
-                    <p className="text-gray-600 whitespace-pre-line">{value.description}</p>
+                  <div key={value.title} style={{ padding: '16px 0', borderBottom: '1px solid #e5e7eb' }}>
+                    <h3 style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, fontWeight: 600, color: '#093f4f', marginBottom: 8, marginTop: 0 }}>{value.title}</h3>
+                    <p style={{ fontSize: 13, color: '#555555', lineHeight: 1.75, margin: 0, whiteSpace: 'pre-line' }}>{value.description}</p>
                   </div>
                 ))}
               </div>
@@ -115,49 +147,61 @@ export default function AboutContent() {
         </div>
       </section>
 
-      <section className="py-20 bg-[#f5f5f5]">
+      {/* Services */}
+      <section style={{ backgroundColor: '#f5f2ee', paddingTop: 64, paddingBottom: 64 }}>
         <div className="section-container">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-4" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Services I Offer</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Comprehensive real estate services tailored to your needs.</p>
+          <div style={{ textAlign: 'center', marginBottom: 40 }}>
+            <span className="label-caps block mb-4">What I Offer</span>
+            <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 12 }}>Services I Offer</h2>
+            <p style={{ fontSize: 14, color: '#555555', maxWidth: 480, margin: '0 auto' }}>Comprehensive real estate services tailored to your needs.</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { title: 'Property Sales', desc: 'Sell your property with strategic marketing and negotiation.' },
               { title: 'Buyer Representation', desc: 'Find the right property with objective guidance and strategic evaluation.' },
               { title: 'Investment Consulting', desc: 'Identify high-quality opportunities through disciplined analysis and forward-looking market insight.' },
               { title: 'Relocation Services', desc: 'Relocate with confidence through structured guidance and local insight.' },
             ].map((service) => (
-              <div key={service.title} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-                <h3 className="text-lg font-semibold text-[#1d1d1d] mb-2">{service.title}</h3>
-                <p className="text-gray-600 text-sm">{service.desc}</p>
+              <div key={service.title} style={{ backgroundColor: '#ffffff', padding: 24 }}>
+                <h3 style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, fontWeight: 600, color: '#093f4f', marginBottom: 8, marginTop: 0 }}>{service.title}</h3>
+                <p style={{ fontSize: 13, color: '#555555', lineHeight: 1.75, margin: 0 }}>{service.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-10">
-        <div className="section-container max-w-3xl text-center">
-          <p className="text-gray-600">Have questions about buying in Roatan?{' '}<a href="/faq" className="text-[#04649b] font-medium hover:underline">Browse our full FAQ →</a></p>
+      {/* FAQ Link */}
+      <section style={{ paddingTop: 32, paddingBottom: 32 }}>
+        <div className="section-container" style={{ maxWidth: 720, textAlign: 'center' }}>
+          <p style={{ fontSize: 14, color: '#555555' }}>Have questions about buying in Roatan?{' '}
+            <a href="/faq" style={{ color: '#093f4f', fontWeight: 600, textDecoration: 'none' }}
+              onMouseEnter={(e) => (e.currentTarget.style.textDecoration = 'underline')}
+              onMouseLeave={(e) => (e.currentTarget.style.textDecoration = 'none')}
+            >Browse our full FAQ →</a>
+          </p>
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="section-container">
-          <div className="bg-[#04649b] rounded-2xl p-12 text-center text-white">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Ready to Explore Roatan Real Estate?</h2>
-            <p className="text-white/90 max-w-2xl mx-auto mb-8">Let&apos;s define your objectives and build a strategy aligned with your long-term goals.</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="inline-flex items-center justify-center gap-2 bg-white text-[#04649b] px-8 py-4 rounded-lg font-medium hover:bg-gray-100 transition-all">
-                <Calendar className="w-5 h-5" /> Schedule a Call
+      {/* CTA Block */}
+      <section style={{ paddingTop: 32, paddingBottom: 64 }}>
+        <div className="section-container" style={{ maxWidth: 800 }}>
+          <div style={{ backgroundColor: '#093f4f', padding: 48, textAlign: 'center', color: '#ffffff' }}>
+            <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, color: '#ffffff', marginTop: 0, marginBottom: 12 }}>Ready to Explore Roatan Real Estate?</h2>
+            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', lineHeight: 1.75, maxWidth: 480, margin: '0 auto 28px' }}>Let&apos;s define your objectives and build a strategy aligned with your long-term goals.</p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center' }}>
+              <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                <Calendar style={{ width: 16, height: 16 }} /> Schedule a Call
               </a>
-              <a href="mailto:tomas@kwroatan.com" className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg font-medium transition-all">
-                <Mail className="w-5 h-5" /> tomas@kwroatan.com
+              <a href="mailto:tomas@kwroatan.com" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', backgroundColor: 'rgba(255,255,255,0.1)', color: '#ffffff', textDecoration: 'none', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'Arial, Helvetica, sans-serif', transition: 'background-color 0.2s' }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.18)')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)')}
+              >
+                <Mail style={{ width: 16, height: 16 }} /> tomas@kwroatan.com
               </a>
             </div>
-            <div className="mt-8 flex items-center justify-center gap-2 text-white/80">
-              <MapPin className="w-5 h-5" /><span>Lawson Rock, Sandy Bay, Roatan, Honduras</span>
+            <div style={{ marginTop: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, color: 'rgba(255,255,255,0.5)', fontSize: 12 }}>
+              <MapPin style={{ width: 14, height: 14 }} /><span>Lawson Rock, Sandy Bay, Roatan, Honduras</span>
             </div>
           </div>
         </div>

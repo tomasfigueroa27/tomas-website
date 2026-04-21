@@ -11,43 +11,58 @@ export const metadata: Metadata = {
 
 export default function NeighborhoodsPage() {
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-white">
-      <section className="relative py-20 bg-gradient-to-br from-[#04649b] to-[#03527d] text-white">
-        <div className="section-container text-center">
-          <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6">Neighborhood Guide</span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Roatan Neighborhoods</h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto">Every neighborhood on Roatan has a distinct character, price range, and lifestyle. Explore each area to find the right fit for your goals — whether you&apos;re buying, investing, or relocating.</p>
+    <div className="min-h-screen" style={{ paddingTop: 80, paddingBottom: 64, backgroundColor: '#ffffff' }}>
+      <section style={{ backgroundColor: '#093f4f', color: '#ffffff', paddingTop: 64, paddingBottom: 64 }}>
+        <div className="section-container" style={{ textAlign: 'center' }}>
+          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>Neighborhood Guide</span>
+          <h1
+            style={{
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontSize: 'clamp(32px, 4vw, 52px)',
+              fontWeight: 400,
+              color: '#ffffff',
+              marginTop: 0,
+              marginBottom: 16,
+              lineHeight: 1.15,
+            }}
+          >
+            Roatan Neighborhoods
+          </h1>
+          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 600, margin: '0 auto' }}>
+            Every neighborhood on Roatan has a distinct character, price range, and lifestyle. Explore each area to find the right fit for your goals — whether you&apos;re buying, investing, or relocating.
+          </p>
         </div>
       </section>
 
-      <section className="py-20">
+      <section style={{ paddingTop: 64, paddingBottom: 64 }}>
         <div className="section-container">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {neighborhoods.map((neighborhood) => (
               <Link
                 key={neighborhood.slug}
                 href={`/neighborhoods/${neighborhood.slug}`}
-                className="bg-[#f5f5f5] hover:bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100 group"
+                style={{ display: 'block', padding: 28, textDecoration: 'none' }}
+                className="card-hover group"
               >
-                <div className="mb-4">
-                  <span className="inline-block text-xs font-semibold uppercase tracking-wide text-[#04649b] bg-[#04649b]/10 px-3 py-1 rounded-full mb-3">{neighborhood.vibe}</span>
-                  <h2 className="text-2xl font-bold text-[#1d1d1d] mb-2" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>{neighborhood.name}</h2>
-                  <p className="text-gray-500 text-sm mb-4">{neighborhood.tagline}</p>
+                <div style={{ marginBottom: 14 }}>
+                  <span style={{ display: 'inline-block', fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#789ead', backgroundColor: 'rgba(120,158,173,0.12)', padding: '4px 10px', marginBottom: 10 }}>{neighborhood.vibe}</span>
+                  <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 20, fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 6 }}>{neighborhood.name}</h2>
+                  <p style={{ fontSize: 13, color: '#63868d', marginTop: 0, marginBottom: 14 }}>{neighborhood.tagline}</p>
                 </div>
-                <div className="mb-6">
-                  <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-                    <span className="font-semibold text-[#04649b]">Price Range:</span>
+                <div style={{ marginBottom: 16 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: '#555555', marginBottom: 8 }}>
+                    <span style={{ fontWeight: 600, color: '#093f4f' }}>Price Range:</span>
                     <span>{neighborhood.priceRange}</span>
                   </div>
-                  <div className="flex flex-wrap gap-2 mt-3">
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>
                     {neighborhood.bestFor.slice(0, 3).map((tag) => (
-                      <span key={tag} className="text-xs bg-white border border-gray-200 text-gray-600 px-2 py-1 rounded-full">{tag}</span>
+                      <span key={tag} style={{ fontSize: 11, backgroundColor: '#ffffff', border: '1px solid #e5e7eb', color: '#555555', padding: '3px 10px' }}>{tag}</span>
                     ))}
                   </div>
                 </div>
-                <div className="flex items-center gap-2 text-[#04649b] font-medium text-sm group-hover:gap-3 transition-all">
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#093f4f' }}>
                   Explore {neighborhood.name}
-                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  <ArrowRight style={{ width: 13, height: 13 }} aria-hidden="true" />
                 </div>
               </Link>
             ))}
@@ -55,32 +70,36 @@ export default function NeighborhoodsPage() {
         </div>
       </section>
 
-      <section className="py-16">
+      {/* Comparison Table */}
+      <section style={{ paddingTop: 64, paddingBottom: 64 }}>
         <div className="section-container">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1d1d1d] mb-4 text-center" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Neighborhood Comparison</h2>
-          <p className="text-gray-500 text-center mb-10 max-w-2xl mx-auto">A quick side-by-side view of every Roatan neighborhood to help you find the right fit.</p>
-          <div className="overflow-x-auto rounded-2xl border border-gray-200">
-            <table className="w-full text-sm">
+          <div style={{ textAlign: 'center', marginBottom: 40 }}>
+            <span className="label-caps block mb-4">Quick Comparison</span>
+            <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 12 }}>Neighborhood Comparison</h2>
+            <p style={{ fontSize: 14, color: '#555555', maxWidth: 480, margin: '0 auto' }}>A quick side-by-side view of every Roatan neighborhood to help you find the right fit.</p>
+          </div>
+          <div style={{ overflowX: 'auto', border: '1px solid #e5e7eb' }}>
+            <table style={{ width: '100%', fontSize: 13, borderCollapse: 'collapse' }}>
               <thead>
-                <tr className="bg-[#04649b] text-white">
-                  <th className="text-left px-5 py-4 font-semibold">Neighborhood</th>
-                  <th className="text-left px-5 py-4 font-semibold">Price Range</th>
-                  <th className="text-left px-5 py-4 font-semibold hidden md:table-cell">Vibe</th>
-                  <th className="text-left px-5 py-4 font-semibold hidden lg:table-cell">Best For</th>
+                <tr style={{ backgroundColor: '#093f4f', color: '#ffffff' }}>
+                  <th style={{ textAlign: 'left', padding: '14px 20px', fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Neighborhood</th>
+                  <th style={{ textAlign: 'left', padding: '14px 20px', fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Price Range</th>
+                  <th style={{ textAlign: 'left', padding: '14px 20px', fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }} className="hidden md:table-cell">Vibe</th>
+                  <th style={{ textAlign: 'left', padding: '14px 20px', fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }} className="hidden lg:table-cell">Best For</th>
                 </tr>
               </thead>
               <tbody>
                 {neighborhoods.map((n, i) => (
-                  <tr key={n.slug} className={i % 2 === 0 ? 'bg-white' : 'bg-[#f5f5f5]'}>
-                    <td className="px-5 py-4">
-                      <Link href={`/neighborhoods/${n.slug}`} className="font-semibold text-[#04649b] hover:underline">{n.name}</Link>
+                  <tr key={n.slug} style={{ backgroundColor: i % 2 === 0 ? '#ffffff' : '#f5f2ee' }}>
+                    <td style={{ padding: '12px 20px' }}>
+                      <Link href={`/neighborhoods/${n.slug}`} className="link-underline">{n.name}</Link>
                     </td>
-                    <td className="px-5 py-4 text-gray-700">{n.priceRange}</td>
-                    <td className="px-5 py-4 text-gray-600 hidden md:table-cell">{n.vibe}</td>
-                    <td className="px-5 py-4 hidden lg:table-cell">
-                      <div className="flex flex-wrap gap-1">
+                    <td style={{ padding: '12px 20px', color: '#555555' }}>{n.priceRange}</td>
+                    <td style={{ padding: '12px 20px', color: '#555555' }} className="hidden md:table-cell">{n.vibe}</td>
+                    <td style={{ padding: '12px 20px' }} className="hidden lg:table-cell">
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
                         {n.bestFor.slice(0, 2).map((tag) => (
-                          <span key={tag} className="bg-[#04649b]/10 text-[#04649b] text-xs px-2 py-0.5 rounded-full">{tag}</span>
+                          <span key={tag} style={{ backgroundColor: 'rgba(120,158,173,0.12)', color: '#063f4f', fontSize: 11, padding: '2px 8px' }}>{tag}</span>
                         ))}
                       </div>
                     </td>
@@ -92,18 +111,22 @@ export default function NeighborhoodsPage() {
         </div>
       </section>
 
-      <section className="py-10 bg-[#f5f5f5]">
-        <div className="section-container max-w-4xl text-center">
-          <p className="text-gray-600">Have questions about neighborhoods or buying in Roatan?{' '}<Link href="/faq" className="text-[#04649b] font-medium hover:underline">Browse our full FAQ →</Link></p>
+      {/* FAQ Link */}
+      <section style={{ backgroundColor: '#f5f2ee', paddingTop: 32, paddingBottom: 32 }}>
+        <div className="section-container" style={{ maxWidth: 800, textAlign: 'center' }}>
+          <p style={{ fontSize: 14, color: '#555555' }}>Have questions about neighborhoods or buying in Roatan?{' '}<Link href="/faq" style={{ color: '#093f4f', fontWeight: 600, textDecoration: 'none' }}>Browse our full FAQ →</Link></p>
         </div>
       </section>
 
-      <section className="py-12">
-        <div className="section-container">
-          <div className="bg-gradient-to-r from-[#04649b] to-[#03527d] rounded-2xl p-10 text-white text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3" style={{ fontFamily: 'var(--font-roboto-slab), serif' }}>Not Sure Which Neighborhood Is Right for You?</h2>
-            <p className="text-white/90 mb-6 max-w-2xl mx-auto">Tomas can help you evaluate each area against your specific goals — whether that&apos;s rental income, lifestyle, appreciation, or all three.</p>
-            <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="inline-block bg-white text-[#04649b] px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">Schedule a Call with Tomas</a>
+      {/* CTA */}
+      <section style={{ paddingTop: 48, paddingBottom: 64 }}>
+        <div className="section-container" style={{ maxWidth: 800 }}>
+          <div style={{ backgroundColor: '#093f4f', padding: '40px 32px', textAlign: 'center', color: '#ffffff' }}>
+            <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 400, color: '#ffffff', marginTop: 0, marginBottom: 12 }}>Not Sure Which Neighborhood Is Right for You?</h2>
+            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 480, margin: '0 auto 24px' }}>Tomas can help you evaluate each area against your specific goals — whether that&apos;s rental income, lifestyle, appreciation, or all three.</p>
+            <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent">
+              Schedule a Call with Tomas
+            </a>
           </div>
         </div>
       </section>
