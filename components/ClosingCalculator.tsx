@@ -144,7 +144,24 @@ const SellerPanel = () => {
   );
 };
 
-interface ProratedRow { id: number; label: string; amount: string }
+interface ProratedRow { id: number; label: string; fullAmount: string; period: 'annual' | 'monthly' }
+
+const isLeapYear = (y: number) => (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0;
+
+const calcProration = (fullAmount: number, closingDate: string, period: 'annual' | 'monthly') => {
+  if (!closingDate || fullAmount <= 0) return { amount: 0, days: 0, totalDays: period === 'annual' ? 365 : 30 };
+  const d = new Date(closingDate + 'T12:00:00');
+  if (period === 'annual') {
+    const end = new Date(d.getFullYear(), 11, 31);
+    const totalDays = isLeapYear(d.getFullYear()) ? 366 : 365;
+    const days = Math.round((end.getTime() - d.getTime()) / 86400000) + 1;
+    return { amount: (days / totalDays) * fullAmount, days, totalDays };
+  }
+  const end = new Date(d.getFullYear(), d.getMonth() + 1, 0);
+  const totalDays = end.getDate();
+  const days = totalDays - d.getDate() + 1;
+  return { amount: (days / totalDays) * fullAmount, days, totalDays };
+};
 
 const BuyerPanel = () => {
   const [purchasePrice, setPurchasePrice] = useState('');
@@ -152,10 +169,11 @@ const BuyerPanel = () => {
   const [legalFeesPct, setLegalFeesPct] = useState('2.5');
   const [corpSetup, setCorpSetup] = useState('');
   const [otherCosts, setOtherCosts] = useState('');
+  const [closingDate, setClosingDate] = useState('');
   const [prorated, setProrated] = useState<ProratedRow[]>([
-    { id: 1, label: 'HOA Fees', amount: '500' },
-    { id: 2, label: 'Insurance', amount: '1,200' },
-    { id: 3, label: 'Services', amount: '200' },
+    { id: 1, label: 'HOA Fees', fullAmount: '2,400', period: 'annual' },
+    { id: 2, label: 'Insurance', fullAmount: '1,200', period: 'annual' },
+    { id: 3, label: 'Services', fullAmount: '200', period: 'monthly' },
   ]);
   const [nextId, setNextId] = useState(4);
 
@@ -164,14 +182,14 @@ const BuyerPanel = () => {
   const legalFees = pp * (parseFloat(legalFeesPct) / 100 || 0);
   const setup = parseMoney(corpSetup);
   const other = parseMoney(otherCosts);
-  const proratedTotal = prorated.reduce((sum, r) => sum + parseMoney(r.amount), 0);
+  const proratedTotal = prorated.reduce((sum, r) => sum + calcProration(parseMoney(r.fullAmount), closingDate, r.period).amount, 0);
   const closingCosts = transferTax + legalFees + setup + other + proratedTotal;
   const totalCashToClose = pp + closingCosts;
   const hasData = pp > 0;
 
-  const addRow = () => { setProrated((prev) => [...prev, { id: nextId, label: '', amount: '' }]); setNextId((n) => n + 1); };
+  const addRow = () => { setProrated((prev) => [...prev, { id: nextId, label: '', fullAmount: '', period: 'annual' }]); setNextId((n) => n + 1); };
   const removeRow = (id: number) => setProrated((prev) => prev.filter((r) => r.id !== id));
-  const updateRow = (id: number, field: 'label' | 'amount', val: string) =>
+  const updateRow = (id: number, field: keyof ProratedRow, val: string) =>
     setProrated((prev) => prev.map((r) => (r.id === id ? { ...r, [field]: val } : r)));
 
   const lines: LineItem[] = [
@@ -180,7 +198,13 @@ const BuyerPanel = () => {
     { label: `Legal Fees (${legalFeesPct}%)`, amount: legalFees },
     ...(setup > 0 ? [{ label: 'Corporation Setup', amount: setup }] : []),
     ...(other > 0 ? [{ label: 'Other Closing Costs', amount: other }] : []),
-    ...prorated.filter((r) => parseMoney(r.amount) > 0).map((r) => ({ label: r.label || 'Prorated Item', amount: parseMoney(r.amount) })),
+    ...prorated
+      .filter((r) => parseMoney(r.fullAmount) > 0)
+      .map((r) => {
+        const { amount, days, totalDays } = calcProration(parseMoney(r.fullAmount), closingDate, r.period);
+        const suffix = closingDate ? ` (${days}/${totalDays} days)` : '';
+        return { label: (r.label || 'Prorated Item') + suffix, amount };
+      }),
     { label: 'Total Cash to Close', amount: totalCashToClose, isTotal: true, isRed: true },
   ];
 
@@ -228,46 +252,104 @@ const BuyerPanel = () => {
       </div>
 
       <div>
-        <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#093f4f', marginBottom: 12 }}>Prorated Items</label>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {prorated.map((row) => (
-            <div key={row.id} style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              <input
-                type="text"
-                value={row.label}
-                onChange={(e) => updateRow(row.id, 'label', e.target.value)}
-                placeholder="Label"
-                style={{ flex: 1, padding: '8px 12px', border: '1px solid #e5e7eb', fontSize: 14, outline: 'none' }}
-                onFocus={(e) => (e.currentTarget.style.borderColor = '#093f4f')}
-                onBlur={(e) => (e.currentTarget.style.borderColor = '#e5e7eb')}
-              />
-              <div style={{ position: 'relative', width: 128, flexShrink: 0 }}>
-                <span style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: '#999999', fontSize: 14 }}>$</span>
-                <input
-                  type="text"
-                  value={row.amount}
-                  onChange={(e) => {
-                    const raw = e.target.value.replace(/[^0-9.]/g, '');
-                    updateRow(row.id, 'amount', raw ? Number(raw).toLocaleString('en-US', { maximumFractionDigits: 0 }) : '');
-                  }}
-                  placeholder="0"
-                  style={{ width: '100%', paddingLeft: 28, paddingRight: 12, paddingTop: 8, paddingBottom: 8, border: '1px solid #e5e7eb', fontSize: 14, outline: 'none', boxSizing: 'border-box' }}
-                  onFocus={(e) => (e.currentTarget.style.borderColor = '#093f4f')}
-                  onBlur={(e) => (e.currentTarget.style.borderColor = '#e5e7eb')}
-                />
-              </div>
-              <button
-                onClick={() => removeRow(row.id)}
-                style={{ padding: 8, color: '#999999', background: 'none', border: 'none', cursor: 'pointer', transition: 'color 0.2s' }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#e11d48')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = '#999999')}
-                aria-label="Remove"
-              >
-                <X style={{ width: 16, height: 16 }} />
-              </button>
-            </div>
-          ))}
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 16, marginBottom: 12, flexWrap: 'wrap' }}>
+          <label style={{ fontSize: 13, fontWeight: 600, color: '#093f4f' }}>Prorated Items</label>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <label style={{ fontSize: 12, color: '#789ead', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', whiteSpace: 'nowrap' }}>Closing Date</label>
+            <input
+              type="date"
+              value={closingDate}
+              onChange={(e) => setClosingDate(e.target.value)}
+              style={{ padding: '6px 10px', border: '1px solid #e5e7eb', fontSize: 13, outline: 'none', color: '#093f4f', fontFamily: 'Arial, Helvetica, sans-serif' }}
+              onFocus={(e) => (e.currentTarget.style.borderColor = '#093f4f')}
+              onBlur={(e) => (e.currentTarget.style.borderColor = '#e5e7eb')}
+            />
+          </div>
         </div>
+
+        {!closingDate && (
+          <p style={{ fontSize: 12, color: '#999999', marginBottom: 12, fontStyle: 'italic' }}>
+            Set a closing date to auto-calculate each item&apos;s prorated amount.
+          </p>
+        )}
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {prorated.map((row) => {
+            const full = parseMoney(row.fullAmount);
+            const { amount, days, totalDays } = calcProration(full, closingDate, row.period);
+            const pct = totalDays > 0 ? ((days / totalDays) * 100).toFixed(1) : '0';
+            return (
+              <div key={row.id} style={{ border: '1px solid #e5e7eb', padding: 12 }}>
+                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                  <input
+                    type="text"
+                    value={row.label}
+                    onChange={(e) => updateRow(row.id, 'label', e.target.value)}
+                    placeholder="Description"
+                    style={{ flex: 1, minWidth: 80, padding: '7px 10px', border: '1px solid #e5e7eb', fontSize: 13, outline: 'none' }}
+                    onFocus={(e) => (e.currentTarget.style.borderColor = '#093f4f')}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = '#e5e7eb')}
+                  />
+                  <div style={{ display: 'flex', flexShrink: 0 }}>
+                    {(['annual', 'monthly'] as const).map((p) => (
+                      <button
+                        key={p}
+                        onClick={() => updateRow(row.id, 'period', p)}
+                        style={{
+                          padding: '7px 10px',
+                          fontSize: 11,
+                          fontWeight: 600,
+                          fontFamily: 'Arial, Helvetica, sans-serif',
+                          cursor: 'pointer',
+                          border: '1px solid #e5e7eb',
+                          borderRight: p === 'annual' ? 'none' : '1px solid #e5e7eb',
+                          backgroundColor: row.period === p ? '#093f4f' : '#ffffff',
+                          color: row.period === p ? '#ffffff' : '#555555',
+                          transition: 'all 0.15s',
+                        }}
+                      >
+                        {p === 'annual' ? 'Annual' : 'Monthly'}
+                      </button>
+                    ))}
+                  </div>
+                  <div style={{ position: 'relative', width: 110, flexShrink: 0 }}>
+                    <span style={{ position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)', color: '#999999', fontSize: 13 }}>$</span>
+                    <input
+                      type="text"
+                      value={row.fullAmount}
+                      onChange={(e) => {
+                        const raw = e.target.value.replace(/[^0-9.]/g, '');
+                        updateRow(row.id, 'fullAmount', raw ? Number(raw).toLocaleString('en-US', { maximumFractionDigits: 0 }) : '');
+                      }}
+                      placeholder="0"
+                      style={{ width: '100%', paddingLeft: 22, paddingRight: 8, paddingTop: 7, paddingBottom: 7, border: '1px solid #e5e7eb', fontSize: 13, outline: 'none', boxSizing: 'border-box' }}
+                      onFocus={(e) => (e.currentTarget.style.borderColor = '#093f4f')}
+                      onBlur={(e) => (e.currentTarget.style.borderColor = '#e5e7eb')}
+                    />
+                  </div>
+                  <button
+                    onClick={() => removeRow(row.id)}
+                    style={{ padding: 6, color: '#999999', background: 'none', border: 'none', cursor: 'pointer', transition: 'color 0.2s', flexShrink: 0 }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = '#e11d48')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '#999999')}
+                    aria-label="Remove"
+                  >
+                    <X style={{ width: 15, height: 15 }} />
+                  </button>
+                </div>
+                {closingDate && full > 0 && (
+                  <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, paddingLeft: 2 }}>
+                    <span style={{ color: '#999999' }}>{days} of {totalDays} days ({pct}%)</span>
+                    <span style={{ color: '#d1d5db' }}>→</span>
+                    <span style={{ fontWeight: 700, color: '#093f4f' }}>{fmt(amount)}</span>
+                    <span style={{ color: '#999999' }}>buyer&apos;s share</span>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
         <button
           onClick={addRow}
           style={{ marginTop: 12, display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 13, color: '#093f4f', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'none' }}
