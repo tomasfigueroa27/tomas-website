@@ -111,7 +111,7 @@ const CTA = () => {
             </a>
 
             <a
-              href="https://wa.me/50488488326"
+              href="https://wa.me/50488488326?text=Hi+Tomas%2C+I+found+your+website+and+I%27m+interested+in+Roatan+real+estate."
               target="_blank"
               rel="noopener"
               style={{
