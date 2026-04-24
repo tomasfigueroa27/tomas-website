@@ -1,5 +1,5 @@
 export type ContentBlock =
-  | { type: 'p'; text: string }
+  | { type: 'p'; text: string; links?: { anchor: string; href: string }[] }
   | { type: 'h2'; text: string }
   | { type: 'h3'; text: string }
   | { type: 'ul'; items: string[] }
@@ -404,6 +404,10 @@ const posts: BlogPost[] = [
       {
         type: 'p',
         text: 'For a detailed breakdown of what to expect when working with a Roatan real estate professional, download the Roatan Buyer\'s Guide — a step-by-step resource covering the full purchasing process. You can also use the Roatan Closing Cost Calculator to estimate your costs before making an offer.',
+        links: [
+          { anchor: "Roatan Buyer's Guide", href: 'https://www.tomasfigueroa.com/guides' },
+          { anchor: 'Roatan Closing Cost Calculator', href: 'https://www.tomasfigueroa.com/calculator' },
+        ],
       },
       {
         type: 'h2',
@@ -420,6 +424,9 @@ const posts: BlogPost[] = [
       {
         type: 'p',
         text: 'You can read verified client reviews for Tomas Figueroa, Keller Williams Roatan, directly on Google.',
+        links: [
+          { anchor: 'read verified client reviews', href: 'https://share.google/0BOwKXj6DOXlgtZJq' },
+        ],
       },
       {
         type: 'h2',
@@ -472,6 +479,10 @@ const posts: BlogPost[] = [
       {
         type: 'p',
         text: 'The closing process involves several steps, including signing a purchase agreement, conducting due diligence, and transferring funds. A legal advisor or notary will oversee the process to ensure all legal requirements are met. Once all documents are signed and funds are transferred, the property title is recorded in the buyer\'s name. Use the Roatan Closing Cost Calculator to estimate your costs, and download the Buyer\'s Guide for a full walkthrough of the process.',
+        links: [
+          { anchor: 'Roatan Closing Cost Calculator', href: 'https://www.tomasfigueroa.com/calculator' },
+          { anchor: "Buyer's Guide", href: 'https://www.tomasfigueroa.com/guides' },
+        ],
       },
       {
         type: 'h3',
@@ -496,6 +507,11 @@ const posts: BlogPost[] = [
       {
         type: 'p',
         text: "Embark on your journey to owning a piece of paradise in Roatan. Download the Buyer's Guide, run your numbers with the Closing Cost Calculator, and read what past clients say. With careful planning and the right support, your dream property in Roatan is within reach.",
+        links: [
+          { anchor: "Buyer's Guide", href: 'https://www.tomasfigueroa.com/guides' },
+          { anchor: 'Closing Cost Calculator', href: 'https://www.tomasfigueroa.com/calculator' },
+          { anchor: 'read what past clients say', href: 'https://share.google/0BOwKXj6DOXlgtZJq' },
+        ],
       },
     ],
   },

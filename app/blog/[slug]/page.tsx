@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Calendar, Tag, ArrowLeft } from 'lucide-react';
@@ -36,8 +37,24 @@ function renderBlock(block: ContentBlock, index: number) {
           {block.text}
         </h3>
       );
-    case 'p':
-      return <p key={index} style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 20 }}>{block.text}</p>;
+    case 'p': {
+      const pStyle = { fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 20 };
+      if (!block.links || block.links.length === 0) {
+        return <p key={index} style={pStyle}>{block.text}</p>;
+      }
+      const parts: React.ReactNode[] = [];
+      let remaining = block.text;
+      const sorted = [...block.links].sort((a, b) => block.text.indexOf(a.anchor) - block.text.indexOf(b.anchor));
+      for (const link of sorted) {
+        const idx = remaining.indexOf(link.anchor);
+        if (idx === -1) continue;
+        if (idx > 0) parts.push(remaining.slice(0, idx));
+        parts.push(<a key={link.anchor} href={link.href} target="_blank" rel="noopener noreferrer" style={{ color: '#093f4f', textDecoration: 'underline' }}>{link.anchor}</a>);
+        remaining = remaining.slice(idx + link.anchor.length);
+      }
+      if (remaining) parts.push(remaining);
+      return <p key={index} style={pStyle}>{parts}</p>;
+    }
     case 'ul':
       return (
         <ul key={index} style={{ paddingLeft: 20, marginBottom: 20 }}>
