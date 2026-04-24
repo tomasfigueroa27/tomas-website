@@ -26,6 +26,9 @@ Thumbs.db
 .next/
 out/
 
+# TypeScript build info
+*.tsbuildinfo
+
 # Vite (legacy)
 *.local
 package-lock.json
