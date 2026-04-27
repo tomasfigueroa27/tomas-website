@@ -39,8 +39,28 @@ export default function ResourcesPage() {
         </div>
       </section>
 
+      <section style={{ paddingTop: 56, paddingBottom: 0 }}>
+        <div className="section-container" style={{ maxWidth: 720 }}>
+          <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 16 }}>
+            Everything You Need to Make a Confident Decision
+          </h2>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
+            Roatan is still a market where information is hard to find and easy to get wrong. Most of what&apos;s published online is generic Caribbean content or marketing material from developers — not ground-level analysis from someone actively working the market.
+          </p>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
+            This resources section is built around one goal: giving you enough context to ask the right questions before you commit to anything.
+          </p>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
+            The blog covers market trends, neighborhood comparisons, investment logic, and buyer questions I answer every week. The guides walk you through the legal and financial mechanics of buying property in Honduras as a foreigner — step by step, no fluff. The closing cost calculator lets you model your total acquisition cost before you make an offer, so there are no surprises at closing.
+          </p>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, margin: 0 }}>
+            Use these tools at whatever stage you&apos;re at — early research, active comparison, or ready to move. And if you want to go beyond what&apos;s published here, a 30-minute call covers more ground than any article.
+          </p>
+        </div>
+      </section>
+
       {/* Resource Cards */}
-      <section style={{ paddingTop: 64, paddingBottom: 64 }}>
+      <section style={{ paddingTop: 48, paddingBottom: 64 }}>
         <div className="section-container">
           <div className="grid md:grid-cols-3 gap-4" style={{ maxWidth: 900, margin: '0 auto' }}>
             {[

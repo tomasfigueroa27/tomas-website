@@ -32,7 +32,40 @@ export default function CalculatorPage() {
         </div>
       </section>
 
-      <section style={{ paddingTop: 48, paddingBottom: 64 }}>
+      <section style={{ paddingTop: 56, paddingBottom: 40 }}>
+        <div className="section-container" style={{ maxWidth: 720 }}>
+          <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 16 }}>
+            What This Calculator Does
+          </h2>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
+            Buying property in Roatan involves more than just the listing price. Closing costs in Honduras are real and need to be factored into your budget before you make an offer — not after.
+          </p>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
+            This calculator estimates your total acquisition cost based on purchase price, purchase structure (asset vs. corporation), legal fees, transfer taxes, and prorated items like HOA dues or property taxes. It covers both buyer and seller cost scenarios.
+          </p>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 10 }}>Key costs to know before you run the numbers:</p>
+          <ul style={{ paddingLeft: 20, marginBottom: 14 }}>
+            {[
+              { label: 'Transfer tax', detail: '3% of the purchase price (applies to asset purchases)' },
+              { label: 'Legal fees', detail: 'Typically 2–3% of the purchase price, paid to your Honduran attorney' },
+              { label: 'Corporation setup', detail: 'If buying through a new Honduran entity, expect an additional $700–$1,500' },
+              { label: 'Property taxes in Roatan', detail: 'Very low — generally 0.3–0.5% of assessed value annually' },
+            ].map(({ label, detail }) => (
+              <li key={label} style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 8 }}>
+                <strong style={{ color: '#093f4f' }}>{label}:</strong> {detail}
+              </li>
+            ))}
+          </ul>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
+            Local bank financing is not available for foreign buyers. Most transactions are cash or home-country financed, so knowing your full out-of-pocket number matters from day one.
+          </p>
+          <p style={{ fontSize: 13, color: '#888888', lineHeight: 1.75, margin: 0, fontStyle: 'italic' }}>
+            These are estimates. Always confirm exact costs with a licensed Honduran attorney before closing.
+          </p>
+        </div>
+      </section>
+
+      <section style={{ paddingTop: 0, paddingBottom: 64 }}>
         <div className="section-container">
           <ClosingCalculator />
         </div>

@@ -32,6 +32,34 @@ export default function PropertiesPage() {
         </div>
       </section>
 
+      <section style={{ paddingTop: 56, paddingBottom: 40 }}>
+        <div className="section-container" style={{ maxWidth: 760 }}>
+          <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 16 }}>
+            Roatan Property Listings — Direct from the MLS
+          </h2>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
+            The listings below pull directly from the Roatan MLS in real time, covering all property types currently available on the island — beachfront condos, hillside homes, oceanview lots, and investment properties across West Bay, West End, Sandy Bay, Pristine Bay, French Harbour, and Coxen Hole.
+          </p>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 10 }}>What you&apos;ll find here:</p>
+          <ul style={{ paddingLeft: 20, marginBottom: 14 }}>
+            {[
+              'Condos from $150,000 to $1M+ in established beach communities',
+              'Single-family homes ranging from starter properties to luxury oceanfront estates',
+              'Raw land and development lots for buyers looking to build',
+              'New development units with pre-construction pricing in select communities',
+            ].map((item) => (
+              <li key={item} style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 8 }}>{item}</li>
+            ))}
+          </ul>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
+            Before you browse — know this: Not every property in Roatan is listed here. A meaningful portion of the best deals — distressed sales, off-market opportunities, developer pre-sales, and estate listings — never appear on the public MLS. If you&apos;re serious about finding the right property at the right price, talking to an agent who works the full market matters.
+          </p>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, margin: 0 }}>
+            Use the search tools below to filter by price, location, and property type. When something catches your eye — or when you want to know what&apos;s available beyond what&apos;s shown — reach out directly.
+          </p>
+        </div>
+      </section>
+
       <Properties />
     </div>
   );
