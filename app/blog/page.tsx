@@ -37,7 +37,35 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <section style={{ paddingTop: 64, paddingBottom: 64 }}>
+      <section style={{ paddingTop: 56, paddingBottom: 0 }}>
+        <div className="section-container" style={{ maxWidth: 960 }}>
+          <div style={{ maxWidth: 680, marginBottom: 48 }}>
+            <h2
+              style={{
+                fontFamily: 'Georgia, "Times New Roman", serif',
+                fontSize: 'clamp(20px, 2.5vw, 26px)',
+                fontWeight: 400,
+                color: '#093f4f',
+                marginTop: 0,
+                marginBottom: 16,
+              }}
+            >
+              About This Blog
+            </h2>
+            <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
+              Most people discovering Roatan for the first time don&apos;t know where to start. The market is real, the opportunity is real — but the information online is scattered, outdated, or written by people who&apos;ve never closed a deal here.
+            </p>
+            <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
+              This blog exists to fix that. I publish market updates, buyer guides, neighborhood breakdowns, and investment analysis based on what I actually see on the ground in Roatan — current listings, real transaction data, and the questions buyers ask me every week.
+            </p>
+            <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, margin: 0 }}>
+              Whether you&apos;re exploring Roatan for the first time or actively comparing neighborhoods before making an offer, the articles here are designed to give you clarity, not a sales pitch. Start with the guides most relevant to your situation, and reach out when you&apos;re ready to go deeper.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ paddingTop: 40, paddingBottom: 64 }}>
         <div className="section-container" style={{ maxWidth: 960 }}>
           <div className="grid md:grid-cols-2 gap-6">
             {posts.map((post) => (

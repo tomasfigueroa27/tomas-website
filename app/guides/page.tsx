@@ -90,7 +90,27 @@ export default function GuidesPage() {
         </div>
       </section>
 
-      <section style={{ paddingTop: 64, paddingBottom: 64 }}>
+      <section style={{ paddingTop: 56, paddingBottom: 0 }}>
+        <div className="section-container" style={{ maxWidth: 720 }}>
+          <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 16 }}>
+            Why These Guides Exist
+          </h2>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
+            Buying property in Roatan is not complicated — but it is different from buying in the US, Canada, or Europe. The legal process, the title system, the role of a Honduran attorney, and the way deals are structured are all unique to this market.
+          </p>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
+            Most buyers come in with questions they don&apos;t know how to ask yet. These guides are designed to close that gap. They cover the full purchasing process from initial research through closing, so you walk into every conversation — with an agent, an attorney, or a developer — already informed.
+          </p>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
+            The Buyer&apos;s Guide is the most comprehensive starting point. It covers legal ownership for foreigners, the 5-step purchase process, what due diligence looks like in Honduras, typical closing timelines, and the most common mistakes buyers make in this market.
+          </p>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, margin: 0 }}>
+            Download it free. No obligation. If you have questions after reading it, I&apos;m here.
+          </p>
+        </div>
+      </section>
+
+      <section style={{ paddingTop: 48, paddingBottom: 64 }}>
         <div className="section-container">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" style={{ maxWidth: 900, margin: '0 auto' }}>
             {guides.map((guide) => (
