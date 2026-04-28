@@ -47,7 +47,7 @@ export default function NewDevelopmentsContent() {
             New Developments in Roatan
           </h1>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 640, margin: '0 auto 28px' }}>
-            Roatan is entering a new phase of growth, with residential, hospitality, and mixed-use developments reshaping different parts of the island. Explore the map below to see where new projects are emerging and how the market is evolving.
+            This page tracks active and upcoming development projects across Roatan — residential communities, resort properties, and mixed-use opportunities at various stages of construction. Browse the map to see where new projects are located, and reach out for pre-construction pricing and developer access.
           </p>
           <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
             <Calendar style={{ width: 16, height: 16 }} /> Schedule a Private Tour
@@ -64,7 +64,7 @@ export default function NewDevelopmentsContent() {
               Roatan&apos;s Next Growth Phase
             </h2>
             <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 28 }}>
-              Roatan is entering what may become its most active development phase yet. As infrastructure improves and demand continues to grow, new residential communities, resort projects, and mixed-use developments are beginning to reshape the island. Explore the map below to see how different developments are positioned across Roatan.
+              Roatan is in the early stages of what may be its most consequential development cycle. Tourism numbers have recovered and continued to climb post-2020. Infrastructure — roads, utilities, and port capacity — has improved meaningfully in the West Bay and Sandy Bay corridors. And international attention from buyers in the US, Canada, and Europe has pushed demand into areas that were largely overlooked five years ago. Developers are responding: new residential communities are moving beyond the traditional West Bay and West End markets, with serious projects now underway in Pristine Bay, French Harbour, and the island&apos;s east end. Mixed-use and hospitality developments are being structured to meet growing rental demand, and pre-construction pricing in several active projects still reflects early-stage positioning. If you&apos;re evaluating where to place capital before the next appreciation cycle, understanding what&apos;s in the pipeline now matters.
             </p>
             <div className="grid sm:grid-cols-3 gap-3" style={{ maxWidth: 640, margin: '0 auto' }}>
               {['Residential Growth', 'Hospitality Expansion', 'Long-Term Opportunity'].map((label) => (
