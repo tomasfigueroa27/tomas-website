@@ -39,7 +39,7 @@ export default function BlogPage() {
 
       <section style={{ paddingTop: 56, paddingBottom: 0 }}>
         <div className="section-container" style={{ maxWidth: 960 }}>
-          <div style={{ maxWidth: 680, marginBottom: 48 }}>
+          <div style={{ marginBottom: 48 }}>
             <h2
               style={{
                 fontFamily: 'Georgia, "Times New Roman", serif',

@@ -40,7 +40,7 @@ export default function ResourcesPage() {
       </section>
 
       <section style={{ paddingTop: 56, paddingBottom: 0 }}>
-        <div className="section-container" style={{ maxWidth: 720 }}>
+        <div className="section-container" style={{ maxWidth: 900 }}>
           <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 16 }}>
             Everything You Need to Make a Confident Decision
           </h2>
