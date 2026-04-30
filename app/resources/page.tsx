@@ -4,7 +4,7 @@ import { BookOpen, FileText, ArrowRight, Calculator } from 'lucide-react';
 import posts from '@/data/blog';
 
 export const metadata: Metadata = {
-  title: 'Real Estate Resources | Roatan Honduras',
+  title: 'Roatan Real Estate Resources',
   description: "Articles, market insights, and buyer's guides to help you make informed decisions about Roatan, Honduras real estate. Free resources for investors and relocators.",
   alternates: { canonical: 'https://www.tomasfigueroa.com/resources' },
 };
@@ -40,7 +40,7 @@ export default function ResourcesPage() {
       </section>
 
       <section style={{ paddingTop: 56, paddingBottom: 0 }}>
-        <div className="section-container" style={{ maxWidth: 720 }}>
+        <div className="section-container" style={{ maxWidth: 900 }}>
           <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 16 }}>
             Everything You Need to Make a Confident Decision
           </h2>

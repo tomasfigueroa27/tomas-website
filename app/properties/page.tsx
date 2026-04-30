@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Properties from '@/sections/Properties';
 
 export const metadata: Metadata = {
-  title: 'Browse Roatan MLS Listings | Search All Properties',
+  title: 'Roatan MLS Property Listings',
   description: 'Search all available properties in Roatan, Honduras directly from the MLS. Filter by price, location, and property type to find your ideal Caribbean real estate investment.',
   alternates: { canonical: 'https://www.tomasfigueroa.com/properties' },
 };
@@ -33,7 +33,7 @@ export default function PropertiesPage() {
       </section>
 
       <section style={{ paddingTop: 56, paddingBottom: 40 }}>
-        <div className="section-container" style={{ maxWidth: 760 }}>
+        <div className="section-container">
           <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 16 }}>
             Roatan Property Listings — Direct from the MLS
           </h2>

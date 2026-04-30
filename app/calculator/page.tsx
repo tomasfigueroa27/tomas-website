@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ClosingCalculator from '@/components/ClosingCalculator';
 
 export const metadata: Metadata = {
-  title: 'Roatan Closing Cost Calculator | Estimate Buying Costs',
+  title: 'Roatan Closing Cost Calculator',
   description: 'Estimate your closing costs when buying property in Roatan, Honduras. Calculate transfer taxes, attorney fees, and registration costs for direct or corporate share transfers.',
   alternates: { canonical: 'https://www.tomasfigueroa.com/calculator' },
 };
@@ -33,7 +33,7 @@ export default function CalculatorPage() {
       </section>
 
       <section style={{ paddingTop: 56, paddingBottom: 40 }}>
-        <div className="section-container" style={{ maxWidth: 720 }}>
+        <div className="section-container">
           <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 16 }}>
             What This Calculator Does
           </h2>

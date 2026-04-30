@@ -7,7 +7,7 @@ import CTA from '@/sections/CTA';
 export const metadata: Metadata = {
   title: 'Roatan Real Estate | Tomas Figueroa – KW Roatan',
   description:
-    'Buy, sell, or invest in Roatan, Honduras real estate with Tomas Figueroa at Keller Williams Roatan. Expert guidance on Caribbean property, new developments, and investment opportunities.',
+    'Search Roatan MLS listings, explore neighborhoods, and get expert guidance on buying property in Roatan, Honduras. Tomas Figueroa – Keller Williams Roatan.',
   alternates: {
     canonical: 'https://www.tomasfigueroa.com/',
   },

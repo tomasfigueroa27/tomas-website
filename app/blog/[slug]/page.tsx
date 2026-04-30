@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = posts.find((p) => p.slug === slug);
   if (!post) return {};
   return {
-    title: post.title,
+    title: post.seoTitle ?? post.title,
     description: post.excerpt,
     alternates: { canonical: `https://www.tomasfigueroa.com/blog/${post.slug}` },
     openGraph: { type: 'article', publishedTime: post.date, section: post.category, ...(post.image ? { images: [post.image] } : {}) },
@@ -72,6 +72,29 @@ function renderBlock(block: ContentBlock, index: number) {
               <span style={{ fontSize: 13, color: '#555555' }}>{fact.value}</span>
             </div>
           ))}
+        </div>
+      );
+    case 'table':
+      return (
+        <div key={index} style={{ overflowX: 'auto', marginBottom: 24 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'Arial, Helvetica, sans-serif' }}>
+            <thead>
+              <tr>
+                {block.headers.map((h, i) => (
+                  <th key={i} style={{ padding: '10px 16px', backgroundColor: '#093f4f', color: '#ffffff', textAlign: 'left', fontWeight: 600, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.08em', whiteSpace: 'nowrap' }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, ri) => (
+                <tr key={ri} style={{ backgroundColor: ri % 2 === 0 ? '#f5f2ee' : '#ffffff' }}>
+                  {row.map((cell, ci) => (
+                    <td key={ci} style={{ padding: '10px 16px', color: ci === 0 ? '#093f4f' : '#555555', fontWeight: ci === 0 ? 600 : 400, borderBottom: '1px solid #e5e7eb', fontSize: 13, whiteSpace: 'nowrap' }}>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       );
   }
