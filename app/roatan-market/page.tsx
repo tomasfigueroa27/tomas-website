@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Calendar } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Roatan Real Estate Market Guide 2026 | Tomas Figueroa',
+  title: 'Roatan Real Estate Market 2026',
   description: 'Up-to-date Roatan real estate market data: average prices, rental yields, foreign ownership rules, buying process, and key investment facts for 2026.',
   alternates: { canonical: 'https://www.tomasfigueroa.com/roatan-market' },
 };

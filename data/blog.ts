@@ -8,6 +8,7 @@ export type ContentBlock =
 export interface BlogPost {
   slug: string;
   title: string;
+  seoTitle?: string;
   date: string;
   category: string;
   excerpt: string;
@@ -153,6 +154,7 @@ const posts: BlogPost[] = [
   {
     slug: 'roatan-travel-guide-faqs',
     title: '10 Essential FAQs About Roatan: Your Ultimate Travel Guide',
+    seoTitle: '10 Essential Roatan Travel FAQs',
     date: '2026-04-01',
     category: 'Travel Guide',
     excerpt:
@@ -314,6 +316,7 @@ const posts: BlogPost[] = [
   {
     slug: 'top-roatan-real-estate-agencies',
     title: 'Top Roatan Real Estate Agencies for Your Dream Property',
+    seoTitle: 'Top Roatan Real Estate Agencies',
     date: '2026-04-24',
     category: 'Buying Guide',
     excerpt:

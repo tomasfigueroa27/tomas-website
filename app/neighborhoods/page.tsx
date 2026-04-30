@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import neighborhoods from '@/data/neighborhoods';
 
 export const metadata: Metadata = {
-  title: 'Roatan Neighborhoods Guide | Tomas Figueroa',
+  title: 'Roatan Neighborhoods Guide',
   description: "Explore Roatan's top neighborhoods — from West Bay Beach luxury condos to the expat-friendly West End village. Compare price ranges, lifestyle, and investment potential for each area.",
   alternates: { canonical: 'https://www.tomasfigueroa.com/neighborhoods' },
 };

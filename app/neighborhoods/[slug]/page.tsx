@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const n = neighborhoods.find((n) => n.slug === slug);
   if (!n) return {};
   return {
-    title: `${n.name} Real Estate Guide | Roatan | Tomas Figueroa`,
+    title: `${n.name} Real Estate Guide`,
     description: `${n.tagline}. ${n.description[0].slice(0, 120)}...`,
     alternates: { canonical: `https://www.tomasfigueroa.com/neighborhoods/${n.slug}` },
   };

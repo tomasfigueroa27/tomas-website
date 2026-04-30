@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = posts.find((p) => p.slug === slug);
   if (!post) return {};
   return {
-    title: post.title,
+    title: post.seoTitle ?? post.title,
     description: post.excerpt,
     alternates: { canonical: `https://www.tomasfigueroa.com/blog/${post.slug}` },
     openGraph: { type: 'article', publishedTime: post.date, section: post.category, ...(post.image ? { images: [post.image] } : {}) },
