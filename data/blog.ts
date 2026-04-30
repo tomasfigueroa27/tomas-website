@@ -3,7 +3,8 @@ export type ContentBlock =
   | { type: 'h2'; text: string }
   | { type: 'h3'; text: string }
   | { type: 'ul'; items: string[] }
-  | { type: 'facts'; items: { label: string; value: string }[] };
+  | { type: 'facts'; items: { label: string; value: string }[] }
+  | { type: 'table'; headers: string[]; rows: string[][] };
 
 export interface BlogPost {
   slug: string;
@@ -515,6 +516,256 @@ const posts: BlogPost[] = [
           { anchor: 'Closing Cost Calculator', href: 'https://www.tomasfigueroa.com/calculator' },
           { anchor: 'read what past clients say', href: 'https://share.google/0BOwKXj6DOXlgtZJq' },
         ],
+      },
+    ],
+  },
+  {
+    slug: 'roatan-q1-2026-market-report',
+    title: 'Roatan Q1 2026 Real Estate Market Report: A Cooling Market Behind the Headlines',
+    seoTitle: 'Roatan Q1 2026 Market Report',
+    date: '2026-04-30',
+    category: 'Market Report',
+    excerpt: "Closed deals fell 15.8% year-over-year, days on market rose 27%, and buyers negotiated 8.3% off list price. Behind the headline numbers, Q1 2026 tells a clear story: the Roatan market is cooling — and for the right buyers, that is the opportunity.",
+    summary: [
+      'Closed sales down 15.8% in deal count and 20.4% in dollar volume vs Q1 2025.',
+      'Average days on market increased from 250 to 317 — a 27% slowdown in absorption speed.',
+      'Buyers negotiated a median 8.3% off list price, up from 5.9% a year earlier.',
+      'Two geopolitical events — the Iran war outbreak and the US Venezuela operation — directly suppressed North American buyer activity across the full quarter.',
+      'Sandy Bay was the strongest non-West Bay submarket; West End closed zero deals despite new pre-construction activity.',
+    ],
+    body: [
+      {
+        type: 'p',
+        text: 'Bay Islands Q1 2026 Market Analysis | Residential, Multi-Family & Commercial Property',
+      },
+      {
+        type: 'p',
+        text: "If you read most Q1 2026 Roatan real estate market summaries, you'll come away thinking the market is roughly flat year-over-year. The headline numbers — total volume, average sale price, contract activity in West Bay — look stable. But that read is misleading.",
+      },
+      {
+        type: 'p',
+        text: "A meaningful portion of the Q1 2026 contract volume came from a single broker-owned development whose sales are partly transacted directly with U.S. buyers outside the standard Roatan MLS flow. Once you adjust for that pipeline, the underlying Roatan market tells a very different story: fewer deals, longer days on market, lower offers accepted, and a buyer pool clearly hesitating against a backdrop of two major geopolitical shocks.",
+      },
+      {
+        type: 'p',
+        text: 'This report compares Roatan property performance for Q1 2025 vs Q1 2026 across residential, multi-family, and commercial transactions (land sales excluded). We focus on closed sales as the most reliable measure, while noting what under-contract activity tells us about forward demand.',
+      },
+      {
+        type: 'h2',
+        text: 'Quick Answer: Is Roatan Real Estate Up or Down in Q1 2026?',
+      },
+      {
+        type: 'p',
+        text: 'Closed sales are down approximately 16% in deal count and 20% in dollar volume year-over-year. Properties are taking 27% longer to sell, and buyers are negotiating roughly 8% off list price — versus 6% a year earlier. The underlying Roatan resale market is meaningfully softer than at any point in the past three years.',
+      },
+      {
+        type: 'h2',
+        text: 'The Geopolitical Backdrop: Two Shocks Hitting Q1 Buyer Sentiment',
+      },
+      {
+        type: 'p',
+        text: "Q1 2026 was not a normal real estate quarter. Two major geopolitical events directly affected the buyer profile that drives Roatan demand — primarily U.S. and Canadian buyers, alongside Honduran nationals and longtime expat residents.",
+      },
+      {
+        type: 'h3',
+        text: 'The 2026 Iran War',
+      },
+      {
+        type: 'p',
+        text: "On 28 February 2026, Israel and the United States began a series of strikes against Iran, with the stated aim to induce regime change and target its nuclear and ballistic missile programme. A conditional ceasefire was declared on 8 April. (Source: House of Commons Library)",
+      },
+      {
+        type: 'p',
+        text: "The economic spillover hit immediately. Global oil prices spiked 11% after Iran threatened to close the Strait of Hormuz. Around 20% of global petroleum and 20% of liquified natural gas traverses the Strait of Hormuz each year. Pre-conflict, around 3,000 vessels used the strait each month — their numbers fell to around 5% of this level. (Source: House of Commons Library)",
+      },
+      {
+        type: 'p',
+        text: "For North American buyers — the core of Roatan's market — the war's outbreak in late February meant the entire final month of Q1 unfolded against headlines about a major Middle East conflict, a global oil shock, and potential stagflation in Europe. Discretionary capital allocations to second homes and investment property in another country are the first thing to freeze under those conditions.",
+      },
+      {
+        type: 'h3',
+        text: 'The Venezuela Operation',
+      },
+      {
+        type: 'p',
+        text: "On 3 January, the US conducted a military operation in Venezuela that removed President Nicolás Maduro and his wife, Cilia Flores, from the country.",
+      },
+      {
+        type: 'p',
+        text: "While Roatan does not draw heavily from a Latin American buyer base, the Venezuela operation shaped Q1 2026 in two indirect ways: it created broad regional uncertainty about U.S. military posture in the Caribbean, and it dominated North American news cycles during January — a critical month for snowbird buying decisions and travel planning to the Bay Islands.",
+      },
+      {
+        type: 'p',
+        text: 'The combined effect of these two shocks bracketing the entire quarter is the single most important context for reading the Q1 2026 numbers.',
+      },
+      {
+        type: 'h2',
+        text: 'Closed Sales: Q1 2026 vs Q1 2025',
+      },
+      {
+        type: 'p',
+        text: 'Covering residential, multi-family, and commercial transactions on Roatan and the Bay Islands. Land sales excluded.',
+      },
+      {
+        type: 'table',
+        headers: ['Metric', 'Q1 2025', 'Q1 2026', 'Change'],
+        rows: [
+          ['Closed deals', '38', '32', '−15.8%'],
+          ['Total volume', '$15.8M', '$12.6M', '−20.4%'],
+          ['Average sold price', '$415K', '$392K', '−5.5%'],
+          ['Average days on market', '250', '317', '+26.8%'],
+          ['Median sale-to-list ratio', '94.1%', '91.7%', '−2.4 pts'],
+        ],
+      },
+      {
+        type: 'h3',
+        text: 'What the closing data tells us',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Buyers in Q1 2026 negotiated harder. A 91.7% median sale-to-list ratio means the typical Roatan property sold for about 8.3% below asking price. In Q1 2025, buyers were conceding only 5.9% off list.',
+          'Properties marketed two months longer. Average DOM jumped from 250 to 317 days — a 27% increase.',
+          'The mid-market took the hit. Average closing price dropped, suggesting weaker mid-volume demand rather than weakness at the high end.',
+        ],
+      },
+      {
+        type: 'p',
+        text: 'These three signals together — fewer deals, longer marketing periods, larger discounts — define a clear buyer\'s market.',
+      },
+      {
+        type: 'h2',
+        text: 'What About Under-Contract Activity?',
+      },
+      {
+        type: 'p',
+        text: 'Headline under-contract volume looks flat year-over-year, but this metric is unusually noisy in Q1 2026 and we\'d encourage caution interpreting it. Roatan MLS contract dates reflect when listings are recorded as under contract — not necessarily when the buyer-seller agreement was actually reached. Some Q1 2026 contracts represent reservations that had been pending for months and were finally entered into the system this quarter. Others represent transactions handled outside the typical MLS flow that only surface when paperwork catches up.',
+      },
+      {
+        type: 'p',
+        text: "What we can say with confidence: the closing data — which reflects executed transactions with fixed dates — shows a clear cooling market. Deal counts are down, marketing periods are stretched, and sellers are conceding more. That picture aligns with what we hear on the ground from active brokers across West Bay, West End, and Sandy Bay.",
+      },
+      {
+        type: 'h2',
+        text: 'Best Performing Areas in Q1 2026',
+      },
+      {
+        type: 'h3',
+        text: 'Top Areas by Closed Sales (Q1 2026)',
+      },
+      {
+        type: 'ul',
+        items: [
+          'West Bay (WB) — 8 deals, $3.0M',
+          'Sandy Bay (SB) — 5 deals, $1.5M',
+          'Utila (UTI) — 4 deals, $1.5M',
+          'Coxen Hole / Turtle Crossing — 2 deals each',
+        ],
+      },
+      {
+        type: 'h3',
+        text: 'Geographic Highlights',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Sandy Bay was the standout submarket of Q1 2026. Five closed sales totaling $1.5M, with strong activity in the under-$400K range. For buyers priced out of West Bay, Sandy Bay offered the best balance of activity and value.',
+          'West Bay remains the leader by deal count but at lower average price points than Q1 2025, reflecting a shift toward smaller, lower-priced units closing while higher-end inventory sits.',
+          'West End cooled. Despite new pre-construction launches, Q1 2026 closing activity in West End slipped from 4 deals to 0 — surprising given West End\'s normally consistent demand.',
+          'Camp Bay broke through at the high end with two large transactions in Q1 2026, the kind of pocket activity that lifts averages without reflecting broad market health.',
+        ],
+      },
+      {
+        type: 'h2',
+        text: 'What This Means for Buyers and Sellers',
+      },
+      {
+        type: 'h3',
+        text: 'For buyers',
+      },
+      {
+        type: 'p',
+        text: "The Roatan market in Q1 2026 is the most buyer-friendly it has been in three years. Median sale-to-list ratios under 92%, average DOM over 300 days, and a 16% drop in deal count mean sellers are increasingly motivated. Aged inventory — listings over 6 months on market — is the primary leverage point. The geopolitical noise that has cooled other buyers is your opportunity. Sellers who decided to list in 2025 are watching new activity drop and are more negotiable than the headline averages suggest.",
+      },
+      {
+        type: 'h3',
+        text: 'For sellers',
+      },
+      {
+        type: 'p',
+        text: "Pricing right at listing time matters more than ever. The market is rewarding price discipline, not aspirational asking prices. Properties relying on long marketing periods to find a buyer are facing a smaller, more cautious buyer pool than a year ago. If you're listing in Q2 2026, expect a longer absorption window and price accordingly from day one.",
+      },
+      {
+        type: 'h3',
+        text: 'For investors',
+      },
+      {
+        type: 'p',
+        text: "The closing data reflects buyer caution far more than property fundamentals. Roatan's underlying demand drivers — North American retirees, Canadian snowbirds, Honduran capital seeking safe Caribbean assets — are intact. Q1 2026 weakness is a function of timing (Iran war, Venezuela operation, oil shock) rather than structural decline. Investors who can act when others are hesitating typically find their best entry points in quarters that look exactly like this one.",
+      },
+      {
+        type: 'h2',
+        text: 'Methodology',
+      },
+      {
+        type: 'p',
+        text: 'Data sourced from the Roatan Bay Islands MLS for January 1–March 31, 2025 (Q1 2025) and January 1–March 31, 2026 (Q1 2026). All figures cover residential, multi-family, and commercial transactions only — land sales are excluded. "Closed" means transactions with a recorded closing date in the quarter. Under-contract data was reviewed but is noted as having reliability limitations due to the timing of MLS contract entries relative to actual agreement dates.',
+      },
+      {
+        type: 'h2',
+        text: 'Frequently Asked Questions',
+      },
+      {
+        type: 'h3',
+        text: 'Did Roatan property values go up or down in Q1 2026?',
+      },
+      {
+        type: 'p',
+        text: 'Average closed prices fell 5.5% year-over-year (from $415K to $392K), and the median sale-to-list ratio dropped from 94.1% to 91.7%, indicating buyers negotiated larger discounts off asking prices. This reflects buyer caution amid global geopolitical events more than a structural decline in underlying values.',
+      },
+      {
+        type: 'h3',
+        text: 'How did the Iran war and Venezuela crisis affect Roatan real estate in Q1 2026?',
+      },
+      {
+        type: 'p',
+        text: "The US military operation in Venezuela on January 3 and the outbreak of the Iran war on February 28 bracketed the entire quarter with major geopolitical uncertainty. The Iran war's oil shock and global market volatility froze discretionary capital decisions for North American buyers — Roatan's primary buyer base — during the closing month of the quarter. The Venezuela operation dominated US and Canadian news cycles in January, slowing snowbird buying decisions during a normally active period.",
+      },
+      {
+        type: 'h3',
+        text: 'Which Roatan area had the strongest market in Q1 2026?',
+      },
+      {
+        type: 'p',
+        text: 'West Bay led in absolute deal count, with Sandy Bay close behind and showing strong relative performance. Sandy Bay was the strongest non-West Bay submarket on a dollar-volume basis.',
+      },
+      {
+        type: 'h3',
+        text: 'How long are Roatan properties taking to sell in 2026?',
+      },
+      {
+        type: 'p',
+        text: 'The average closed sale in Q1 2026 spent 317 days on market, up from 250 days in Q1 2025 — a 27% increase that reflects a meaningfully slower pace of market absorption.',
+      },
+      {
+        type: 'h3',
+        text: 'Is now a good time to buy property in Roatan?',
+      },
+      {
+        type: 'p',
+        text: 'Q1 2026 data shows the most buyer leverage in three years: longer marketing periods, lower sale-to-list ratios, and a 16% drop in deal count. Sellers of aged inventory are increasingly negotiable. The geopolitical uncertainty that has cooled other buyers is itself the opportunity for investors willing to act when others are hesitating.',
+      },
+      {
+        type: 'h3',
+        text: 'Who buys real estate on Roatan?',
+      },
+      {
+        type: 'p',
+        text: "The Roatan buyer base is overwhelmingly North American — primarily US and Canadian buyers — alongside longtime expat residents and Honduran nationals. Unlike some Caribbean destinations, Roatan does not draw heavily from Latin American buyer flows, which is why the Venezuela crisis affected sentiment more than transaction flow directly.",
+      },
+      {
+        type: 'p',
+        text: 'Data analysis based on MLS records for Q1 2025 and Q1 2026 covering residential, multi-family, and commercial transactions on Roatan and the Bay Islands. Market conditions are subject to change. This report is for informational purposes only and does not constitute investment advice.',
       },
     ],
   },
