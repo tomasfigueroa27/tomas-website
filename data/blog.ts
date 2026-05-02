@@ -705,6 +705,138 @@ const posts: BlogPost[] = [
       },
       {
         type: 'h2',
+        text: 'Reading April Through the Right Lens: Closed = Lagging, Under Contract = Leading',
+      },
+      {
+        type: 'p',
+        text: 'The April closings (−65% YoY, −73.5% by volume) look catastrophic in isolation. But that is not what they actually tell us about today\'s market.',
+      },
+      {
+        type: 'p',
+        text: 'Closed sales in April 2026 reflect deals negotiated during the worst weeks of Q1 — late February (Iran war outbreak) through March (oil shock, Hormuz closure, peak Venezuela headlines). The 30–60 day lag between contract and close means April closings are essentially a delayed snapshot of peak geopolitical uncertainty. They were always going to print weak.',
+      },
+      {
+        type: 'p',
+        text: "Under-contract activity in April 2026, by contrast, reflects buyer decisions made in April itself — after the Iran ceasefire was announced (April 8) and as North American buyers began processing the new equilibrium.",
+      },
+      {
+        type: 'p',
+        text: 'Reframing the April data side-by-side:',
+      },
+      {
+        type: 'table',
+        headers: ['Indicator', 'April 2025', 'April 2026', 'Direction', 'What it tells us'],
+        rows: [
+          ['Closed deals', '20', '7 (−65%)', 'Lagging', 'How bad Q1 actually was'],
+          ['Closed volume', '$7.06M', '$1.87M (−73.5%)', 'Lagging', 'Buyer commitments during the shock'],
+          ['Properties under contract', '16', '10 (−37.5%)', 'Leading', 'Softer, but not collapsed'],
+          ['Under-contract volume', '$4.51M', '$5.06M (+12.2%)', 'Leading', 'Higher YoY despite fewer deals'],
+          ['Median DOM at contract', '273 days', '81 days', 'Leading', 'Quality listings moving fast'],
+        ],
+      },
+      {
+        type: 'h3',
+        text: 'The volume signal matters',
+      },
+      {
+        type: 'p',
+        text: 'This is the data point that changes the narrative: April 2026 under-contract volume was actually 12% higher than April 2025 — $5.06M vs $4.51M — even with 38% fewer deals. The buyers who returned to the market in April were not bargain-hunting at the bottom of the price spectrum. They were committing to higher-priced, higher-quality product at near-asking prices.',
+      },
+      {
+        type: 'p',
+        text: "When closed-sale volume drops 73% but pending volume rises 12% in the same month, you're not looking at a deteriorating market. You're looking at a market where the lag and lead indicators are pulling in opposite directions — and the lead indicator is what predicts May and June.",
+      },
+      {
+        type: 'h3',
+        text: 'The single-development question — does it matter for April?',
+      },
+      {
+        type: 'p',
+        text: 'Earlier in this analysis we flagged a single broker-owned beachfront development as the biggest distortion in Q1 contract activity. For April, the picture is much cleaner.',
+      },
+      {
+        type: 'table',
+        headers: ['Metric', 'Including that development', 'Excluding it'],
+        rows: [
+          ['Contracts', '10', '8'],
+          ['Volume', '$5.06M', '$3.49M'],
+          ['YoY volume change', '+12.2%', '−22.6%'],
+        ],
+      },
+      {
+        type: 'p',
+        text: 'That single development accounts for 2 of the 10 April contracts and $1.57M of the $5.06M volume (31%). Stripping it out, the rest of the Roatan market saw 8 contracts at $3.49M — roughly half the deal count of April 2025 (16 contracts at $4.51M).',
+      },
+      {
+        type: 'p',
+        text: 'The recovery signal still holds without that development, just less dramatically. Even excluding it:',
+      },
+      {
+        type: 'ul',
+        items: [
+          '8 fresh contracts in a single month is meaningful activity for a recovering market.',
+          'The median DOM at contract for those 8 was still well below the 273-day April 2025 figure — well-priced listings across the broader market are also moving fast.',
+          '3 of the 8 contracts were in Utila, totaling $0.96M — confirming the geographic shift away from West Bay into emerging submarkets flagged in the Q1 analysis.',
+        ],
+      },
+      {
+        type: 'p',
+        text: 'In short: the single beachfront development helped, but it did not manufacture the April recovery signal on its own.',
+      },
+      {
+        type: 'h3',
+        text: 'What this combination actually signals',
+      },
+      {
+        type: 'p',
+        text: 'A market that took a hard hit in Q1 and is now stabilizing — not deteriorating further.',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Lagging indicator (closings) shows how bad Q1 was.',
+          'Leading indicator (April under-contract) shows demand returned in April, with volume actually up YoY and serious buyers committing to quality product fast.',
+          "The recovery signal is real with or without the broker-owned beachfront development — that one project amplifies the signal but doesn't create it.",
+        ],
+      },
+      {
+        type: 'h3',
+        text: 'The investment implication shifts',
+      },
+      {
+        type: 'p',
+        text: "Earlier in this analysis we framed Q1 as the most buyer-friendly market in three years. The April under-contract data refines that view.",
+      },
+      {
+        type: 'p',
+        text: "The buyer-leverage window may be narrower than it appears. Aged inventory will remain negotiable for several more months as those sellers absorb the Q1 reality. But fresh, well-priced listings are already moving in 81 days at near-asking prices, with rising dollar volume committed. That's not a market in free-fall — that's a market where the opportunistic window is closing on the best product even as it stays open on aged stock.",
+      },
+      {
+        type: 'h3',
+        text: 'For buyers',
+      },
+      {
+        type: 'p',
+        text: 'Move on aged inventory now. New listings priced correctly will not stay negotiable.',
+      },
+      {
+        type: 'h3',
+        text: 'For sellers',
+      },
+      {
+        type: 'p',
+        text: "If you list in May or June, price for today's market — not Q1 2025 comps. Properties priced correctly are selling in under 3 months. Aspirationally priced listings will join the aged-inventory pile and sit.",
+      },
+      {
+        type: 'h3',
+        text: 'For the market overall',
+      },
+      {
+        type: 'p',
+        text: "April's leading-indicator data is the first sign that the Q1 shock is being absorbed, not extended. May and June closing data — reflecting these April contracts — should print materially better than April closings did. If that happens, the cooling thesis becomes a quarter-long disruption rather than a structural shift.",
+      },
+      {
+        type: 'h2',
         text: 'Methodology',
       },
       {
