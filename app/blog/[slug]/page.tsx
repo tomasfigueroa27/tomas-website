@@ -177,6 +177,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           >
             {post.title}
           </h1>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', marginTop: 10, marginBottom: 0 }}>Published: {formatDate(post.date)}</p>
         </div>
       </section>
 
