@@ -113,9 +113,17 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.tomasfigueroa.com',
     siteName: 'Tomas Figueroa Real Estate',
+    title: 'Roatan Real Estate | Tomas Figueroa – KW Roatan',
+    description: 'Buy, sell, or invest in Roatan, Honduras real estate with Tomas Figueroa at Keller Williams Roatan. Expert guidance on Caribbean property, new developments, and investment opportunities.',
+    images: [{ url: 'https://www.tomasfigueroa.com/opengraph.jpg', width: 1200, height: 630, alt: 'Roatan Real Estate – Tomas Figueroa' }],
   },
   twitter: {
     card: 'summary_large_image',
+    site: '@tomasfigueroa',
+    creator: '@tomasfigueroa',
+    title: 'Roatan Real Estate | Tomas Figueroa – KW Roatan',
+    description: 'Strategic real estate guidance for investors and buyers considering property in Roatan, Honduras.',
+    images: ['https://www.tomasfigueroa.com/opengraph.jpg'],
   },
   robots: {
     index: true,
