@@ -33,6 +33,7 @@ export interface Neighborhood {
   bestFor: string[];
   marketStats: NeighborhoodMarketStats;
   buyerGuide: NeighborhoodGuideSection[];
+  faqSchemaItems: Array<{ q: string; a: string }>;
   facts: NeighborhoodFact[];
   faqs: NeighborhoodFAQ[];
 }
@@ -72,6 +73,11 @@ const neighborhoods: Neighborhood[] = [
         title: 'What\'s Coming to West Bay Beach',
         content: 'The Margaritaville Island Reserve Resort (170 all-inclusive rooms, opening 2027) and the operating Kimpton Grand Roatán Resort & Spa are both positioned on or near West Bay Beach. Branded resort anchors historically lift surrounding property values by raising nightly rates, occupancy benchmarks, and buyer demand from travelers who visit and return as buyers.',
       },
+    ],
+    faqSchemaItems: [
+      { q: 'What is the average property price in West Bay Beach Roatan?', a: 'The median sale price in West Bay Beach is approximately $485,000. Price range runs from $300,000 for smaller condos to $2,000,000+ for luxury beachfront villas.' },
+      { q: 'What rental yield can I expect from a West Bay Beach property?', a: 'Well-managed vacation rentals in West Bay Beach yield 7–9% annually. One-bedroom and two-bedroom beachfront condos in high-occupancy resort complexes consistently outperform the island average.' },
+      { q: 'Is West Bay Beach a good investment?', a: 'West Bay Beach is Roatan\'s most liquid real estate market with the highest rental demand. It is best suited for buyers combining personal use with short-term rental income. Year-over-year appreciation has run approximately 6.2% over the last five years.' },
     ],
     facts: [
       { label: 'Price Range', value: '$300,000 – $2,000,000+' },
@@ -135,6 +141,11 @@ const neighborhoods: Neighborhood[] = [
         content: 'West End benefits from the same flight connectivity improvements driving demand across the island. Air Canada\'s new nonstop service from Montréal and Toronto (launching December 2026) introduces a new buyer pool — Canadian lifestyle seekers — for whom West End\'s character and price point will be particularly appealing.',
       },
     ],
+    faqSchemaItems: [
+      { q: 'What is the average property price in West End Roatan?', a: 'The median sale price in West End is approximately $275,000. Price range runs from $150,000 for studios to $650,000 for larger homes with ocean views.' },
+      { q: 'Is West End Roatan good for expats?', a: 'West End is widely considered the most expat-friendly neighborhood on Roatan. It has a walkable village atmosphere, a well-established foreign resident community, and the island\'s highest concentration of restaurants, dive shops, and social venues.' },
+      { q: 'What rental yield can I expect from a West End property?', a: 'Vacation rentals in West End yield 6–8% annually, driven by consistent dive-tourism and backpacker demand year-round.' },
+    ],
     facts: [
       { label: 'Price Range', value: '$150,000 – $600,000' },
       { label: 'Vibe', value: 'Laid-back expat village with bars, dive shops, and restaurants' },
@@ -196,6 +207,11 @@ const neighborhoods: Neighborhood[] = [
         title: 'Investment Considerations',
         content: 'Sandy Bay does not produce the short-term rental yields of West Bay, but it offers lower acquisition cost, lower competition, and a stable base of long-term renters from the island\'s professional and expat community. It is a fundamentals buy — slower appreciation, lower risk, steady income.',
       },
+    ],
+    faqSchemaItems: [
+      { q: 'What is the average property price in Sandy Bay Roatan?', a: 'The median sale price in Sandy Bay is approximately $310,000. Price range runs from $180,000 for entry-level homes to $850,000 for larger hillside estates with ocean views.' },
+      { q: 'Is Sandy Bay Roatan good for full-time expat living?', a: 'Sandy Bay is one of Roatan\'s most established residential neighborhoods, with a stable expat community and quieter character than the tourist-heavy western areas. It suits families, retirees, and full-time residents who prioritize community and space over beach proximity.' },
+      { q: 'What rental yield can I expect from a Sandy Bay property?', a: 'Sandy Bay vacation rentals yield 5–7% annually. The neighborhood performs better for long-term rental income than short-term vacation platforms, given its residential character and proximity to the island\'s expat professional community.' },
     ],
     facts: [
       { label: 'Price Range', value: '$200,000 – $800,000' },
@@ -259,6 +275,11 @@ const neighborhoods: Neighborhood[] = [
         content: 'Pristine Bay\'s long-term appreciation case is tied to the continued build-out of its master plan and Roatan\'s overall rise as a recognized Caribbean destination. Every branded hotel arrival on the island raises its comparables. As the island reprices upward, Pristine Bay — already positioned at the top — reprices fastest.',
       },
     ],
+    faqSchemaItems: [
+      { q: 'What is the average property price in Pristine Bay Roatan?', a: 'The median sale price in Pristine Bay is approximately $520,000. Price range runs from $280,000 for resort-branded condos to $2,500,000+ for custom oceanfront villas with marina access.' },
+      { q: 'What amenities does Pristine Bay Roatan offer?', a: 'Pristine Bay is Roatan\'s only master-planned resort community, spanning 2,500 acres on the east end of the island. It includes an 18-hole golf course, beach club, marina, resort hotel, pools, and 24/7 gated security — the most comprehensively amenitized residential community on the island.' },
+      { q: 'What rental yield can I expect from a Pristine Bay property?', a: 'Rental yields in Pristine Bay run 6–8% annually, supported by the resort\'s managed rental program and high-end short-term visitor demand. Year-over-year appreciation has run approximately 7.1%, the highest of any Roatan neighborhood.' },
+    ],
     facts: [
       { label: 'Price Range', value: '$400,000 – $3,000,000+' },
       { label: 'Vibe', value: 'Exclusive gated resort community with full amenities' },
@@ -321,6 +342,11 @@ const neighborhoods: Neighborhood[] = [
         content: 'Properties in French Harbour take longer to sell than west-end properties due to lower international buyer demand. Buyers should approach French Harbour with a long-term hold mindset — 5+ years — and focus on properties with clear practical utility or commercial income potential.',
       },
     ],
+    faqSchemaItems: [
+      { q: 'What is the average property price in French Harbour Roatan?', a: 'The median sale price in French Harbour is approximately $195,000. Price range runs from $100,000 for entry-level properties to $500,000 for larger homes or commercial real estate.' },
+      { q: 'Is French Harbour Roatan a good place to buy commercial real estate?', a: 'French Harbour is Roatan\'s commercial center and the best neighborhood on the island for commercial real estate investment. It is home to the island\'s largest supermarkets, hardware stores, and marine services — the primary service hub for both residents and the fishing industry.' },
+      { q: 'What rental yield can I expect from a French Harbour property?', a: 'French Harbour is primarily a residential and commercial market rather than a vacation rental market. Long-term rental yields run approximately 4–6% annually. Buyers here typically prioritize value and practical utility over short-term rental income.' },
+    ],
     facts: [
       { label: 'Price Range', value: '$100,000 – $400,000' },
       { label: 'Vibe', value: 'Authentic working town — commercial and fishing industry hub' },
@@ -382,6 +408,11 @@ const neighborhoods: Neighborhood[] = [
         title: 'Market Dynamics',
         content: 'Coxen Hole\'s appreciation has historically lagged the west end, but the island\'s overall growth trajectory eventually lifts all markets. As Roatan\'s total visitor count grows and the west end becomes more expensive, overflow demand will gradually push buyers east — making early positioning in Coxen Hole a contrarian long-term play.',
       },
+    ],
+    faqSchemaItems: [
+      { q: 'What is the average property price in Coxen Hole Roatan?', a: 'The median sale price in Coxen Hole is approximately $155,000. Price range runs from $80,000 for entry-level condos to $350,000 for larger homes — making it the most affordable neighborhood on the island.' },
+      { q: 'Why is Coxen Hole the most affordable neighborhood in Roatan?', a: 'Coxen Hole is Roatan\'s administrative capital and primary port — a working town with limited beach access and less international buyer demand than the western tourist areas. Its affordability reflects its local-market character rather than any underlying weakness in the island\'s fundamentals.' },
+      { q: 'What rental yield can I expect from a Coxen Hole property?', a: 'Coxen Hole is primarily a local residential and commercial market. Rental yields run approximately 3–5% annually. The investment case here is based on low acquisition cost and long-term appreciation as the island\'s overall market rises.' },
     ],
     facts: [
       { label: 'Price Range', value: '$80,000 – $350,000' },
