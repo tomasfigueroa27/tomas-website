@@ -8,11 +8,11 @@ export const metadata: Metadata = {
 };
 
 const stats = [
-  { label: 'Average Condo Price', value: '$285,000' },
-  { label: 'Average Home Price', value: '$425,000' },
+  { label: 'Average Condo Price', value: '$325,000' },
+  { label: 'Average Home Price', value: '$397,000' },
   { label: 'Avg. Rental Yield', value: '6–8%' },
-  { label: 'Annual Tourism', value: '1.2M+ Visitors' },
-  { label: 'Property Appreciation', value: '5–8% Annually' },
+  { label: 'Annual Tourism', value: '2M+ Visitors' },
+  { label: 'Property Appreciation', value: '5–7% CAGR' },
   { label: 'Foreign Ownership', value: '100% Allowed' },
 ];
 
