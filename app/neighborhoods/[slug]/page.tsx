@@ -150,6 +150,16 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
             <p style={{ fontSize: 11, color: '#999999', marginTop: 10, marginBottom: 0 }}>Source: Keller Williams Roatan transaction data and Roatan MLS, 2025–2026.</p>
           </div>
 
+          {/* Buyer Guide */}
+          <div style={{ marginBottom: 32 }}>
+            {neighborhood.buyerGuide.map((section) => (
+              <div key={section.title} style={{ marginBottom: 28 }}>
+                <h3 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 18, fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 10 }}>{section.title}</h3>
+                <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, margin: 0 }}>{section.content}</p>
+              </div>
+            ))}
+          </div>
+
           {/* Description */}
           <div style={{ marginBottom: 32 }}>
             {neighborhood.description.map((para, i) => (
