@@ -901,6 +901,321 @@ const posts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: 'why-buyers-use-real-estate-agents-roatan',
+    title: 'Why 9 out of 10 American Buyers Still Use a Real Estate Agent — and What That Means for Buying Property in Roatan',
+    seoTitle: 'Why Use a Real Estate Agent in Roatan?',
+    date: '2026-05-07',
+    category: 'Buying Guide',
+    excerpt: "88% of American homebuyers still hire a real estate agent in the most transparent property market on earth. In Roatan, where documents are in Spanish, title types differ dramatically, and key market intel is never online, the case for representation is dramatically stronger — not weaker.",
+    summary: [
+      "88% of US homebuyers used an agent in 2025 — and 92% said they would do it again.",
+      "In Roatan, documents are in Spanish, the legal system is notarial, and the information asymmetry is far greater than in any North American market.",
+      "Buying derechos posesorios instead of dominio pleno is the most common and costly mistake foreign buyers make in Roatan.",
+      "The seller pays the real estate commission in Roatan — buyer representation costs nothing out of pocket.",
+      "Key catalysts are arriving: Air Canada nonstop flights, the Hotel Roatán Meliá acquisition, and Margaritaville opening in 2028.",
+    ],
+    body: [
+      {
+        type: 'p',
+        text: "Quick answer: In 2025, 88% of US homebuyers still hired a real estate agent — in the most transparent property market on earth. In Roatan, the case for representation is dramatically stronger, not weaker.",
+      },
+      {
+        type: 'p',
+        text: "The National Association of Realtors releases a Profile of Home Buyers and Sellers every year. It is the most comprehensive look at how Americans actually buy and sell homes. The 2025 edition published a number that should land hard for anyone considering a property purchase abroad.",
+      },
+      {
+        type: 'p',
+        text: "In a market where every comp, every tax record, every prior sale, every school rating, every flood-zone map is one click away — 88% of American buyers still hired a real estate agent. And 92% of those buyers said they would do it again.",
+      },
+      {
+        type: 'p',
+        text: "That number is the entire argument of this post.",
+      },
+      {
+        type: 'h2',
+        text: 'The Data That Should Stop Every Foreign Buyer',
+      },
+      {
+        type: 'p',
+        text: "Here is what the 2025 NAR Profile of Home Buyers and Sellers actually shows:",
+      },
+      {
+        type: 'ul',
+        items: [
+          "88% of US buyers used a real estate agent or broker",
+          "92% of those buyers were satisfied with their agent's service",
+          "91% would recommend their agent to others",
+          "76% of first-time buyers said their agent's guidance was essential",
+          "67% of first-time buyers and 76% of repeat buyers hired the first agent they spoke to",
+          "Most buyers and sellers found their agent through a personal referral",
+        ],
+      },
+      {
+        type: 'p',
+        text: "That last bullet is worth pausing on. Most American buyers do not comparison-shop agents the way they comparison-shop houses. They get one referral, they hire that person, and they buy.",
+      },
+      {
+        type: 'p',
+        text: "This is happening in the United States — a market where every public record is online, Zillow and Redfin show comps in 30 seconds, school data, crime data, walk scores, and flood zones are free, tax history is searchable on the county website, and prior sales, prior listings, and prior price reductions are all visible.",
+      },
+      {
+        type: 'p',
+        text: "If 88% of buyers want a professional in the most transparent real estate market on earth, the question writes itself. What about a market that is none of those things?",
+      },
+      {
+        type: 'h2',
+        text: 'What Buying Property in Roatan Actually Involves',
+      },
+      {
+        type: 'p',
+        text: "Roatan is one of the strongest real estate value propositions in the Caribbean right now. The infrastructure is arriving — Air Canada launched nonstop flights from Montréal and Toronto for the 2026/27 winter season, the Hotel Roatán Media Luna recently joined the Meliá portfolio, and Margaritaville's all-inclusive opens in 2028. Yields on well-located rental properties run 7% to 10% annually. Foreign ownership is permitted. The legal framework is well-established.",
+      },
+      {
+        type: 'p',
+        text: "But Roatan also operates differently from anything most US and Canadian buyers have ever seen. Here is what is actually different.",
+      },
+      {
+        type: 'h3',
+        text: 'You are in a foreign country with a foreign legal system',
+      },
+      {
+        type: 'p',
+        text: "Honduras operates under civil law, not common law. The closing process is notarial — a notario público (a specially trained attorney) drafts and registers the deed. There is no escrow company in the US sense. There is no title insurance industry the way North Americans understand it. The protections you grew up assuming exist in the background of every transaction simply do not exist here. They have to be built into the deal, deliberately, by people who know how.",
+      },
+      {
+        type: 'h3',
+        text: 'Foreign ownership runs through Decree 90-90',
+      },
+      {
+        type: 'p',
+        text: "Foreigners can legally buy urban residential property in Roatan, but each individual is capped at 3,000 square meters — about 0.74 acres — of land. Larger holdings, raw land outside designated urban zones, and most commercial properties are held through a Honduran corporation. The corporation route is straightforward when handled correctly.",
+      },
+      {
+        type: 'h3',
+        text: 'Documents are in Spanish',
+      },
+      {
+        type: 'p',
+        text: "Every contract, every title document, every registry filing, every corporate resolution is in Spanish. English translations exist as courtesy copies, not as the legal instrument. If you sign something you cannot read, you have signed something you cannot read. Full stop.",
+      },
+      {
+        type: 'h3',
+        text: 'There is no Zillow',
+      },
+      {
+        type: 'p',
+        text: "Roatan has a real, functioning MLS — which is genuinely rare for the region and a serious asset. But the on-the-ground knowledge that determines whether a listed property is actually a good buy does not live on the MLS. It lives in the heads of people who have watched the island for years.",
+      },
+      {
+        type: 'h2',
+        text: 'The Most Expensive Mistake Foreigners Make on This Island',
+      },
+      {
+        type: 'p',
+        text: "If you read nothing else in this post, read this section.",
+      },
+      {
+        type: 'p',
+        text: "In Honduras there are two fundamentally different forms of ownership you can buy:",
+      },
+      {
+        type: 'ul',
+        items: [
+          "Dominio pleno — full registered title, recorded in the Public Property Registry, financeable, insurable, cleanly transferrable.",
+          "Derechos posesorios — possessory rights, often inherited across generations, sometimes legitimate, sometimes contested, rarely registrable, almost never financeable.",
+        ],
+      },
+      {
+        type: 'p',
+        text: "Foreigners buy derechos posesorios properties on this island all the time. The price looks great. The seller is friendly. The title document looks like a title document. And then years later — when the buyer tries to sell, when they try to build, when they apply for financing, when they try to leave it to their kids — the whole thing falls apart.",
+      },
+      {
+        type: 'p',
+        text: "This is the most common and most costly mistake foreign buyers make in Roatan. It is documented in every credible Honduran buyer's guide. And it is exactly the kind of thing a competent agent flags in the first 60 seconds of a property review — and that a buyer working alone, based on photos and a friendly seller, will not catch in 60 days.",
+      },
+      {
+        type: 'h2',
+        text: 'What You Cannot Google in Roatan',
+      },
+      {
+        type: 'p',
+        text: "Even when the title is dominio pleno and clean, the analysis is not finished. The information that actually protects a foreign buyer in Roatan is not online. It lives in the people who have been here long enough to remember.",
+      },
+      {
+        type: 'p',
+        text: "Things that do not live on any website:",
+      },
+      {
+        type: 'ul',
+        items: [
+          "Which developer has actually finished projects on schedule, and which has a graveyard of half-built shells with paid-up depositors waiting",
+          "Which gated community has stable HOA finances, and which is one special assessment away from a revolt",
+          "Which neighborhoods have reliable municipal water, which depend on cisterns, which flood in October",
+          "Which HOAs quietly restrict short-term rentals — sometimes amending the rules after foreign owners have bought banking on the rental income",
+          "Which areas are appreciating because of real catalysts (flight routes, hotel brands, infrastructure), and which are appreciating because of marketing",
+          "Which sellers will quietly accept 10% below ask for cash, and which will not",
+        ],
+      },
+      {
+        type: 'p',
+        text: "This is the value an agent actually adds. The listing access is the floor. The market judgment is the ceiling.",
+      },
+      {
+        type: 'h2',
+        text: 'How to Choose a Roatan Real Estate Agent',
+      },
+      {
+        type: 'p',
+        text: "If the case for using an agent is strong, the case for using the right agent is stronger. A few things matter here more than they would in the US.",
+      },
+      {
+        type: 'h3',
+        text: 'Bilingual fluency',
+      },
+      {
+        type: 'p',
+        text: "Not studied Spanish in college — functional, contractual, can-read-a-notarial-document fluency. The vast majority of communication with the notario, the Public Registry, and most local sellers happens in Spanish.",
+      },
+      {
+        type: 'h3',
+        text: 'Established brokerage',
+      },
+      {
+        type: 'p',
+        text: "Working through an internationally recognized brokerage (Keller Williams, Sotheby's, RE/MAX, Coldwell Banker) gives you process protections, compliance standards, and recourse paths that solo agents typically cannot replicate.",
+      },
+      {
+        type: 'h3',
+        text: 'Track record with foreign buyers specifically',
+      },
+      {
+        type: 'p',
+        text: "Domestic Honduran transactions and foreign-buyer transactions are not the same animal. The corporate setup, the residency questions, the international wire instructions, the closing logistics for someone flying in for 72 hours — these are foreign-buyer skills, learned by reps.",
+      },
+      {
+        type: 'h3',
+        text: 'Willing to tell you no',
+      },
+      {
+        type: 'p',
+        text: "An agent who says yes to every property, every developer, every neighborhood is not protecting you. They are protecting their commission.",
+      },
+      {
+        type: 'h2',
+        text: 'Frequently Asked Questions',
+      },
+      {
+        type: 'h3',
+        text: 'Do you legally need a real estate agent to buy property in Roatan?',
+      },
+      {
+        type: 'p',
+        text: "No. Honduras does not require buyers to use a licensed agent. A buyer can transact directly with a seller working only with a notarial attorney. In practice, foreign buyers who skip representation almost always pay for it later — through a title issue, a corporate-structure problem, an undisclosed restriction, or an overpayment that becomes obvious at resale.",
+      },
+      {
+        type: 'h3',
+        text: 'Who pays the real estate commission in Roatan?',
+      },
+      {
+        type: 'p',
+        text: "The seller pays. Standard commission across Roatan Realtors Association member agencies is 10% of the sale price, paid by the seller at closing. For a buyer, working with an agent costs nothing out of pocket.",
+      },
+      {
+        type: 'h3',
+        text: 'Can foreigners own property in Roatan?',
+      },
+      {
+        type: 'p',
+        text: "Yes. Honduras allows foreign ownership of urban residential property in Roatan under Decree 90-90, with a 3,000 square meter (about 0.74 acre) per-individual cap. Larger or non-urban holdings are typically held through a Honduran corporation, which a foreigner can fully control as the registered administrator. There are no nationality restrictions and no requirement to use a Honduran citizen as a partner or front.",
+      },
+      {
+        type: 'h3',
+        text: "What's the most common mistake foreigners make when buying in Roatan?",
+      },
+      {
+        type: 'p',
+        text: "Buying derechos posesorios (possessory rights) instead of property held under dominio pleno (full registered title). Possessory rights can look like ownership but are not registered in the Public Property Registry, are not financeable, and are not always defensible at resale or against competing claims. This is consistently the number-one preventable mistake in the Roatan foreign-buyer market.",
+      },
+      {
+        type: 'h3',
+        text: 'Is the Roatan real estate market safe for foreign buyers?',
+      },
+      {
+        type: 'p',
+        text: "The legal framework is safe and well-established. Honduras has had a functioning foreign-ownership regime for over three decades and the title registry system is reliable. The risks are not legal — they are informational. Buyers who work with experienced local agents and qualified Honduran attorneys close clean transactions on Roatan every week. Buyers who try to navigate the system alone, based on online listings and a one-week scouting visit, are the ones who run into trouble.",
+      },
+      {
+        type: 'h3',
+        text: "What's the average rental yield on a Roatan property?",
+      },
+      {
+        type: 'p',
+        text: "Rental yields on well-located Roatan vacation properties run roughly 5% to 8% per year, depending on location, property type, and management quality. Beachfront condos on West Bay typically perform at the higher end of that range. Inland properties produce lower yields but appreciate at competitive rates given limited beachfront supply.",
+      },
+      {
+        type: 'h3',
+        text: 'How much are closing costs on a Roatan property?',
+      },
+      {
+        type: 'p',
+        text: "Total closing costs typically run 5% to 8% of the purchase price for the buyer, including notarial fees, registry fees, transfer taxes, and (if applicable) Honduran corporation setup. The seller separately pays the 10% real estate commission.",
+      },
+      {
+        type: 'h3',
+        text: 'Do I need to be a resident to buy property in Roatan?',
+      },
+      {
+        type: 'p',
+        text: "No. Buying property in Roatan does not require Honduran residency, and owning property in Roatan does not automatically grant residency. Tourist visas allow stays of up to 90 days at a time. Honduras offers separate residency programs (rentista, pensionado, investor) with their own requirements for buyers planning to relocate.",
+      },
+      {
+        type: 'h2',
+        text: 'A Final Thought',
+      },
+      {
+        type: 'p',
+        text: "The headline statistic from the NAR data is interesting on its own. The deeper signal is this: even when buyers can theoretically do it themselves — even when the entire market is digitized, searchable, and one phone call away — almost nine in ten still want a professional in the room.",
+      },
+      {
+        type: 'p',
+        text: "That is not a statistic about access. It is a statistic about complexity. And complexity is the entire reason foreign real estate exists as a category.",
+      },
+      {
+        type: 'p',
+        text: "In Roatan, the complexity is higher. The language is different. The legal system is different. The information is older. The catalysts are real but uneven. The downside of mistakes is larger and harder to reverse.",
+      },
+      {
+        type: 'p',
+        text: "The case for representation here is not weaker. It is dramatically stronger. If you would not buy a house in your own city without an agent, the answer in Roatan is not 'I'll figure it out from the photos.'",
+      },
+      {
+        type: 'h2',
+        text: 'Sources and References',
+      },
+      {
+        type: 'ul',
+        items: [
+          "National Association of Realtors, 2025 Profile of Home Buyers and Sellers",
+          "BAM (nowbam.com), analysis of NAR 2025 buyer/seller agent usage data",
+          "Honduras Decree 90-90 (Ley de Propiedad), governing foreign property ownership in restricted zones",
+          "Instituto de la Propiedad de Honduras, Public Property Registry standards",
+          "Roatan Realtors Association, standard commission and Offer to Purchase guidelines",
+          "Caribbean Journal, Air Canada Roatán nonstop launch (April 2026)",
+          "Caribbean Journal, Hotel Roatán Media Luna by Meliá opening (January 2026)",
+          "Margaritaville Holdings / Karisma Hotels & Resorts, Island Reserve Roatan groundbreaking (2025, opening 2027)",
+        ],
+      },
+      {
+        type: 'h2',
+        text: 'About the Author',
+      },
+      {
+        type: 'p',
+        text: "Tomas Figueroa is a real estate professional with Keller Williams Roatan, Bay Islands, Honduras. He brings 20 years of international sales and business development experience and has spent the last four years working as a boots-on-ground agent on Roatan. He represents both buyers and sellers, partners with local developers, and sources investment deals for clients across the US, Canada, and globally. He is fluent in English and Spanish.",
+      },
+    ],
+  },
 ];
 
 export default posts;
