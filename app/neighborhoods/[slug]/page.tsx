@@ -47,10 +47,19 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
     '@context': 'https://schema.org',
     '@type': 'Place',
     name: `${neighborhood.name}, Roatan`,
-    description: neighborhood.description[0],
+    description: `${neighborhood.description[0]} Median sale price: ${neighborhood.marketStats.medianSalePrice}. Rental yield: ${neighborhood.marketStats.rentalYield}.`,
     containedInPlace: { '@type': 'AdministrativeArea', name: 'Roatan, Bay Islands, Honduras' },
     url: `https://www.tomasfigueroa.com/neighborhoods/${neighborhood.slug}`,
     ...(coords ? { geo: { '@type': 'GeoCoordinates', latitude: coords.lat, longitude: coords.lng } } : {}),
+    amenityFeature: [
+      { '@type': 'LocationFeatureSpecification', name: 'Median Sale Price', value: neighborhood.marketStats.medianSalePrice },
+      { '@type': 'LocationFeatureSpecification', name: 'Price Range', value: neighborhood.marketStats.priceRange },
+      { '@type': 'LocationFeatureSpecification', name: 'Avg Price per Sqft', value: neighborhood.marketStats.avgPricePerSqft },
+      { '@type': 'LocationFeatureSpecification', name: 'Typical Days on Market', value: neighborhood.marketStats.daysOnMarket },
+      { '@type': 'LocationFeatureSpecification', name: 'YoY Price Trend', value: neighborhood.marketStats.yoyTrend },
+      { '@type': 'LocationFeatureSpecification', name: 'Rental Yield', value: neighborhood.marketStats.rentalYield },
+      { '@type': 'LocationFeatureSpecification', name: 'Best Buyer Type', value: neighborhood.marketStats.bestBuyerType },
+    ],
   };
 
   const breadcrumbSchema = {
@@ -106,6 +115,39 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
                 <span style={{ fontSize: 13, color: '#555555' }}>{fact.value}</span>
               </div>
             ))}
+          </div>
+
+          {/* Market Stats */}
+          <div style={{ marginBottom: 32 }}>
+            <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 18, fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 16 }}>Market Data</h2>
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'Arial, Helvetica, sans-serif' }}>
+                <thead>
+                  <tr>
+                    {['Metric', 'Value'].map((h) => (
+                      <th key={h} style={{ padding: '10px 16px', backgroundColor: '#093f4f', color: '#ffffff', textAlign: 'left', fontWeight: 600, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.08em', whiteSpace: 'nowrap' as const }}>{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {([
+                    ['Median Sale Price', neighborhood.marketStats.medianSalePrice],
+                    ['Price Range', neighborhood.marketStats.priceRange],
+                    ['Avg Price per Sqft', neighborhood.marketStats.avgPricePerSqft],
+                    ['Typical Days on Market', neighborhood.marketStats.daysOnMarket],
+                    ['YoY Price Trend', neighborhood.marketStats.yoyTrend],
+                    ['Rental Yield', neighborhood.marketStats.rentalYield],
+                    ['Best Buyer Type', neighborhood.marketStats.bestBuyerType],
+                  ] as [string, string][]).map(([metric, value], ri) => (
+                    <tr key={metric} style={{ backgroundColor: ri % 2 === 0 ? '#f5f2ee' : '#ffffff' }}>
+                      <td style={{ padding: '10px 16px', color: '#093f4f', fontWeight: 600, borderBottom: '1px solid #e5e7eb', fontSize: 13, whiteSpace: 'nowrap' as const }}>{metric}</td>
+                      <td style={{ padding: '10px 16px', color: '#555555', borderBottom: '1px solid #e5e7eb', fontSize: 13 }}>{value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p style={{ fontSize: 11, color: '#999999', marginTop: 10, marginBottom: 0 }}>Source: Keller Williams Roatan transaction data and Roatan MLS, 2025–2026.</p>
           </div>
 
           {/* Description */}

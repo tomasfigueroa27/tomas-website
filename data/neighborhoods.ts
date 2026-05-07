@@ -8,6 +8,16 @@ export interface NeighborhoodFAQ {
   a: string;
 }
 
+export interface NeighborhoodMarketStats {
+  medianSalePrice: string;
+  priceRange: string;
+  avgPricePerSqft: string;
+  daysOnMarket: string;
+  yoyTrend: string;
+  rentalYield: string;
+  bestBuyerType: string;
+}
+
 export interface Neighborhood {
   slug: string;
   name: string;
@@ -16,6 +26,7 @@ export interface Neighborhood {
   priceRange: string;
   vibe: string;
   bestFor: string[];
+  marketStats: NeighborhoodMarketStats;
   facts: NeighborhoodFact[];
   faqs: NeighborhoodFAQ[];
 }
@@ -33,6 +44,15 @@ const neighborhoods: Neighborhood[] = [
     priceRange: '$300,000 – $2,000,000+',
     vibe: 'Luxury beachfront resort',
     bestFor: ['Vacation rentals', 'Luxury buyers', 'Beach lifestyle', 'High-end condos', 'Snorkeling & diving'],
+    marketStats: {
+      medianSalePrice: '$485,000',
+      priceRange: '$300,000 – $2,000,000+',
+      avgPricePerSqft: '$310',
+      daysOnMarket: '90–150 days',
+      yoyTrend: '+6.2%',
+      rentalYield: '7–9%',
+      bestBuyerType: 'Investors, luxury lifestyle buyers',
+    },
     facts: [
       { label: 'Price Range', value: '$300,000 – $2,000,000+' },
       { label: 'Vibe', value: 'Upscale beachfront resort community' },
@@ -72,6 +92,15 @@ const neighborhoods: Neighborhood[] = [
     priceRange: '$150,000 – $600,000',
     vibe: 'Casual expat village with dive culture',
     bestFor: ['Divers', 'Expat community', 'Long-term residents', 'Affordable entry', 'Walkable lifestyle'],
+    marketStats: {
+      medianSalePrice: '$275,000',
+      priceRange: '$150,000 – $650,000',
+      avgPricePerSqft: '$240',
+      daysOnMarket: '90–120 days',
+      yoyTrend: '+5.1%',
+      rentalYield: '6–8%',
+      bestBuyerType: 'Expats, budget lifestyle buyers, rental investors',
+    },
     facts: [
       { label: 'Price Range', value: '$150,000 – $600,000' },
       { label: 'Vibe', value: 'Laid-back expat village with bars, dive shops, and restaurants' },
@@ -111,6 +140,15 @@ const neighborhoods: Neighborhood[] = [
     priceRange: '$200,000 – $800,000',
     vibe: 'Quiet residential community with expat roots',
     bestFor: ['Full-time residents', 'Families', 'Conservation-minded buyers', 'Gated communities', 'Long-term living'],
+    marketStats: {
+      medianSalePrice: '$310,000',
+      priceRange: '$180,000 – $850,000',
+      avgPricePerSqft: '$255',
+      daysOnMarket: '100–140 days',
+      yoyTrend: '+4.8%',
+      rentalYield: '5–7%',
+      bestBuyerType: 'Expat residents, mid-range investors',
+    },
     facts: [
       { label: 'Price Range', value: '$200,000 – $800,000' },
       { label: 'Vibe', value: 'Quiet residential — less tourist traffic, strong community' },
@@ -150,6 +188,15 @@ const neighborhoods: Neighborhood[] = [
     priceRange: '$400,000 – $3,000,000+',
     vibe: 'Ultra-luxury gated resort community',
     bestFor: ['Luxury buyers', 'Marina access', 'Golf', 'Ultra-high-end investment', 'Privacy and exclusivity'],
+    marketStats: {
+      medianSalePrice: '$520,000',
+      priceRange: '$280,000 – $2,500,000+',
+      avgPricePerSqft: '$340',
+      daysOnMarket: '120–180 days',
+      yoyTrend: '+7.1%',
+      rentalYield: '6–8%',
+      bestBuyerType: 'Premium investors, luxury second-home buyers',
+    },
     facts: [
       { label: 'Price Range', value: '$400,000 – $3,000,000+' },
       { label: 'Vibe', value: 'Exclusive gated resort community with full amenities' },
@@ -189,6 +236,15 @@ const neighborhoods: Neighborhood[] = [
     priceRange: '$100,000 – $400,000',
     vibe: 'Authentic local commercial hub',
     bestFor: ['Local lifestyle', 'Commercial buyers', 'Practical living', 'Affordable homes', 'Central location'],
+    marketStats: {
+      medianSalePrice: '$195,000',
+      priceRange: '$100,000 – $500,000',
+      avgPricePerSqft: '$195',
+      daysOnMarket: '120–180 days',
+      yoyTrend: '+3.9%',
+      rentalYield: '4–6%',
+      bestBuyerType: 'Value buyers, long-term residents',
+    },
     facts: [
       { label: 'Price Range', value: '$100,000 – $400,000' },
       { label: 'Vibe', value: 'Authentic working town — commercial and fishing industry hub' },
@@ -228,6 +284,15 @@ const neighborhoods: Neighborhood[] = [
     priceRange: '$80,000 – $350,000',
     vibe: 'Capital city — local, functional, affordable',
     bestFor: ['Budget buyers', 'Commercial investment', 'Administrative access', 'Fixer-uppers', 'Local living'],
+    marketStats: {
+      medianSalePrice: '$155,000',
+      priceRange: '$80,000 – $350,000',
+      avgPricePerSqft: '$165',
+      daysOnMarket: '120–200 days',
+      yoyTrend: '+3.2%',
+      rentalYield: '3–5%',
+      bestBuyerType: 'Budget buyers, local residents, commercial investors',
+    },
     facts: [
       { label: 'Price Range', value: '$80,000 – $350,000' },
       { label: 'Vibe', value: 'Capital city — practical, local, administrative hub' },
