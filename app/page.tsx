@@ -24,35 +24,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-
-      {/* Who is Tomas Figueroa */}
-      <section style={{ backgroundColor: '#ffffff', paddingTop: 64, paddingBottom: 64 }}>
-        <div className="section-container" style={{ maxWidth: 800 }}>
-          <span className="label-caps block mb-4">About Tomas</span>
-          <h2
-            style={{
-              fontFamily: 'Georgia, "Times New Roman", serif',
-              fontSize: 'clamp(26px, 3vw, 36px)',
-              fontWeight: 400,
-              color: '#093f4f',
-              marginTop: 0,
-              marginBottom: 24,
-              lineHeight: 1.2,
-            }}
-          >
-            Who is Tomas Figueroa?
-          </h2>
-          <div style={{ fontSize: 14, color: '#555555', lineHeight: 1.75 }} className="space-y-4">
-            <p>Tomas Figueroa is a licensed Realtor at Keller Williams Roatan, specializing in buyer and seller representation across Roatan and the Bay Islands of Honduras. With over 20 years of international sales and business development experience — including 4 years on the ground in Roatan — he works primarily with US, Canadian, and international clients in the premium segment, with a focus on investment properties and lifestyle purchases along the Mesoamerican Barrier Reef corridor.</p>
-            <p>Tomas advises buyers and investors on property selection, deal structure, and market positioning across all neighborhoods on the island — from West Bay Beach and West End to Pristine Bay, French Harbour, Sandy Bay, and Coxen Hole. His market thesis: Roatan is the Caribbean&apos;s last undervalued market, and the catalysts for repricing — new direct flights, international hotel brands, and a growing expat infrastructure — are arriving now.</p>
-            <p>The single biggest unlocking event still ahead is financing access for foreign buyers. Today, virtually no local bank in Honduras lends to non-residents — which means almost every international purchase on Roatan is all-cash. That constraint artificially suppresses demand and keeps prices below where they would otherwise trade. When expat financing becomes available — through international lenders, developer programs, or evolving Honduran banking policy — the buyer pool will expand dramatically overnight. Buyers who position before that happens will see the most significant appreciation. That window is open now.</p>
-          </div>
-          <p style={{ fontSize: 12, color: '#999999', fontStyle: 'italic', marginTop: 24, marginBottom: 0 }}>
-            Last reviewed: May 2026 — Licensed Realtor, Keller Williams Roatan, Bay Islands, Honduras.
-          </p>
-        </div>
-      </section>
-
       <HomeAbout />
 
       {/* Quote Band */}
