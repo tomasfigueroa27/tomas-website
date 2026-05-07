@@ -69,9 +69,21 @@ export default function AboutContent() {
               >
                 Tomas Figueroa
               </h1>
-              <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', lineHeight: 1.75, marginBottom: 28 }}>
-                Strategic real estate guidance in Roatan, Honduras. Backed by over 20 years of international business experience, I help investors and high-end buyers evaluate opportunities with clarity and long-term perspective.
-              </p>
+              <div style={{ marginBottom: 28 }}>
+                <div style={{ marginBottom: 18 }}>
+                  <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#789ead', display: 'block', marginBottom: 6 }}>The Practice</span>
+                  <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', lineHeight: 1.75, margin: 0 }}>Buyer and seller representation, developer partnerships, and investment sourcing across Roatan and the Bay Islands — focused on the premium segment.</p>
+                </div>
+                <div style={{ marginBottom: 18 }}>
+                  <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#789ead', display: 'block', marginBottom: 6 }}>The Background</span>
+                  <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', lineHeight: 1.75, margin: 0 }}>20+ years in international sales and business development across Latin America and the Caribbean, including 4 years as a boots-on-ground Realtor on Roatan.</p>
+                </div>
+                <div style={{ marginBottom: 18 }}>
+                  <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#789ead', display: 'block', marginBottom: 6 }}>The Market Thesis</span>
+                  <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', lineHeight: 1.75, margin: 0 }}>Roatan is the Caribbean&apos;s last undervalued market. The single biggest catalyst still ahead is expat financing — today virtually every foreign purchase is all-cash, which artificially suppresses demand. When local or international lenders begin offering mortgages to non-residents, the buyer pool expands dramatically and prices reprice fast. The window to buy before that happens is now.</p>
+                </div>
+                <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', margin: 0 }}>Last reviewed: May 2026 · Licensed Realtor, Keller Williams Roatan</p>
+              </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                 <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                   <Calendar style={{ width: 16, height: 16 }} /> Schedule a Call
