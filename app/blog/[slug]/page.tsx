@@ -115,16 +115,29 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     );
   }
 
-  const articleSchema = {
+  const blogPostingSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
+    author: {
+      '@type': 'Person',
+      name: 'Tomas Figueroa',
+      '@id': 'https://www.tomasfigueroa.com/#person',
+      url: 'https://www.tomasfigueroa.com/about',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Tomas Figueroa – KW Roatan',
+      url: 'https://www.tomasfigueroa.com',
+    },
+    url: `https://www.tomasfigueroa.com/blog/${post.slug}`,
     datePublished: post.date,
     dateModified: post.date,
-    author: { '@type': 'Person', name: 'Tomas Figueroa', url: 'https://www.tomasfigueroa.com/about' },
-    publisher: { '@type': 'Organization', name: 'Tomas Figueroa Real Estate', url: 'https://www.tomasfigueroa.com', logo: { '@type': 'ImageObject', url: 'https://www.tomasfigueroa.com/logo-white.webp' } },
-    url: `https://www.tomasfigueroa.com/blog/${post.slug}`,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://www.tomasfigueroa.com/blog/${post.slug}`,
+    },
     ...(post.image ? { image: post.image } : {}),
   };
 
@@ -142,7 +155,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <div className="min-h-screen" style={{ paddingTop: 80, paddingBottom: 64, backgroundColor: '#ffffff' }}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <section style={{ backgroundColor: '#093f4f', color: '#ffffff', paddingTop: 48, paddingBottom: 48 }}>
