@@ -96,12 +96,22 @@ const thStyle: React.CSSProperties = { padding: '10px 16px', backgroundColor: '#
 const tdFirst: React.CSSProperties = { padding: '10px 16px', color: '#093f4f', fontWeight: 600, borderBottom: '1px solid #e5e7eb', fontSize: 13, whiteSpace: 'nowrap' };
 const tdRest: React.CSSProperties = { padding: '10px 16px', color: '#555555', fontWeight: 400, borderBottom: '1px solid #e5e7eb', fontSize: 13 };
 
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tomasfigueroa.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Roatan Real Estate Market', item: 'https://www.tomasfigueroa.com/roatan-market' },
+  ],
+};
+
 export default function RoatanMarketPage() {
   return (
     <div className="min-h-screen" style={{ paddingTop: 80, paddingBottom: 64, backgroundColor: '#ffffff' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(marketSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Hero */}
       <section style={{ backgroundColor: '#093f4f', color: '#ffffff', paddingTop: 64, paddingBottom: 64 }}>
