@@ -20,9 +20,51 @@ export const metadata: Metadata = {
   },
 };
 
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': 'https://www.tomasfigueroa.com/#person',
+  name: 'Tomas Figueroa',
+  jobTitle: 'Licensed Realtor',
+  worksFor: { '@type': 'Organization', name: 'Keller Williams Roatan' },
+  url: 'https://www.tomasfigueroa.com',
+  telephone: '+50488488326',
+  email: 'tomas@kwroatan.com',
+  sameAs: [
+    'https://www.linkedin.com/in/roatanbytomas/',
+    'https://www.instagram.com/roatanbytomas/',
+    'https://www.facebook.com/profile.php?id=61557310059412',
+  ],
+  areaServed: 'Roatan, Bay Islands, Honduras',
+  knowsAbout: ['Roatan real estate', 'Caribbean property investment', 'Honduras property law', 'Bay Islands real estate'],
+};
+
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['RealEstateAgent', 'LocalBusiness'],
+  name: 'Tomas Figueroa – KW Roatan',
+  url: 'https://www.tomasfigueroa.com',
+  telephone: '+50488488326',
+  email: 'tomas@kwroatan.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Roatan',
+    addressRegion: 'Bay Islands',
+    addressCountry: 'HN',
+  },
+  areaServed: 'Roatan, Bay Islands, Honduras',
+  priceRange: '$150,000 – $2,000,000+',
+  sameAs: [
+    'https://www.linkedin.com/in/roatanbytomas/',
+    'https://www.instagram.com/roatanbytomas/',
+  ],
+};
+
 export default function HomePage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }} />
       <Hero />
       <HomeAbout />
 
