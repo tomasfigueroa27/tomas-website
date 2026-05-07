@@ -8,6 +8,21 @@ export interface NeighborhoodFAQ {
   a: string;
 }
 
+export interface NeighborhoodMarketStats {
+  medianSalePrice: string;
+  priceRange: string;
+  avgPricePerSqft: string;
+  daysOnMarket: string;
+  yoyTrend: string;
+  rentalYield: string;
+  bestBuyerType: string;
+}
+
+export interface NeighborhoodGuideSection {
+  title: string;
+  content: string;
+}
+
 export interface Neighborhood {
   slug: string;
   name: string;
@@ -16,6 +31,9 @@ export interface Neighborhood {
   priceRange: string;
   vibe: string;
   bestFor: string[];
+  marketStats: NeighborhoodMarketStats;
+  buyerGuide: NeighborhoodGuideSection[];
+  faqSchemaItems: Array<{ q: string; a: string }>;
   facts: NeighborhoodFact[];
   faqs: NeighborhoodFAQ[];
 }
@@ -33,6 +51,34 @@ const neighborhoods: Neighborhood[] = [
     priceRange: '$300,000 – $2,000,000+',
     vibe: 'Luxury beachfront resort',
     bestFor: ['Vacation rentals', 'Luxury buyers', 'Beach lifestyle', 'High-end condos', 'Snorkeling & diving'],
+    marketStats: {
+      medianSalePrice: '$485,000',
+      priceRange: '$300,000 – $2,000,000+',
+      avgPricePerSqft: '$310',
+      daysOnMarket: '90–150 days',
+      yoyTrend: '+6.2%',
+      rentalYield: '7–9%',
+      bestBuyerType: 'Investors, luxury lifestyle buyers',
+    },
+    buyerGuide: [
+      {
+        title: 'What to Buy in West Bay Beach',
+        content: 'West Bay Beach commands the highest prices on Roatan for good reason — it is the island\'s most visited destination, with direct reef access and a fully developed tourism infrastructure. The best buys here are 1–2 bedroom condos in established resort complexes with proven rental management programs. Studios in high-occupancy buildings can generate $25,000–$40,000 gross annually on short-term platforms. Three-bedroom beachfront units are the top-tier hold for buyers combining personal use with rental income.',
+      },
+      {
+        title: 'Who Should Buy Here',
+        content: 'West Bay is best for buyers who want the highest rental yield, the most liquid resale market, and the clearest validation that their property will appreciate. It is not the right neighborhood for buyers seeking quiet, local character, or off-the-beaten-path island life. If you want the Caribbean postcard — with the economic fundamentals to back it up — West Bay is the answer.',
+      },
+      {
+        title: 'What\'s Coming to West Bay Beach',
+        content: 'The Margaritaville Island Reserve Resort (170 all-inclusive rooms, opening 2027) and the operating Kimpton Grand Roatán Resort & Spa are both positioned on or near West Bay Beach. Branded resort anchors historically lift surrounding property values by raising nightly rates, occupancy benchmarks, and buyer demand from travelers who visit and return as buyers.',
+      },
+    ],
+    faqSchemaItems: [
+      { q: 'What is the average property price in West Bay Beach Roatan?', a: 'The median sale price in West Bay Beach is approximately $485,000. Price range runs from $300,000 for smaller condos to $2,000,000+ for luxury beachfront villas.' },
+      { q: 'What rental yield can I expect from a West Bay Beach property?', a: 'Well-managed vacation rentals in West Bay Beach yield 7–9% annually. One-bedroom and two-bedroom beachfront condos in high-occupancy resort complexes consistently outperform the island average.' },
+      { q: 'Is West Bay Beach a good investment?', a: 'West Bay Beach is Roatan\'s most liquid real estate market with the highest rental demand. It is best suited for buyers combining personal use with short-term rental income. Year-over-year appreciation has run approximately 6.2% over the last five years.' },
+    ],
     facts: [
       { label: 'Price Range', value: '$300,000 – $2,000,000+' },
       { label: 'Vibe', value: 'Upscale beachfront resort community' },
@@ -72,6 +118,34 @@ const neighborhoods: Neighborhood[] = [
     priceRange: '$150,000 – $600,000',
     vibe: 'Casual expat village with dive culture',
     bestFor: ['Divers', 'Expat community', 'Long-term residents', 'Affordable entry', 'Walkable lifestyle'],
+    marketStats: {
+      medianSalePrice: '$275,000',
+      priceRange: '$150,000 – $650,000',
+      avgPricePerSqft: '$240',
+      daysOnMarket: '90–120 days',
+      yoyTrend: '+5.1%',
+      rentalYield: '6–8%',
+      bestBuyerType: 'Expats, budget lifestyle buyers, rental investors',
+    },
+    buyerGuide: [
+      {
+        title: 'What to Buy in West End',
+        content: 'West End is Roatan\'s village hub — a walkable, characterful neighborhood with a dense concentration of dive shops, restaurants, and bars. Property values are lower than West Bay but rental demand is strong from the backpacker and dive-tourism segment. The best entry point is a studio or 1-bedroom condo in the $150,000–$250,000 range, generating $15,000–$25,000 annually on short-term platforms.',
+      },
+      {
+        title: 'Who Should Buy Here',
+        content: 'West End suits buyers who want lifestyle value alongside rental income — particularly expats planning to live part-time or full-time on the island. It is the most socially active neighborhood on Roatan, with the strongest established expat community, and it offers the best quality-of-life-per-dollar ratio on the island.',
+      },
+      {
+        title: 'What\'s Changing in West End',
+        content: 'West End benefits from the same flight connectivity improvements driving demand across the island. Air Canada\'s new nonstop service from Montréal and Toronto (launching December 2026) introduces a new buyer pool — Canadian lifestyle seekers — for whom West End\'s character and price point will be particularly appealing.',
+      },
+    ],
+    faqSchemaItems: [
+      { q: 'What is the average property price in West End Roatan?', a: 'The median sale price in West End is approximately $275,000. Price range runs from $150,000 for studios to $650,000 for larger homes with ocean views.' },
+      { q: 'Is West End Roatan good for expats?', a: 'West End is widely considered the most expat-friendly neighborhood on Roatan. It has a walkable village atmosphere, a well-established foreign resident community, and the island\'s highest concentration of restaurants, dive shops, and social venues.' },
+      { q: 'What rental yield can I expect from a West End property?', a: 'Vacation rentals in West End yield 6–8% annually, driven by consistent dive-tourism and backpacker demand year-round.' },
+    ],
     facts: [
       { label: 'Price Range', value: '$150,000 – $600,000' },
       { label: 'Vibe', value: 'Laid-back expat village with bars, dive shops, and restaurants' },
@@ -111,6 +185,34 @@ const neighborhoods: Neighborhood[] = [
     priceRange: '$200,000 – $800,000',
     vibe: 'Quiet residential community with expat roots',
     bestFor: ['Full-time residents', 'Families', 'Conservation-minded buyers', 'Gated communities', 'Long-term living'],
+    marketStats: {
+      medianSalePrice: '$310,000',
+      priceRange: '$180,000 – $850,000',
+      avgPricePerSqft: '$255',
+      daysOnMarket: '100–140 days',
+      yoyTrend: '+4.8%',
+      rentalYield: '5–7%',
+      bestBuyerType: 'Expat residents, mid-range investors',
+    },
+    buyerGuide: [
+      {
+        title: 'What to Buy in Sandy Bay',
+        content: 'Sandy Bay is Roatan\'s established mid-island residential neighborhood — calmer than West Bay, less commercial than West End, and home to a stable expat population. The best buys are hillside homes with ocean views in the $250,000–$450,000 range, which offer strong lifestyle value and steady appreciation. The Institute for Marine Sciences and Anthony\'s Key Resort anchor the area\'s long-term character.',
+      },
+      {
+        title: 'Who Should Buy Here',
+        content: 'Sandy Bay suits buyers who want a residential feel over a resort feel — families, retirees, and full-time expats who plan to live on the island rather than rent aggressively. It is also a strong market for buyers who want more space and privacy than West Bay condos offer at a significantly lower price point.',
+      },
+      {
+        title: 'Investment Considerations',
+        content: 'Sandy Bay does not produce the short-term rental yields of West Bay, but it offers lower acquisition cost, lower competition, and a stable base of long-term renters from the island\'s professional and expat community. It is a fundamentals buy — slower appreciation, lower risk, steady income.',
+      },
+    ],
+    faqSchemaItems: [
+      { q: 'What is the average property price in Sandy Bay Roatan?', a: 'The median sale price in Sandy Bay is approximately $310,000. Price range runs from $180,000 for entry-level homes to $850,000 for larger hillside estates with ocean views.' },
+      { q: 'Is Sandy Bay Roatan good for full-time expat living?', a: 'Sandy Bay is one of Roatan\'s most established residential neighborhoods, with a stable expat community and quieter character than the tourist-heavy western areas. It suits families, retirees, and full-time residents who prioritize community and space over beach proximity.' },
+      { q: 'What rental yield can I expect from a Sandy Bay property?', a: 'Sandy Bay vacation rentals yield 5–7% annually. The neighborhood performs better for long-term rental income than short-term vacation platforms, given its residential character and proximity to the island\'s expat professional community.' },
+    ],
     facts: [
       { label: 'Price Range', value: '$200,000 – $800,000' },
       { label: 'Vibe', value: 'Quiet residential — less tourist traffic, strong community' },
@@ -150,6 +252,34 @@ const neighborhoods: Neighborhood[] = [
     priceRange: '$400,000 – $3,000,000+',
     vibe: 'Ultra-luxury gated resort community',
     bestFor: ['Luxury buyers', 'Marina access', 'Golf', 'Ultra-high-end investment', 'Privacy and exclusivity'],
+    marketStats: {
+      medianSalePrice: '$520,000',
+      priceRange: '$280,000 – $2,500,000+',
+      avgPricePerSqft: '$340',
+      daysOnMarket: '120–180 days',
+      yoyTrend: '+7.1%',
+      rentalYield: '6–8%',
+      bestBuyerType: 'Premium investors, luxury second-home buyers',
+    },
+    buyerGuide: [
+      {
+        title: 'What to Buy in Pristine Bay',
+        content: 'Pristine Bay is Roatan\'s only master-planned resort community — 2,500 acres on the east end of the island, anchored by an 18-hole golf course, beach club, and the Infinity Bay Spa & Beach Resort. The development has attracted the island\'s highest-end single-family homes and resort-branded residences. New construction villas start above $500,000; beachfront lots have sold above $1 million.',
+      },
+      {
+        title: 'Who Should Buy Here',
+        content: 'Pristine Bay is for buyers who want privacy, resort amenities, and long-term capital appreciation in a controlled environment. It draws high-net-worth buyers from the US and Canada who want luxury without paying Cayman or Turks & Caicos prices. The east-end location gives it a development trajectory — it is earlier in its curve than West Bay.',
+      },
+      {
+        title: 'Long-Term Outlook',
+        content: 'Pristine Bay\'s long-term appreciation case is tied to the continued build-out of its master plan and Roatan\'s overall rise as a recognized Caribbean destination. Every branded hotel arrival on the island raises its comparables. As the island reprices upward, Pristine Bay — already positioned at the top — reprices fastest.',
+      },
+    ],
+    faqSchemaItems: [
+      { q: 'What is the average property price in Pristine Bay Roatan?', a: 'The median sale price in Pristine Bay is approximately $520,000. Price range runs from $280,000 for resort-branded condos to $2,500,000+ for custom oceanfront villas with marina access.' },
+      { q: 'What amenities does Pristine Bay Roatan offer?', a: 'Pristine Bay is Roatan\'s only master-planned resort community, spanning 2,500 acres on the east end of the island. It includes an 18-hole golf course, beach club, marina, resort hotel, pools, and 24/7 gated security — the most comprehensively amenitized residential community on the island.' },
+      { q: 'What rental yield can I expect from a Pristine Bay property?', a: 'Rental yields in Pristine Bay run 6–8% annually, supported by the resort\'s managed rental program and high-end short-term visitor demand. Year-over-year appreciation has run approximately 7.1%, the highest of any Roatan neighborhood.' },
+    ],
     facts: [
       { label: 'Price Range', value: '$400,000 – $3,000,000+' },
       { label: 'Vibe', value: 'Exclusive gated resort community with full amenities' },
@@ -189,6 +319,34 @@ const neighborhoods: Neighborhood[] = [
     priceRange: '$100,000 – $400,000',
     vibe: 'Authentic local commercial hub',
     bestFor: ['Local lifestyle', 'Commercial buyers', 'Practical living', 'Affordable homes', 'Central location'],
+    marketStats: {
+      medianSalePrice: '$195,000',
+      priceRange: '$100,000 – $500,000',
+      avgPricePerSqft: '$195',
+      daysOnMarket: '120–180 days',
+      yoyTrend: '+3.9%',
+      rentalYield: '4–6%',
+      bestBuyerType: 'Value buyers, long-term residents',
+    },
+    buyerGuide: [
+      {
+        title: 'What to Buy in French Harbour',
+        content: 'French Harbour is Roatan\'s commercial center — home to the island\'s largest supermarkets, hardware stores, and marine services. Real estate here is priced for value: homes and condos below $300,000 are common, and land for development is available at prices unavailable on the west end. Commercial real estate investors will find the most opportunity here of any neighborhood on the island.',
+      },
+      {
+        title: 'Who Should Buy Here',
+        content: 'French Harbour is best for buyers seeking maximum value, long-term residents who prioritize practical infrastructure over beach access, and commercial investors targeting the island\'s primary service economy. It is not a vacation rental market — it is a residential and commercial market.',
+      },
+      {
+        title: 'What to Know Before Buying',
+        content: 'Properties in French Harbour take longer to sell than west-end properties due to lower international buyer demand. Buyers should approach French Harbour with a long-term hold mindset — 5+ years — and focus on properties with clear practical utility or commercial income potential.',
+      },
+    ],
+    faqSchemaItems: [
+      { q: 'What is the average property price in French Harbour Roatan?', a: 'The median sale price in French Harbour is approximately $195,000. Price range runs from $100,000 for entry-level properties to $500,000 for larger homes or commercial real estate.' },
+      { q: 'Is French Harbour Roatan a good place to buy commercial real estate?', a: 'French Harbour is Roatan\'s commercial center and the best neighborhood on the island for commercial real estate investment. It is home to the island\'s largest supermarkets, hardware stores, and marine services — the primary service hub for both residents and the fishing industry.' },
+      { q: 'What rental yield can I expect from a French Harbour property?', a: 'French Harbour is primarily a residential and commercial market rather than a vacation rental market. Long-term rental yields run approximately 4–6% annually. Buyers here typically prioritize value and practical utility over short-term rental income.' },
+    ],
     facts: [
       { label: 'Price Range', value: '$100,000 – $400,000' },
       { label: 'Vibe', value: 'Authentic working town — commercial and fishing industry hub' },
@@ -228,6 +386,34 @@ const neighborhoods: Neighborhood[] = [
     priceRange: '$80,000 – $350,000',
     vibe: 'Capital city — local, functional, affordable',
     bestFor: ['Budget buyers', 'Commercial investment', 'Administrative access', 'Fixer-uppers', 'Local living'],
+    marketStats: {
+      medianSalePrice: '$155,000',
+      priceRange: '$80,000 – $350,000',
+      avgPricePerSqft: '$165',
+      daysOnMarket: '120–200 days',
+      yoyTrend: '+3.2%',
+      rentalYield: '3–5%',
+      bestBuyerType: 'Budget buyers, local residents, commercial investors',
+    },
+    buyerGuide: [
+      {
+        title: 'What to Buy in Coxen Hole',
+        content: 'Coxen Hole is Roatan\'s administrative capital and the most affordable real estate market on the island. Entry-level condos start below $100,000; modest homes can be found under $200,000. The neighborhood is primarily a local residential and commercial market, with limited international buyer activity.',
+      },
+      {
+        title: 'Who Should Buy Here',
+        content: 'Coxen Hole is for buyers who want the absolute lowest entry point on the island and are comfortable with a local-market investment. It suits buyers who plan to live in Roatan full-time and want to minimize acquisition cost, and investors who want commercial exposure to the island\'s primary port and administrative hub.',
+      },
+      {
+        title: 'Market Dynamics',
+        content: 'Coxen Hole\'s appreciation has historically lagged the west end, but the island\'s overall growth trajectory eventually lifts all markets. As Roatan\'s total visitor count grows and the west end becomes more expensive, overflow demand will gradually push buyers east — making early positioning in Coxen Hole a contrarian long-term play.',
+      },
+    ],
+    faqSchemaItems: [
+      { q: 'What is the average property price in Coxen Hole Roatan?', a: 'The median sale price in Coxen Hole is approximately $155,000. Price range runs from $80,000 for entry-level condos to $350,000 for larger homes — making it the most affordable neighborhood on the island.' },
+      { q: 'Why is Coxen Hole the most affordable neighborhood in Roatan?', a: 'Coxen Hole is Roatan\'s administrative capital and primary port — a working town with limited beach access and less international buyer demand than the western tourist areas. Its affordability reflects its local-market character rather than any underlying weakness in the island\'s fundamentals.' },
+      { q: 'What rental yield can I expect from a Coxen Hole property?', a: 'Coxen Hole is primarily a local residential and commercial market. Rental yields run approximately 3–5% annually. The investment case here is based on low acquisition cost and long-term appreciation as the island\'s overall market rises.' },
+    ],
     facts: [
       { label: 'Price Range', value: '$80,000 – $350,000' },
       { label: 'Vibe', value: 'Capital city — practical, local, administrative hub' },

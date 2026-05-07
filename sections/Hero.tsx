@@ -20,7 +20,7 @@ const Hero = () => {
       <div className="absolute inset-0">
         <img
           src="/hero-bg.webp"
-          alt="Roatan beach aerial view"
+          alt="Roatan beachfront real estate aerial view Bay Islands Honduras"
           className="w-full h-full object-cover"
           fetchPriority="high"
           decoding="async"

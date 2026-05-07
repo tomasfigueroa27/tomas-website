@@ -97,7 +97,7 @@ export default function AboutContent() {
               </div>
             </div>
             <div style={{ overflow: 'hidden', aspectRatio: '3/4' }}>
-              <img src="/tomas-portrait.jpg" alt="Tomas Figueroa" className="w-full h-full object-cover" />
+              <img src="/tomas-portrait.jpg" alt="Tomas Figueroa licensed Realtor Keller Williams Roatan" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>

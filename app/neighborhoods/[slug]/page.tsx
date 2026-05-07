@@ -47,10 +47,29 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
     '@context': 'https://schema.org',
     '@type': 'Place',
     name: `${neighborhood.name}, Roatan`,
-    description: neighborhood.description[0],
+    description: `${neighborhood.description[0]} Median sale price: ${neighborhood.marketStats.medianSalePrice}. Rental yield: ${neighborhood.marketStats.rentalYield}.`,
     containedInPlace: { '@type': 'AdministrativeArea', name: 'Roatan, Bay Islands, Honduras' },
     url: `https://www.tomasfigueroa.com/neighborhoods/${neighborhood.slug}`,
     ...(coords ? { geo: { '@type': 'GeoCoordinates', latitude: coords.lat, longitude: coords.lng } } : {}),
+    amenityFeature: [
+      { '@type': 'LocationFeatureSpecification', name: 'Median Sale Price', value: neighborhood.marketStats.medianSalePrice },
+      { '@type': 'LocationFeatureSpecification', name: 'Price Range', value: neighborhood.marketStats.priceRange },
+      { '@type': 'LocationFeatureSpecification', name: 'Avg Price per Sqft', value: neighborhood.marketStats.avgPricePerSqft },
+      { '@type': 'LocationFeatureSpecification', name: 'Typical Days on Market', value: neighborhood.marketStats.daysOnMarket },
+      { '@type': 'LocationFeatureSpecification', name: 'YoY Price Trend', value: neighborhood.marketStats.yoyTrend },
+      { '@type': 'LocationFeatureSpecification', name: 'Rental Yield', value: neighborhood.marketStats.rentalYield },
+      { '@type': 'LocationFeatureSpecification', name: 'Best Buyer Type', value: neighborhood.marketStats.bestBuyerType },
+    ],
+  };
+
+  const faqPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: neighborhood.faqSchemaItems.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
   };
 
   const breadcrumbSchema = {
@@ -66,6 +85,7 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
   return (
     <div className="min-h-screen" style={{ paddingTop: 80, paddingBottom: 64, backgroundColor: '#ffffff' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(placeSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <section style={{ backgroundColor: '#093f4f', color: '#ffffff', paddingTop: 48, paddingBottom: 64 }}>
@@ -92,6 +112,7 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
           >
             {neighborhood.name}
           </h1>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', marginTop: 8, marginBottom: 12 }}>Last updated: May 2026</p>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 560 }}>{neighborhood.tagline}</p>
         </div>
       </section>
@@ -104,6 +125,49 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
               <div key={fact.label} style={{ display: 'flex', gap: 12, padding: '8px 0', borderBottom: '1px solid #e5e7eb' }}>
                 <span style={{ fontWeight: 600, color: '#093f4f', fontSize: 13, minWidth: 140, flexShrink: 0 }}>{fact.label}:</span>
                 <span style={{ fontSize: 13, color: '#555555' }}>{fact.value}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Market Stats */}
+          <div style={{ marginBottom: 32 }}>
+            <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 18, fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 16 }}>Market Data</h2>
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'Arial, Helvetica, sans-serif' }}>
+                <thead>
+                  <tr>
+                    {['Metric', 'Value'].map((h) => (
+                      <th key={h} style={{ padding: '10px 16px', backgroundColor: '#093f4f', color: '#ffffff', textAlign: 'left', fontWeight: 600, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.08em', whiteSpace: 'nowrap' as const }}>{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {([
+                    ['Median Sale Price', neighborhood.marketStats.medianSalePrice],
+                    ['Price Range', neighborhood.marketStats.priceRange],
+                    ['Avg Price per Sqft', neighborhood.marketStats.avgPricePerSqft],
+                    ['Typical Days on Market', neighborhood.marketStats.daysOnMarket],
+                    ['YoY Price Trend', neighborhood.marketStats.yoyTrend],
+                    ['Rental Yield', neighborhood.marketStats.rentalYield],
+                    ['Best Buyer Type', neighborhood.marketStats.bestBuyerType],
+                  ] as [string, string][]).map(([metric, value], ri) => (
+                    <tr key={metric} style={{ backgroundColor: ri % 2 === 0 ? '#f5f2ee' : '#ffffff' }}>
+                      <td style={{ padding: '10px 16px', color: '#093f4f', fontWeight: 600, borderBottom: '1px solid #e5e7eb', fontSize: 13, whiteSpace: 'nowrap' as const }}>{metric}</td>
+                      <td style={{ padding: '10px 16px', color: '#555555', borderBottom: '1px solid #e5e7eb', fontSize: 13 }}>{value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p style={{ fontSize: 11, color: '#999999', marginTop: 10, marginBottom: 0 }}>Source: Keller Williams Roatan transaction data and Roatan MLS, 2025–2026.</p>
+          </div>
+
+          {/* Buyer Guide */}
+          <div style={{ marginBottom: 32 }}>
+            {neighborhood.buyerGuide.map((section) => (
+              <div key={section.title} style={{ marginBottom: 28 }}>
+                <h3 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 18, fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 10 }}>{section.title}</h3>
+                <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, margin: 0 }}>{section.content}</p>
               </div>
             ))}
           </div>
