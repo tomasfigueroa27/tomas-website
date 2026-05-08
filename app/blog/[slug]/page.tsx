@@ -23,6 +23,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
+const formatMonthYear = (iso: string) =>
+  new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+
 function renderBlock(block: ContentBlock, index: number) {
   switch (block.type) {
     case 'h2':
@@ -190,7 +193,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           >
             {post.title}
           </h1>
-          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', marginTop: 10, marginBottom: 0 }}>Published: {formatDate(post.date)}</p>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', marginTop: 10, marginBottom: 0 }}>Published: {formatMonthYear(post.date)} · By Tomas Figueroa, Keller Williams Roatan</p>
         </div>
       </section>
 

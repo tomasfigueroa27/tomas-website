@@ -82,7 +82,7 @@ export default function AboutContent() {
                   <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#789ead', display: 'block', marginBottom: 6 }}>The Market Thesis</span>
                   <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', lineHeight: 1.75, margin: 0 }}>Roatan is the Caribbean&apos;s last undervalued market. The single biggest catalyst still ahead is expat financing — today virtually every foreign purchase is all-cash, which artificially suppresses demand. When local or international lenders begin offering mortgages to non-residents, the buyer pool expands dramatically and prices reprice fast. The window to buy before that happens is now.</p>
                 </div>
-                <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', margin: 0 }}>Last reviewed: May 2026 · Licensed Realtor, Keller Williams Roatan</p>
+                <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', margin: 0 }}>Last reviewed: May 2026 · Licensed Realtor, Keller Williams Roatan, Bay Islands, Honduras.</p>
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                 <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
