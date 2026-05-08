@@ -141,6 +141,7 @@ export default function FaqContent() {
           >
             Roatan Real Estate FAQ
           </h1>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', marginTop: 8, marginBottom: 12 }}>Last reviewed: May 2026 · Roatan Real Estate FAQ</p>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 560 }}>
             Common questions about buying, investing, and living in Roatan — organized by topic.
           </p>

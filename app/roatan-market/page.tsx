@@ -123,7 +123,7 @@ export default function RoatanMarketPage() {
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 600, margin: '0 auto 6px' }}>
             Key data, pricing benchmarks, investment fundamentals, and everything you need to understand the Roatan property market before making a decision.
           </p>
-          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', marginBottom: 32 }}>Updated May 2026 · By Tomas Figueroa, Keller Williams Roatan</p>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', marginBottom: 32 }}>Updated May 2026 · By Tomas Figueroa, Keller Williams Roatan</p>
           <div style={{ backgroundColor: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.14)', padding: '24px 32px', maxWidth: 720, margin: '0 auto 32px', textAlign: 'left' }}>
             <p style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#789ead', marginTop: 0, marginBottom: 12 }}>Quick Read</p>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.82)', lineHeight: 1.75, margin: 0 }}>

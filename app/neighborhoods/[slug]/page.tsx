@@ -112,7 +112,7 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
           >
             {neighborhood.name}
           </h1>
-          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', marginTop: 8, marginBottom: 12 }}>Last updated: May 2026</p>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', marginTop: 8, marginBottom: 12 }}>Last reviewed: May 2026 · {neighborhood.name} Real Estate Guide</p>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 560 }}>{neighborhood.tagline}</p>
         </div>
       </section>
