@@ -5,7 +5,7 @@ import Header from '@/sections/Header';
 import Footer from '@/sections/Footer';
 import ServiceWorkerRegister from '@/components/ServiceWorkerRegister';
 
-const GA_ID = 'G-XXXXXXXXXX'; // ← replace with your Measurement ID
+const GA_ID = 'G-3YVFSNRZJ6';
 
 const jsonLd = {
   '@context': 'https://schema.org',
