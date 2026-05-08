@@ -133,15 +133,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       '@type': 'Organization',
       name: 'Tomas Figueroa – KW Roatan',
       url: 'https://www.tomasfigueroa.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.tomasfigueroa.com/favicon.ico',
+      },
     },
     url: `https://www.tomasfigueroa.com/blog/${post.slug}`,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.dateModified ?? post.date,
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `https://www.tomasfigueroa.com/blog/${post.slug}`,
     },
-    ...(post.image ? { image: post.image } : {}),
+    image: post.image ?? 'https://www.tomasfigueroa.com/opengraph.jpg',
   };
 
   const breadcrumbSchema = {
