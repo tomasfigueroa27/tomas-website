@@ -11,6 +11,7 @@ export interface BlogPost {
   title: string;
   seoTitle?: string;
   date: string;
+  dateModified?: string;
   category: string;
   excerpt: string;
   image?: string;
@@ -720,7 +721,8 @@ const posts: BlogPost[] = [
     slug: 'top-roatan-real-estate-agencies',
     title: 'Top Roatan Real Estate Agencies for Your Dream Property',
     seoTitle: 'Top Roatan Real Estate Agencies',
-    date: '2026-04-24',
+    date: '2026-04-01',
+    dateModified: '2026-05-07',
     category: 'Buying Guide',
     excerpt:
       'Thinking about buying property in Roatan? Learn what to look for in a real estate agent, how the local market works, and the key factors that separate a good investment from a great one.',
@@ -926,6 +928,7 @@ const posts: BlogPost[] = [
     title: '10 Essential FAQs About Roatan: Your Ultimate Travel Guide',
     seoTitle: '10 Essential Roatan Travel FAQs',
     date: '2026-04-01',
+    dateModified: '2026-05-07',
     category: 'Travel Guide',
     excerpt:
       'Discover the beauty and charm of Roatan through our essential FAQs. This ultimate travel guide covers the best time to visit, how to get there, top attractions, activities, cuisine, accommodations, and safety tips.',
@@ -1087,6 +1090,7 @@ const posts: BlogPost[] = [
     slug: 'where-is-roatan',
     title: 'Where is Roatan?',
     date: '2026-04-01',
+    dateModified: '2026-05-07',
     category: 'About Roatan',
     excerpt:
       'Roatan is the largest of the Bay Islands, located in the western Caribbean Sea about 35 miles off the northern coast of Honduras — and home to the second-largest coral reef system in the world.',
