@@ -8,7 +8,7 @@ import { isValidPhoneNumber } from 'libphonenumber-js';
 import { X } from 'lucide-react';
 import { trackLead, trackSchedule, openSavvyCal } from '@/lib/analytics';
 
-const ZAPIER_MASTER_BRIEFING_WEBHOOK = 'REPLACE_WITH_ZAPIER_WEBHOOK_URL';
+const ZAPIER_MASTER_BRIEFING_WEBHOOK = 'https://hooks.zapier.com/hooks/catch/20320569/4yisyfh/';
 
 const COUNTRY_CODES = [
   { code: '+1', label: 'US/CA (+1)', iso: 'US' },
