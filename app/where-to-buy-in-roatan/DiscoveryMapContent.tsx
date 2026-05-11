@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { openBriefingModal, trackSchedule, openSavvyCal } from '@/lib/analytics';
 
 // ─── Node definitions (positions match viewBox 0 0 1600 700) ─────────────────
@@ -216,6 +216,9 @@ function RoatanMap({
               >
                 {node.num}
               </text>
+
+              {/* Invisible touch target — larger hit area for mobile */}
+              <circle cx={node.cx} cy={node.cy} r="32" fill="transparent" />
             </g>
           );
         })}
@@ -501,6 +504,14 @@ function ClosingCTA({ onSchedule }: { onSchedule: () => void }) {
 export default function DiscoveryMapContent() {
   const [selectedNode, setSelectedNode] = useState<NodeType | null>(null);
   const [hoveredNode, setHoveredNode] = useState<number | null>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  const handleNodeClick = (node: NodeType) => {
+    setSelectedNode(node);
+    if (window.innerWidth < 1024) {
+      setTimeout(() => panelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+  };
 
   const handleSchedule = () => { trackSchedule(); openSavvyCal(); };
 
@@ -529,13 +540,13 @@ export default function DiscoveryMapContent() {
               <RoatanMap
                 selectedNode={selectedNode}
                 hoveredNode={hoveredNode}
-                onNodeClick={setSelectedNode}
+                onNodeClick={handleNodeClick}
                 onNodeHover={setHoveredNode}
               />
             </div>
 
             {/* Panel column */}
-            <div style={{ flex: '1 1 300px', minWidth: 280 }}>
+            <div ref={panelRef} style={{ flex: '1 1 300px', minWidth: 280 }}>
               <NodePanel node={selectedNode} onSchedule={handleSchedule} />
             </div>
 
