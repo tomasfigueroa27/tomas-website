@@ -29,7 +29,7 @@ const personSchema = {
   jobTitle: 'Licensed Realtor',
   worksFor: { '@type': 'Organization', name: 'Keller Williams Roatan' },
   url: 'https://www.tomasfigueroa.com',
-  telephone: '+50488488326',
+  telephone: '+50488483226',
   email: 'tomas@kwroatan.com',
   sameAs: [
     'https://www.linkedin.com/in/roatanbytomas/',
@@ -45,7 +45,7 @@ const businessSchema = {
   '@type': ['RealEstateAgent', 'LocalBusiness'],
   name: 'Tomas Figueroa – KW Roatan',
   url: 'https://www.tomasfigueroa.com',
-  telephone: '+50488488326',
+  telephone: '+50488483226',
   email: 'tomas@kwroatan.com',
   address: {
     '@type': 'PostalAddress',

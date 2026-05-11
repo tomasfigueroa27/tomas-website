@@ -34,7 +34,7 @@ const jsonLd = {
       '@id': 'https://www.tomasfigueroa.com/#business',
       name: 'Tomas Figueroa Real Estate',
       url: 'https://www.tomasfigueroa.com',
-      telephone: '+50488488326',
+      telephone: '+50488483226',
       email: 'tomas@kwroatan.com',
       image: 'https://www.tomasfigueroa.com/logo-white.webp',
       address: {
@@ -59,7 +59,7 @@ const jsonLd = {
       description:
         'Licensed real estate agent in Roatan, Honduras specializing in Caribbean property sales, investment properties, and new developments at Keller Williams Roatan.',
       url: 'https://www.tomasfigueroa.com',
-      telephone: '+50488488326',
+      telephone: '+50488483226',
       email: 'tomas@kwroatan.com',
       image: 'https://www.tomasfigueroa.com/logo-white.webp',
       address: {
