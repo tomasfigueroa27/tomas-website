@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Hero from '@/sections/Hero';
+import ActiveDevelopments from '@/sections/ActiveDevelopments';
 import HomeAbout from '@/sections/HomeAbout';
 import Newsletter from '@/sections/Newsletter';
 import CTA from '@/sections/CTA';
@@ -66,6 +67,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }} />
       <Hero />
+      <ActiveDevelopments />
       <HomeAbout />
 
       {/* Quote Band */}
