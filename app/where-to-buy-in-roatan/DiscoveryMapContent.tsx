@@ -1,44 +1,295 @@
 'use client';
 
+import { useState } from 'react';
 import { openBriefingModal, trackSchedule, openSavvyCal } from '@/lib/analytics';
 
+// ─── Node definitions (positions match viewBox 0 0 1600 700) ─────────────────
+
+export const NODES = [
+  {
+    id: 1, num: '01', cx: 150, cy: 520,
+    name: 'West Bay', lifestyle: 'Beach Lifestyle',
+    ariaLabel: 'Lifestyle Node 01: West Bay - Beach Lifestyle',
+    vibe: 'The most recognizable beach on the island. Soft white sand, calm turquoise water, dive operators within walking distance. The strongest vacation-rental logic in Roatán.',
+    typicalBuyer: 'Vacation-rental investors, second-home buyers prioritizing beach access',
+    priceRange: '$430–$650/sqft premium oceanfront',
+    strength: 'Highest nightly rates, strongest demand, most liquid resale market',
+    watchout: 'Highest entry price; tightest inventory',
+    bestFor: ['Buyers who want the most recognizable beach on Roatán', 'Investors prioritizing short-term rental income', 'Owners who plan to visit frequently'],
+    link: '/neighborhoods#west-bay',
+  },
+  {
+    id: 2, num: '02', cx: 170, cy: 300,
+    name: 'West End', lifestyle: 'Walkable Village Lifestyle',
+    ariaLabel: 'Lifestyle Node 02: West End - Walkable Village Lifestyle',
+    vibe: "A walkable village with restaurants, dive shops, bars, and a tight expat community. The most authentic 'island life' experience on Roatán without sacrificing access or amenities.",
+    typicalBuyer: 'Lifestyle buyers, divers, remote workers, expats seeking community',
+    priceRange: '$350–$500/sqft mid-tier premium',
+    strength: 'Community character, daily-life walkability, diving infrastructure',
+    watchout: 'Less prime beach; some properties further from shoreline',
+    bestFor: ['Buyers who want a daily lifestyle, not just a vacation rental', 'Divers, sailors, and water-sport lifestyle buyers', 'Owners spending 3+ months a year on-island'],
+    link: '/neighborhoods#west-end',
+  },
+  {
+    id: 3, num: '03', cx: 420, cy: 280,
+    name: 'Sandy Bay', lifestyle: 'Quiet Reef Lifestyle',
+    ariaLabel: 'Lifestyle Node 03: Sandy Bay - Quiet Reef Lifestyle',
+    vibe: 'Quieter residential life right on the reef. The emerging luxury tier — premium hillside development with panoramic ocean views and slower pace than West Bay or West End.',
+    typicalBuyer: 'Retirees, lifestyle buyers prioritizing quiet and views',
+    priceRange: '$300–$500/sqft (varies widely with elevation and view)',
+    strength: 'Privacy, panoramic views, direct reef access, emerging luxury developments',
+    watchout: 'Fewer walkable amenities; car-dependent',
+    bestFor: ['Buyers who prioritize quiet over walkability', 'Hillside view buyers, not beach buyers', 'Long-term residents and retirees'],
+    link: '/neighborhoods#sandy-bay',
+  },
+  {
+    id: 4, num: '04', cx: 830, cy: 300,
+    name: 'Pristine Bay', lifestyle: 'Gated Resort Lifestyle',
+    ariaLabel: 'Lifestyle Node 04: Pristine Bay - Gated Resort Lifestyle',
+    vibe: 'Gated resort community with golf, marina, beach club, spa, and full property management infrastructure. The most institutional product on the island — controlled environment, predictable amenities, consistent standards.',
+    typicalBuyer: 'Resort-style buyers, golfers, buyers prioritizing amenities and turnkey management',
+    priceRange: '$400–$700/sqft for villas and condos',
+    strength: 'Full amenities, professional management, predictable resale to similar buyers',
+    watchout: "Higher HOA; you're buying into a gated environment, not an open village",
+    bestFor: ['Buyers who want full amenities + concierge management', 'Golf, marina, and resort-lifestyle owners', 'Investors valuing operational simplicity over upside'],
+    link: '/neighborhoods#pristine-bay',
+  },
+  {
+    id: 5, num: '05', cx: 1180, cy: 480,
+    name: 'French Harbour & East', lifestyle: 'Emerging Lifestyle',
+    ariaLabel: 'Lifestyle Node 05: French Harbour & East - Emerging Lifestyle',
+    vibe: 'The emerging half of the island — French Harbour, Oak Ridge, Punta Gorda, and beyond. Lower entry, more authentic local infrastructure, longer-term development exposure. Higher upside potential but selective entry only.',
+    typicalBuyer: 'Value buyers, longer-horizon investors, those comfortable with less mature infrastructure',
+    priceRange: '$200–$400/sqft (wide variance by exact location)',
+    strength: 'Lowest entry, longer-term appreciation potential, authentic local character',
+    watchout: 'Less mature tourist infrastructure; rental yields more variable; selective project quality',
+    bestFor: ['Value-oriented buyers willing to wait', 'Buyers who want authentic local Roatán, not resort Roatán', 'Investors comfortable with longer hold periods'],
+    link: '/neighborhoods#french-harbour',
+  },
+] as const;
+
+type NodeType = typeof NODES[number];
+
+// ─── SVG Map ──────────────────────────────────────────────────────────────────
+
+function RoatanMap({
+  selectedNode,
+  hoveredNode,
+  onNodeClick,
+  onNodeHover,
+}: {
+  selectedNode: NodeType | null;
+  hoveredNode: number | null;
+  onNodeClick: (node: NodeType) => void;
+  onNodeHover: (id: number | null) => void;
+}) {
+  return (
+    <div style={{ position: 'relative', width: '100%', paddingBottom: '43.75%' }}>
+      <svg
+        viewBox="0 0 1600 700"
+        role="img"
+        aria-label="Interactive map of Roatán showing five lifestyle nodes"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+      >
+        <defs>
+          <radialGradient id="oceanGrad" cx="50%" cy="40%" r="65%">
+            <stop offset="0%" stopColor="#0b5068" />
+            <stop offset="100%" stopColor="#093f4f" />
+          </radialGradient>
+        </defs>
+
+        {/* Ocean */}
+        <rect width="1600" height="700" fill="url(#oceanGrad)" />
+
+        {/* Caribbean Sea label */}
+        <text x="900" y="72" textAnchor="middle" fill="#c9a84c" fontFamily="Arial, Helvetica, sans-serif" fontSize="11" fontWeight="600" letterSpacing="3" opacity="0.3">
+          CARIBBEAN SEA
+        </text>
+
+        {/* Reef line — dashed, north of island, brand signature */}
+        <path
+          d="M 115,195 C 300,140 510,112 710,108 C 910,104 1090,124 1260,158 C 1385,183 1480,215 1504,232"
+          fill="none" stroke="#c9a84c" strokeWidth="1.8" strokeOpacity="0.55" strokeDasharray="10,7"
+        />
+
+        {/* Island body */}
+        <path
+          d="
+            M 110,520
+            C 72,508 58,474 63,430
+            C 68,386 90,335 118,290
+            C 146,245 178,213 218,195
+            C 258,177 318,163 405,153
+            C 492,143 582,147 668,147
+            C 754,147 840,149 925,151
+            C 1010,153 1090,157 1165,168
+            C 1240,179 1318,202 1388,237
+            C 1458,272 1518,316 1548,363
+            C 1578,410 1562,456 1530,488
+            C 1498,520 1448,540 1375,553
+            C 1302,566 1210,570 1110,567
+            C 1010,564 912,558 815,552
+            C 718,546 622,540 528,534
+            C 434,528 348,524 268,522
+            C 210,521 162,521 110,520 Z
+          "
+          fill="#f0ebe0" stroke="#c9a84c" strokeWidth="1.5" strokeOpacity="0.5"
+        />
+
+        {/* Mountainous spine */}
+        <path
+          d="M 200,370 C 400,325 650,315 850,320 C 1050,325 1220,345 1400,380"
+          fill="none" stroke="#789ead" strokeWidth="48" strokeOpacity="0.09" strokeLinecap="round"
+        />
+
+        {/* ROATÁN label on island */}
+        <text x="780" y="405" textAnchor="middle" fill="#093f4f" fontFamily="Arial, Helvetica, sans-serif" fontSize="9" fontWeight="600" letterSpacing="3" opacity="0.22">
+          ROATÁN
+        </text>
+
+        {/* Compass rose */}
+        <g opacity="0.65">
+          <text x="1520" y="50" textAnchor="middle" fill="#c9a84c" fontFamily="Arial, Helvetica, sans-serif" fontSize="11" fontWeight="700">N</text>
+          <line x1="1520" y1="54" x2="1520" y2="88" stroke="#c9a84c" strokeWidth="1.5" />
+          <polygon points="1520,54 1515,70 1525,70" fill="#c9a84c" />
+          <circle cx="1520" cy="100" r="3" fill="none" stroke="#c9a84c" strokeWidth="1.5" />
+        </g>
+
+        {/* Node 05 extended-region indicator */}
+        <circle cx="1180" cy="480" r="92" fill="none" stroke="#c9a84c" strokeWidth="1.2" strokeOpacity="0.28" strokeDasharray="6,5" />
+
+        {/* Interactive nodes */}
+        {NODES.map((node) => {
+          const isSelected = selectedNode?.id === node.id;
+          const isHovered = hoveredNode === node.id;
+          const isActive = isSelected || isHovered;
+
+          return (
+            <g
+              key={node.id}
+              role="button"
+              tabIndex={0}
+              aria-label={node.ariaLabel}
+              aria-pressed={isSelected}
+              onClick={() => onNodeClick(node)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onNodeClick(node); } }}
+              onMouseEnter={() => onNodeHover(node.id)}
+              onMouseLeave={() => onNodeHover(null)}
+              style={{ cursor: 'pointer', outline: 'none' }}
+            >
+              {/* Pulse ring (idle state only) */}
+              {!isSelected && (
+                <circle cx={node.cx} cy={node.cy} r="22" fill="none" stroke="#c9a84c" strokeWidth="1.2">
+                  <animate attributeName="r" from="22" to="40" dur="2s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" from="0.55" to="0" dur="2s" repeatCount="indefinite" />
+                </circle>
+              )}
+
+              {/* Hover/selected glow */}
+              {isActive && (
+                <circle cx={node.cx} cy={node.cy} r="30" fill="rgba(201,168,76,0.18)" />
+              )}
+
+              {/* Focus ring */}
+              <circle cx={node.cx} cy={node.cy} r="25" fill="none" stroke="#c9a84c" strokeWidth="2.5" strokeOpacity="0" style={{ transition: 'stroke-opacity 0.15s' }}
+                className="node-focus-ring"
+              />
+
+              {/* Main circle */}
+              <circle
+                cx={node.cx} cy={node.cy} r="20"
+                fill={isSelected ? '#c9a84c' : 'rgba(240,235,224,0.94)'}
+                stroke="#c9a84c"
+                strokeWidth={isSelected ? 2.5 : 2}
+                style={{ transition: 'fill 0.2s, r 0.2s' }}
+              />
+
+              {/* Number */}
+              <text
+                x={node.cx} y={node.cy + 1}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fill={isSelected ? '#ffffff' : '#093f4f'}
+                fontFamily="Georgia, 'Times New Roman', serif"
+                fontSize="10"
+                fontWeight="700"
+              >
+                {node.num}
+              </text>
+            </g>
+          );
+        })}
+
+        {/* Desktop-only hover tooltip */}
+        {hoveredNode && !selectedNode && (() => {
+          const node = NODES.find(n => n.id === hoveredNode);
+          if (!node) return null;
+          const tx = node.cx > 900 ? node.cx - 140 : node.cx + 32;
+          const ty = node.cy - 38;
+          return (
+            <g>
+              <rect x={tx} y={ty} width="128" height="42" rx="3" fill="#0a1628" opacity="0.93" />
+              <text x={tx + 64} y={ty + 15} textAnchor="middle" fill="#ffffff" fontFamily="Arial, Helvetica, sans-serif" fontSize="10" fontWeight="700">{node.name}</text>
+              <text x={tx + 64} y={ty + 30} textAnchor="middle" fill="#789ead" fontFamily="Arial, Helvetica, sans-serif" fontSize="9">{node.lifestyle}</text>
+            </g>
+          );
+        })()}
+      </svg>
+    </div>
+  );
+}
+
+// ─── Main page ────────────────────────────────────────────────────────────────
+
 export default function DiscoveryMapContent() {
-  const handleSchedule = () => {
-    trackSchedule();
-    openSavvyCal();
-  };
+  const [selectedNode, setSelectedNode] = useState<NodeType | null>(null);
+  const [hoveredNode, setHoveredNode] = useState<number | null>(null);
+
+  const handleSchedule = () => { trackSchedule(); openSavvyCal(); };
 
   return (
     <>
-      {/* ── Hero (compact — map is the showpiece) ── */}
+      {/* ── Hero ── */}
       <section style={{ backgroundColor: '#093f4f', paddingTop: 100, paddingBottom: 52 }}>
         <div className="section-container" style={{ maxWidth: 800 }}>
           <span className="label-caps block mb-4" style={{ color: '#789ead' }}>Where to Buy in Roatán</span>
-          <h1
-            style={{
-              fontFamily: 'Georgia, "Times New Roman", serif',
-              fontSize: 'clamp(24px, 3vw, 36px)',
-              fontWeight: 400,
-              color: '#ffffff',
-              lineHeight: 1.2,
-              margin: 0,
-            }}
-          >
+          <h1 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 36px)', fontWeight: 400, color: '#ffffff', lineHeight: 1.2, margin: 0 }}>
             One island. Five lifestyles.
           </h1>
-          <p
-            style={{
-              fontFamily: 'Arial, Helvetica, sans-serif',
-              fontSize: 14,
-              color: 'rgba(255,255,255,0.6)',
-              lineHeight: 1.7,
-              marginTop: 16,
-              marginBottom: 0,
-              maxWidth: 560,
-            }}
-          >
+          <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, marginTop: 16, marginBottom: 0, maxWidth: 560 }}>
             Roatán isn&apos;t one market. Tap any node on the map to explore the lifestyle, the price range, and the buyer it attracts.
           </p>
+        </div>
+      </section>
+
+      {/* ── Map + panel ── */}
+      <section style={{ backgroundColor: '#f5f2ee', paddingTop: 40, paddingBottom: 56 }}>
+        <div className="section-container" style={{ maxWidth: 1400 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', alignItems: 'flex-start' }}>
+
+            {/* Map column */}
+            <div style={{ flex: '1 1 min(100%, 680px)', minWidth: 0 }}>
+              <RoatanMap
+                selectedNode={selectedNode}
+                hoveredNode={hoveredNode}
+                onNodeClick={setSelectedNode}
+                onNodeHover={setHoveredNode}
+              />
+            </div>
+
+            {/* Panel column — Task 3 will fill this */}
+            <div style={{ flex: '1 1 300px', minWidth: 280 }}>
+              <div style={{ backgroundColor: '#ffffff', padding: '2rem', minHeight: 300, boxShadow: '0 4px 24px rgba(0,0,0,0.06)' }}>
+                <p style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 18, color: '#093f4f', margin: 0 }}>
+                  Five lifestyle nodes. One island.
+                </p>
+                <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, color: '#888', marginTop: 12 }}>
+                  Tap a node on the map to explore.
+                </p>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
     </>
