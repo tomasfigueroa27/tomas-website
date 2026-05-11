@@ -6,9 +6,7 @@ const projects = [
     location: 'West Bay · Roatán',
     valueProp: 'Pre-sale oceanfront residences, from $299,999. 14–30% below comparable West Bay product.',
     href: 'https://starfishroatan.com',
-    image: null,
-    disabled: false,
-    badge: null,
+    image: '/starfsh.jpg',
   },
   {
     name: 'Blue Vista Roatán',
