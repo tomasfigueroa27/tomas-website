@@ -273,6 +273,43 @@ export default function USBuyersGuideContent() {
 
               <section id="where-to-compare" style={sectionStyle}>
                 <h2 style={h2Style}>02 — What areas should U.S. buyers compare first?</h2>
+
+                <p style={{ ...bodyStyle, fontWeight: 600, color: '#093f4f' }}>
+                  Roatán is not one market. Each lifestyle node attracts a different buyer.
+                </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 0, margin: '0 0 28px', border: '1px solid #e8f0f3' }}>
+                  {[
+                    { area: 'West Bay', desc: 'Premium beach, highest $/sqft, strongest vacation rental logic.' },
+                    { area: 'West End', desc: 'Walkable village, restaurants, diving, community character.' },
+                    { area: 'Sandy Bay', desc: 'Quieter residential life near the reef; emerging luxury tier.' },
+                    { area: 'Pristine Bay', desc: 'Gated resort, golf, controlled environment.' },
+                    { area: 'French Harbour & East', desc: 'Emerging value, longer-term development exposure.' },
+                  ].map((item, i, arr) => (
+                    <div
+                      key={item.area}
+                      style={{
+                        display: 'flex',
+                        gap: 16,
+                        padding: '14px 20px',
+                        borderBottom: i < arr.length - 1 ? '1px solid #e8f0f3' : 'none',
+                        alignItems: 'baseline',
+                      }}
+                    >
+                      <span style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 14, fontWeight: 400, color: '#093f4f', flexShrink: 0, minWidth: 140 }}>
+                        {item.area}
+                      </span>
+                      <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: '#555555', lineHeight: 1.6 }}>
+                        {item.desc}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: '#555555', lineHeight: 1.75, margin: 0 }}>
+                  For a deeper look at each area&apos;s character, price range, and future buyer — see{' '}
+                  <a href="/neighborhoods" style={{ color: '#789ead', textDecoration: 'underline' }}>Neighborhoods →</a>
+                </p>
               </section>
 
               <section id="buying-process" style={sectionStyle}>
