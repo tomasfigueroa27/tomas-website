@@ -6,16 +6,16 @@ import Newsletter from '@/sections/Newsletter';
 import CTA from '@/sections/CTA';
 
 export const metadata: Metadata = {
-  title: 'Roatan Real Estate | Tomas Figueroa – KW Roatan',
+  title: 'Discover Roatán Before Everybody Does — Tomás Figueroa Real Estate',
   description:
-    "Roatan is the Caribbean's last undervalued market. Strategic real estate guidance for investors and buyers — flights, hotels, financing, experiences. The catalysts are arriving. Tomás Figueroa, Keller Williams Roatán.",
+    "Roatán's quietest premium Caribbean market is becoming easier for U.S. buyers to understand. Strategic guidance on lifestyle, location, project selection, and timing — before the best parts of the island become obvious. Tomás Figueroa, Keller Williams Roatán.",
   alternates: {
     canonical: 'https://www.tomasfigueroa.com/',
   },
   openGraph: {
-    title: 'Roatan Real Estate | Tomas Figueroa – KW Roatan',
+    title: 'Discover Roatán Before Everybody Does — Tomás Figueroa Real Estate',
     description:
-      "Roatan is the Caribbean's last undervalued market. Strategic real estate guidance for investors and buyers — flights, hotels, financing, experiences. The catalysts are arriving. Tomás Figueroa, Keller Williams Roatán.",
+      "Roatán's quietest premium Caribbean market is becoming easier for U.S. buyers to understand. Strategic guidance on lifestyle, location, project selection, and timing — before the best parts of the island become obvious. Tomás Figueroa, Keller Williams Roatán.",
     url: 'https://www.tomasfigueroa.com/',
     images: [{ url: '/tomas-about.jpg', width: 800, height: 1000 }],
   },
