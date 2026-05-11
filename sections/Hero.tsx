@@ -7,7 +7,7 @@ const stats = [
   { value: '7%', label: '5-year CAGR of median sold price' },
   { value: '$400K', label: 'Avg home price 2025' },
   { value: '20+', label: 'Years of Sales Experience' },
-  { value: '#1', label: 'Bitcoin sale in Roatán' },
+  { value: '$1B+', label: 'Hospitality pipeline arriving in Roatán' },
 ];
 
 const Hero = () => {
