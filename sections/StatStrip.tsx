@@ -1,8 +1,8 @@
 const stats = [
-  { value: '7%', label: '5-year CAGR of median sold price' },
-  { value: '$400K', label: 'Avg home price 2025' },
-  { value: '20+', label: 'Years of Sales Experience' },
-  { value: '$1B+', label: 'Hospitality pipeline arriving in Roatán' },
+  { value: '20+ Years', label: 'International sales & advisory experience' },
+  { value: '20+ Projects', label: "Coming through Roatán's next development cycle" },
+  { value: '49 mi²', label: 'Island scale — limited premium coastal nodes' },
+  { value: '2026', label: 'Year-round US airlift & expanding hotel pipeline' },
 ];
 
 export default function StatStrip() {
