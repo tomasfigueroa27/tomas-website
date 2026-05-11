@@ -80,25 +80,6 @@ export default function HomePage() {
       <ActiveDevelopments />
       <HomeAbout />
 
-      {/* Quote Band */}
-      <section style={{ backgroundColor: '#0a1628', paddingTop: 56, paddingBottom: 56 }}>
-        <div className="section-container" style={{ maxWidth: 800, textAlign: 'center' }}>
-          <p
-            style={{
-              fontFamily: 'Georgia, "Times New Roman", serif',
-              fontSize: 'clamp(22px, 3vw, 32px)',
-              fontWeight: 400,
-              color: '#ffffff',
-              lineHeight: 1.45,
-              margin: 0,
-            }}
-          >
-            &ldquo;Most Caribbean markets are overpriced.{' '}
-            <span style={{ color: '#789ead' }}>Roatan isn&apos;t — yet.</span>&rdquo;
-          </p>
-        </div>
-      </section>
-
       {/* Why Roatan */}
       <section style={{ backgroundColor: '#0a1628', paddingTop: 64, paddingBottom: 64, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
         <div className="section-container" style={{ maxWidth: 1100 }}>
