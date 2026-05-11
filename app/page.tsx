@@ -4,6 +4,7 @@ import LifestyleThesis from '@/sections/LifestyleThesis';
 import WhyNow from '@/sections/WhyNow';
 import StatStrip from '@/sections/StatStrip';
 import WhereToBuy from '@/sections/WhereToBuy';
+import HowToChoose from '@/sections/HowToChoose';
 import ActiveDevelopments from '@/sections/ActiveDevelopments';
 import HomeAbout from '@/sections/HomeAbout';
 import Newsletter from '@/sections/Newsletter';
@@ -75,6 +76,7 @@ export default function HomePage() {
       <WhyNow />
       <StatStrip />
       <WhereToBuy />
+      <HowToChoose />
       <ActiveDevelopments />
       <HomeAbout />
 
