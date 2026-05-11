@@ -13,7 +13,7 @@ const projects = [
     location: 'Sandy Bay · Roatán',
     valueProp: 'Premium hillside development. Coming soon.',
     href: 'https://bluevistaroatan.com',
-    image: '/bluevista-hero.webp',
+    image: '/bluevista homepage.jpg',
     disabled: false,
     badge: 'Coming Soon',
   },
