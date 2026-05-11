@@ -3,6 +3,7 @@ import Script from 'next/script';
 import './globals.css';
 import Header from '@/sections/Header';
 import Footer from '@/sections/Footer';
+import InvestorBriefingModal from '@/components/InvestorBriefingModal';
 import ServiceWorkerRegister from '@/components/ServiceWorkerRegister';
 
 const GA_ID = 'G-3YVFSNRZJ6';
@@ -178,6 +179,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <InvestorBriefingModal />
       </body>
     </html>
   );
