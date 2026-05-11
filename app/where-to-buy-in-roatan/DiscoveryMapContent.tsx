@@ -239,6 +239,115 @@ function RoatanMap({
   );
 }
 
+// ─── Detail panel ─────────────────────────────────────────────────────────────
+
+function NodePanel({ node, onSchedule }: { node: NodeType | null; onSchedule: () => void }) {
+  if (!node) {
+    return (
+      <div style={{ backgroundColor: '#ffffff', padding: '2rem', minHeight: 320, boxShadow: '0 4px 24px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+        <div style={{ width: 48, height: 48, borderRadius: '50%', border: '2px solid #c9a84c', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="7" stroke="#c9a84c" strokeWidth="1.5" />
+            <circle cx="10" cy="10" r="2" fill="#c9a84c" />
+          </svg>
+        </div>
+        <p style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 17, color: '#093f4f', margin: 0, lineHeight: 1.4 }}>
+          Five lifestyle nodes.<br />One island.
+        </p>
+        <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, color: '#888', marginTop: 12, marginBottom: 0 }}>
+          Tap any node on the map to explore the lifestyle, price range, and buyer profile.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ backgroundColor: '#ffffff', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', overflow: 'hidden' }}>
+      {/* Header bar */}
+      <div style={{ backgroundColor: '#093f4f', padding: '1.25rem 1.75rem' }}>
+        <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', color: '#c9a84c', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>
+          {node.num} — {node.lifestyle}
+        </span>
+        <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 22, fontWeight: 400, color: '#ffffff', margin: 0, lineHeight: 1.2 }}>
+          {node.name}
+        </h2>
+      </div>
+
+      {/* Body */}
+      <div style={{ padding: '1.5rem 1.75rem' }}>
+        {/* Vibe */}
+        <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, color: '#444', lineHeight: 1.7, marginTop: 0, marginBottom: '1.25rem' }}>
+          {node.vibe}
+        </p>
+
+        {/* Key details grid */}
+        <div style={{ borderTop: '1px solid #f0ede8', paddingTop: '1.25rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
+          <div>
+            <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: '#789ead', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Price Range</span>
+            <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 12, color: '#093f4f', lineHeight: 1.4, display: 'block' }}>{node.priceRange}</span>
+          </div>
+          <div>
+            <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: '#789ead', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Typical Buyer</span>
+            <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 12, color: '#093f4f', lineHeight: 1.4, display: 'block' }}>{node.typicalBuyer}</span>
+          </div>
+        </div>
+
+        {/* Strength + Watch out */}
+        <div style={{ borderTop: '1px solid #f0ede8', paddingTop: '1.25rem', marginBottom: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+            <span style={{ width: 18, height: 18, borderRadius: '50%', backgroundColor: 'rgba(9,63,79,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
+              <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true"><path d="M1.5 4L3.5 6L6.5 2" stroke="#093f4f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </span>
+            <div>
+              <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: '#789ead', textTransform: 'uppercase', display: 'block', marginBottom: 2 }}>Strength</span>
+              <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 12, color: '#444', lineHeight: 1.5 }}>{node.strength}</span>
+            </div>
+          </div>
+          <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+            <span style={{ width: 18, height: 18, borderRadius: '50%', backgroundColor: 'rgba(201,168,76,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
+              <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true"><circle cx="4" cy="4" r="3" stroke="#c9a84c" strokeWidth="1.2"/><path d="M4 2.5V4.2" stroke="#c9a84c" strokeWidth="1.2" strokeLinecap="round"/><circle cx="4" cy="5.5" r="0.5" fill="#c9a84c"/></svg>
+            </span>
+            <div>
+              <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: '#c9a84c', textTransform: 'uppercase', display: 'block', marginBottom: 2 }}>Watch Out</span>
+              <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 12, color: '#444', lineHeight: 1.5 }}>{node.watchout}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Best For list */}
+        <div style={{ borderTop: '1px solid #f0ede8', paddingTop: '1.25rem', marginBottom: '1.5rem' }}>
+          <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: '#789ead', textTransform: 'uppercase', display: 'block', marginBottom: 10 }}>Best For</span>
+          <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {node.bestFor.map((item, i) => (
+              <li key={i} style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 12, color: '#444', lineHeight: 1.5, display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                <span style={{ color: '#c9a84c', flexShrink: 0, marginTop: 2 }}>—</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* CTAs */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <button
+            onClick={onSchedule}
+            className="btn-accent"
+            style={{ width: '100%', justifyContent: 'center' }}
+          >
+            Discuss {node.name} with Tomás →
+          </button>
+          <a
+            href={node.link}
+            style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 12, color: '#789ead', textAlign: 'center', textDecoration: 'none', display: 'block', paddingTop: 4 }}
+          >
+            Read full neighborhood profile →
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function DiscoveryMapContent() {
@@ -277,16 +386,9 @@ export default function DiscoveryMapContent() {
               />
             </div>
 
-            {/* Panel column — Task 3 will fill this */}
+            {/* Panel column */}
             <div style={{ flex: '1 1 300px', minWidth: 280 }}>
-              <div style={{ backgroundColor: '#ffffff', padding: '2rem', minHeight: 300, boxShadow: '0 4px 24px rgba(0,0,0,0.06)' }}>
-                <p style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 18, color: '#093f4f', margin: 0 }}>
-                  Five lifestyle nodes. One island.
-                </p>
-                <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, color: '#888', marginTop: 12 }}>
-                  Tap a node on the map to explore.
-                </p>
-              </div>
+              <NodePanel node={selectedNode} onSchedule={handleSchedule} />
             </div>
 
           </div>
