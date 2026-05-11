@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { trackSchedule, openSavvyCal, openBriefingModal } from '@/lib/analytics';
 
 const stats = [
   { value: '7%', label: '5-year CAGR of median sold price' },
@@ -10,9 +11,9 @@ const stats = [
 ];
 
 const Hero = () => {
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  const handleSchedule = () => {
+    trackSchedule();
+    openSavvyCal();
   };
 
   return (
@@ -35,17 +36,18 @@ const Hero = () => {
         style={{ paddingTop: 140, paddingBottom: 64 }}
       >
         <div style={{ maxWidth: 620 }}>
+          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>Why Roatan, Why Now</span>
           <h1
             style={{
               fontFamily: 'Georgia, "Times New Roman", serif',
-              fontSize: 'clamp(38px, 4vw, 42px)',
+              fontSize: 'clamp(34px, 4vw, 48px)',
               fontWeight: 400,
               color: '#ffffff',
               lineHeight: 1.15,
               margin: 0,
             }}
           >
-            Should You Invest or Move to Roatan? Start With Clarity
+            Roatan is the Caribbean&apos;s last undervalued market.
           </h1>
           <p
             style={{
@@ -58,14 +60,14 @@ const Hero = () => {
               maxWidth: 520,
             }}
           >
-            Strategic real estate guidance for investors and buyers considering property in Roatan, Honduras.
+            The catalysts are arriving — flights, hotels, financing, experiences. I&apos;ll show you the numbers.
           </p>
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <Link href="/properties" className="btn-accent">
-              Browse MLS
-            </Link>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+            <button onClick={openBriefingModal} className="btn-accent">
+              Download the Investor Briefing
+            </button>
             <button
-              onClick={() => scrollToSection('cta')}
+              onClick={handleSchedule}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -81,8 +83,14 @@ const Hero = () => {
                 fontFamily: 'Arial, Helvetica, sans-serif',
               }}
             >
-              Sell Property
+              Schedule a Call
             </button>
+            <Link
+              href="/properties"
+              style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', textDecoration: 'none', fontWeight: 600 }}
+            >
+              Browse MLS →
+            </Link>
           </div>
         </div>
       </div>
