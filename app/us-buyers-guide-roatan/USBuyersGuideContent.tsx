@@ -390,6 +390,47 @@ export default function USBuyersGuideContent() {
 
               <section id="legal-due-diligence" style={sectionStyle}>
                 <h2 style={h2Style}>04 — What legal due diligence matters?</h2>
+
+                <p style={{ ...bodyStyle, fontWeight: 600, color: '#093f4f' }}>
+                  Due diligence in Honduras is more manual than U.S. buyers expect. The process works — but it requires a competent attorney and enough time to do it properly.
+                </p>
+
+                <h3 style={h3Style}>Title search</h3>
+                <p style={bodyStyle}>
+                  Your attorney searches the Public Property Registry to confirm that the seller has clean, unencumbered title — meaning no liens, mortgages, or legal disputes attached to the property. The search traces the chain of ownership back far enough to establish a clean history.
+                </p>
+
+                <h3 style={h3Style}>What to verify before signing</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, margin: '0 0 24px' }}>
+                  {[
+                    'Title is registered in the seller\'s name with no outstanding liens or encumbrances',
+                    'Property boundaries match the registered survey (catastro) — confirm physical markers on site',
+                    'No outstanding property taxes (impuesto sobre bienes inmuebles) or municipal fees',
+                    'HOA fees, rules, and restrictions are disclosed and reviewed',
+                    'Rental permissions are explicit in the HOA documents (if short-term rentals are planned)',
+                    'Environmental or coastal setback restrictions do not limit intended use',
+                    'Building permits are in order for existing structures',
+                  ].map((item) => (
+                    <div key={item} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                      <span style={{ color: '#789ead', flexShrink: 0, marginTop: 2, fontWeight: 700, fontSize: 14 }}>—</span>
+                      <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: '#555555', lineHeight: 1.7 }}>{item}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <h3 style={h3Style}>Choosing your attorney</h3>
+                <p style={bodyStyle}>
+                  Use an independent attorney — not the developer&apos;s recommended attorney, and not the seller&apos;s. Your attorney&apos;s job is to protect your interests, which means they cannot simultaneously represent the other side. A qualified Honduran real estate attorney typically charges $800–$2,000 for a residential transaction; this cost is non-negotiable and essential.
+                </p>
+
+                <h3 style={h3Style}>Power of attorney</h3>
+                <p style={bodyStyle}>
+                  If you cannot be present in Honduras for closing, your attorney can execute the transaction on your behalf via a notarized and apostilled power of attorney. This is common and routine for U.S. buyers. Your U.S. attorney or notary can assist with the apostille process.
+                </p>
+
+                <p style={{ ...bodyStyle, fontStyle: 'italic', color: '#789ead' }}>
+                  Budget 30–45 days for a thorough due diligence process. Rushing it is the most common mistake first-time buyers make.
+                </p>
               </section>
 
               <section id="how-rentals-work" style={sectionStyle}>
