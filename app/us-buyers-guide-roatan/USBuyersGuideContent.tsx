@@ -218,6 +218,57 @@ export default function USBuyersGuideContent() {
               {/* Placeholders — filled in subsequent commits */}
               <section id="can-americans-buy" style={sectionStyle}>
                 <h2 style={h2Style}>01 — Can Americans buy property in Roatán?</h2>
+
+                <p style={{ ...bodyStyle, fontWeight: 600, fontSize: 16, color: '#093f4f' }}>
+                  Yes. Americans can own freehold property in Roatán with the same rights as Honduran citizens.
+                </p>
+
+                <p style={bodyStyle}>
+                  Roatán sits within the Bay Islands of Honduras, which carry a constitutional designation that allows foreigners to own land within 40 kilometers of the coastline — a key distinction from mainland Honduras, where coastal foreign ownership is restricted. This makes the Bay Islands one of the most straightforward Caribbean markets for U.S. buyers to enter.
+                </p>
+
+                <h3 style={h3Style}>Ownership vehicles</h3>
+
+                <p style={bodyStyle}>
+                  Property can be held in three main structures, each with different tax, succession, and exit implications:
+                </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 16, margin: '0 0 24px' }}>
+                  {[
+                    {
+                      title: 'Personal name',
+                      body: 'Simplest structure. Direct ownership in your individual name. Common for primary residences and straightforward investment properties.',
+                    },
+                    {
+                      title: 'Honduran S.A. de C.V. (corporation)',
+                      body: 'A Honduran corporation holds the property. Useful for multiple shareholders, succession planning, and certain tax structures.',
+                    },
+                    {
+                      title: 'Trust (Fideicomiso)',
+                      body: 'The property is held in trust by a Honduran bank. Common for more complex estate planning or multi-owner scenarios.',
+                    },
+                  ].map((item) => (
+                    <div
+                      key={item.title}
+                      style={{
+                        padding: '16px 20px',
+                        borderLeft: '3px solid #d4e8ed',
+                        backgroundColor: '#f9fbfc',
+                      }}
+                    >
+                      <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, fontWeight: 700, color: '#093f4f', margin: '0 0 6px' }}>
+                        {item.title}
+                      </p>
+                      <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: '#555555', lineHeight: 1.75, margin: 0 }}>
+                        {item.body}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <p style={{ ...bodyStyle, fontStyle: 'italic', color: '#789ead' }}>
+                  Get the structure right at entry. Fixing it later is expensive.
+                </p>
               </section>
 
               <section id="where-to-compare" style={sectionStyle}>
