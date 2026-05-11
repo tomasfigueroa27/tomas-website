@@ -55,9 +55,11 @@ const Newsletter = () => {
             data-netlify-honeypot="bot-field"
           >
             <input type="hidden" name="form-name" value="newsletter" />
-            <p className="hidden">
-              <label>Don&apos;t fill this out: <input name="bot-field" /></label>
-            </p>
+            <div style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden', opacity: 0 }} aria-hidden="true">
+              <label>Do not fill this out
+                <input name="bot-field" tabIndex={-1} autoComplete="off" />
+              </label>
+            </div>
             <div style={{ display: 'flex', border: '1px solid #d4e8ed', marginBottom: 12 }}>
               <input
                 type="email"

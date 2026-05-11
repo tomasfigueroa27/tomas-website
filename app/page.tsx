@@ -1,21 +1,26 @@
 import type { Metadata } from 'next';
 import Hero from '@/sections/Hero';
+import LifestyleThesis from '@/sections/LifestyleThesis';
+import WhyNow from '@/sections/WhyNow';
+import StatStrip from '@/sections/StatStrip';
+import WhereToBuy from '@/sections/WhereToBuy';
+import HowToChoose from '@/sections/HowToChoose';
 import ActiveDevelopments from '@/sections/ActiveDevelopments';
 import HomeAbout from '@/sections/HomeAbout';
 import Newsletter from '@/sections/Newsletter';
 import CTA from '@/sections/CTA';
 
 export const metadata: Metadata = {
-  title: 'Roatan Real Estate | Tomas Figueroa – KW Roatan',
+  title: 'Discover Roatán Before Everybody Does — Tomás Figueroa Real Estate',
   description:
-    'Search Roatan MLS listings, explore neighborhoods, and get expert guidance on buying property in Roatan, Honduras. Tomas Figueroa – Keller Williams Roatan.',
+    "Roatán's quietest premium Caribbean market is becoming easier for U.S. buyers to understand. Strategic guidance on lifestyle, location, project selection, and timing — before the best parts of the island become obvious. Tomás Figueroa, Keller Williams Roatán.",
   alternates: {
     canonical: 'https://www.tomasfigueroa.com/',
   },
   openGraph: {
-    title: 'Roatan Real Estate | Tomas Figueroa – KW Roatan',
+    title: 'Discover Roatán Before Everybody Does — Tomás Figueroa Real Estate',
     description:
-      'Buy, sell, or invest in Roatan, Honduras real estate with Tomas Figueroa at Keller Williams Roatan.',
+      "Roatán's quietest premium Caribbean market is becoming easier for U.S. buyers to understand. Strategic guidance on lifestyle, location, project selection, and timing — before the best parts of the island become obvious. Tomás Figueroa, Keller Williams Roatán.",
     url: 'https://www.tomasfigueroa.com/',
     images: [{ url: '/tomas-about.jpg', width: 800, height: 1000 }],
   },
@@ -29,7 +34,7 @@ const personSchema = {
   jobTitle: 'Licensed Realtor',
   worksFor: { '@type': 'Organization', name: 'Keller Williams Roatan' },
   url: 'https://www.tomasfigueroa.com',
-  telephone: '+50488488326',
+  telephone: '+50488483226',
   email: 'tomas@kwroatan.com',
   sameAs: [
     'https://www.linkedin.com/in/roatanbytomas/',
@@ -45,7 +50,7 @@ const businessSchema = {
   '@type': ['RealEstateAgent', 'LocalBusiness'],
   name: 'Tomas Figueroa – KW Roatan',
   url: 'https://www.tomasfigueroa.com',
-  telephone: '+50488488326',
+  telephone: '+50488483226',
   email: 'tomas@kwroatan.com',
   address: {
     '@type': 'PostalAddress',
@@ -67,6 +72,11 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }} />
       <Hero />
+      <LifestyleThesis />
+      <WhyNow />
+      <StatStrip />
+      <WhereToBuy />
+      <HowToChoose />
       <ActiveDevelopments />
       <HomeAbout />
 

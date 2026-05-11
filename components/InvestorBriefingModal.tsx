@@ -220,14 +220,38 @@ export default function InvestorBriefingModal() {
                 </svg>
               </div>
               <h3 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 20, fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 10 }}>
-                Briefing on its way to your inbox.
+                Briefing on its way.
               </h3>
-              <p style={{ fontSize: 13, color: '#555555', lineHeight: 1.75, marginBottom: 24 }}>
-                Check your email in two minutes. While you wait — want to book a call?
+              <p style={{ fontSize: 13, color: '#555555', lineHeight: 1.75, marginBottom: 28 }}>
+                Check your email in 2 minutes — the briefing is on its way from tomas@kwroatan.com. Want it right now?
               </p>
-              <button onClick={handleSuccessCall} className="btn-accent" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}>
-                Schedule a Call with Tomas
-              </button>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {/* TODO: Replace /roatan-investor-briefing.pdf with the real briefing PDF before launch */}
+                <a
+                  href="/roatan-investor-briefing.pdf"
+                  download="Roatan-Investor-Briefing.pdf"
+                  className="btn-accent"
+                  style={{ width: '100%', justifyContent: 'center', display: 'flex', textDecoration: 'none' }}
+                  onClick={() => {
+                    if (typeof window !== 'undefined') {
+                      if (typeof window.fbq === 'function') {
+                        window.fbq('track', 'ViewContent', { content_name: 'investor_briefing_pdf', content_type: 'product' });
+                      }
+                      if (typeof window.gtag === 'function') {
+                        window.gtag('event', 'briefing_pdf_download_instant');
+                      }
+                    }
+                  }}
+                >
+                  Download Now (PDF)
+                </a>
+                <button
+                  onClick={handleSuccessCall}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#093f4f', textDecoration: 'underline', fontFamily: 'Arial, Helvetica, sans-serif', padding: 0 }}
+                >
+                  Schedule a Call →
+                </button>
+              </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit(onSubmit)} noValidate>

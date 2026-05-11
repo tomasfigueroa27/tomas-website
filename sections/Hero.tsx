@@ -3,13 +3,6 @@
 import Link from 'next/link';
 import { trackSchedule, openSavvyCal, openBriefingModal } from '@/lib/analytics';
 
-const stats = [
-  { value: '7%', label: '5-year CAGR of median sold price' },
-  { value: '$400K', label: 'Avg home price 2025' },
-  { value: '20+', label: 'Years of Sales Experience' },
-  { value: '#1', label: 'Bitcoin sale in Roatán' },
-];
-
 const Hero = () => {
   const handleSchedule = () => {
     trackSchedule();
@@ -36,7 +29,7 @@ const Hero = () => {
         style={{ paddingTop: 140, paddingBottom: 64 }}
       >
         <div style={{ maxWidth: 620 }}>
-          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>Why Roatan, Why Now</span>
+          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>Why Roatán, Why Now</span>
           <h1
             style={{
               fontFamily: 'Georgia, "Times New Roman", serif',
@@ -47,7 +40,7 @@ const Hero = () => {
               margin: 0,
             }}
           >
-            Roatan is the Caribbean&apos;s last undervalued market.
+            Discover Roatán before everybody does.
           </h1>
           <p
             style={{
@@ -60,7 +53,7 @@ const Hero = () => {
               maxWidth: 520,
             }}
           >
-            The catalysts are arriving — flights, hotels, financing, experiences. I&apos;ll show you the numbers.
+            A simpler, small-island Caribbean lifestyle is becoming easier for U.S. buyers to reach, understand, and own. I help you choose the right location, project, and strategy — before the best parts of the island become obvious.
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
             <button onClick={openBriefingModal} className="btn-accent">
@@ -83,7 +76,7 @@ const Hero = () => {
                 fontFamily: 'Arial, Helvetica, sans-serif',
               }}
             >
-              Schedule a Call
+              Schedule a Strategy Call
             </button>
             <Link
               href="/properties"
@@ -95,50 +88,6 @@ const Hero = () => {
         </div>
       </div>
 
-      <div
-        className="relative z-10"
-        style={{ backgroundColor: 'rgba(9,63,79,0.95)', borderTop: '1px solid rgba(255,255,255,0.1)' }}
-      >
-        <div className="section-container">
-          <div className="grid grid-cols-2 md:grid-cols-4">
-            {stats.map((stat, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: '20px 16px',
-                  borderRight: i < stats.length - 1 ? '1px solid rgba(255,255,255,0.1)' : 'none',
-                }}
-              >
-                <p
-                  style={{
-                    fontFamily: 'Georgia, "Times New Roman", serif',
-                    fontSize: 26,
-                    fontWeight: 700,
-                    color: '#d4e8ed',
-                    lineHeight: 1,
-                    margin: 0,
-                  }}
-                >
-                  {stat.value}
-                </p>
-                <p
-                  style={{
-                    fontFamily: 'Arial, Helvetica, sans-serif',
-                    fontSize: 10,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                    color: 'rgba(255,255,255,0.5)',
-                    marginTop: 6,
-                    marginBottom: 0,
-                  }}
-                >
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
     </section>
   );
 };

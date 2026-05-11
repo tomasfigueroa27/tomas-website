@@ -70,7 +70,7 @@ const CTA = () => {
             }`}
           >
             <a
-              href="tel:+50488488326"
+              href="tel:+50488483226"
               style={{
                 display: 'block',
                 padding: 24,
@@ -86,7 +86,7 @@ const CTA = () => {
                 <Phone style={{ width: 18, height: 18, color: '#d4e8ed' }} />
               </div>
               <h3 style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, fontWeight: 600, color: '#ffffff', marginBottom: 6, marginTop: 0 }}>Call Now</h3>
-              <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', margin: 0 }}>(504) 8848-8326</p>
+              <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', margin: 0 }}>(504) 8848-3226</p>
             </a>
 
             <a
@@ -111,7 +111,7 @@ const CTA = () => {
             </a>
 
             <a
-              href="https://wa.me/50488488326?text=Hi+Tomas%2C+I+found+your+website+and+I%27m+interested+in+Roatan+real+estate."
+              href="https://wa.me/50488483226?text=Hi+Tomas%2C+I+found+your+website+and+I%27m+interested+in+Roatan+real+estate."
               target="_blank"
               rel="noopener"
               style={{

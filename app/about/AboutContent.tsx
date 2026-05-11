@@ -11,7 +11,7 @@ const personSchema = {
   jobTitle: 'Licensed Real Estate Agent',
   url: 'https://www.tomasfigueroa.com',
   image: 'https://www.tomasfigueroa.com/tomas-about.jpg',
-  telephone: '+50488488326',
+  telephone: '+50488483226',
   email: 'tomas@kwroatan.com',
   knowsAbout: ['Roatan real estate', 'Caribbean property investment', 'Honduras property law'],
   worksFor: { '@type': 'RealEstateAgent', name: 'Keller Williams Roatan', url: 'https://www.tomasfigueroa.com' },
@@ -88,11 +88,11 @@ export default function AboutContent() {
                 <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                   <Calendar style={{ width: 16, height: 16 }} /> Schedule a Call
                 </a>
-                <a href="tel:+50488488326" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', backgroundColor: 'rgba(255,255,255,0.1)', color: '#ffffff', textDecoration: 'none', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'Arial, Helvetica, sans-serif', transition: 'background-color 0.2s' }}
+                <a href="tel:+50488483226" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', backgroundColor: 'rgba(255,255,255,0.1)', color: '#ffffff', textDecoration: 'none', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'Arial, Helvetica, sans-serif', transition: 'background-color 0.2s' }}
                   onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.18)')}
                   onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)')}
                 >
-                  <Phone style={{ width: 16, height: 16 }} /> (504) 8848-8326
+                  <Phone style={{ width: 16, height: 16 }} /> (504) 8848-3226
                 </a>
               </div>
             </div>

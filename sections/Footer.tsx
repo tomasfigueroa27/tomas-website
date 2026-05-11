@@ -135,12 +135,12 @@ const Footer = () => {
               <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                 <Phone style={{ width: 14, height: 14, color: '#789ead', flexShrink: 0 }} aria-hidden="true" />
                 <a
-                  href="tel:+50488488326"
+                  href="tel:+50488483226"
                   style={{ ...linkStyle, margin: 0 }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = '#ffffff')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
                 >
-                  (504) 8848-8326
+                  (504) 8848-3226
                 </a>
               </div>
               <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
