@@ -36,7 +36,7 @@ const Hero = () => {
         style={{ paddingTop: 140, paddingBottom: 64 }}
       >
         <div style={{ maxWidth: 620 }}>
-          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>Why Roatan, Why Now</span>
+          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>Why Roatán, Why Now</span>
           <h1
             style={{
               fontFamily: 'Georgia, "Times New Roman", serif',
@@ -47,7 +47,7 @@ const Hero = () => {
               margin: 0,
             }}
           >
-            Roatan is the Caribbean&apos;s last undervalued market.
+            Discover Roatán before everybody does.
           </h1>
           <p
             style={{
@@ -60,7 +60,7 @@ const Hero = () => {
               maxWidth: 520,
             }}
           >
-            The catalysts are arriving — flights, hotels, financing, experiences. I&apos;ll show you the numbers.
+            A simpler, small-island Caribbean lifestyle is becoming easier for U.S. buyers to reach, understand, and own. I help you choose the right location, project, and strategy — before the best parts of the island become obvious.
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
             <button onClick={openBriefingModal} className="btn-accent">
@@ -83,7 +83,7 @@ const Hero = () => {
                 fontFamily: 'Arial, Helvetica, sans-serif',
               }}
             >
-              Schedule a Call
+              Schedule a Strategy Call
             </button>
             <Link
               href="/properties"
