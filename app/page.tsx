@@ -3,6 +3,7 @@ import Hero from '@/sections/Hero';
 import LifestyleThesis from '@/sections/LifestyleThesis';
 import WhyNow from '@/sections/WhyNow';
 import StatStrip from '@/sections/StatStrip';
+import WhereToBuy from '@/sections/WhereToBuy';
 import ActiveDevelopments from '@/sections/ActiveDevelopments';
 import HomeAbout from '@/sections/HomeAbout';
 import Newsletter from '@/sections/Newsletter';
@@ -73,6 +74,7 @@ export default function HomePage() {
       <LifestyleThesis />
       <WhyNow />
       <StatStrip />
+      <WhereToBuy />
       <ActiveDevelopments />
       <HomeAbout />
 
