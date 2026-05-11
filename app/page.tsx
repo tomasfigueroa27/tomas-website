@@ -8,14 +8,14 @@ import CTA from '@/sections/CTA';
 export const metadata: Metadata = {
   title: 'Roatan Real Estate | Tomas Figueroa – KW Roatan',
   description:
-    'Search Roatan MLS listings, explore neighborhoods, and get expert guidance on buying property in Roatan, Honduras. Tomas Figueroa – Keller Williams Roatan.',
+    "Roatan is the Caribbean's last undervalued market. Strategic real estate guidance for investors and buyers — flights, hotels, financing, experiences. The catalysts are arriving. Tomás Figueroa, Keller Williams Roatán.",
   alternates: {
     canonical: 'https://www.tomasfigueroa.com/',
   },
   openGraph: {
     title: 'Roatan Real Estate | Tomas Figueroa – KW Roatan',
     description:
-      'Buy, sell, or invest in Roatan, Honduras real estate with Tomas Figueroa at Keller Williams Roatan.',
+      "Roatan is the Caribbean's last undervalued market. Strategic real estate guidance for investors and buyers — flights, hotels, financing, experiences. The catalysts are arriving. Tomás Figueroa, Keller Williams Roatán.",
     url: 'https://www.tomasfigueroa.com/',
     images: [{ url: '/tomas-about.jpg', width: 800, height: 1000 }],
   },
