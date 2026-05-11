@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Hero from '@/sections/Hero';
 import LifestyleThesis from '@/sections/LifestyleThesis';
+import WhyNow from '@/sections/WhyNow';
 import StatStrip from '@/sections/StatStrip';
 import ActiveDevelopments from '@/sections/ActiveDevelopments';
 import HomeAbout from '@/sections/HomeAbout';
@@ -70,6 +71,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }} />
       <Hero />
       <LifestyleThesis />
+      <WhyNow />
       <StatStrip />
       <ActiveDevelopments />
       <HomeAbout />
