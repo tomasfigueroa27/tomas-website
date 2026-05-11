@@ -435,16 +435,142 @@ export default function USBuyersGuideContent() {
 
               <section id="how-rentals-work" style={sectionStyle}>
                 <h2 style={h2Style}>05 — How do rentals work?</h2>
+
+                <p style={{ ...bodyStyle, fontWeight: 600, color: '#093f4f' }}>
+                  Short-term vacation rentals are the dominant income model for Roatán investment properties. Most buyers underestimate management costs and overestimate occupancy.
+                </p>
+
+                <h3 style={h3Style}>The short-term rental market</h3>
+                <p style={bodyStyle}>
+                  West Bay Beach is the strongest short-term rental market on the island — high demand, premium nightly rates, and proven guest volume. West End, Sandy Bay, and select Pristine Bay units also generate meaningful short-term income. Properties further east see more limited demand from international renters.
+                </p>
+                <p style={bodyStyle}>
+                  Most Roatán vacation rentals list on VRBO, Airbnb, and direct-booking channels. A well-managed West Bay oceanfront unit typically achieves 55–75% occupancy at $150–$350/night depending on unit size and finishes.
+                </p>
+
+                <h3 style={h3Style}>Property management</h3>
+                <p style={bodyStyle}>
+                  If you are not based in Roatán, you will need a local property manager. Management fees range from 20–35% of gross rental revenue depending on the scope of services (marketing, guest communication, cleaning, maintenance coordination). Choose a manager with a track record specific to your neighborhood — management quality varies significantly across the island.
+                </p>
+
+                <h3 style={h3Style}>Underwriting rentals conservatively</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, margin: '0 0 24px' }}>
+                  {[
+                    'Use 50–60% occupancy as your baseline, not best-case',
+                    'Deduct management fees (25–30%), cleaning costs, HOA fees, and maintenance reserves before calculating net income',
+                    'Budget for an annual slow season (typically May–June)',
+                    'Account for property tax, income tax, and any HOA rental restrictions',
+                  ].map((item) => (
+                    <div key={item} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                      <span style={{ color: '#789ead', flexShrink: 0, marginTop: 2, fontWeight: 700, fontSize: 14 }}>—</span>
+                      <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: '#555555', lineHeight: 1.7 }}>{item}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <p style={{ ...bodyStyle, fontStyle: 'italic', color: '#789ead' }}>
+                  The right question is not &ldquo;what can this rent for?&rdquo; but &ldquo;what will I net after all costs in a realistic year?&rdquo;
+                </p>
               </section>
 
-              <section id="pre-construction" style={sectionStyle}>
+              <section id="pre-construction" style={{ ...sectionStyle, marginBottom: 0 }}>
                 <h2 style={h2Style}>06 — What should I know before buying pre-construction?</h2>
+
+                <p style={{ ...bodyStyle, fontWeight: 600, color: '#093f4f' }}>
+                  Pre-construction offers real upside — but the risk profile is fundamentally different from resale. Know what you&apos;re underwriting.
+                </p>
+
+                <h3 style={h3Style}>Developer vetting</h3>
+                <p style={bodyStyle}>
+                  Verify that the developer has completed at least one project on the island. Ask for references from buyers in a previous phase. Review the corporate structure behind the project — is it a registered Honduran entity? Who are the principals? Fly in and walk the site before committing capital.
+                </p>
+
+                <h3 style={h3Style}>Contract terms to review</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, margin: '0 0 24px' }}>
+                  {[
+                    'Deposit schedule and what triggers each payment milestone',
+                    'What happens if the developer delays or fails to deliver — are deposits held in escrow or in operating accounts?',
+                    'Completion guarantee or performance bond',
+                    'Defined specifications for finishes and common areas — vague language allows substitution',
+                    'Rental management exclusivity clauses — some developers require you to use their management company',
+                    'Resale restrictions or right-of-first-refusal during the construction period',
+                  ].map((item) => (
+                    <div key={item} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                      <span style={{ color: '#789ead', flexShrink: 0, marginTop: 2, fontWeight: 700, fontSize: 14 }}>—</span>
+                      <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: '#555555', lineHeight: 1.7 }}>{item}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <h3 style={h3Style}>Timeline expectations</h3>
+                <p style={bodyStyle}>
+                  Caribbean construction timelines routinely run 6–18 months beyond the published schedule. Build buffer into your financial model and personal planning. Confirm the project has permits in hand — not just permits applied for — before signing a purchase agreement.
+                </p>
+
+                <p style={{ ...bodyStyle, fontStyle: 'italic', color: '#789ead' }}>
+                  Pre-construction pricing is the reward for accepting execution risk. Make sure the discount is real and the developer has the track record to deliver.
+                </p>
               </section>
 
             </main>
           </div>
         </div>
       </div>
+
+      {/* Final CTA */}
+      <section style={{ backgroundColor: '#093f4f', paddingTop: 64, paddingBottom: 64 }}>
+        <div className="section-container" style={{ maxWidth: 700, textAlign: 'center' }}>
+          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>Ready to Go Deeper?</span>
+          <h2
+            style={{
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontSize: 'clamp(24px, 3vw, 34px)',
+              fontWeight: 400,
+              color: '#ffffff',
+              marginTop: 0,
+              marginBottom: 16,
+              lineHeight: 1.25,
+            }}
+          >
+            Get the full Roatán Investor Briefing.
+          </h2>
+          <p
+            style={{
+              fontFamily: 'Arial, Helvetica, sans-serif',
+              fontSize: 14,
+              color: 'rgba(255,255,255,0.6)',
+              lineHeight: 1.75,
+              marginBottom: 36,
+            }}
+          >
+            The catalysts, the market data, current projects, and the questions worth asking before you commit — in one document.
+          </p>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+            <button onClick={openBriefingModal} className="btn-accent">
+              Download the Investor Briefing
+            </button>
+            <button
+              onClick={handleSchedule}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                padding: '12px 28px',
+                background: 'transparent',
+                color: '#ffffff',
+                border: '1px solid rgba(255,255,255,0.4)',
+                fontSize: 11,
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.12em',
+                cursor: 'pointer',
+                fontFamily: 'Arial, Helvetica, sans-serif',
+              }}
+            >
+              Schedule a Strategy Call
+            </button>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
