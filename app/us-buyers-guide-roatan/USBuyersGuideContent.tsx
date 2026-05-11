@@ -314,6 +314,78 @@ export default function USBuyersGuideContent() {
 
               <section id="buying-process" style={sectionStyle}>
                 <h2 style={h2Style}>03 — What is the buying process?</h2>
+
+                <p style={{ ...bodyStyle, fontWeight: 600, color: '#093f4f' }}>
+                  A typical Roatán purchase moves through six stages. Standard timeline: 30–60 days from signed intent to registered deed.
+                </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 0, margin: '28px 0' }}>
+                  {[
+                    {
+                      step: '01',
+                      title: 'Property identification + signed intent',
+                      body: 'Identify the property and sign a Letter of Intent or reservation agreement (typically with a small reservation fee). This takes the property off the market while due diligence begins.',
+                    },
+                    {
+                      step: '02',
+                      title: 'Independent legal representation',
+                      body: "Retain an independent Honduran attorney — not the developer's or seller's representative. Your attorney will conduct a title search, verify there are no liens or encumbrances, and draft or review all agreements before you sign.",
+                    },
+                    {
+                      step: '03',
+                      title: 'Title search and due diligence',
+                      body: 'The attorney reviews the property at the Public Property Registry (Instituto de la Propiedad). This confirms the chain of title, identifies any liens, confirms the property boundaries match the survey, and verifies there are no outstanding taxes or municipal obligations.',
+                    },
+                    {
+                      step: '04',
+                      title: 'Purchase agreement (Promesa de Compraventa)',
+                      body: 'Once due diligence clears, buyer and seller sign a bilateral purchase agreement. A deposit — typically 10–20% of the purchase price — is held in escrow by the attorney or notary. This agreement is legally binding on both parties.',
+                    },
+                    {
+                      step: '05',
+                      title: 'Closing — notarial deed (Escritura Pública)',
+                      body: 'The Escritura Pública is executed before a Honduran notary. Both parties — or their legal representatives via power of attorney — sign the deed. The purchase price, legal description, and terms are all recorded in the public record.',
+                    },
+                    {
+                      step: '06',
+                      title: 'Property registration',
+                      body: 'The executed deed is registered at the Public Property Registry. Registration completes the legal transfer of title. This step typically takes 30–60 additional days and is handled by your attorney.',
+                    },
+                  ].map((item, i, arr) => (
+                    <div
+                      key={item.step}
+                      style={{
+                        display: 'flex',
+                        gap: 20,
+                        padding: '24px 0',
+                        borderBottom: i < arr.length - 1 ? '1px solid #e8f0f3' : 'none',
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: 'Georgia, "Times New Roman", serif',
+                          fontSize: 22,
+                          fontWeight: 700,
+                          color: '#d4e8ed',
+                          flexShrink: 0,
+                          lineHeight: 1,
+                          paddingTop: 3,
+                          minWidth: 32,
+                        }}
+                      >
+                        {item.step}
+                      </span>
+                      <div>
+                        <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, fontWeight: 700, color: '#093f4f', margin: '0 0 6px' }}>
+                          {item.title}
+                        </p>
+                        <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: '#555555', lineHeight: 1.75, margin: 0 }}>
+                          {item.body}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </section>
 
               <section id="legal-due-diligence" style={sectionStyle}>
