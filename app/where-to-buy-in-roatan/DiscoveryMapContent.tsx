@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import type { } from 'react';
 import Link from 'next/link';
 import { openBriefingModal, trackSchedule, openSavvyCal } from '@/lib/analytics';
 
@@ -71,8 +71,6 @@ type NodeType = typeof NODES[number];
 // ─── Comparison matrix ────────────────────────────────────────────────────────
 
 function ComparisonMatrix({ onSchedule }: { onSchedule: () => void }) {
-  const [expandedRow, setExpandedRow] = useState<number | null>(null);
-
   return (
     <section style={{ backgroundColor: '#ffffff', paddingTop: 64, paddingBottom: 64 }}>
       <div className="section-container" style={{ maxWidth: 1200 }}>
@@ -81,8 +79,7 @@ function ComparisonMatrix({ onSchedule }: { onSchedule: () => void }) {
           Pick your lifestyle. Then pick your property.
         </h2>
 
-        {/* Desktop table */}
-        <div className="hidden lg:block" style={{ overflowX: 'auto' }}>
+        <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13 }}>
             <thead>
               <tr style={{ borderBottom: '2px solid #c9a84c' }}>
@@ -91,6 +88,7 @@ function ComparisonMatrix({ onSchedule }: { onSchedule: () => void }) {
                     {label}
                   </th>
                 ))}
+                <th style={{ padding: '10px 14px' }} />
               </tr>
             </thead>
             <tbody>
@@ -119,55 +117,6 @@ function ComparisonMatrix({ onSchedule }: { onSchedule: () => void }) {
               ))}
             </tbody>
           </table>
-        </div>
-
-        {/* Mobile accordion */}
-        <div className="lg:hidden" style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {NODES.map((node) => {
-            const isOpen = expandedRow === node.id;
-            return (
-              <div key={node.id} style={{ border: '1px solid #ede9e2', backgroundColor: '#ffffff', overflow: 'hidden' }}>
-                <button
-                  onClick={() => setExpandedRow(isOpen ? null : node.id)}
-                  aria-expanded={isOpen}
-                  style={{ width: '100%', padding: '14px 16px', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', textAlign: 'left' }}
-                >
-                  <span>
-                    <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', color: '#c9a84c', display: 'block', marginBottom: 2, textTransform: 'uppercase' }}>{node.num}</span>
-                    <span style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 16, color: '#093f4f' }}>{node.name}</span>
-                    <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, color: '#789ead', display: 'block' }}>{node.lifestyle}</span>
-                  </span>
-                  <span style={{ color: '#c9a84c', fontSize: 18, flexShrink: 0, marginLeft: 12, transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>▾</span>
-                </button>
-                {isOpen && (
-                  <div style={{ padding: '0 16px 16px', borderTop: '1px solid #f0ede8' }}>
-                    <dl style={{ margin: 0, display: 'flex', flexDirection: 'column', gap: 12, paddingTop: 14 }}>
-                      <div>
-                        <dt style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: '#789ead', textTransform: 'uppercase', marginBottom: 3 }}>Best For</dt>
-                        <dd style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, color: '#444', lineHeight: 1.5, margin: 0 }}>{node.bestFor}</dd>
-                      </div>
-                      <div>
-                        <dt style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: '#789ead', textTransform: 'uppercase', marginBottom: 3 }}>Typical Product</dt>
-                        <dd style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, color: '#444', lineHeight: 1.5, margin: 0 }}>{node.typicalProduct}</dd>
-                      </div>
-                      <div>
-                        <dt style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: '#c9a84c', textTransform: 'uppercase', marginBottom: 3 }}>Watch Out</dt>
-                        <dd style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, color: '#888', lineHeight: 1.5, margin: 0 }}>{node.watchout}</dd>
-                      </div>
-                    </dl>
-                    <div style={{ marginTop: 14 }}>
-                      <Link
-                        href={`/neighborhoods/${node.neighborhoodSlug}`}
-                        style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 12, color: '#093f4f', textDecoration: 'underline' }}
-                      >
-                        Neighborhood profile →
-                      </Link>
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
         </div>
       </div>
     </section>
