@@ -26,6 +26,7 @@ const posts: BlogPost[] = [
     seoTitle: 'Why Use a Real Estate Agent in Roatán?',
     date: '2026-05-07',
     category: 'Buying Guide',
+    image: '/buyers-guide-cover.jpg',
     excerpt: "88% of American homebuyers still hire a real estate agent in the most transparent property market on earth. In Roatán, where documents are in Spanish, title types differ dramatically, and key market intel is never online, the case for representation is dramatically stronger — not weaker.",
     summary: [
       "88% of US homebuyers used an agent in 2025 — and 92% said they would do it again.",
@@ -341,6 +342,7 @@ const posts: BlogPost[] = [
     seoTitle: 'Roatán Q1 2026 Market Report',
     date: '2026-04-30',
     category: 'Market Report',
+    image: '/neighborhood-westbay.jpg',
     excerpt: "Closed deals fell 15.8% year-over-year, days on market rose 27%, and buyers negotiated 8.3% off list price. Behind the headline numbers, Q1 2026 tells a clear story: the Roatán market is cooling — and for the right buyers, that is the opportunity.",
     summary: [
       'Closed sales down 15.8% in deal count and 20.4% in dollar volume vs Q1 2025.',
@@ -724,6 +726,7 @@ const posts: BlogPost[] = [
     date: '2026-04-01',
     dateModified: '2026-05-07',
     category: 'Buying Guide',
+    image: '/neighborhood-westend.jpg',
     excerpt:
       'Thinking about buying property in Roatán? Learn what to look for in a real estate agent, how the local market works, and the key factors that separate a good investment from a great one.',
     summary: [
@@ -930,6 +933,7 @@ const posts: BlogPost[] = [
     date: '2026-04-01',
     dateModified: '2026-05-07',
     category: 'Travel Guide',
+    image: '/neighborhood-campbay.jpg',
     excerpt:
       'Discover the beauty and charm of Roatán through our essential FAQs. This ultimate travel guide covers the best time to visit, how to get there, top attractions, activities, cuisine, accommodations, and safety tips.',
     summary: [
@@ -1092,6 +1096,7 @@ const posts: BlogPost[] = [
     date: '2026-04-01',
     dateModified: '2026-05-07',
     category: 'About Roatán',
+    image: '/neighborhood-coralviews.jpg',
     excerpt:
       'Roatán is the largest of the Bay Islands, located in the western Caribbean Sea about 35 miles off the northern coast of Honduras — and home to the second-largest coral reef system in the world.',
     summary: [
