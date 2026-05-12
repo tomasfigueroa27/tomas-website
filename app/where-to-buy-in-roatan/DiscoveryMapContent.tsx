@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import type { } from 'react';
 import Link from 'next/link';
 import { openBriefingModal, trackSchedule, openSavvyCal } from '@/lib/analytics';
 
@@ -66,261 +66,11 @@ export const NODES = [
 
 type NodeType = typeof NODES[number];
 
-// ─── SVG Map ──────────────────────────────────────────────────────────────────
-
-function RoatanMap({
-  selectedNode,
-  hoveredNode,
-  onNodeClick,
-  onNodeHover,
-}: {
-  selectedNode: NodeType;
-  hoveredNode: number | null;
-  onNodeClick: (node: NodeType) => void;
-  onNodeHover: (id: number | null) => void;
-}) {
-  return (
-    <div style={{ position: 'relative', width: '100%', paddingBottom: '43.75%', minHeight: 240 }}>
-      <svg
-        viewBox="0 0 1600 700"
-        role="img"
-        aria-label="Interactive map of Roatán showing five lifestyle nodes"
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
-      >
-        <defs>
-          <radialGradient id="oceanGrad" cx="50%" cy="40%" r="65%">
-            <stop offset="0%" stopColor="#0b5068" />
-            <stop offset="100%" stopColor="#093f4f" />
-          </radialGradient>
-        </defs>
-
-        {/* Ocean */}
-        <rect width="1600" height="700" fill="url(#oceanGrad)" />
-
-        {/* Caribbean Sea label */}
-        <text x="900" y="72" textAnchor="middle" fill="#c9a84c" fontFamily="Arial, Helvetica, sans-serif" fontSize="11" fontWeight="600" letterSpacing="3" opacity="0.3">
-          CARIBBEAN SEA
-        </text>
-
-        {/* Reef line */}
-        <path
-          d="M 115,195 C 300,140 510,112 710,108 C 910,104 1090,124 1260,158 C 1385,183 1480,215 1504,232"
-          fill="none" stroke="#c9a84c" strokeWidth="1.8" strokeOpacity="0.55" strokeDasharray="10,7"
-        />
-
-        {/* Island body */}
-        <path
-          d="
-            M 110,520
-            C 72,508 58,474 63,430
-            C 68,386 90,335 118,290
-            C 146,245 178,213 218,195
-            C 258,177 318,163 405,153
-            C 492,143 582,147 668,147
-            C 754,147 840,149 925,151
-            C 1010,153 1090,157 1165,168
-            C 1240,179 1318,202 1388,237
-            C 1458,272 1518,316 1548,363
-            C 1578,410 1562,456 1530,488
-            C 1498,520 1448,540 1375,553
-            C 1302,566 1210,570 1110,567
-            C 1010,564 912,558 815,552
-            C 718,546 622,540 528,534
-            C 434,528 348,524 268,522
-            C 210,521 162,521 110,520 Z
-          "
-          fill="#f0ebe0" stroke="#c9a84c" strokeWidth="1.5" strokeOpacity="0.5"
-        />
-
-        {/* Mountainous spine */}
-        <path
-          d="M 200,370 C 400,325 650,315 850,320 C 1050,325 1220,345 1400,380"
-          fill="none" stroke="#789ead" strokeWidth="48" strokeOpacity="0.09" strokeLinecap="round"
-        />
-
-        {/* ROATÁN label */}
-        <text x="780" y="405" textAnchor="middle" fill="#093f4f" fontFamily="Arial, Helvetica, sans-serif" fontSize="9" fontWeight="600" letterSpacing="3" opacity="0.22">
-          ROATÁN
-        </text>
-
-        {/* Compass rose */}
-        <g opacity="0.65">
-          <text x="1520" y="50" textAnchor="middle" fill="#c9a84c" fontFamily="Arial, Helvetica, sans-serif" fontSize="11" fontWeight="700">N</text>
-          <line x1="1520" y1="54" x2="1520" y2="88" stroke="#c9a84c" strokeWidth="1.5" />
-          <polygon points="1520,54 1515,70 1525,70" fill="#c9a84c" />
-          <circle cx="1520" cy="100" r="3" fill="none" stroke="#c9a84c" strokeWidth="1.5" />
-        </g>
-
-        {/* Node 05 extended-region indicator */}
-        <circle cx="1180" cy="480" r="92" fill="none" stroke="#c9a84c" strokeWidth="1.2" strokeOpacity="0.28" strokeDasharray="6,5" />
-
-        {/* Interactive nodes */}
-        {NODES.map((node) => {
-          const isSelected = selectedNode.id === node.id;
-          const isHovered = hoveredNode === node.id;
-          const isActive = isSelected || isHovered;
-
-          return (
-            <g
-              key={node.id}
-              role="button"
-              tabIndex={0}
-              aria-label={node.ariaLabel}
-              aria-pressed={isSelected}
-              onClick={() => onNodeClick(node)}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onNodeClick(node); } }}
-              onMouseEnter={() => onNodeHover(node.id)}
-              onMouseLeave={() => onNodeHover(null)}
-              style={{ cursor: 'pointer', outline: 'none' }}
-            >
-              {/* Pulse ring (idle, non-selected) */}
-              {!isSelected && (
-                <circle cx={node.cx} cy={node.cy} r="22" fill="none" stroke="#c9a84c" strokeWidth="1.2">
-                  <animate attributeName="r" from="22" to="40" dur="2s" repeatCount="indefinite" />
-                  <animate attributeName="opacity" from="0.55" to="0" dur="2s" repeatCount="indefinite" />
-                </circle>
-              )}
-
-              {/* Hover/selected glow */}
-              {isActive && (
-                <circle cx={node.cx} cy={node.cy} r="30" fill="rgba(201,168,76,0.18)" />
-              )}
-
-              {/* Main circle */}
-              <circle
-                cx={node.cx} cy={node.cy} r="20"
-                fill={isSelected ? '#c9a84c' : 'rgba(240,235,224,0.94)'}
-                stroke="#c9a84c"
-                strokeWidth={isSelected ? 2.5 : 2}
-                style={{ transition: 'fill 0.2s' }}
-              />
-
-              {/* Number */}
-              <text
-                x={node.cx} y={node.cy + 1}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fill={isSelected ? '#ffffff' : '#093f4f'}
-                fontFamily="Georgia, 'Times New Roman', serif"
-                fontSize="10"
-                fontWeight="700"
-              >
-                {node.num}
-              </text>
-
-              {/* Invisible touch target */}
-              <circle cx={node.cx} cy={node.cy} r="32" fill="transparent" />
-            </g>
-          );
-        })}
-
-        {/* Hover tooltip (desktop only) */}
-        {hoveredNode && hoveredNode !== selectedNode.id && (() => {
-          const node = NODES.find(n => n.id === hoveredNode);
-          if (!node) return null;
-          const tx = node.cx > 900 ? node.cx - 140 : node.cx + 32;
-          const ty = node.cy - 38;
-          return (
-            <g>
-              <rect x={tx} y={ty} width="128" height="42" rx="3" fill="#0a1628" opacity="0.93" />
-              <text x={tx + 64} y={ty + 15} textAnchor="middle" fill="#ffffff" fontFamily="Arial, Helvetica, sans-serif" fontSize="10" fontWeight="700">{node.name}</text>
-              <text x={tx + 64} y={ty + 30} textAnchor="middle" fill="#789ead" fontFamily="Arial, Helvetica, sans-serif" fontSize="9">{node.lifestyle}</text>
-            </g>
-          );
-        })()}
-      </svg>
-    </div>
-  );
-}
-
-// ─── Detail panel ─────────────────────────────────────────────────────────────
-
-const fieldLabel: React.CSSProperties = {
-  fontFamily: 'Arial, Helvetica, sans-serif',
-  fontSize: 10,
-  fontWeight: 700,
-  letterSpacing: '0.13em',
-  textTransform: 'uppercase',
-  display: 'block',
-  marginBottom: 5,
-};
-
-const fieldValue: React.CSSProperties = {
-  fontFamily: 'Arial, Helvetica, sans-serif',
-  fontSize: 13,
-  color: '#333333',
-  lineHeight: 1.6,
-};
-
-function NodePanel({ node, onSchedule }: { node: NodeType; onSchedule: () => void }) {
-  return (
-    <div style={{ backgroundColor: '#ffffff', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', overflow: 'hidden' }}>
-      {/* Header */}
-      <div style={{ backgroundColor: '#093f4f', padding: '1.25rem 1.75rem' }}>
-        <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', color: '#c9a84c', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>
-          {node.num} — {node.lifestyle}
-        </span>
-        <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 22, fontWeight: 400, color: '#ffffff', margin: 0, lineHeight: 1.2 }}>
-          {node.name}
-        </h2>
-      </div>
-
-      {/* Fields */}
-      <div style={{ padding: '0 1.75rem' }}>
-        <div style={{ paddingTop: '1.25rem', paddingBottom: '1.1rem', borderBottom: '1px solid #f0ede8' }}>
-          <span style={{ ...fieldLabel, color: '#789ead' }}>Best For</span>
-          <span style={fieldValue}>{node.bestFor}</span>
-        </div>
-        <div style={{ paddingTop: '1.1rem', paddingBottom: '1.1rem', borderBottom: '1px solid #f0ede8' }}>
-          <span style={{ ...fieldLabel, color: '#789ead' }}>Buyer Profile</span>
-          <span style={fieldValue}>{node.buyerProfile}</span>
-        </div>
-        <div style={{ paddingTop: '1.1rem', paddingBottom: '1.1rem', borderBottom: '1px solid #f0ede8' }}>
-          <span style={{ ...fieldLabel, color: '#789ead' }}>Typical Product</span>
-          <span style={fieldValue}>{node.typicalProduct}</span>
-        </div>
-        <div style={{ paddingTop: '1.1rem', paddingBottom: '1.1rem', borderBottom: '1px solid #f0ede8' }}>
-          <span style={{ ...fieldLabel, color: '#c9a84c' }}>Watch Out</span>
-          <span style={fieldValue}>{node.watchout}</span>
-        </div>
-
-        {/* Next step */}
-        <div style={{ paddingTop: '1.1rem', paddingBottom: '1.5rem' }}>
-          <span style={{ ...fieldLabel, color: '#789ead' }}>Next Step</span>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 4 }}>
-            <button
-              onClick={onSchedule}
-              className="btn-accent"
-              style={{ width: '100%', justifyContent: 'center' }}
-            >
-              Schedule a Strategy Call →
-            </button>
-            <Link
-              href={`/neighborhoods/${node.neighborhoodSlug}`}
-              style={{
-                fontFamily: 'Arial, Helvetica, sans-serif',
-                fontSize: 12,
-                color: '#789ead',
-                textAlign: 'center',
-                textDecoration: 'none',
-                display: 'block',
-                paddingTop: 2,
-              }}
-            >
-              View {node.name} properties →
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+// ─── Comparison matrix ────────────────────────────────────────────────────────
 
 // ─── Comparison matrix ────────────────────────────────────────────────────────
 
-function ComparisonMatrix({ onNodeSelect, onSchedule }: { onNodeSelect: (node: NodeType) => void; onSchedule: () => void }) {
-  const [expandedRow, setExpandedRow] = useState<number | null>(null);
-
+function ComparisonMatrix({ onSchedule }: { onSchedule: () => void }) {
   return (
     <section style={{ backgroundColor: '#ffffff', paddingTop: 64, paddingBottom: 64 }}>
       <div className="section-container" style={{ maxWidth: 1200 }}>
@@ -329,8 +79,7 @@ function ComparisonMatrix({ onNodeSelect, onSchedule }: { onNodeSelect: (node: N
           Pick your lifestyle. Then pick your property.
         </h2>
 
-        {/* Desktop table */}
-        <div className="hidden lg:block" style={{ overflowX: 'auto' }}>
+        <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13 }}>
             <thead>
               <tr style={{ borderBottom: '2px solid #c9a84c' }}>
@@ -346,8 +95,7 @@ function ComparisonMatrix({ onNodeSelect, onSchedule }: { onNodeSelect: (node: N
               {NODES.map((node, i) => (
                 <tr
                   key={node.id}
-                  style={{ backgroundColor: i % 2 === 0 ? '#f9f7f4' : '#ffffff', borderBottom: '1px solid #ede9e2', cursor: 'pointer' }}
-                  onClick={() => { onNodeSelect(node); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                  style={{ backgroundColor: i % 2 === 0 ? '#f9f7f4' : '#ffffff', borderBottom: '1px solid #ede9e2' }}
                 >
                   <td style={{ padding: '14px 14px', fontFamily: 'Georgia, "Times New Roman", serif', fontWeight: 400, color: '#093f4f', fontSize: 14, whiteSpace: 'nowrap' }}>
                     <span style={{ display: 'block', fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', color: '#c9a84c', marginBottom: 2, textTransform: 'uppercase' }}>{node.num}</span>
@@ -358,72 +106,17 @@ function ComparisonMatrix({ onNodeSelect, onSchedule }: { onNodeSelect: (node: N
                   <td style={{ padding: '14px 14px', color: '#444', lineHeight: 1.5 }}>{node.typicalProduct}</td>
                   <td style={{ padding: '14px 14px', color: '#888', lineHeight: 1.5 }}>{node.watchout}</td>
                   <td style={{ padding: '14px 14px', whiteSpace: 'nowrap' }}>
-                    <button
-                      onClick={(e) => { e.stopPropagation(); onNodeSelect(node); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                      style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, color: '#789ead', background: 'none', border: 'none', cursor: 'pointer', padding: 0, textDecoration: 'underline' }}
+                    <Link
+                      href={`/neighborhoods/${node.neighborhoodSlug}`}
+                      style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, color: '#789ead', textDecoration: 'underline' }}
                     >
-                      View detail →
-                    </button>
+                      Full profile →
+                    </Link>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
-
-        {/* Mobile accordion */}
-        <div className="lg:hidden" style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {NODES.map((node) => {
-            const isOpen = expandedRow === node.id;
-            return (
-              <div key={node.id} style={{ border: '1px solid #ede9e2', backgroundColor: '#ffffff', overflow: 'hidden' }}>
-                <button
-                  onClick={() => setExpandedRow(isOpen ? null : node.id)}
-                  aria-expanded={isOpen}
-                  style={{ width: '100%', padding: '14px 16px', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', textAlign: 'left' }}
-                >
-                  <span>
-                    <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', color: '#c9a84c', display: 'block', marginBottom: 2, textTransform: 'uppercase' }}>{node.num}</span>
-                    <span style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 16, color: '#093f4f' }}>{node.name}</span>
-                    <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, color: '#789ead', display: 'block' }}>{node.lifestyle}</span>
-                  </span>
-                  <span style={{ color: '#c9a84c', fontSize: 18, flexShrink: 0, marginLeft: 12, transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>▾</span>
-                </button>
-                {isOpen && (
-                  <div style={{ padding: '0 16px 16px', borderTop: '1px solid #f0ede8' }}>
-                    <dl style={{ margin: 0, display: 'flex', flexDirection: 'column', gap: 12, paddingTop: 14 }}>
-                      <div>
-                        <dt style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: '#789ead', textTransform: 'uppercase', marginBottom: 3 }}>Best For</dt>
-                        <dd style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, color: '#444', lineHeight: 1.5, margin: 0 }}>{node.bestFor}</dd>
-                      </div>
-                      <div>
-                        <dt style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: '#789ead', textTransform: 'uppercase', marginBottom: 3 }}>Typical Product</dt>
-                        <dd style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, color: '#444', lineHeight: 1.5, margin: 0 }}>{node.typicalProduct}</dd>
-                      </div>
-                      <div>
-                        <dt style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: '#c9a84c', textTransform: 'uppercase', marginBottom: 3 }}>Watch Out</dt>
-                        <dd style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, color: '#888', lineHeight: 1.5, margin: 0 }}>{node.watchout}</dd>
-                      </div>
-                    </dl>
-                    <div style={{ display: 'flex', gap: 12, marginTop: 14, flexWrap: 'wrap' }}>
-                      <button
-                        onClick={() => { onNodeSelect(node); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                        style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 12, color: '#789ead', background: 'none', border: 'none', cursor: 'pointer', padding: 0, textDecoration: 'underline' }}
-                      >
-                        View on map →
-                      </button>
-                      <Link
-                        href={`/neighborhoods/${node.neighborhoodSlug}`}
-                        style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 12, color: '#093f4f', textDecoration: 'underline' }}
-                      >
-                        Neighborhood profile →
-                      </Link>
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
         </div>
       </div>
     </section>
@@ -465,17 +158,6 @@ function ClosingCTA({ onSchedule }: { onSchedule: () => void }) {
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function DiscoveryMapContent() {
-  const [selectedNode, setSelectedNode] = useState<NodeType>(NODES[0]);
-  const [hoveredNode, setHoveredNode] = useState<number | null>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
-
-  const handleNodeClick = (node: NodeType) => {
-    setSelectedNode(node);
-    if (window.innerWidth < 1024) {
-      setTimeout(() => panelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
-    }
-  };
-
   const handleSchedule = () => { trackSchedule(); openSavvyCal(); };
 
   return (
@@ -493,56 +175,8 @@ export default function DiscoveryMapContent() {
         </div>
       </section>
 
-      {/* ── Map + panel ── */}
-      <section style={{ backgroundColor: '#f5f2ee', paddingTop: 40, paddingBottom: 56 }}>
-        <div className="section-container" style={{ maxWidth: 1400 }}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', alignItems: 'flex-start' }}>
-
-            {/* Map column */}
-            <div style={{ flex: '1 1 min(100%, 680px)', minWidth: 0 }}>
-              <RoatanMap
-                selectedNode={selectedNode}
-                hoveredNode={hoveredNode}
-                onNodeClick={handleNodeClick}
-                onNodeHover={setHoveredNode}
-              />
-              {/* Node tab strip — quick switcher below map */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 16 }}>
-                {NODES.map((node) => (
-                  <button
-                    key={node.id}
-                    onClick={() => handleNodeClick(node)}
-                    style={{
-                      fontFamily: 'Arial, Helvetica, sans-serif',
-                      fontSize: 11,
-                      fontWeight: 600,
-                      letterSpacing: '0.06em',
-                      padding: '6px 14px',
-                      border: '1px solid',
-                      borderColor: selectedNode.id === node.id ? '#c9a84c' : 'rgba(9,63,79,0.2)',
-                      backgroundColor: selectedNode.id === node.id ? '#c9a84c' : 'transparent',
-                      color: selectedNode.id === node.id ? '#ffffff' : '#093f4f',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s',
-                    }}
-                  >
-                    {node.num} {node.name}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Panel column */}
-            <div ref={panelRef} style={{ flex: '1 1 300px', minWidth: 280 }}>
-              <NodePanel node={selectedNode} onSchedule={handleSchedule} />
-            </div>
-
-          </div>
-        </div>
-      </section>
-
       {/* ── Comparison matrix ── */}
-      <ComparisonMatrix onNodeSelect={(node) => { setSelectedNode(node); }} onSchedule={handleSchedule} />
+      <ComparisonMatrix onSchedule={handleSchedule} />
 
       {/* ── Closing CTA ── */}
       <ClosingCTA onSchedule={handleSchedule} />
