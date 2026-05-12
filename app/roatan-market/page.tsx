@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Calendar } from 'lucide-react';
+import ScheduleButton from '@/components/ScheduleButton';
 
 export const metadata: Metadata = {
   title: 'Roatan Real Estate Market 2026',
@@ -127,12 +128,12 @@ export default function RoatanMarketPage() {
           <div style={{ backgroundColor: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.14)', padding: '24px 32px', maxWidth: 720, margin: '0 auto 32px', textAlign: 'left' }}>
             <p style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#789ead', marginTop: 0, marginBottom: 12 }}>Quick Read</p>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.82)', lineHeight: 1.75, margin: 0 }}>
-              Roatan&apos;s market sits in a window most Caribbean markets have already closed. Average condo prices are $325,000. Average homes are $397,000. Well-located rentals yield 5–8% annually. Foreign ownership is permitted under Decree 90-90, with property over 3,000 square meters held through a Honduran corporation. The catalysts — Air Canada nonstop service from Montr&eacute;al and Toronto starting winter 2026/27, the Meli&aacute;-affiliated Hotel Roat&aacute;n Media Luna, the Margaritaville all-inclusive opening 2027 — are arriving now, not someday.
+              Roatán's market fundamentals compare favorably to most Caribbean markets — and the catalysts that precede sustained buyer attention are now in place. Average condo prices are $325,000. Average homes are $397,000. Well-located rentals yield 5–8% annually. Foreign ownership is permitted under Decree 90-90, with property over 3,000 square meters held through a Honduran corporation. The catalysts — Air Canada nonstop service from Montr&eacute;al and Toronto starting winter 2026/27, the Meli&aacute;-affiliated Hotel Roat&aacute;n Media Luna, the Margaritaville all-inclusive opening 2027 — are arriving now, not someday.
             </p>
           </div>
-          <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-            <Calendar style={{ width: 16, height: 16 }} aria-hidden="true" /> Schedule a Call with Tomas
-          </a>
+          <ScheduleButton className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+            <Calendar style={{ width: 16, height: 16 }} aria-hidden="true" /> Schedule a Strategy Call
+          </ScheduleButton>
         </div>
       </section>
 
@@ -169,7 +170,7 @@ export default function RoatanMarketPage() {
               </li>
             ))}
           </ul>
-          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, margin: 0 }}>A market that adds this much branded capacity and direct-flight access in 18 months is a market repricing in real time. The window is open. It will not be open forever.</p>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, margin: 0 }}>A market that adds this much branded capacity and direct-flight connectivity in 18 months is a market that institutional operators have validated with capital. The data is here — draw your own conclusions.</p>
         </div>
       </section>
 
@@ -491,9 +492,9 @@ export default function RoatanMarketPage() {
             <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 400, color: '#ffffff', marginTop: 0, marginBottom: 12 }}>Ready to Explore the Roatan Market?</h2>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 540, margin: '0 auto 8px' }}>Roatán is improving on multiple fronts — airlift, hospitality, and infrastructure. Buyers who understand the market now can choose with context and confidence.</p>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 540, margin: '0 auto 28px' }}>Schedule a call and I&apos;ll walk you through current listings, neighborhood comparisons, and the investment strategy that fits your specific goals.</p>
-            <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 24 }}>
-              <Calendar style={{ width: 16, height: 16 }} aria-hidden="true" /> Schedule a Call with Tomas
-            </a>
+            <ScheduleButton className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 24 }}>
+              <Calendar style={{ width: 16, height: 16 }} aria-hidden="true" /> Schedule a Strategy Call
+            </ScheduleButton>
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 20 }}>
               {[
                 { href: '/properties', label: 'Browse the MLS →' },

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import neighborhoods from '@/data/neighborhoods';
+import ScheduleButton from '@/components/ScheduleButton';
 
 export const metadata: Metadata = {
   title: 'Roatan Neighborhoods Guide',
@@ -134,9 +135,9 @@ export default function NeighborhoodsPage() {
           <div style={{ backgroundColor: '#093f4f', padding: '40px 32px', textAlign: 'center', color: '#ffffff' }}>
             <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 400, color: '#ffffff', marginTop: 0, marginBottom: 12 }}>Not Sure Which Neighborhood Is Right for You?</h2>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 480, margin: '0 auto 24px' }}>Tomas can help you evaluate each area against your specific goals — whether that&apos;s rental income, lifestyle, appreciation, or all three.</p>
-            <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent">
-              Schedule a Call with Tomas
-            </a>
+            <ScheduleButton className="btn-accent">
+              Schedule a Strategy Call
+            </ScheduleButton>
           </div>
         </div>
       </section>

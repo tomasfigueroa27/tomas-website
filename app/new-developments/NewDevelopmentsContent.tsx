@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { MapPin, TrendingUp, Calendar, Phone } from 'lucide-react';
+import { trackSchedule, openSavvyCal } from '@/lib/analytics';
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -49,9 +50,9 @@ export default function NewDevelopmentsContent() {
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 640, margin: '0 auto 28px' }}>
             This page tracks active and upcoming development projects across Roatan — residential communities, resort properties, and mixed-use opportunities at various stages of construction. Browse the map to see where new projects are located, and reach out for pre-construction pricing and developer access.
           </p>
-          <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+          <button onClick={() => { trackSchedule(); openSavvyCal(); }} className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
             <Calendar style={{ width: 16, height: 16 }} /> Schedule a Private Tour
-          </a>
+          </button>
         </div>
       </section>
 
@@ -64,7 +65,7 @@ export default function NewDevelopmentsContent() {
               Roatan&apos;s Next Growth Phase
             </h2>
             <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 28 }}>
-              Roatan is in the early stages of what may be its most consequential development cycle. Tourism numbers have recovered and continued to climb post-2020. Infrastructure — roads, utilities, and port capacity — has improved meaningfully in the West Bay and Sandy Bay corridors. And international attention from buyers in the US, Canada, and Europe has pushed demand into areas that were largely overlooked five years ago. Developers are responding: new residential communities are moving beyond the traditional West Bay and West End markets, with serious projects now underway in Pristine Bay, French Harbour, and the island&apos;s east end. Mixed-use and hospitality developments are being structured to meet growing rental demand, and pre-construction pricing in several active projects still reflects early-stage positioning. If you&apos;re evaluating where to place capital before the next appreciation cycle, understanding what&apos;s in the pipeline now matters.
+              Roatan is in the early stages of what may be its most consequential development cycle. Tourism numbers have recovered and continued to climb post-2020. Infrastructure — roads, utilities, and port capacity — has improved meaningfully in the West Bay and Sandy Bay corridors. And international attention from buyers in the US, Canada, and Europe has pushed demand into areas that were largely overlooked five years ago. Developers are responding: new residential communities are moving beyond the traditional West Bay and West End markets, with serious projects now underway in Pristine Bay, French Harbour, and the island&apos;s east end. Mixed-use and hospitality developments are being structured to meet growing rental demand, and pre-construction pricing in several active projects offers a meaningful entry point relative to comparable completed product. For buyers comparing options, understanding what&apos;s actively in the pipeline provides useful context for any decision.
             </p>
             <div className="grid sm:grid-cols-3 gap-3" style={{ maxWidth: 640, margin: '0 auto' }}>
               {['Residential Growth', 'Hospitality Expansion', 'Long-Term Opportunity'].map((label) => (
@@ -120,9 +121,9 @@ export default function NewDevelopmentsContent() {
               If you are considering investing, relocating, or positioning yourself ahead of the island&apos;s next growth phase, let&apos;s discuss where development is happening and how it aligns with your goals.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center' }}>
-              <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+              <button onClick={() => { trackSchedule(); openSavvyCal(); }} className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                 <Calendar style={{ width: 16, height: 16 }} /> Schedule a Strategy Call
-              </a>
+              </button>
               <a href="tel:+50488483226" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', backgroundColor: 'rgba(255,255,255,0.1)', color: '#ffffff', textDecoration: 'none', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'Arial, Helvetica, sans-serif', transition: 'background-color 0.2s' }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.18)')}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)')}

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import neighborhoods from '@/data/neighborhoods';
+import ScheduleButton from '@/components/ScheduleButton';
 
 export async function generateStaticParams() {
   return neighborhoods.map((n) => ({ slug: n.slug }));
@@ -212,9 +213,9 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 480, margin: '0 auto 24px' }}>
               Tomas can walk you through available listings, price trends, and investment potential in {neighborhood.name} — and help you decide if it aligns with your goals.
             </p>
-            <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent">
-              Schedule a Call with Tomas
-            </a>
+            <ScheduleButton className="btn-accent">
+              Schedule a Strategy Call
+            </ScheduleButton>
           </div>
         </div>
       </section>

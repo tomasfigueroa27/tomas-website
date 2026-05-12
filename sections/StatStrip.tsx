@@ -2,7 +2,7 @@ const stats = [
   { value: '20+ Years', label: 'International sales & advisory experience' },
   { value: '20+ Projects', label: "Coming through Roatán's next development cycle" },
   { value: '49 mi²', label: 'Island scale — limited premium coastal nodes' },
-  { value: '2026', label: 'Year-round US airlift & expanding hotel pipeline' },
+  { value: '5+', label: 'Direct US & Canada nonstop routes year-round' },
 ];
 
 export default function StatStrip() {

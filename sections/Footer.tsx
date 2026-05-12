@@ -101,11 +101,15 @@ const Footer = () => {
               { href: '/', label: 'Home' },
               { href: '/new-developments', label: 'New Developments' },
               { href: '/properties', label: 'Browse MLS' },
+              { href: '/where-to-buy-in-roatan', label: 'Where to Buy' },
+              { href: '/us-buyers-guide-roatan', label: "Buyer's Guide" },
+              { href: '/roatan-market', label: 'Market Guide' },
+              { href: '/neighborhoods', label: 'Neighborhoods' },
               { href: '/about', label: 'About' },
               { href: '/resources', label: 'Resources' },
               { href: '/blog', label: 'Blog' },
               { href: '/guides', label: 'Guides' },
-              { href: '/neighborhoods', label: 'Neighborhoods' },
+              { href: '/calculator', label: 'Closing Calculator' },
               { href: '/faq', label: 'FAQ' },
             ].map(({ href, label }) => (
               <Link
