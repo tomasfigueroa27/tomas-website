@@ -32,7 +32,7 @@ const CTA = () => {
             }`}
           >
             <span className="label-caps block mb-6" style={{ color: '#789ead' }}>
-              Ready to Sell in Roatan?
+              Start the Conversation
             </span>
             <h2
               style={{
@@ -45,7 +45,7 @@ const CTA = () => {
                 lineHeight: 1.2,
               }}
             >
-              Position Your Property for Maximum Value
+              Your Roatán strategy starts here.
             </h2>
             <p
               style={{
@@ -58,9 +58,7 @@ const CTA = () => {
                 marginRight: 'auto',
               }}
             >
-              Selling property in Roatan requires more than listing it — it requires
-              positioning, strategy, and disciplined execution. I guide you through pricing,
-              marketing, and negotiation to ensure your property achieves its full market potential.
+              Every buyer&apos;s situation is different — budget, lifestyle intent, hold period, and timeline all shape the right approach. A 20-minute strategy call covers your priorities and maps them to specific locations and projects.
             </p>
           </div>
 

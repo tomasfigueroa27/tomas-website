@@ -72,7 +72,7 @@ const HomeAbout = () => {
               Licensed Realtor at Keller Williams Roatan. 20+ years of international sales experience, 4 years on the ground in Roatan — working with US, Canadian, and global buyers in the premium segment.
             </p>
             <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 16 }}>
-              My read on this market: Roatan is the Caribbean&apos;s last undervalued destination. The catalyst that changes everything is still ahead — when financing for foreign buyers arrives, the buyer pool expands overnight and early owners benefit most.
+              My read on this market: Roatán sits at a clear inflection point — improving airlift, branded hospitality arriving, and a new development cycle underway. Buyers who understand the island now are making decisions with context, not catching up later.
             </p>
             <p style={{ fontSize: 12, color: '#999999', fontStyle: 'italic', marginBottom: 28 }}>
               Last reviewed: May 2026 · Licensed Realtor, Keller Williams Roatan, Bay Islands, Honduras.

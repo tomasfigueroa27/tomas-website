@@ -80,7 +80,7 @@ export default function AboutContent() {
                 </div>
                 <div style={{ marginBottom: 18 }}>
                   <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#789ead', display: 'block', marginBottom: 6 }}>The Market Thesis</span>
-                  <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', lineHeight: 1.75, margin: 0 }}>Roatan is the Caribbean&apos;s last undervalued market. The single biggest catalyst still ahead is expat financing — today virtually every foreign purchase is all-cash, which artificially suppresses demand. When local or international lenders begin offering mortgages to non-residents, the buyer pool expands dramatically and prices reprice fast. The window to buy before that happens is now.</p>
+                  <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', lineHeight: 1.75, margin: 0 }}>Roatán is in a clear improvement arc: airlift is expanding, branded hospitality has arrived, and a new development cycle is underway. The market is still quiet enough that buyers who take the time to understand it can choose well — without competing against mainstream real estate awareness.</p>
                 </div>
                 <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', margin: 0 }}>Last reviewed: May 2026 · Licensed Realtor, Keller Williams Roatan, Bay Islands, Honduras.</p>
               </div>
