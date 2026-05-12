@@ -42,7 +42,7 @@ export default function BlogPage() {
             Real Estate Blog
           </h1>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 520, margin: '0 auto' }}>
-            Market trends, investment tips, and island lifestyle insights to help you make the most of Roatan real estate.
+            Market trends, investment tips, and island lifestyle insights to help you make the most of Roatán real estate.
           </p>
         </div>
       </section>
@@ -63,13 +63,13 @@ export default function BlogPage() {
               About This Blog
             </h2>
             <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
-              Most people discovering Roatan for the first time don&apos;t know where to start. The market is real, the opportunity is real — but the information online is scattered, outdated, or written by people who&apos;ve never closed a deal here.
+              Most people discovering Roatán for the first time don&apos;t know where to start. The market is real, the opportunity is real — but the information online is scattered, outdated, or written by people who&apos;ve never closed a deal here.
             </p>
             <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
-              This blog exists to fix that. I publish market updates, buyer guides, neighborhood breakdowns, and investment analysis based on what I actually see on the ground in Roatan — current listings, real transaction data, and the questions buyers ask me every week.
+              This blog exists to fix that. I publish market updates, buyer guides, neighborhood breakdowns, and investment analysis based on what I actually see on the ground in Roatán — current listings, real transaction data, and the questions buyers ask me every week.
             </p>
             <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, margin: 0 }}>
-              Whether you&apos;re exploring Roatan for the first time or actively comparing neighborhoods before making an offer, the articles here are designed to give you clarity, not a sales pitch. Start with the guides most relevant to your situation, and reach out when you&apos;re ready to go deeper.
+              Whether you&apos;re exploring Roatán for the first time or actively comparing neighborhoods before making an offer, the articles here are designed to give you clarity, not a sales pitch. Start with the guides most relevant to your situation, and reach out when you&apos;re ready to go deeper.
             </p>
           </div>
         </div>

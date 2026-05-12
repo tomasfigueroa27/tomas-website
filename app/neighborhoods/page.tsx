@@ -37,10 +37,10 @@ export default function NeighborhoodsPage() {
               lineHeight: 1.15,
             }}
           >
-            Roatan Neighborhoods
+            Roatán Neighborhoods
           </h1>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 600, margin: '0 auto' }}>
-            Every neighborhood on Roatan has a distinct character, price range, and lifestyle. Explore each area to find the right fit for your goals — whether you&apos;re buying, investing, or relocating.
+            Every neighborhood on Roatán has a distinct character, price range, and lifestyle. Explore each area to find the right fit for your goals — whether you&apos;re buying, investing, or relocating.
           </p>
         </div>
       </section>

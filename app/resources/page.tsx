@@ -44,7 +44,7 @@ export default function ResourcesPage() {
             Resources
           </h1>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 520, margin: '0 auto' }}>
-            Articles, market insights, and guides to help you make informed decisions about Roatan real estate.
+            Articles, market insights, and guides to help you make informed decisions about Roatán real estate.
           </p>
         </div>
       </section>
@@ -55,7 +55,7 @@ export default function ResourcesPage() {
             Everything You Need to Make a Confident Decision
           </h2>
           <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
-            Roatan is still a market where information is hard to find and easy to get wrong. Most of what&apos;s published online is generic Caribbean content or marketing material from developers — not ground-level analysis from someone actively working the market.
+            Roatán is still a market where information is hard to find and easy to get wrong. Most of what&apos;s published online is generic Caribbean content or marketing material from developers — not ground-level analysis from someone actively working the market.
           </p>
           <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
             This resources section is built around one goal: giving you enough context to ask the right questions before you commit to anything.

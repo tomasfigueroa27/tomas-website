@@ -22,22 +22,22 @@ export interface BlogPost {
 const posts: BlogPost[] = [
   {
     slug: 'why-buyers-use-real-estate-agents-roatan',
-    title: 'Why 9 out of 10 American Buyers Still Use a Real Estate Agent — and What That Means for Buying Property in Roatan',
-    seoTitle: 'Why Use a Real Estate Agent in Roatan?',
+    title: 'Why 9 out of 10 American Buyers Still Use a Real Estate Agent — and What That Means for Buying Property in Roatán',
+    seoTitle: 'Why Use a Real Estate Agent in Roatán?',
     date: '2026-05-07',
     category: 'Buying Guide',
-    excerpt: "88% of American homebuyers still hire a real estate agent in the most transparent property market on earth. In Roatan, where documents are in Spanish, title types differ dramatically, and key market intel is never online, the case for representation is dramatically stronger — not weaker.",
+    excerpt: "88% of American homebuyers still hire a real estate agent in the most transparent property market on earth. In Roatán, where documents are in Spanish, title types differ dramatically, and key market intel is never online, the case for representation is dramatically stronger — not weaker.",
     summary: [
       "88% of US homebuyers used an agent in 2025 — and 92% said they would do it again.",
-      "In Roatan, documents are in Spanish, the legal system is notarial, and the information asymmetry is far greater than in any North American market.",
-      "Buying derechos posesorios instead of dominio pleno is the most common and costly mistake foreign buyers make in Roatan.",
-      "The seller pays the real estate commission in Roatan — buyer representation costs nothing out of pocket.",
+      "In Roatán, documents are in Spanish, the legal system is notarial, and the information asymmetry is far greater than in any North American market.",
+      "Buying derechos posesorios instead of dominio pleno is the most common and costly mistake foreign buyers make in Roatán.",
+      "The seller pays the real estate commission in Roatán — buyer representation costs nothing out of pocket.",
       "Key catalysts are arriving: Air Canada nonstop flights, the Hotel Roatán Meliá acquisition, and Margaritaville opening in 2028.",
     ],
     body: [
       {
         type: 'p',
-        text: "Quick answer: In 2025, 88% of US homebuyers still hired a real estate agent — in the most transparent property market on earth. In Roatan, the case for representation is dramatically stronger, not weaker.",
+        text: "Quick answer: In 2025, 88% of US homebuyers still hired a real estate agent — in the most transparent property market on earth. In Roatán, the case for representation is dramatically stronger, not weaker.",
       },
       {
         type: 'p',
@@ -84,15 +84,15 @@ const posts: BlogPost[] = [
       },
       {
         type: 'h2',
-        text: 'What Buying Property in Roatan Actually Involves',
+        text: 'What Buying Property in Roatán Actually Involves',
       },
       {
         type: 'p',
-        text: "Roatan is one of the strongest real estate value propositions in the Caribbean right now. The infrastructure is arriving — Air Canada launched nonstop flights from Montréal and Toronto for the 2026/27 winter season, the Hotel Roatán Media Luna recently joined the Meliá portfolio, and Margaritaville's all-inclusive opens in 2028. Yields on well-located rental properties run 7% to 10% annually. Foreign ownership is permitted. The legal framework is well-established.",
+        text: "Roatán is one of the strongest real estate value propositions in the Caribbean right now. The infrastructure is arriving — Air Canada launched nonstop flights from Montréal and Toronto for the 2026/27 winter season, the Hotel Roatán Media Luna recently joined the Meliá portfolio, and Margaritaville's all-inclusive opens in 2028. Yields on well-located rental properties run 7% to 10% annually. Foreign ownership is permitted. The legal framework is well-established.",
       },
       {
         type: 'p',
-        text: "But Roatan also operates differently from anything most US and Canadian buyers have ever seen. Here is what is actually different.",
+        text: "But Roatán also operates differently from anything most US and Canadian buyers have ever seen. Here is what is actually different.",
       },
       {
         type: 'h3',
@@ -108,7 +108,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "Foreigners can legally buy urban residential property in Roatan, but each individual is capped at 3,000 square meters — about 0.74 acres — of land. Larger holdings, raw land outside designated urban zones, and most commercial properties are held through a Honduran corporation. The corporation route is straightforward when handled correctly.",
+        text: "Foreigners can legally buy urban residential property in Roatán, but each individual is capped at 3,000 square meters — about 0.74 acres — of land. Larger holdings, raw land outside designated urban zones, and most commercial properties are held through a Honduran corporation. The corporation route is straightforward when handled correctly.",
       },
       {
         type: 'h3',
@@ -124,7 +124,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "Roatan has a real, functioning MLS — which is genuinely rare for the region and a serious asset. But the on-the-ground knowledge that determines whether a listed property is actually a good buy does not live on the MLS. It lives in the heads of people who have watched the island for years.",
+        text: "Roatán has a real, functioning MLS — which is genuinely rare for the region and a serious asset. But the on-the-ground knowledge that determines whether a listed property is actually a good buy does not live on the MLS. It lives in the heads of people who have watched the island for years.",
       },
       {
         type: 'h2',
@@ -151,15 +151,15 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "This is the most common and most costly mistake foreign buyers make in Roatan. It is documented in every credible Honduran buyer's guide. And it is exactly the kind of thing a competent agent flags in the first 60 seconds of a property review — and that a buyer working alone, based on photos and a friendly seller, will not catch in 60 days.",
+        text: "This is the most common and most costly mistake foreign buyers make in Roatán. It is documented in every credible Honduran buyer's guide. And it is exactly the kind of thing a competent agent flags in the first 60 seconds of a property review — and that a buyer working alone, based on photos and a friendly seller, will not catch in 60 days.",
       },
       {
         type: 'h2',
-        text: 'What You Cannot Google in Roatan',
+        text: 'What You Cannot Google in Roatán',
       },
       {
         type: 'p',
-        text: "Even when the title is dominio pleno and clean, the analysis is not finished. The information that actually protects a foreign buyer in Roatan is not online. It lives in the people who have been here long enough to remember.",
+        text: "Even when the title is dominio pleno and clean, the analysis is not finished. The information that actually protects a foreign buyer in Roatán is not online. It lives in the people who have been here long enough to remember.",
       },
       {
         type: 'p',
@@ -182,7 +182,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'h2',
-        text: 'How to Choose a Roatan Real Estate Agent',
+        text: 'How to Choose a Roatán Real Estate Agent',
       },
       {
         type: 'p',
@@ -226,7 +226,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'h3',
-        text: 'Do you legally need a real estate agent to buy property in Roatan?',
+        text: 'Do you legally need a real estate agent to buy property in Roatán?',
       },
       {
         type: 'p',
@@ -234,47 +234,47 @@ const posts: BlogPost[] = [
       },
       {
         type: 'h3',
-        text: 'Who pays the real estate commission in Roatan?',
+        text: 'Who pays the real estate commission in Roatán?',
       },
       {
         type: 'p',
-        text: "The seller pays. Standard commission across Roatan Realtors Association member agencies is 10% of the sale price, paid by the seller at closing. For a buyer, working with an agent costs nothing out of pocket.",
+        text: "The seller pays. Standard commission across Roatán Realtors Association member agencies is 10% of the sale price, paid by the seller at closing. For a buyer, working with an agent costs nothing out of pocket.",
       },
       {
         type: 'h3',
-        text: 'Can foreigners own property in Roatan?',
+        text: 'Can foreigners own property in Roatán?',
       },
       {
         type: 'p',
-        text: "Yes. Honduras allows foreign ownership of urban residential property in Roatan under Decree 90-90, with a 3,000 square meter (about 0.74 acre) per-individual cap. Larger or non-urban holdings are typically held through a Honduran corporation, which a foreigner can fully control as the registered administrator. There are no nationality restrictions and no requirement to use a Honduran citizen as a partner or front.",
+        text: "Yes. Honduras allows foreign ownership of urban residential property in Roatán under Decree 90-90, with a 3,000 square meter (about 0.74 acre) per-individual cap. Larger or non-urban holdings are typically held through a Honduran corporation, which a foreigner can fully control as the registered administrator. There are no nationality restrictions and no requirement to use a Honduran citizen as a partner or front.",
       },
       {
         type: 'h3',
-        text: "What's the most common mistake foreigners make when buying in Roatan?",
+        text: "What's the most common mistake foreigners make when buying in Roatán?",
       },
       {
         type: 'p',
-        text: "Buying derechos posesorios (possessory rights) instead of property held under dominio pleno (full registered title). Possessory rights can look like ownership but are not registered in the Public Property Registry, are not financeable, and are not always defensible at resale or against competing claims. This is consistently the number-one preventable mistake in the Roatan foreign-buyer market.",
+        text: "Buying derechos posesorios (possessory rights) instead of property held under dominio pleno (full registered title). Possessory rights can look like ownership but are not registered in the Public Property Registry, are not financeable, and are not always defensible at resale or against competing claims. This is consistently the number-one preventable mistake in the Roatán foreign-buyer market.",
       },
       {
         type: 'h3',
-        text: 'Is the Roatan real estate market safe for foreign buyers?',
+        text: 'Is the Roatán real estate market safe for foreign buyers?',
       },
       {
         type: 'p',
-        text: "The legal framework is safe and well-established. Honduras has had a functioning foreign-ownership regime for over three decades and the title registry system is reliable. The risks are not legal — they are informational. Buyers who work with experienced local agents and qualified Honduran attorneys close clean transactions on Roatan every week. Buyers who try to navigate the system alone, based on online listings and a one-week scouting visit, are the ones who run into trouble.",
+        text: "The legal framework is safe and well-established. Honduras has had a functioning foreign-ownership regime for over three decades and the title registry system is reliable. The risks are not legal — they are informational. Buyers who work with experienced local agents and qualified Honduran attorneys close clean transactions on Roatán every week. Buyers who try to navigate the system alone, based on online listings and a one-week scouting visit, are the ones who run into trouble.",
       },
       {
         type: 'h3',
-        text: "What's the average rental yield on a Roatan property?",
+        text: "What's the average rental yield on a Roatán property?",
       },
       {
         type: 'p',
-        text: "Rental yields on well-located Roatan vacation properties run roughly 5% to 8% per year, depending on location, property type, and management quality. Beachfront condos on West Bay typically perform at the higher end of that range. Inland properties produce lower yields but appreciate at competitive rates given limited beachfront supply.",
+        text: "Rental yields on well-located Roatán vacation properties run roughly 5% to 8% per year, depending on location, property type, and management quality. Beachfront condos on West Bay typically perform at the higher end of that range. Inland properties produce lower yields but appreciate at competitive rates given limited beachfront supply.",
       },
       {
         type: 'h3',
-        text: 'How much are closing costs on a Roatan property?',
+        text: 'How much are closing costs on a Roatán property?',
       },
       {
         type: 'p',
@@ -282,11 +282,11 @@ const posts: BlogPost[] = [
       },
       {
         type: 'h3',
-        text: 'Do I need to be a resident to buy property in Roatan?',
+        text: 'Do I need to be a resident to buy property in Roatán?',
       },
       {
         type: 'p',
-        text: "No. Buying property in Roatan does not require Honduran residency, and owning property in Roatan does not automatically grant residency. Tourist visas allow stays of up to 90 days at a time. Honduras offers separate residency programs (rentista, pensionado, investor) with their own requirements for buyers planning to relocate.",
+        text: "No. Buying property in Roatán does not require Honduran residency, and owning property in Roatán does not automatically grant residency. Tourist visas allow stays of up to 90 days at a time. Honduras offers separate residency programs (rentista, pensionado, investor) with their own requirements for buyers planning to relocate.",
       },
       {
         type: 'h2',
@@ -302,11 +302,11 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "In Roatan, the complexity is higher. The language is different. The legal system is different. The information is older. The catalysts are real but uneven. The downside of mistakes is larger and harder to reverse.",
+        text: "In Roatán, the complexity is higher. The language is different. The legal system is different. The information is older. The catalysts are real but uneven. The downside of mistakes is larger and harder to reverse.",
       },
       {
         type: 'p',
-        text: "The case for representation here is not weaker. It is dramatically stronger. If you would not buy a house in your own city without an agent, the answer in Roatan is not 'I'll figure it out from the photos.'",
+        text: "The case for representation here is not weaker. It is dramatically stronger. If you would not buy a house in your own city without an agent, the answer in Roatán is not 'I'll figure it out from the photos.'",
       },
       {
         type: 'h2',
@@ -319,10 +319,10 @@ const posts: BlogPost[] = [
           "BAM (nowbam.com), analysis of NAR 2025 buyer/seller agent usage data",
           "Honduras Decree 90-90 (Ley de Propiedad), governing foreign property ownership in restricted zones",
           "Instituto de la Propiedad de Honduras, Public Property Registry standards",
-          "Roatan Realtors Association, standard commission and Offer to Purchase guidelines",
+          "Roatán Realtors Association, standard commission and Offer to Purchase guidelines",
           "Caribbean Journal, Air Canada Roatán nonstop launch (April 2026)",
           "Caribbean Journal, Hotel Roatán Media Luna by Meliá opening (January 2026)",
-          "Margaritaville Holdings / Karisma Hotels & Resorts, Island Reserve Roatan groundbreaking (2025, opening 2027)",
+          "Margaritaville Holdings / Karisma Hotels & Resorts, Island Reserve Roatán groundbreaking (2025, opening 2027)",
         ],
       },
       {
@@ -331,17 +331,17 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "Tomas Figueroa is a real estate professional with Keller Williams Roatan, Bay Islands, Honduras. He brings 20 years of international sales and business development experience and has spent the last four years working as a boots-on-ground agent on Roatan. He represents both buyers and sellers, partners with local developers, and sources investment deals for clients across the US, Canada, and globally. He is fluent in English and Spanish.",
+        text: "Tomas Figueroa is a real estate professional with Keller Williams Roatan, Bay Islands, Honduras. He brings 20 years of international sales and business development experience and has spent the last four years working as a boots-on-ground agent on Roatán. He represents both buyers and sellers, partners with local developers, and sources investment deals for clients across the US, Canada, and globally. He is fluent in English and Spanish.",
       },
     ],
   },
   {
     slug: 'roatan-q1-2026-market-report',
-    title: 'Roatan Q1 2026 Real Estate Market Report: A Cooling Market Behind the Headlines',
-    seoTitle: 'Roatan Q1 2026 Market Report',
+    title: 'Roatán Q1 2026 Real Estate Market Report: A Cooling Market Behind the Headlines',
+    seoTitle: 'Roatán Q1 2026 Market Report',
     date: '2026-04-30',
     category: 'Market Report',
-    excerpt: "Closed deals fell 15.8% year-over-year, days on market rose 27%, and buyers negotiated 8.3% off list price. Behind the headline numbers, Q1 2026 tells a clear story: the Roatan market is cooling — and for the right buyers, that is the opportunity.",
+    excerpt: "Closed deals fell 15.8% year-over-year, days on market rose 27%, and buyers negotiated 8.3% off list price. Behind the headline numbers, Q1 2026 tells a clear story: the Roatán market is cooling — and for the right buyers, that is the opportunity.",
     summary: [
       'Closed sales down 15.8% in deal count and 20.4% in dollar volume vs Q1 2025.',
       'Average days on market increased from 250 to 317 — a 27% slowdown in absorption speed.',
@@ -356,23 +356,23 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "If you read most Q1 2026 Roatan real estate market summaries, you'll come away thinking the market is roughly flat year-over-year. The headline numbers — total volume, average sale price, contract activity in West Bay — look stable. But that read is misleading.",
+        text: "If you read most Q1 2026 Roatán real estate market summaries, you'll come away thinking the market is roughly flat year-over-year. The headline numbers — total volume, average sale price, contract activity in West Bay — look stable. But that read is misleading.",
       },
       {
         type: 'p',
-        text: "A meaningful portion of the Q1 2026 contract volume came from a single broker-owned development whose sales are partly transacted directly with U.S. buyers outside the standard Roatan MLS flow. Once you adjust for that pipeline, the underlying Roatan market tells a very different story: fewer deals, longer days on market, lower offers accepted, and a buyer pool clearly hesitating against a backdrop of two major geopolitical shocks.",
+        text: "A meaningful portion of the Q1 2026 contract volume came from a single broker-owned development whose sales are partly transacted directly with U.S. buyers outside the standard Roatan MLS flow. Once you adjust for that pipeline, the underlying Roatán market tells a very different story: fewer deals, longer days on market, lower offers accepted, and a buyer pool clearly hesitating against a backdrop of two major geopolitical shocks.",
       },
       {
         type: 'p',
-        text: 'This report compares Roatan property performance for Q1 2025 vs Q1 2026 across residential, multi-family, and commercial transactions (land sales excluded). We focus on closed sales as the most reliable measure, while noting what under-contract activity tells us about forward demand.',
+        text: 'This report compares Roatán property performance for Q1 2025 vs Q1 2026 across residential, multi-family, and commercial transactions (land sales excluded). We focus on closed sales as the most reliable measure, while noting what under-contract activity tells us about forward demand.',
       },
       {
         type: 'h2',
-        text: 'Quick Answer: Is Roatan Real Estate Up or Down in Q1 2026?',
+        text: 'Quick Answer: Is Roatán Real Estate Up or Down in Q1 2026?',
       },
       {
         type: 'p',
-        text: 'Closed sales are down approximately 16% in deal count and 20% in dollar volume year-over-year. Properties are taking 27% longer to sell, and buyers are negotiating roughly 8% off list price — versus 6% a year earlier. The underlying Roatan resale market is meaningfully softer than at any point in the past three years.',
+        text: 'Closed sales are down approximately 16% in deal count and 20% in dollar volume year-over-year. Properties are taking 27% longer to sell, and buyers are negotiating roughly 8% off list price — versus 6% a year earlier. The underlying Roatán resale market is meaningfully softer than at any point in the past three years.',
       },
       {
         type: 'h2',
@@ -380,7 +380,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "Q1 2026 was not a normal real estate quarter. Two major geopolitical events directly affected the buyer profile that drives Roatan demand — primarily U.S. and Canadian buyers, alongside Honduran nationals and longtime expat residents.",
+        text: "Q1 2026 was not a normal real estate quarter. Two major geopolitical events directly affected the buyer profile that drives Roatán demand — primarily U.S. and Canadian buyers, alongside Honduran nationals and longtime expat residents.",
       },
       {
         type: 'h3',
@@ -396,7 +396,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "For North American buyers — the core of Roatan's market — the war's outbreak in late February meant the entire final month of Q1 unfolded against headlines about a major Middle East conflict, a global oil shock, and potential stagflation in Europe. Discretionary capital allocations to second homes and investment property in another country are the first thing to freeze under those conditions.",
+        text: "For North American buyers — the core of Roatán's market — the war's outbreak in late February meant the entire final month of Q1 unfolded against headlines about a major Middle East conflict, a global oil shock, and potential stagflation in Europe. Discretionary capital allocations to second homes and investment property in another country are the first thing to freeze under those conditions.",
       },
       {
         type: 'h3',
@@ -408,7 +408,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "While Roatan does not draw heavily from a Latin American buyer base, the Venezuela operation shaped Q1 2026 in two indirect ways: it created broad regional uncertainty about U.S. military posture in the Caribbean, and it dominated North American news cycles during January — a critical month for snowbird buying decisions and travel planning to the Bay Islands.",
+        text: "While Roatán does not draw heavily from a Latin American buyer base, the Venezuela operation shaped Q1 2026 in two indirect ways: it created broad regional uncertainty about U.S. military posture in the Caribbean, and it dominated North American news cycles during January — a critical month for snowbird buying decisions and travel planning to the Bay Islands.",
       },
       {
         type: 'p',
@@ -420,7 +420,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: 'Covering residential, multi-family, and commercial transactions on Roatan and the Bay Islands. Land sales excluded.',
+        text: 'Covering residential, multi-family, and commercial transactions on Roatán and the Bay Islands. Land sales excluded.',
       },
       {
         type: 'table',
@@ -440,7 +440,7 @@ const posts: BlogPost[] = [
       {
         type: 'ul',
         items: [
-          'Buyers in Q1 2026 negotiated harder. A 91.7% median sale-to-list ratio means the typical Roatan property sold for about 8.3% below asking price. In Q1 2025, buyers were conceding only 5.9% off list.',
+          'Buyers in Q1 2026 negotiated harder. A 91.7% median sale-to-list ratio means the typical Roatán property sold for about 8.3% below asking price. In Q1 2025, buyers were conceding only 5.9% off list.',
           'Properties marketed two months longer. Average DOM jumped from 250 to 317 days — a 27% increase.',
           'The mid-market took the hit. Average closing price dropped, suggesting weaker mid-volume demand rather than weakness at the high end.',
         ],
@@ -501,7 +501,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "The Roatan market in Q1 2026 is the most buyer-friendly it has been in three years. Median sale-to-list ratios under 92%, average DOM over 300 days, and a 16% drop in deal count mean sellers are increasingly motivated. Aged inventory — listings over 6 months on market — is the primary leverage point. The geopolitical noise that has cooled other buyers is your opportunity. Sellers who decided to list in 2025 are watching new activity drop and are more negotiable than the headline averages suggest.",
+        text: "The Roatán market in Q1 2026 is the most buyer-friendly it has been in three years. Median sale-to-list ratios under 92%, average DOM over 300 days, and a 16% drop in deal count mean sellers are increasingly motivated. Aged inventory — listings over 6 months on market — is the primary leverage point. The geopolitical noise that has cooled other buyers is your opportunity. Sellers who decided to list in 2025 are watching new activity drop and are more negotiable than the headline averages suggest.",
       },
       {
         type: 'h3',
@@ -517,7 +517,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "The closing data reflects buyer caution far more than property fundamentals. Roatan's underlying demand drivers — North American retirees, Canadian snowbirds, Honduran capital seeking safe Caribbean assets — are intact. Q1 2026 weakness is a function of timing (Iran war, Venezuela operation, oil shock) rather than structural decline. Investors who can act when others are hesitating typically find their best entry points in quarters that look exactly like this one.",
+        text: "The closing data reflects buyer caution far more than property fundamentals. Roatán's underlying demand drivers — North American retirees, Canadian snowbirds, Honduran capital seeking safe Caribbean assets — are intact. Q1 2026 weakness is a function of timing (Iran war, Venezuela operation, oil shock) rather than structural decline. Investors who can act when others are hesitating typically find their best entry points in quarters that look exactly like this one.",
       },
       {
         type: 'h2',
@@ -581,7 +581,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: 'That single development accounts for 2 of the 10 April contracts and $1.57M of the $5.06M volume (31%). Stripping it out, the rest of the Roatan market saw 8 contracts at $3.49M — roughly half the deal count of April 2025 (16 contracts at $4.51M).',
+        text: 'That single development accounts for 2 of the 10 April contracts and $1.57M of the $5.06M volume (31%). Stripping it out, the rest of the Roatán market saw 8 contracts at $3.49M — roughly half the deal count of April 2025 (16 contracts at $4.51M).',
       },
       {
         type: 'p',
@@ -657,7 +657,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: 'Data sourced from the Roatan Bay Islands MLS for January 1–March 31, 2025 (Q1 2025) and January 1–March 31, 2026 (Q1 2026). All figures cover residential, multi-family, and commercial transactions only — land sales are excluded. "Closed" means transactions with a recorded closing date in the quarter. Under-contract data was reviewed but is noted as having reliability limitations due to the timing of MLS contract entries relative to actual agreement dates.',
+        text: 'Data sourced from the Roatán Bay Islands MLS for January 1–March 31, 2025 (Q1 2025) and January 1–March 31, 2026 (Q1 2026). All figures cover residential, multi-family, and commercial transactions only — land sales are excluded. "Closed" means transactions with a recorded closing date in the quarter. Under-contract data was reviewed but is noted as having reliability limitations due to the timing of MLS contract entries relative to actual agreement dates.',
       },
       {
         type: 'h2',
@@ -665,7 +665,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'h3',
-        text: 'Did Roatan property values go up or down in Q1 2026?',
+        text: 'Did Roatán property values go up or down in Q1 2026?',
       },
       {
         type: 'p',
@@ -673,15 +673,15 @@ const posts: BlogPost[] = [
       },
       {
         type: 'h3',
-        text: 'How did the Iran war and Venezuela crisis affect Roatan real estate in Q1 2026?',
+        text: 'How did the Iran war and Venezuela crisis affect Roatán real estate in Q1 2026?',
       },
       {
         type: 'p',
-        text: "The US military operation in Venezuela on January 3 and the outbreak of the Iran war on February 28 bracketed the entire quarter with major geopolitical uncertainty. The Iran war's oil shock and global market volatility froze discretionary capital decisions for North American buyers — Roatan's primary buyer base — during the closing month of the quarter. The Venezuela operation dominated US and Canadian news cycles in January, slowing snowbird buying decisions during a normally active period.",
+        text: "The US military operation in Venezuela on January 3 and the outbreak of the Iran war on February 28 bracketed the entire quarter with major geopolitical uncertainty. The Iran war's oil shock and global market volatility froze discretionary capital decisions for North American buyers — Roatán's primary buyer base — during the closing month of the quarter. The Venezuela operation dominated US and Canadian news cycles in January, slowing snowbird buying decisions during a normally active period.",
       },
       {
         type: 'h3',
-        text: 'Which Roatan area had the strongest market in Q1 2026?',
+        text: 'Which Roatán area had the strongest market in Q1 2026?',
       },
       {
         type: 'p',
@@ -689,7 +689,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'h3',
-        text: 'How long are Roatan properties taking to sell in 2026?',
+        text: 'How long are Roatán properties taking to sell in 2026?',
       },
       {
         type: 'p',
@@ -697,7 +697,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'h3',
-        text: 'Is now a good time to buy property in Roatan?',
+        text: 'Is now a good time to buy property in Roatán?',
       },
       {
         type: 'p',
@@ -705,30 +705,30 @@ const posts: BlogPost[] = [
       },
       {
         type: 'h3',
-        text: 'Who buys real estate on Roatan?',
+        text: 'Who buys real estate on Roatán?',
       },
       {
         type: 'p',
-        text: "The Roatan buyer base is overwhelmingly North American — primarily US and Canadian buyers — alongside longtime expat residents and Honduran nationals. Unlike some Caribbean destinations, Roatan does not draw heavily from Latin American buyer flows, which is why the Venezuela crisis affected sentiment more than transaction flow directly.",
+        text: "The Roatán buyer base is overwhelmingly North American — primarily US and Canadian buyers — alongside longtime expat residents and Honduran nationals. Unlike some Caribbean destinations, Roatán does not draw heavily from Latin American buyer flows, which is why the Venezuela crisis affected sentiment more than transaction flow directly.",
       },
       {
         type: 'p',
-        text: 'Data analysis based on MLS records for Q1 2025 and Q1 2026 covering residential, multi-family, and commercial transactions on Roatan and the Bay Islands. Market conditions are subject to change. This report is for informational purposes only and does not constitute investment advice.',
+        text: 'Data analysis based on MLS records for Q1 2025 and Q1 2026 covering residential, multi-family, and commercial transactions on Roatán and the Bay Islands. Market conditions are subject to change. This report is for informational purposes only and does not constitute investment advice.',
       },
     ],
   },
   {
     slug: 'top-roatan-real-estate-agencies',
-    title: 'Top Roatan Real Estate Agencies for Your Dream Property',
-    seoTitle: 'Top Roatan Real Estate Agencies',
+    title: 'Top Roatán Real Estate Agencies for Your Dream Property',
+    seoTitle: 'Top Roatán Real Estate Agencies',
     date: '2026-04-01',
     dateModified: '2026-05-07',
     category: 'Buying Guide',
     excerpt:
-      'Thinking about buying property in Roatan? Learn what to look for in a real estate agent, how the local market works, and the key factors that separate a good investment from a great one.',
+      'Thinking about buying property in Roatán? Learn what to look for in a real estate agent, how the local market works, and the key factors that separate a good investment from a great one.',
     summary: [
-      "Roatan's real estate market has posted a 7% CAGR in median sold prices from 2020 to 2025.",
-      'Foreigners can legally own property in Roatan with a straightforward purchase process.',
+      "Roatán's real estate market has posted a 7% CAGR in median sold prices from 2020 to 2025.",
+      'Foreigners can legally own property in Roatán with a straightforward purchase process.',
       'The right agent matters more than the brand — evaluate market knowledge, sales volume, and reviews.',
       'Property taxes are very low, generally 0.3%–0.5% of assessed value annually.',
       'Local bank financing is not available for foreigners; plan to purchase with cash or home-country financing.',
@@ -736,59 +736,59 @@ const posts: BlogPost[] = [
     body: [
       {
         type: 'h2',
-        text: 'Why Choose Roatan for Your Property Investment?',
+        text: 'Why Choose Roatán for Your Property Investment?',
       },
       {
         type: 'p',
-        text: "Roatan, one of the Caribbean's most underrated destinations, has been attracting a growing number of property investors seeking their own slice of tropical paradise. The allure of Roatan lies in its pristine beaches, lush landscapes, and vibrant coral reefs. Not only is the island a haven for those who love nature and adventure, but it also offers a tranquil and laid-back lifestyle that many find irresistible. As a result, Roatan has become a prime destination for both vacationers and those looking to make a long-term investment in a second home or retirement property.",
+        text: "Roatán, one of the Caribbean's most underrated destinations, has been attracting a growing number of property investors seeking their own slice of tropical paradise. The allure of Roatán lies in its pristine beaches, lush landscapes, and vibrant coral reefs. Not only is the island a haven for those who love nature and adventure, but it also offers a tranquil and laid-back lifestyle that many find irresistible. As a result, Roatán has become a prime destination for both vacationers and those looking to make a long-term investment in a second home or retirement property.",
       },
       {
         type: 'p',
-        text: "The island's strategic location, just off the northern coast of Honduras, provides relatively easy access from major cities in North America, making it a convenient getaway for those living in the United States and Canada. Frequent flights to the Juan Manuel Gálvez International Airport ensure that visitors and property owners can travel to and from Roatan with ease. Additionally, the island's infrastructure has seen significant improvements over the years, offering modern amenities while still maintaining its rustic charm.",
+        text: "The island's strategic location, just off the northern coast of Honduras, provides relatively easy access from major cities in North America, making it a convenient getaway for those living in the United States and Canada. Frequent flights to the Juan Manuel Gálvez International Airport ensure that visitors and property owners can travel to and from Roatán with ease. Additionally, the island's infrastructure has seen significant improvements over the years, offering modern amenities while still maintaining its rustic charm.",
       },
       {
         type: 'p',
-        text: "Investing in real estate in Roatan can be a lucrative opportunity due to the island's growing popularity among tourists and expatriates. The real estate market here offers a diverse range of properties, from beachfront villas and luxury condos to more modest homes and undeveloped land. Regardless of your budget or preferences, Roatan has something to offer. Moreover, the island's economic stability and welcoming community make it an ideal place to invest, live, and thrive.",
+        text: "Investing in real estate in Roatán can be a lucrative opportunity due to the island's growing popularity among tourists and expatriates. The real estate market here offers a diverse range of properties, from beachfront villas and luxury condos to more modest homes and undeveloped land. Regardless of your budget or preferences, Roatán has something to offer. Moreover, the island's economic stability and welcoming community make it an ideal place to invest, live, and thrive.",
       },
       {
         type: 'h2',
-        text: 'Overview of the Real Estate Market in Roatan',
+        text: 'Overview of the Real Estate Market in Roatán',
       },
       {
         type: 'p',
-        text: 'The real estate market in Roatan is dynamic and offers a broad spectrum of opportunities for prospective buyers. The market has demonstrated consistent and measurable growth — with the median sold price posting a 7% compound annual growth rate (CAGR) from 2020 to 2025, driven by increasing tourism and the island\'s appeal as a retirement destination. Property values have appreciated steadily, making Roatan an attractive option for both short-term and long-term investments. The diversity of available properties ensures that there is something for everyone, whether you\'re looking for a luxury oceanfront estate or a cozy inland retreat.',
+        text: 'The real estate market in Roatán is dynamic and offers a broad spectrum of opportunities for prospective buyers. The market has demonstrated consistent and measurable growth — with the median sold price posting a 7% compound annual growth rate (CAGR) from 2020 to 2025, driven by increasing tourism and the island\'s appeal as a retirement destination. Property values have appreciated steadily, making Roatán an attractive option for both short-term and long-term investments. The diversity of available properties ensures that there is something for everyone, whether you\'re looking for a luxury oceanfront estate or a cozy inland retreat.',
       },
       {
         type: 'p',
-        text: "One of the distinctive features of Roatan's real estate market is its affordability compared to other Caribbean destinations. Despite its rising popularity, the island remains affordable, offering good value for money. This affordability extends to various types of properties, including residential homes, commercial spaces, and undeveloped land. As a result, investors can find properties that suit their needs and budgets without compromising on quality or location.",
+        text: "One of the distinctive features of Roatán's real estate market is its affordability compared to other Caribbean destinations. Despite its rising popularity, the island remains affordable, offering good value for money. This affordability extends to various types of properties, including residential homes, commercial spaces, and undeveloped land. As a result, investors can find properties that suit their needs and budgets without compromising on quality or location.",
       },
       {
         type: 'p',
-        text: 'The legal framework governing real estate transactions in Roatan is well-established, providing a secure environment for foreign investors. The process of purchasing property is straightforward, with clear regulations and protections in place. Additionally, many real estate agencies on the island offer comprehensive services to guide buyers through every step of the buying process, from initial property searches to closing the deal. This level of support and transparency has contributed to the market\'s stability and appeal.',
+        text: 'The legal framework governing real estate transactions in Roatán is well-established, providing a secure environment for foreign investors. The process of purchasing property is straightforward, with clear regulations and protections in place. Additionally, many real estate agencies on the island offer comprehensive services to guide buyers through every step of the buying process, from initial property searches to closing the deal. This level of support and transparency has contributed to the market\'s stability and appeal.',
       },
       {
         type: 'h2',
-        text: 'Key Factors to Consider When Buying Property in Roatan',
+        text: 'Key Factors to Consider When Buying Property in Roatán',
       },
       {
         type: 'p',
-        text: "When buying property in Roatan, there are several key factors to consider to ensure a successful investment. First and foremost, it's essential to understand the local market and the different areas of the island. Roatan is divided into various regions, each with its own unique characteristics and appeal. For example, the West End and West Bay are known for their vibrant nightlife and beautiful beaches, making them popular choices for vacation homes and rental properties. On the other hand, the East End offers a more tranquil and secluded environment, ideal for those seeking a peaceful retreat.",
+        text: "When buying property in Roatán, there are several key factors to consider to ensure a successful investment. First and foremost, it's essential to understand the local market and the different areas of the island. Roatán is divided into various regions, each with its own unique characteristics and appeal. For example, the West End and West Bay are known for their vibrant nightlife and beautiful beaches, making them popular choices for vacation homes and rental properties. On the other hand, the East End offers a more tranquil and secluded environment, ideal for those seeking a peaceful retreat.",
       },
       {
         type: 'p',
-        text: "Another important factor is the type of property you're interested in. Roatan offers a diverse range of properties, including beachfront villas, hillside homes, condos, and undeveloped land. Each type of property comes with its own set of considerations, such as maintenance requirements, potential for rental income, and long-term value. It's crucial to evaluate your needs and preferences carefully to find a property that aligns with your goals and lifestyle.",
+        text: "Another important factor is the type of property you're interested in. Roatán offers a diverse range of properties, including beachfront villas, hillside homes, condos, and undeveloped land. Each type of property comes with its own set of considerations, such as maintenance requirements, potential for rental income, and long-term value. It's crucial to evaluate your needs and preferences carefully to find a property that aligns with your goals and lifestyle.",
       },
       {
         type: 'p',
-        text: "Additionally, understanding the legal and financial aspects of buying property in Roatan is vital. Foreigners can own property on the island, but it's essential to work with a reputable real estate agent and legal advisor to navigate the process smoothly. Factors such as property taxes, closing costs, and potential restrictions on development should be thoroughly researched and understood. Note that if you are purchasing within a gated or managed community, the development will have Covenants, Conditions & Restrictions (CC&Rs) — binding rules governing property use, construction, rentals, and more. Always review these carefully before making an offer. By doing your due diligence and seeking professional guidance, you can make an informed and confident investment in Roatan's real estate market.",
+        text: "Additionally, understanding the legal and financial aspects of buying property in Roatán is vital. Foreigners can own property on the island, but it's essential to work with a reputable real estate agent and legal advisor to navigate the process smoothly. Factors such as property taxes, closing costs, and potential restrictions on development should be thoroughly researched and understood. Note that if you are purchasing within a gated or managed community, the development will have Covenants, Conditions & Restrictions (CC&Rs) — binding rules governing property use, construction, rentals, and more. Always review these carefully before making an offer. By doing your due diligence and seeking professional guidance, you can make an informed and confident investment in Roatán's real estate market.",
       },
       {
         type: 'h2',
-        text: 'Choosing the Right Real Estate Agency in Roatan',
+        text: 'Choosing the Right Real Estate Agency in Roatán',
       },
       {
         type: 'p',
-        text: "Roatan's real estate market has matured considerably, and today you'll find a range of options — from smaller local firms to internationally recognized franchise brands operating on the island. The presence of global franchises speaks to Roatan's growing legitimacy as an investment destination. However, the brand on the door matters far less than the professional representing you.",
+        text: "Roatán's real estate market has matured considerably, and today you'll find a range of options — from smaller local firms to internationally recognized franchise brands operating on the island. The presence of global franchises speaks to Roatán's growing legitimacy as an investment destination. However, the brand on the door matters far less than the professional representing you.",
       },
       {
         type: 'p',
@@ -811,10 +811,10 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: 'For a detailed breakdown of what to expect when working with a Roatan real estate professional, download the Roatan Buyer\'s Guide — a step-by-step resource covering the full purchasing process. You can also use the Roatan Closing Cost Calculator to estimate your costs before making an offer.',
+        text: 'For a detailed breakdown of what to expect when working with a Roatán real estate professional, download the Roatán Buyer\'s Guide — a step-by-step resource covering the full purchasing process. You can also use the Roatán Closing Cost Calculator to estimate your costs before making an offer.',
         links: [
-          { anchor: "Roatan Buyer's Guide", href: 'https://www.tomasfigueroa.com/guides' },
-          { anchor: 'Roatan Closing Cost Calculator', href: 'https://www.tomasfigueroa.com/calculator' },
+          { anchor: "Roatán Buyer's Guide", href: 'https://www.tomasfigueroa.com/guides' },
+          { anchor: 'Roatán Closing Cost Calculator', href: 'https://www.tomasfigueroa.com/calculator' },
         ],
       },
       {
@@ -823,7 +823,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "Client testimonials and success stories are the clearest indicator of what it's actually like to work with a real estate professional in Roatan. When evaluating an agent, go beyond their own marketing — look at what verified past clients say across multiple reviews on platforms like Google.",
+        text: "Client testimonials and success stories are the clearest indicator of what it's actually like to work with a real estate professional in Roatán. When evaluating an agent, go beyond their own marketing — look at what verified past clients say across multiple reviews on platforms like Google.",
       },
       {
         type: 'p',
@@ -838,11 +838,11 @@ const posts: BlogPost[] = [
       },
       {
         type: 'h2',
-        text: 'Tips for Working with a Real Estate Agent in Roatan',
+        text: 'Tips for Working with a Real Estate Agent in Roatán',
       },
       {
         type: 'p',
-        text: "Working with a real estate agent in Roatan can greatly enhance your property-buying experience, but it's essential to approach the process with the right mindset and preparation. One of the first tips is to clearly communicate your needs and preferences to your agent. Be specific about what you're looking for in a property, including location, size, and budget. The more information you provide, the better equipped your agent will be to find properties that match your criteria.",
+        text: "Working with a real estate agent in Roatán can greatly enhance your property-buying experience, but it's essential to approach the process with the right mindset and preparation. One of the first tips is to clearly communicate your needs and preferences to your agent. Be specific about what you're looking for in a property, including location, size, and budget. The more information you provide, the better equipped your agent will be to find properties that match your criteria.",
       },
       {
         type: 'p',
@@ -854,67 +854,67 @@ const posts: BlogPost[] = [
       },
       {
         type: 'h2',
-        text: 'Frequently Asked Questions About Roatan Real Estate',
+        text: 'Frequently Asked Questions About Roatán Real Estate',
       },
       {
         type: 'h3',
-        text: 'Can foreigners buy property in Roatan?',
+        text: 'Can foreigners buy property in Roatán?',
       },
       {
         type: 'p',
-        text: "Yes, foreigners can legally buy and own property in Roatan. The process is straightforward and similar to buying property in other countries. It's advisable to work with a reputable real estate agent and legal advisor to navigate the process smoothly.",
+        text: "Yes, foreigners can legally buy and own property in Roatán. The process is straightforward and similar to buying property in other countries. It's advisable to work with a reputable real estate agent and legal advisor to navigate the process smoothly.",
       },
       {
         type: 'h3',
-        text: 'What are the property taxes in Roatan?',
+        text: 'What are the property taxes in Roatán?',
       },
       {
         type: 'p',
-        text: "Property taxes in Roatan are very low compared to most countries. The annual rate is generally below 1% of the property's assessed value — and in most cases closer to 0.3%–0.5%, depending on the property type and classification.",
+        text: "Property taxes in Roatán are very low compared to most countries. The annual rate is generally below 1% of the property's assessed value — and in most cases closer to 0.3%–0.5%, depending on the property type and classification.",
       },
       {
         type: 'h3',
-        text: 'Is financing available for property purchases in Roatan?',
+        text: 'Is financing available for property purchases in Roatán?',
       },
       {
         type: 'p',
-        text: 'Local bank financing for foreigners is not currently available in Roatan. Buyers should plan to purchase with cash or arrange financing in their home country prior to purchase. Seller financing exists in some transactions and is negotiated on a case-by-case basis.',
+        text: 'Local bank financing for foreigners is not currently available in Roatán. Buyers should plan to purchase with cash or arrange financing in their home country prior to purchase. Seller financing exists in some transactions and is negotiated on a case-by-case basis.',
       },
       {
         type: 'h3',
-        text: 'What is the process for closing a property deal in Roatan?',
+        text: 'What is the process for closing a property deal in Roatán?',
       },
       {
         type: 'p',
-        text: 'The closing process involves several steps, including signing a purchase agreement, conducting due diligence, and transferring funds. A legal advisor or notary will oversee the process to ensure all legal requirements are met. Once all documents are signed and funds are transferred, the property title is recorded in the buyer\'s name. Use the Roatan Closing Cost Calculator to estimate your costs, and download the Buyer\'s Guide for a full walkthrough of the process.',
+        text: 'The closing process involves several steps, including signing a purchase agreement, conducting due diligence, and transferring funds. A legal advisor or notary will oversee the process to ensure all legal requirements are met. Once all documents are signed and funds are transferred, the property title is recorded in the buyer\'s name. Use the Roatán Closing Cost Calculator to estimate your costs, and download the Buyer\'s Guide for a full walkthrough of the process.',
         links: [
-          { anchor: 'Roatan Closing Cost Calculator', href: 'https://www.tomasfigueroa.com/calculator' },
+          { anchor: 'Roatán Closing Cost Calculator', href: 'https://www.tomasfigueroa.com/calculator' },
           { anchor: "Buyer's Guide", href: 'https://www.tomasfigueroa.com/guides' },
         ],
       },
       {
         type: 'h3',
-        text: 'Are there any restrictions on property development in Roatan?',
+        text: 'Are there any restrictions on property development in Roatán?',
       },
       {
         type: 'p',
-        text: "There are some restrictions and regulations governing property development in Roatan, particularly in environmentally sensitive areas. It's important to check local zoning laws and obtain any necessary permits before starting any construction or development projects. Additionally, if you are purchasing within a gated or master-planned community, review the CC&Rs carefully — these will govern what you can build, modify, or operate on the property.",
+        text: "There are some restrictions and regulations governing property development in Roatán, particularly in environmentally sensitive areas. It's important to check local zoning laws and obtain any necessary permits before starting any construction or development projects. Additionally, if you are purchasing within a gated or master-planned community, review the CC&Rs carefully — these will govern what you can build, modify, or operate on the property.",
       },
       {
         type: 'h2',
-        text: 'Conclusion: Finding Your Dream Property in Roatan',
+        text: 'Conclusion: Finding Your Dream Property in Roatán',
       },
       {
         type: 'p',
-        text: "Finding your dream property in Roatan is an exciting and rewarding journey. The island's natural beauty, vibrant culture, and welcoming community make it an ideal destination for property investment. With consistent market appreciation — a 7% CAGR in median sold prices since 2020 — and a favorable tax and ownership environment, Roatan represents a compelling opportunity for buyers at every level.",
+        text: "Finding your dream property in Roatán is an exciting and rewarding journey. The island's natural beauty, vibrant culture, and welcoming community make it an ideal destination for property investment. With consistent market appreciation — a 7% CAGR in median sold prices since 2020 — and a favorable tax and ownership environment, Roatán represents a compelling opportunity for buyers at every level.",
       },
       {
         type: 'p',
-        text: "Whether you're looking for a luxurious beachfront villa, a cozy condo, or a piece of undeveloped land, Roatan has something to offer. By understanding the local market, working with the right agent, and doing your due diligence, you can make a smart and informed investment.",
+        text: "Whether you're looking for a luxurious beachfront villa, a cozy condo, or a piece of undeveloped land, Roatán has something to offer. By understanding the local market, working with the right agent, and doing your due diligence, you can make a smart and informed investment.",
       },
       {
         type: 'p',
-        text: "Embark on your journey to owning a piece of paradise in Roatan. Download the Buyer's Guide, run your numbers with the Closing Cost Calculator, and read what past clients say. With careful planning and the right support, your dream property in Roatan is within reach.",
+        text: "Embark on your journey to owning a piece of paradise in Roatán. Download the Buyer's Guide, run your numbers with the Closing Cost Calculator, and read what past clients say. With careful planning and the right support, your dream property in Roatán is within reach.",
         links: [
           { anchor: "Buyer's Guide", href: 'https://www.tomasfigueroa.com/guides' },
           { anchor: 'Closing Cost Calculator', href: 'https://www.tomasfigueroa.com/calculator' },
@@ -925,13 +925,13 @@ const posts: BlogPost[] = [
   },
   {
     slug: 'roatan-travel-guide-faqs',
-    title: '10 Essential FAQs About Roatan: Your Ultimate Travel Guide',
-    seoTitle: '10 Essential Roatan Travel FAQs',
+    title: '10 Essential FAQs About Roatán: Your Ultimate Travel Guide',
+    seoTitle: '10 Essential Roatán Travel FAQs',
     date: '2026-04-01',
     dateModified: '2026-05-07',
     category: 'Travel Guide',
     excerpt:
-      'Discover the beauty and charm of Roatan through our essential FAQs. This ultimate travel guide covers the best time to visit, how to get there, top attractions, activities, cuisine, accommodations, and safety tips.',
+      'Discover the beauty and charm of Roatán through our essential FAQs. This ultimate travel guide covers the best time to visit, how to get there, top attractions, activities, cuisine, accommodations, and safety tips.',
     summary: [
       'Best time to visit: dry season February–August for sunny skies and warm temps.',
       'Direct flights available from major US cities; ferry option from La Ceiba.',
@@ -942,11 +942,11 @@ const posts: BlogPost[] = [
     body: [
       {
         type: 'h2',
-        text: 'What is the best time to visit Roatan?',
+        text: 'What is the best time to visit Roatán?',
       },
       {
         type: 'p',
-        text: 'Roatan, the jewel of the Caribbean, offers a year-round tropical climate, but the best time to visit is during the dry season from February to August. During these months, you can expect sunny skies, warm temperatures, and minimal rain, making it perfect for beach activities, diving, and exploring the island. The temperature typically hovers around a comfortable 27°C (81°F), allowing you to enjoy outdoor activities without feeling too hot or too cold.',
+        text: 'Roatán, the jewel of the Caribbean, offers a year-round tropical climate, but the best time to visit is during the dry season from February to August. During these months, you can expect sunny skies, warm temperatures, and minimal rain, making it perfect for beach activities, diving, and exploring the island. The temperature typically hovers around a comfortable 27°C (81°F), allowing you to enjoy outdoor activities without feeling too hot or too cold.',
       },
       {
         type: 'p',
@@ -954,31 +954,31 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "If you prefer a quieter experience, consider visiting during the shoulder months of October and November. Although there might be occasional rain showers, these months offer fewer crowds and better deals on accommodations. Plus, the island's lush landscape will be at its greenest, providing a picturesque backdrop for your adventures. Whether you visit during the bustling dry season or the serene shoulder months, Roatan promises an unforgettable experience.",
+        text: "If you prefer a quieter experience, consider visiting during the shoulder months of October and November. Although there might be occasional rain showers, these months offer fewer crowds and better deals on accommodations. Plus, the island's lush landscape will be at its greenest, providing a picturesque backdrop for your adventures. Whether you visit during the bustling dry season or the serene shoulder months, Roatán promises an unforgettable experience.",
       },
       {
         type: 'h2',
-        text: 'How do I get to Roatan?',
+        text: 'How do I get to Roatán?',
       },
       {
         type: 'p',
-        text: 'Getting to Roatan is relatively straightforward, with several travel options available to suit different preferences and budgets. Most international travelers fly into Juan Manuel Gálvez International Airport (RTB), located on the western side of the island near Coxen Hole. Direct flights are available from major cities in the United States, Canada, and Central America, making it convenient for North American travelers.',
+        text: 'Getting to Roatán is relatively straightforward, with several travel options available to suit different preferences and budgets. Most international travelers fly into Juan Manuel Gálvez International Airport (RTB), located on the western side of the island near Coxen Hole. Direct flights are available from major cities in the United States, Canada, and Central America, making it convenient for North American travelers.',
       },
       {
         type: 'p',
-        text: 'For those traveling from within Honduras or neighboring countries, domestic flights to Roatan are frequent and affordable. Airlines such as Avianca, American Airlines, and Delta offer regular flights, ensuring you have multiple options to choose from. Once you land at RTB, you\'ll find various transportation options such as taxis, shuttles, and rental cars to take you to your accommodation.',
+        text: 'For those traveling from within Honduras or neighboring countries, domestic flights to Roatán are frequent and affordable. Airlines such as Avianca, American Airlines, and Delta offer regular flights, ensuring you have multiple options to choose from. Once you land at RTB, you\'ll find various transportation options such as taxis, shuttles, and rental cars to take you to your accommodation.',
       },
       {
         type: 'p',
-        text: 'Alternatively, you can reach Roatan by ferry from the Honduran mainland. The Galaxy Wave and Utila Dream ferries operate daily routes from La Ceiba to Roatan, providing a scenic and leisurely way to arrive on the island. The ferry journey takes approximately 1.5 to 2 hours and offers stunning views of the Caribbean Sea. Whether you prefer the convenience of flying or the scenic route by sea, reaching Roatan is a hassle-free experience.',
+        text: 'Alternatively, you can reach Roatán by ferry from the Honduran mainland. The Galaxy Wave and Utila Dream ferries operate daily routes from La Ceiba to Roatán, providing a scenic and leisurely way to arrive on the island. The ferry journey takes approximately 1.5 to 2 hours and offers stunning views of the Caribbean Sea. Whether you prefer the convenience of flying or the scenic route by sea, reaching Roatán is a hassle-free experience.',
       },
       {
         type: 'h2',
-        text: 'What are the must-see attractions in Roatan?',
+        text: 'What are the must-see attractions in Roatán?',
       },
       {
         type: 'p',
-        text: "Roatan is brimming with attractions that cater to a wide range of interests, from natural wonders to cultural landmarks. One of the island's top attractions is West Bay Beach, often hailed as one of the best beaches in the Caribbean. With its powdery white sand, crystal-clear waters, and vibrant coral reefs, it's a paradise for beach lovers and snorkelers alike. Spend your days lounging on the beach, swimming in the warm waters, or exploring the underwater world teeming with marine life.",
+        text: "Roatán is brimming with attractions that cater to a wide range of interests, from natural wonders to cultural landmarks. One of the island's top attractions is West Bay Beach, often hailed as one of the best beaches in the Caribbean. With its powdery white sand, crystal-clear waters, and vibrant coral reefs, it's a paradise for beach lovers and snorkelers alike. Spend your days lounging on the beach, swimming in the warm waters, or exploring the underwater world teeming with marine life.",
       },
       {
         type: 'p',
@@ -990,11 +990,11 @@ const posts: BlogPost[] = [
       },
       {
         type: 'h2',
-        text: 'What activities can I enjoy in Roatan?',
+        text: 'What activities can I enjoy in Roatán?',
       },
       {
         type: 'p',
-        text: 'Roatan offers a plethora of activities that cater to adventure seekers, nature enthusiasts, and relaxation lovers alike. Diving is perhaps the most popular activity on the island, thanks to its location along the Mesoamerican Barrier Reef, the second-largest coral reef system in the world. Dive sites such as Mary\'s Place, the Odyssey Wreck, and the Aguila Wreck offer stunning underwater landscapes, vibrant coral gardens, and an abundance of marine life, including turtles, rays, and colorful fish.',
+        text: 'Roatán offers a plethora of activities that cater to adventure seekers, nature enthusiasts, and relaxation lovers alike. Diving is perhaps the most popular activity on the island, thanks to its location along the Mesoamerican Barrier Reef, the second-largest coral reef system in the world. Dive sites such as Mary\'s Place, the Odyssey Wreck, and the Aguila Wreck offer stunning underwater landscapes, vibrant coral gardens, and an abundance of marine life, including turtles, rays, and colorful fish.',
       },
       {
         type: 'p',
@@ -1002,15 +1002,15 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "For those who prefer to stay on land, Roatan offers a variety of activities such as zip-lining, hiking, and horseback riding. The island's lush interior is crisscrossed with trails that lead to hidden waterfalls, panoramic viewpoints, and secluded beaches. Zip-lining through the canopy offers a thrilling way to experience the island's natural beauty from above, while horseback riding along the beach provides a more relaxed but equally enjoyable adventure. Whether you're seeking adrenaline-pumping activities or tranquil escapes, Roatan has something for everyone.",
+        text: "For those who prefer to stay on land, Roatán offers a variety of activities such as zip-lining, hiking, and horseback riding. The island's lush interior is crisscrossed with trails that lead to hidden waterfalls, panoramic viewpoints, and secluded beaches. Zip-lining through the canopy offers a thrilling way to experience the island's natural beauty from above, while horseback riding along the beach provides a more relaxed but equally enjoyable adventure. Whether you're seeking adrenaline-pumping activities or tranquil escapes, Roatán has something for everyone.",
       },
       {
         type: 'h2',
-        text: 'What is the local cuisine like in Roatan?',
+        text: 'What is the local cuisine like in Roatán?',
       },
       {
         type: 'p',
-        text: 'Roatan\'s local cuisine is a delightful blend of Caribbean, Latin American, and Garifuna influences, offering a diverse array of flavors to satisfy any palate. Seafood is a staple on the island, with dishes featuring fresh fish, shrimp, lobster, and conch readily available at local restaurants. One must-try dish is the "baleada," a traditional Honduran staple consisting of a flour tortilla filled with refried beans, cheese, and various other ingredients such as avocado, eggs, or meat.',
+        text: 'Roatán\'s local cuisine is a delightful blend of Caribbean, Latin American, and Garifuna influences, offering a diverse array of flavors to satisfy any palate. Seafood is a staple on the island, with dishes featuring fresh fish, shrimp, lobster, and conch readily available at local restaurants. One must-try dish is the "baleada," a traditional Honduran staple consisting of a flour tortilla filled with refried beans, cheese, and various other ingredients such as avocado, eggs, or meat.',
       },
       {
         type: 'p',
@@ -1018,15 +1018,15 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "Don't forget to indulge in the island's tropical fruits, such as mangoes, pineapples, and papayas, which are often used in refreshing beverages and desserts. Local markets and roadside stands offer an array of fresh produce, allowing you to sample the island's bounty. Whether you dine at a beachfront restaurant, a local eatery, or a street food stall, Roatan's cuisine is sure to leave a lasting impression on your taste buds.",
+        text: "Don't forget to indulge in the island's tropical fruits, such as mangoes, pineapples, and papayas, which are often used in refreshing beverages and desserts. Local markets and roadside stands offer an array of fresh produce, allowing you to sample the island's bounty. Whether you dine at a beachfront restaurant, a local eatery, or a street food stall, Roatán's cuisine is sure to leave a lasting impression on your taste buds.",
       },
       {
         type: 'h2',
-        text: 'Are there accommodations for all budgets in Roatan?',
+        text: 'Are there accommodations for all budgets in Roatán?',
       },
       {
         type: 'p',
-        text: 'Roatan offers a wide range of accommodations to suit every budget, from luxurious resorts to budget-friendly hostels. For those seeking a high-end experience, West Bay and West End are home to several upscale resorts and boutique hotels that offer beachfront access, top-notch amenities, and stunning ocean views. These properties often feature on-site restaurants, spas, and water sports facilities, ensuring a comfortable and convenient stay.',
+        text: 'Roatán offers a wide range of accommodations to suit every budget, from luxurious resorts to budget-friendly hostels. For those seeking a high-end experience, West Bay and West End are home to several upscale resorts and boutique hotels that offer beachfront access, top-notch amenities, and stunning ocean views. These properties often feature on-site restaurants, spas, and water sports facilities, ensuring a comfortable and convenient stay.',
       },
       {
         type: 'p',
@@ -1034,15 +1034,15 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "For budget-conscious travelers, Roatan has several hostels, budget hotels, and eco-lodges that provide basic but comfortable accommodations at a fraction of the cost. Backpackers and solo travelers will appreciate the social atmosphere and communal spaces that many hostels offer, making it easy to meet fellow travelers. No matter your budget, you'll find a range of accommodations that allow you to experience the beauty and charm of Roatan without breaking the bank.",
+        text: "For budget-conscious travelers, Roatán has several hostels, budget hotels, and eco-lodges that provide basic but comfortable accommodations at a fraction of the cost. Backpackers and solo travelers will appreciate the social atmosphere and communal spaces that many hostels offer, making it easy to meet fellow travelers. No matter your budget, you'll find a range of accommodations that allow you to experience the beauty and charm of Roatán without breaking the bank.",
       },
       {
         type: 'h2',
-        text: 'What are the safety tips for travelers in Roatan?',
+        text: 'What are the safety tips for travelers in Roatán?',
       },
       {
         type: 'p',
-        text: "Roatan is generally considered a safe destination for travelers, but it's always wise to take precautions to ensure a smooth and enjoyable trip. One of the most important safety tips is to be aware of your surroundings and exercise common sense, especially in crowded areas and tourist hotspots. Petty theft can occur, so keep your belongings secure and avoid displaying valuable items such as jewelry, cameras, and large amounts of cash.",
+        text: "Roatán is generally considered a safe destination for travelers, but it's always wise to take precautions to ensure a smooth and enjoyable trip. One of the most important safety tips is to be aware of your surroundings and exercise common sense, especially in crowded areas and tourist hotspots. Petty theft can occur, so keep your belongings secure and avoid displaying valuable items such as jewelry, cameras, and large amounts of cash.",
       },
       {
         type: 'p',
@@ -1050,15 +1050,15 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "Health-wise, it's essential to stay hydrated, use sunscreen, and protect yourself from mosquito bites, as they can transmit diseases such as dengue fever. Drink bottled or purified water to avoid stomach issues, and be cautious with street food if you have a sensitive stomach. Lastly, familiarize yourself with local emergency numbers and the location of the nearest medical facilities in case of any health concerns. By following these safety tips, you can enjoy a worry-free vacation in Roatan.",
+        text: "Health-wise, it's essential to stay hydrated, use sunscreen, and protect yourself from mosquito bites, as they can transmit diseases such as dengue fever. Drink bottled or purified water to avoid stomach issues, and be cautious with street food if you have a sensitive stomach. Lastly, familiarize yourself with local emergency numbers and the location of the nearest medical facilities in case of any health concerns. By following these safety tips, you can enjoy a worry-free vacation in Roatán.",
       },
       {
         type: 'h2',
-        text: 'What should I pack for my trip to Roatan?',
+        text: 'What should I pack for my trip to Roatán?',
       },
       {
         type: 'p',
-        text: "Packing for a trip to Roatan requires a mix of essentials to ensure you're prepared for the island's tropical climate and various activities. Start with lightweight, breathable clothing such as cotton t-shirts, shorts, and dresses that will keep you cool in the warm weather. Swimsuits are a must, especially if you plan to spend time at the beach or participate in water activities like diving and snorkeling.",
+        text: "Packing for a trip to Roatán requires a mix of essentials to ensure you're prepared for the island's tropical climate and various activities. Start with lightweight, breathable clothing such as cotton t-shirts, shorts, and dresses that will keep you cool in the warm weather. Swimsuits are a must, especially if you plan to spend time at the beach or participate in water activities like diving and snorkeling.",
       },
       {
         type: 'p',
@@ -1066,36 +1066,36 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "For footwear, pack a pair of comfortable sandals or flip-flops for casual wear, as well as sturdy hiking shoes or sneakers if you plan to go hiking or participate in adventure activities. A light rain jacket or poncho can come in handy during the occasional rain shower, and a reusable water bottle will help you stay hydrated throughout your trip. Lastly, consider packing a waterproof bag or dry bag to protect your valuables during water-based activities. With these essentials, you'll be well-prepared for an unforgettable adventure in Roatan.",
+        text: "For footwear, pack a pair of comfortable sandals or flip-flops for casual wear, as well as sturdy hiking shoes or sneakers if you plan to go hiking or participate in adventure activities. A light rain jacket or poncho can come in handy during the occasional rain shower, and a reusable water bottle will help you stay hydrated throughout your trip. Lastly, consider packing a waterproof bag or dry bag to protect your valuables during water-based activities. With these essentials, you'll be well-prepared for an unforgettable adventure in Roatán.",
       },
       {
         type: 'h2',
-        text: 'Conclusion: Final Travel Tips for Roatan',
+        text: 'Conclusion: Final Travel Tips for Roatán',
       },
       {
         type: 'p',
-        text: "Roatan is a tropical paradise that offers a perfect blend of natural beauty, vibrant culture, and exciting activities. Whether you're a beach lover, an adventure seeker, or a cultural enthusiast, this Caribbean gem has something for everyone. By planning your trip around the best time to visit, choosing the right accommodations, and following safety tips, you can ensure a smooth and enjoyable experience.",
+        text: "Roatán is a tropical paradise that offers a perfect blend of natural beauty, vibrant culture, and exciting activities. Whether you're a beach lover, an adventure seeker, or a cultural enthusiast, this Caribbean gem has something for everyone. By planning your trip around the best time to visit, choosing the right accommodations, and following safety tips, you can ensure a smooth and enjoyable experience.",
       },
       {
         type: 'p',
-        text: "Immerse yourself in the island's rich history and culture by visiting local attractions, engaging with the Garifuna community, and savoring the diverse cuisine. Don't miss the opportunity to explore the underwater wonders of the Mesoamerican Barrier Reef, whether through diving or snorkeling, and take advantage of the numerous land-based activities that showcase Roatan's natural beauty.",
+        text: "Immerse yourself in the island's rich history and culture by visiting local attractions, engaging with the Garifuna community, and savoring the diverse cuisine. Don't miss the opportunity to explore the underwater wonders of the Mesoamerican Barrier Reef, whether through diving or snorkeling, and take advantage of the numerous land-based activities that showcase Roatán's natural beauty.",
       },
       {
         type: 'p',
-        text: "As you prepare for your trip, remember to pack wisely, stay hydrated, and protect yourself from the sun and insects. With the right preparation and an open mind, you'll be ready to create unforgettable memories in Roatan. So, get ready to embark on an adventure of a lifetime and discover the enchanting charm of this Caribbean paradise.",
+        text: "As you prepare for your trip, remember to pack wisely, stay hydrated, and protect yourself from the sun and insects. With the right preparation and an open mind, you'll be ready to create unforgettable memories in Roatán. So, get ready to embark on an adventure of a lifetime and discover the enchanting charm of this Caribbean paradise.",
       },
     ],
   },
   {
     slug: 'where-is-roatan',
-    title: 'Where is Roatan?',
+    title: 'Where is Roatán?',
     date: '2026-04-01',
     dateModified: '2026-05-07',
-    category: 'About Roatan',
+    category: 'About Roatán',
     excerpt:
-      'Roatan is the largest of the Bay Islands, located in the western Caribbean Sea about 35 miles off the northern coast of Honduras — and home to the second-largest coral reef system in the world.',
+      'Roatán is the largest of the Bay Islands, located in the western Caribbean Sea about 35 miles off the northern coast of Honduras — and home to the second-largest coral reef system in the world.',
     summary: [
-      'Roatan is located 35 miles off the northern coast of Honduras in the western Caribbean Sea.',
+      'Roatán is located 35 miles off the northern coast of Honduras in the western Caribbean Sea.',
       'The island is approximately 40 miles long and sits along the Mesoamerican Barrier Reef.',
       'Temperatures stay between 70°F and 80°F year-round with minimal hurricane risk.',
       'Direct flights are available from major U.S. cities including Houston, Miami, Atlanta, and Dallas.',
@@ -1104,19 +1104,19 @@ const posts: BlogPost[] = [
     body: [
       {
         type: 'p',
-        text: 'Roatan is the largest of the Bay Islands, a group of three islands that also includes Utila and Guanaja. Located in the western Caribbean Sea, Roatan lies approximately 35 miles off the northern coast of Honduras. The island is about 40 miles long and up to 5 miles wide, with an east-west orientation.',
+        text: 'Roatán is the largest of the Bay Islands, a group of three islands that also includes Utila and Guanaja. Located in the western Caribbean Sea, Roatán lies approximately 35 miles off the northern coast of Honduras. The island is about 40 miles long and up to 5 miles wide, with an east-west orientation.',
       },
       {
         type: 'p',
-        text: "Roatan sits along the Mesoamerican Barrier Reef — the largest reef system in the Northern Hemisphere and second in size only to Australia's Great Barrier Reef. Its proximity to this reef makes it a popular destination for diving, snorkeling, and other marine activities.",
+        text: "Roatán sits along the Mesoamerican Barrier Reef — the largest reef system in the Northern Hemisphere and second in size only to Australia's Great Barrier Reef. Its proximity to this reef makes it a popular destination for diving, snorkeling, and other marine activities.",
       },
       {
         type: 'p',
-        text: 'The island has a stable tropical climate, with average temperatures ranging from 70°F to 80°F year-round. Roatan is also located outside the main hurricane zone, making it a relatively secure location for both residents and visitors.',
+        text: 'The island has a stable tropical climate, with average temperatures ranging from 70°F to 80°F year-round. Roatán is also located outside the main hurricane zone, making it a relatively secure location for both residents and visitors.',
       },
       {
         type: 'h2',
-        text: 'Key Facts About Roatan',
+        text: 'Key Facts About Roatán',
       },
       {
         type: 'facts',
@@ -1137,15 +1137,15 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: 'Roatan combines natural beauty, ease of access, and modern conveniences, making it a popular spot for both tourists and property buyers.',
+        text: 'Roatán combines natural beauty, ease of access, and modern conveniences, making it a popular spot for both tourists and property buyers.',
       },
       {
         type: 'h2',
-        text: "Understanding Roatan's Weather Patterns",
+        text: "Understanding Roatán's Weather Patterns",
       },
       {
         type: 'p',
-        text: 'Roatan experiences a stable tropical climate year-round, with average daily temperatures ranging from 70°F to 80°F and peaking around 86°F. Consistent sea breezes help regulate the heat, while annual humidity averages around 77%.',
+        text: 'Roatán experiences a stable tropical climate year-round, with average daily temperatures ranging from 70°F to 80°F and peaking around 86°F. Consistent sea breezes help regulate the heat, while annual humidity averages around 77%.',
       },
       {
         type: 'p',
@@ -1153,7 +1153,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "Roatan's geographic location places it outside the main Atlantic hurricane zone. Historically, the island has seen hurricane activity only once every few decades, with an average frequency of one every 26 years. This relative weather safety contributes to its appeal for homeowners and long-term residents.",
+        text: "Roatán's geographic location places it outside the main Atlantic hurricane zone. Historically, the island has seen hurricane activity only once every few decades, with an average frequency of one every 26 years. This relative weather safety contributes to its appeal for homeowners and long-term residents.",
       },
       {
         type: 'h3',
@@ -1161,15 +1161,15 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "Consistent weather, minimal hurricane risk, and year-round greenery make Roatan not only a comfortable place to live but also a reliable environment for protecting your investment. Whether you're buying a primary residence or a rental property, the climate adds long-term value and peace of mind.",
+        text: "Consistent weather, minimal hurricane risk, and year-round greenery make Roatán not only a comfortable place to live but also a reliable environment for protecting your investment. Whether you're buying a primary residence or a rental property, the climate adds long-term value and peace of mind.",
       },
       {
         type: 'h2',
-        text: 'Getting to Roatan',
+        text: 'Getting to Roatán',
       },
       {
         type: 'p',
-        text: 'Reaching Roatan is straightforward, with several travel options available. Whether you prefer flying directly or combining air travel with a ferry ride, there are dependable ways to get to this Caribbean destination.',
+        text: 'Reaching Roatán is straightforward, with several travel options available. Whether you prefer flying directly or combining air travel with a ferry ride, there are dependable ways to get to this Caribbean destination.',
       },
       {
         type: 'h3',
@@ -1177,7 +1177,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: 'You can fly directly to Roatan (RTB) with these airlines:',
+        text: 'You can fly directly to Roatán (RTB) with these airlines:',
       },
       {
         type: 'ul',
@@ -1192,7 +1192,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "Roatan's airport makes the island accessible year-round for both international visitors and regional travelers.",
+        text: "Roatán's airport makes the island accessible year-round for both international visitors and regional travelers.",
       },
       {
         type: 'h3',
@@ -1200,11 +1200,11 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: 'For those traveling from mainland Honduras, ferry service is available between La Ceiba and Roatan. The Galaxy Wave ferry departs La Ceiba twice daily and offers a reliable alternative for regional access to the island. Return trips from Roatan are scheduled each morning and afternoon.',
+        text: 'For those traveling from mainland Honduras, ferry service is available between La Ceiba and Roatán. The Galaxy Wave ferry departs La Ceiba twice daily and offers a reliable alternative for regional access to the island. Return trips from Roatán are scheduled each morning and afternoon.',
       },
       {
         type: 'h2',
-        text: 'Getting Around Roatan',
+        text: 'Getting Around Roatán',
       },
       {
         type: 'p',

@@ -16,6 +16,7 @@ const breadcrumbSchema = {
 export default function NewDevelopmentsContent() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [mapActive, setMapActive] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -45,10 +46,10 @@ export default function NewDevelopmentsContent() {
               lineHeight: 1.15,
             }}
           >
-            New Developments in Roatan
+            New Developments in Roatán
           </h1>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 640, margin: '0 auto 28px' }}>
-            This page tracks active and upcoming development projects across Roatan — residential communities, resort properties, and mixed-use opportunities at various stages of construction. Browse the map to see where new projects are located, and reach out for pre-construction pricing and developer access.
+            This page tracks active and upcoming development projects across Roatán — residential communities, resort properties, and mixed-use opportunities at various stages of construction. Browse the map to see where new projects are located, and reach out for pre-construction pricing and developer access.
           </p>
           <button onClick={() => { trackSchedule(); openSavvyCal(); }} className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
             <Calendar style={{ width: 16, height: 16 }} /> Schedule a Private Tour
@@ -62,10 +63,10 @@ export default function NewDevelopmentsContent() {
           <div className={`max-w-3xl mx-auto text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <span className="label-caps block mb-4">Market Context</span>
             <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 20 }}>
-              Roatan&apos;s Next Growth Phase
+              Roatán&apos;s Next Growth Phase
             </h2>
             <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 28 }}>
-              Roatan is in the early stages of what may be its most consequential development cycle. Tourism numbers have recovered and continued to climb post-2020. Infrastructure — roads, utilities, and port capacity — has improved meaningfully in the West Bay and Sandy Bay corridors. And international attention from buyers in the US, Canada, and Europe has pushed demand into areas that were largely overlooked five years ago. Developers are responding: new residential communities are moving beyond the traditional West Bay and West End markets, with serious projects now underway in Pristine Bay, French Harbour, and the island&apos;s east end. Mixed-use and hospitality developments are being structured to meet growing rental demand, and pre-construction pricing in several active projects offers a meaningful entry point relative to comparable completed product. For buyers comparing options, understanding what&apos;s actively in the pipeline provides useful context for any decision.
+              Roatán is in the early stages of what may be its most consequential development cycle. Tourism numbers have recovered and continued to climb post-2020. Infrastructure — roads, utilities, and port capacity — has improved meaningfully in the West Bay and Sandy Bay corridors. And international attention from buyers in the US, Canada, and Europe has pushed demand into areas that were largely overlooked five years ago. Developers are responding: new residential communities are moving beyond the traditional West Bay and West End markets, with serious projects now underway in Pristine Bay, French Harbour, and the island&apos;s east end. Mixed-use and hospitality developments are being structured to meet growing rental demand, and pre-construction pricing in several active projects offers a meaningful entry point relative to comparable completed product. For buyers comparing options, understanding what&apos;s actively in the pipeline provides useful context for any decision.
             </p>
             <div className="grid sm:grid-cols-3 gap-3" style={{ maxWidth: 640, margin: '0 auto' }}>
               {['Residential Growth', 'Hospitality Expansion', 'Long-Term Opportunity'].map((label) => (
@@ -87,8 +88,36 @@ export default function NewDevelopmentsContent() {
             <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, maxWidth: 640, margin: '0 auto' }}>Use the map below to explore where new communities, resort projects, and emerging development zones are taking shape across the island.</p>
           </div>
           <div style={{ backgroundColor: '#ffffff', overflow: 'hidden', border: '1px solid #d4e8ed' }}>
-            <div style={{ aspectRatio: '16/9', width: '100%' }}>
+            <div style={{ aspectRatio: '16/9', width: '100%', position: 'relative' }}>
               <iframe src="https://www.google.com/maps/d/embed?mid=1QtqEsBu7GIuoGtg3HNvz4DZYmiNHaY0" width="100%" height="100%" style={{ border: 0, display: 'block' }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Roatan New Developments Map" />
+              {!mapActive && (
+                <div
+                  onClick={() => setMapActive(true)}
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    backgroundColor: 'transparent',
+                  }}
+                  aria-label="Tap to interact with map"
+                >
+                  <span style={{
+                    backgroundColor: 'rgba(9,63,79,0.85)',
+                    color: '#ffffff',
+                    fontSize: 12,
+                    fontWeight: 600,
+                    fontFamily: 'Arial, Helvetica, sans-serif',
+                    padding: '10px 18px',
+                    letterSpacing: '0.06em',
+                    pointerEvents: 'none',
+                  }}>
+                    Tap to interact with map
+                  </span>
+                </div>
+              )}
             </div>
             <div style={{ padding: 16, textAlign: 'center' }}>
               <a href="https://www.google.com/maps/d/u/2/edit?mid=1QtqEsBu7GIuoGtg3HNvz4DZYmiNHaY0&usp=sharing" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, color: '#093f4f', fontWeight: 600, textDecoration: 'none' }}>
@@ -103,7 +132,7 @@ export default function NewDevelopmentsContent() {
       <section style={{ paddingTop: 32, paddingBottom: 32 }}>
         <div className="section-container" style={{ maxWidth: 720, textAlign: 'center' }}>
           <p style={{ fontSize: 14, color: '#555555' }}>
-            Have questions about new developments or pre-construction in Roatan?{' '}
+            Have questions about new developments or pre-construction in Roatán?{' '}
             <a href="/faq" style={{ color: '#093f4f', fontWeight: 600, textDecoration: 'none' }}>Browse our full FAQ →</a>
           </p>
         </div>
@@ -115,7 +144,7 @@ export default function NewDevelopmentsContent() {
           <div style={{ backgroundColor: '#0a1628', padding: 48, textAlign: 'center', color: '#ffffff' }}>
             <TrendingUp style={{ width: 48, height: 48, margin: '0 auto 20px', color: '#789ead' }} />
             <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, color: '#ffffff', marginTop: 0, marginBottom: 12 }}>
-              Evaluate Roatan&apos;s Development Opportunities
+              Evaluate Roatán&apos;s Development Opportunities
             </h2>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, maxWidth: 480, margin: '0 auto 28px' }}>
               If you are considering investing, relocating, or positioning yourself ahead of the island&apos;s next growth phase, let&apos;s discuss where development is happening and how it aligns with your goals.

@@ -34,7 +34,7 @@ const Properties = () => {
           >
             Search All Properties
           </h2>
-          <p style={{ fontSize: 14, color: '#555555', maxWidth: 520, margin: '0 auto' }}>Browse all available properties in Roatan directly from the MLS. Use the search tools below to filter by price, location, and more.</p>
+          <p style={{ fontSize: 14, color: '#555555', maxWidth: 520, margin: '0 auto' }}>Browse all available properties in Roatán directly from the MLS. Use the search tools below to filter by price, location, and more.</p>
         </div>
 
         <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
