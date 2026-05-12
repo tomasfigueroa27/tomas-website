@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
 import Hero from '@/sections/Hero';
+import StartHere from '@/sections/StartHere';
 import LifestyleThesis from '@/sections/LifestyleThesis';
-import WhyNow from '@/sections/WhyNow';
-import StatStrip from '@/sections/StatStrip';
 import WhereToBuy from '@/sections/WhereToBuy';
+import WhyNow from '@/sections/WhyNow';
 import HowToChoose from '@/sections/HowToChoose';
 import ActiveDevelopments from '@/sections/ActiveDevelopments';
-import HomeAbout from '@/sections/HomeAbout';
-import Newsletter from '@/sections/Newsletter';
+import HomeResources from '@/sections/HomeResources';
 import CTA from '@/sections/CTA';
 
 export const metadata: Metadata = {
@@ -71,16 +70,32 @@ export default function HomePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }} />
-      <Hero />
-      <LifestyleThesis />
-      <WhyNow />
-      <StatStrip />
-      <WhereToBuy />
-      <HowToChoose />
-      <ActiveDevelopments />
-      <HomeAbout />
 
-      <Newsletter />
+      {/* 1. Hero */}
+      <Hero />
+
+      {/* 2. Start Here — three gateway cards */}
+      <StartHere />
+
+      {/* 3. Lifestyle thesis */}
+      <LifestyleThesis />
+
+      {/* 4. Where to Buy — lifestyle node preview */}
+      <WhereToBuy />
+
+      {/* 5. Why Now — five catalyst cards */}
+      <WhyNow />
+
+      {/* 6. How Tomás Helps */}
+      <HowToChoose />
+
+      {/* 7. Featured Developments */}
+      <ActiveDevelopments />
+
+      {/* 8. Resources & Latest Insights */}
+      <HomeResources />
+
+      {/* 9. Final CTA */}
       <CTA />
     </>
   );

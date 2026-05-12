@@ -2,23 +2,33 @@ const cards = [
   {
     num: '01',
     title: 'Improving Air Access',
-    body: 'Year-round American Airlines service from Miami, daily Tropic Air from Belize City, and seasonal service from Houston, Dallas-Fort Worth, Atlanta, Denver, Minneapolis, Montreal, Toronto, and Guatemala City.',
+    body: 'Year-round American Airlines from Miami, United from Houston, Delta from Atlanta, Sun Country from Minneapolis. Air Canada launching nonstop service from Montréal and Toronto in December 2026.',
   },
   {
     num: '02',
-    title: 'Hospitality Validation',
-    body: "Kimpton Grand Roatán is operating. Margaritaville Island Reserve broke ground in 2025 for a 2027 opening. International hotel chains don't follow demand — they signal it.",
+    title: 'Branded Hospitality',
+    body: "Kimpton Grand Roatán is operating on West Bay. Margaritaville Island Reserve broke ground in 2025 for a 2027 opening. Hotel Roatán Media Luna joined the Meliá portfolio in 2026. Institutional brands don't commit on hope.",
   },
   {
     num: '03',
     title: 'A New Development Cycle',
-    body: "A pipeline of 20+ projects coming through Roatán's next cycle. The question isn't whether Roatán will develop. The question is which projects preserve the lifestyle.",
+    body: 'A pipeline of 20+ projects is coming through the island. The question is not whether Roatán will develop — it is which projects preserve the lifestyle and which ones dilute it.',
+  },
+  {
+    num: '04',
+    title: 'Growing U.S. Buyer Awareness',
+    body: 'Buyers pricing themselves out of Cayman, Turks & Caicos, and Belize are arriving at Roatán. The discovery curve is steepening — and direct-flight access is accelerating it.',
+  },
+  {
+    num: '05',
+    title: 'Still Personal. Still Small-Island.',
+    body: 'The reef is still right there. Communities still feel personal. Land is still limited. That combination disappears as a market matures — and this one has not matured yet.',
   },
 ];
 
 export default function WhyNow() {
   return (
-    <section style={{ backgroundColor: '#0a1628', paddingTop: 64, paddingBottom: 64, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+    <section style={{ backgroundColor: '#0a1628', paddingTop: 72, paddingBottom: 72, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
       <div className="section-container" style={{ maxWidth: 1100 }}>
         <div style={{ marginBottom: 48 }}>
           <span className="label-caps block mb-4" style={{ color: '#789ead' }}>Why Now</span>
@@ -40,12 +50,12 @@ export default function WhyNow() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {cards.map((card) => (
             <div
               key={card.num}
               style={{
-                padding: '32px 28px',
+                padding: '28px 24px',
                 backgroundColor: 'rgba(255,255,255,0.04)',
                 border: '1px solid rgba(255,255,255,0.08)',
               }}
@@ -53,10 +63,10 @@ export default function WhyNow() {
               <p
                 style={{
                   fontFamily: 'Georgia, "Times New Roman", serif',
-                  fontSize: 32,
+                  fontSize: 28,
                   fontWeight: 700,
                   color: '#789ead',
-                  margin: '0 0 16px',
+                  margin: '0 0 14px',
                   lineHeight: 1,
                 }}
               >
@@ -65,15 +75,16 @@ export default function WhyNow() {
               <h3
                 style={{
                   fontFamily: 'Georgia, "Times New Roman", serif',
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: 400,
                   color: '#ffffff',
-                  margin: '0 0 12px',
+                  margin: '0 0 10px',
+                  lineHeight: 1.3,
                 }}
               >
                 {card.title}
               </h3>
-              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, margin: 0 }}>
+              <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', lineHeight: 1.7, margin: 0 }}>
                 {card.body}
               </p>
             </div>
