@@ -63,7 +63,7 @@ const Footer = () => {
               style={{ height: 72, width: 'auto', marginBottom: 16 }}
             />
             <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13, lineHeight: 1.75, maxWidth: 280, marginBottom: 20 }}>
-              Strategic real estate guidance in Roatan, Honduras — helping investors and
+              Strategic real estate guidance in Roatán, Honduras — helping investors and
               relocation buyers make disciplined, informed decisions.
             </p>
             <div style={{ display: 'flex', gap: 8 }}>
@@ -101,11 +101,15 @@ const Footer = () => {
               { href: '/', label: 'Home' },
               { href: '/new-developments', label: 'New Developments' },
               { href: '/properties', label: 'Browse MLS' },
+              { href: '/where-to-buy-in-roatan', label: 'Where to Buy' },
+              { href: '/us-buyers-guide-roatan', label: "Buyer's Guide" },
+              { href: '/roatan-market', label: 'Market Guide' },
+              { href: '/neighborhoods', label: 'Neighborhoods' },
               { href: '/about', label: 'About' },
               { href: '/resources', label: 'Resources' },
               { href: '/blog', label: 'Blog' },
               { href: '/guides', label: 'Guides' },
-              { href: '/neighborhoods', label: 'Neighborhoods' },
+              { href: '/calculator', label: 'Closing Calculator' },
               { href: '/faq', label: 'FAQ' },
             ].map(({ href, label }) => (
               <Link
@@ -128,7 +132,7 @@ const Footer = () => {
                 <MapPin style={{ width: 14, height: 14, color: '#789ead', flexShrink: 0, marginTop: 3 }} aria-hidden="true" />
                 <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 13, lineHeight: 1.6 }}>
                   Lawson Rock, Sandy Bay<br />
-                  Roatan, Bay Islands<br />
+                  Roatán, Bay Islands<br />
                   Honduras
                 </span>
               </div>

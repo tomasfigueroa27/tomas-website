@@ -18,13 +18,12 @@ const projects = [
     badge: 'Coming Soon',
   },
   {
-    name: 'More Developments',
-    location: 'Roatán & beyond',
-    valueProp: 'Prospera, AVA at Luna Azul, and additional Caribbean projects.',
-    href: null,
+    name: 'Browse All Projects',
+    location: 'Roatán · All Areas',
+    valueProp: 'See the full pipeline — active projects, pre-construction, and upcoming opportunities across the island.',
+    href: '/new-developments',
     image: null,
-    disabled: true,
-    badge: 'Coming Soon',
+    isInternal: true,
   },
 ];
 
@@ -154,6 +153,18 @@ export default function ActiveDevelopments() {
             };
 
             if (project.href && !project.disabled) {
+              if (project.isInternal) {
+                return (
+                  <Link
+                    key={project.name}
+                    href={project.href}
+                    style={cardStyle}
+                    className="card-hover"
+                  >
+                    {cardContent}
+                  </Link>
+                );
+              }
               return (
                 <Link
                   key={project.name}

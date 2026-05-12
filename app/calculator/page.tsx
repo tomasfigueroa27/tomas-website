@@ -37,7 +37,7 @@ export default function CalculatorPage() {
             Closing Cost Calculator
           </h1>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 440, margin: '0 auto' }}>
-            Estimate your total closing costs for a Roatan property purchase in seconds.
+            Estimate your total closing costs for a Roatán property purchase in seconds.
           </p>
         </div>
       </section>
@@ -48,7 +48,7 @@ export default function CalculatorPage() {
             What This Calculator Does
           </h2>
           <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
-            Buying property in Roatan involves more than just the listing price. Closing costs in Honduras are real and need to be factored into your budget before you make an offer — not after.
+            Buying property in Roatán involves more than just the listing price. Closing costs in Honduras are real and need to be factored into your budget before you make an offer — not after.
           </p>
           <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.85, marginBottom: 14 }}>
             This calculator estimates your total acquisition cost based on purchase price, purchase structure (asset vs. corporation), legal fees, transfer taxes, and prorated items like HOA dues or property taxes. It covers both buyer and seller cost scenarios.
@@ -59,7 +59,7 @@ export default function CalculatorPage() {
               { label: 'Transfer tax', detail: '3% of the purchase price (applies to asset purchases)' },
               { label: 'Legal fees', detail: 'Typically 2–3% of the purchase price, paid to your Honduran attorney' },
               { label: 'Corporation setup', detail: 'If buying through a new Honduran entity, expect an additional $700–$1,500' },
-              { label: 'Property taxes in Roatan', detail: 'Very low — generally 0.3–0.5% of assessed value annually' },
+              { label: 'Property taxes in Roatán', detail: 'Very low — generally 0.3–0.5% of assessed value annually' },
             ].map(({ label, detail }) => (
               <li key={label} style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 8 }}>
                 <strong style={{ color: '#093f4f' }}>{label}:</strong> {detail}

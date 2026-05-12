@@ -42,10 +42,10 @@ const neighborhoods: Neighborhood[] = [
   {
     slug: 'west-bay-beach',
     name: 'West Bay Beach',
-    tagline: 'Roatan\'s premier beachfront destination',
+    tagline: 'Roatán\'s premier beachfront destination',
     description: [
-      'West Bay Beach is widely considered the crown jewel of Roatan real estate. Stretching along a mile of pristine white sand, it offers direct access to the Mesoamerican Barrier Reef just steps from shore. The area attracts high-end buyers looking for luxury condos, beachfront villas, and turnkey vacation rental properties.',
-      'The neighborhood is fully developed with upscale restaurants, beach bars, water sports operators, and resort-style amenities. Properties here command the highest prices on the island, and vacation rental demand is consistently strong due to its status as Roatan\'s top tourist destination.',
+      'West Bay Beach is widely considered the crown jewel of Roatán real estate. Stretching along a mile of pristine white sand, it offers direct access to the Mesoamerican Barrier Reef just steps from shore. The area attracts high-end buyers looking for luxury condos, beachfront villas, and turnkey vacation rental properties.',
+      'The neighborhood is fully developed with upscale restaurants, beach bars, water sports operators, and resort-style amenities. Properties here command the highest prices on the island, and vacation rental demand is consistently strong due to its status as Roatán\'s top tourist destination.',
       'For investors focused on rental income, West Bay Beach offers some of the best occupancy rates and nightly rental yields on the island. Whether you\'re buying a luxury condo for personal use or a beachfront property as a rental asset, West Bay is the benchmark for Caribbean island living.',
     ],
     priceRange: '$300,000 – $2,000,000+',
@@ -63,7 +63,7 @@ const neighborhoods: Neighborhood[] = [
     buyerGuide: [
       {
         title: 'What to Buy in West Bay Beach',
-        content: 'West Bay Beach commands the highest prices on Roatan for good reason — it is the island\'s most visited destination, with direct reef access and a fully developed tourism infrastructure. The best buys here are 1–2 bedroom condos in established resort complexes with proven rental management programs. Studios in high-occupancy buildings can generate $25,000–$40,000 gross annually on short-term platforms. Three-bedroom beachfront units are the top-tier hold for buyers combining personal use with rental income.',
+        content: 'West Bay Beach commands the highest prices on Roatán for good reason — it is the island\'s most visited destination, with direct reef access and a fully developed tourism infrastructure. The best buys here are 1–2 bedroom condos in established resort complexes with proven rental management programs. Studios in high-occupancy buildings can generate $25,000–$40,000 gross annually on short-term platforms. Three-bedroom beachfront units are the top-tier hold for buyers combining personal use with rental income.',
       },
       {
         title: 'Who Should Buy Here',
@@ -75,29 +75,29 @@ const neighborhoods: Neighborhood[] = [
       },
     ],
     faqSchemaItems: [
-      { q: 'What is the average property price in West Bay Beach Roatan?', a: 'The median sale price in West Bay Beach is approximately $485,000. Price range runs from $300,000 for smaller condos to $2,000,000+ for luxury beachfront villas.' },
+      { q: 'What is the average property price in West Bay Beach Roatán?', a: 'The median sale price in West Bay Beach is approximately $485,000. Price range runs from $300,000 for smaller condos to $2,000,000+ for luxury beachfront villas.' },
       { q: 'What rental yield can I expect from a West Bay Beach property?', a: 'Well-managed vacation rentals in West Bay Beach yield 7–9% annually. One-bedroom and two-bedroom beachfront condos in high-occupancy resort complexes consistently outperform the island average.' },
-      { q: 'Is West Bay Beach a good investment?', a: 'West Bay Beach is Roatan\'s most liquid real estate market with the highest rental demand. It is best suited for buyers combining personal use with short-term rental income. Year-over-year appreciation has run approximately 6.2% over the last five years.' },
+      { q: 'Is West Bay Beach a good investment?', a: 'West Bay Beach is Roatán\'s most liquid real estate market with the highest rental demand. It is best suited for buyers combining personal use with short-term rental income. Year-over-year appreciation has run approximately 6.2% over the last five years.' },
     ],
     facts: [
       { label: 'Price Range', value: '$300,000 – $2,000,000+' },
       { label: 'Vibe', value: 'Upscale beachfront resort community' },
       { label: 'Best For', value: 'Vacation rentals, luxury condos, beach lifestyle' },
       { label: 'Reef Access', value: 'Direct — reef begins just offshore' },
-      { label: 'Tourism Level', value: 'Very high — Roatan\'s #1 tourist destination' },
+      { label: 'Tourism Level', value: 'Very high — Roatán\'s #1 tourist destination' },
       { label: 'Rental Yield', value: 'Strong, driven by year-round tourism demand' },
     ],
     faqs: [
       {
         q: 'Is West Bay Beach a good area for vacation rental investment?',
-        a: 'Yes — West Bay Beach is Roatan\'s most-visited tourist area and consistently delivers strong occupancy rates and rental income. Properties here attract both short-term vacationers and cruise ship visitors, making it one of the best-performing rental markets on the island.',
+        a: 'Yes — West Bay Beach is Roatán\'s most-visited tourist area and consistently delivers strong occupancy rates and rental income. Properties here attract both short-term vacationers and cruise ship visitors, making it one of the best-performing rental markets on the island.',
       },
       {
         q: 'What types of properties are available in West Bay Beach?',
         a: 'The area offers a range of luxury condos, beachfront villas, and resort-style units. Many properties are within gated developments with shared amenities like pools, security, and concierge services.',
       },
       {
-        q: 'How does West Bay Beach compare to other Roatan neighborhoods in terms of price?',
+        q: 'How does West Bay Beach compare to other Roatán neighborhoods in terms of price?',
         a: 'West Bay is the most expensive neighborhood on the island. Entry-level condos typically start around $300,000, while luxury beachfront villas can exceed $2 million. The premium reflects direct beach and reef access, tourism infrastructure, and proven rental demand.',
       },
       {
@@ -111,7 +111,7 @@ const neighborhoods: Neighborhood[] = [
     name: 'West End',
     tagline: 'Laid-back village life meets world-class diving',
     description: [
-      'West End is the heartbeat of Roatan\'s expat community — a relaxed, walkable village packed with dive shops, restaurants, bars, and local character. It sits just a short drive from West Bay Beach but has a distinctly different energy: more casual, more social, and more affordable.',
+      'West End is the heartbeat of Roatán\'s expat community — a relaxed, walkable village packed with dive shops, restaurants, bars, and local character. It sits just a short drive from West Bay Beach but has a distinctly different energy: more casual, more social, and more affordable.',
       'The area is popular with long-term expats, digital nomads, and buyers looking for a more authentic Caribbean experience without the resort-town price tag. Dive operators line the main street, and the reef is accessible directly from shore in several spots, making it a top destination for divers.',
       'Real estate in West End ranges from affordable condos to hillside homes with ocean views. The neighborhood is well-established with a mix of international residents and local Honduran families, giving it a genuine community feel that many buyers prefer over more commercialized areas.',
     ],
@@ -130,11 +130,11 @@ const neighborhoods: Neighborhood[] = [
     buyerGuide: [
       {
         title: 'What to Buy in West End',
-        content: 'West End is Roatan\'s village hub — a walkable, characterful neighborhood with a dense concentration of dive shops, restaurants, and bars. Property values are lower than West Bay but rental demand is strong from the backpacker and dive-tourism segment. The best entry point is a studio or 1-bedroom condo in the $150,000–$250,000 range, generating $15,000–$25,000 annually on short-term platforms.',
+        content: 'West End is Roatán\'s village hub — a walkable, characterful neighborhood with a dense concentration of dive shops, restaurants, and bars. Property values are lower than West Bay but rental demand is strong from the backpacker and dive-tourism segment. The best entry point is a studio or 1-bedroom condo in the $150,000–$250,000 range, generating $15,000–$25,000 annually on short-term platforms.',
       },
       {
         title: 'Who Should Buy Here',
-        content: 'West End suits buyers who want lifestyle value alongside rental income — particularly expats planning to live part-time or full-time on the island. It is the most socially active neighborhood on Roatan, with the strongest established expat community, and it offers the best quality-of-life-per-dollar ratio on the island.',
+        content: 'West End suits buyers who want lifestyle value alongside rental income — particularly expats planning to live part-time or full-time on the island. It is the most socially active neighborhood on Roatán, with the strongest established expat community, and it offers the best quality-of-life-per-dollar ratio on the island.',
       },
       {
         title: 'What\'s Changing in West End',
@@ -142,8 +142,8 @@ const neighborhoods: Neighborhood[] = [
       },
     ],
     faqSchemaItems: [
-      { q: 'What is the average property price in West End Roatan?', a: 'The median sale price in West End is approximately $275,000. Price range runs from $150,000 for studios to $650,000 for larger homes with ocean views.' },
-      { q: 'Is West End Roatan good for expats?', a: 'West End is widely considered the most expat-friendly neighborhood on Roatan. It has a walkable village atmosphere, a well-established foreign resident community, and the island\'s highest concentration of restaurants, dive shops, and social venues.' },
+      { q: 'What is the average property price in West End Roatán?', a: 'The median sale price in West End is approximately $275,000. Price range runs from $150,000 for studios to $650,000 for larger homes with ocean views.' },
+      { q: 'Is West End Roatán good for expats?', a: 'West End is widely considered the most expat-friendly neighborhood on Roatán. It has a walkable village atmosphere, a well-established foreign resident community, and the island\'s highest concentration of restaurants, dive shops, and social venues.' },
       { q: 'What rental yield can I expect from a West End property?', a: 'Vacation rentals in West End yield 6–8% annually, driven by consistent dive-tourism and backpacker demand year-round.' },
     ],
     facts: [
@@ -180,7 +180,7 @@ const neighborhoods: Neighborhood[] = [
     description: [
       'Sandy Bay is a peaceful residential community located between West End and Coxen Hole on the island\'s north shore. It is home to Lawson Rock, where Tomas Figueroa is based, as well as several other established residential communities. Sandy Bay offers a quieter alternative to the more tourist-heavy western neighborhoods.',
       'The area has a genuine neighborhood character — with a mix of long-term expat residents, local families, and vacation homeowners. It is close enough to West End\'s amenities and West Bay\'s beaches to enjoy island life without being in the middle of the tourist traffic.',
-      'Properties in Sandy Bay range from modest homes to larger hillside estates and gated communities. The Roatan Marine Park is headquartered here, and the area is known for its commitment to reef conservation. For buyers looking for a quieter lifestyle with strong community ties, Sandy Bay is one of Roatan\'s most livable neighborhoods.',
+      'Properties in Sandy Bay range from modest homes to larger hillside estates and gated communities. The Roatán Marine Park is headquartered here, and the area is known for its commitment to reef conservation. For buyers looking for a quieter lifestyle with strong community ties, Sandy Bay is one of Roatán\'s most livable neighborhoods.',
     ],
     priceRange: '$200,000 – $800,000',
     vibe: 'Quiet residential community with expat roots',
@@ -197,7 +197,7 @@ const neighborhoods: Neighborhood[] = [
     buyerGuide: [
       {
         title: 'What to Buy in Sandy Bay',
-        content: 'Sandy Bay is Roatan\'s established mid-island residential neighborhood — calmer than West Bay, less commercial than West End, and home to a stable expat population. The best buys are hillside homes with ocean views in the $250,000–$450,000 range, which offer strong lifestyle value and steady appreciation. The Institute for Marine Sciences and Anthony\'s Key Resort anchor the area\'s long-term character.',
+        content: 'Sandy Bay is Roatán\'s established mid-island residential neighborhood — calmer than West Bay, less commercial than West End, and home to a stable expat population. The best buys are hillside homes with ocean views in the $250,000–$450,000 range, which offer strong lifestyle value and steady appreciation. The Institute for Marine Sciences and Anthony\'s Key Resort anchor the area\'s long-term character.',
       },
       {
         title: 'Who Should Buy Here',
@@ -209,15 +209,15 @@ const neighborhoods: Neighborhood[] = [
       },
     ],
     faqSchemaItems: [
-      { q: 'What is the average property price in Sandy Bay Roatan?', a: 'The median sale price in Sandy Bay is approximately $310,000. Price range runs from $180,000 for entry-level homes to $850,000 for larger hillside estates with ocean views.' },
-      { q: 'Is Sandy Bay Roatan good for full-time expat living?', a: 'Sandy Bay is one of Roatan\'s most established residential neighborhoods, with a stable expat community and quieter character than the tourist-heavy western areas. It suits families, retirees, and full-time residents who prioritize community and space over beach proximity.' },
+      { q: 'What is the average property price in Sandy Bay Roatán?', a: 'The median sale price in Sandy Bay is approximately $310,000. Price range runs from $180,000 for entry-level homes to $850,000 for larger hillside estates with ocean views.' },
+      { q: 'Is Sandy Bay Roatán good for full-time expat living?', a: 'Sandy Bay is one of Roatán\'s most established residential neighborhoods, with a stable expat community and quieter character than the tourist-heavy western areas. It suits families, retirees, and full-time residents who prioritize community and space over beach proximity.' },
       { q: 'What rental yield can I expect from a Sandy Bay property?', a: 'Sandy Bay vacation rentals yield 5–7% annually. The neighborhood performs better for long-term rental income than short-term vacation platforms, given its residential character and proximity to the island\'s expat professional community.' },
     ],
     facts: [
       { label: 'Price Range', value: '$200,000 – $800,000' },
       { label: 'Vibe', value: 'Quiet residential — less tourist traffic, strong community' },
       { label: 'Best For', value: 'Full-time residents, families, gated community buyers' },
-      { label: 'Notable Landmark', value: 'Roatan Marine Park headquarters' },
+      { label: 'Notable Landmark', value: 'Roatán Marine Park headquarters' },
       { label: 'Tomas\'s Base', value: 'Lawson Rock, Sandy Bay — Tomas Figueroa\'s home community' },
       { label: 'Access', value: '10–15 minutes to West End, 20 minutes to airport' },
     ],
@@ -243,11 +243,11 @@ const neighborhoods: Neighborhood[] = [
   {
     slug: 'pristine-bay',
     name: 'Pristine Bay',
-    tagline: 'Roatan\'s most exclusive gated luxury community',
+    tagline: 'Roatán\'s most exclusive gated luxury community',
     description: [
-      'Pristine Bay is a world-class luxury gated community located on the east end of Roatan. The development spans hundreds of acres and includes a marina, golf course, resort hotel, pools, beach club, and a range of high-end residential options from condos to custom villas. It is the most comprehensively developed luxury community on the island.',
-      'The east end of Roatan is less developed than the west, which means Pristine Bay residents enjoy a sense of exclusivity and natural beauty that is harder to find near the more tourist-dense western areas. The marina attracts boaters from across the Caribbean, and the community has attracted significant international investment.',
-      'Properties at Pristine Bay range from resort-style condos to large oceanfront villas with private docks. The community is fully managed with on-site security, maintenance, and resort services. For buyers seeking the highest level of Caribbean luxury combined with long-term asset security, Pristine Bay is Roatan\'s flagship address.',
+      'Pristine Bay is a world-class luxury gated community located on the east end of Roatán. The development spans hundreds of acres and includes a marina, golf course, resort hotel, pools, beach club, and a range of high-end residential options from condos to custom villas. It is the most comprehensively developed luxury community on the island.',
+      'The east end of Roatán is less developed than the west, which means Pristine Bay residents enjoy a sense of exclusivity and natural beauty that is harder to find near the more tourist-dense western areas. The marina attracts boaters from across the Caribbean, and the community has attracted significant international investment.',
+      'Properties at Pristine Bay range from resort-style condos to large oceanfront villas with private docks. The community is fully managed with on-site security, maintenance, and resort services. For buyers seeking the highest level of Caribbean luxury combined with long-term asset security, Pristine Bay is Roatán\'s flagship address.',
     ],
     priceRange: '$400,000 – $3,000,000+',
     vibe: 'Ultra-luxury gated resort community',
@@ -264,7 +264,7 @@ const neighborhoods: Neighborhood[] = [
     buyerGuide: [
       {
         title: 'What to Buy in Pristine Bay',
-        content: 'Pristine Bay is Roatan\'s only master-planned resort community — 2,500 acres on the east end of the island, anchored by an 18-hole golf course, beach club, and the Infinity Bay Spa & Beach Resort. The development has attracted the island\'s highest-end single-family homes and resort-branded residences. New construction villas start above $500,000; beachfront lots have sold above $1 million.',
+        content: 'Pristine Bay is Roatán\'s only master-planned resort community — 2,500 acres on the east end of the island, anchored by an 18-hole golf course, beach club, and the Infinity Bay Spa & Beach Resort. The development has attracted the island\'s highest-end single-family homes and resort-branded residences. New construction villas start above $500,000; beachfront lots have sold above $1 million.',
       },
       {
         title: 'Who Should Buy Here',
@@ -272,25 +272,25 @@ const neighborhoods: Neighborhood[] = [
       },
       {
         title: 'Long-Term Outlook',
-        content: 'Pristine Bay\'s long-term appreciation case is tied to the continued build-out of its master plan and Roatan\'s overall rise as a recognized Caribbean destination. Every branded hotel arrival on the island raises its comparables. As the island reprices upward, Pristine Bay — already positioned at the top — reprices fastest.',
+        content: 'Pristine Bay\'s long-term appreciation case is tied to the continued build-out of its master plan and Roatán\'s overall rise as a recognized Caribbean destination. Every branded hotel arrival on the island raises its comparables. As the island reprices upward, Pristine Bay — already positioned at the top — reprices fastest.',
       },
     ],
     faqSchemaItems: [
-      { q: 'What is the average property price in Pristine Bay Roatan?', a: 'The median sale price in Pristine Bay is approximately $520,000. Price range runs from $280,000 for resort-branded condos to $2,500,000+ for custom oceanfront villas with marina access.' },
-      { q: 'What amenities does Pristine Bay Roatan offer?', a: 'Pristine Bay is Roatan\'s only master-planned resort community, spanning 2,500 acres on the east end of the island. It includes an 18-hole golf course, beach club, marina, resort hotel, pools, and 24/7 gated security — the most comprehensively amenitized residential community on the island.' },
-      { q: 'What rental yield can I expect from a Pristine Bay property?', a: 'Rental yields in Pristine Bay run 6–8% annually, supported by the resort\'s managed rental program and high-end short-term visitor demand. Year-over-year appreciation has run approximately 7.1%, the highest of any Roatan neighborhood.' },
+      { q: 'What is the average property price in Pristine Bay Roatán?', a: 'The median sale price in Pristine Bay is approximately $520,000. Price range runs from $280,000 for resort-branded condos to $2,500,000+ for custom oceanfront villas with marina access.' },
+      { q: 'What amenities does Pristine Bay Roatán offer?', a: 'Pristine Bay is Roatán\'s only master-planned resort community, spanning 2,500 acres on the east end of the island. It includes an 18-hole golf course, beach club, marina, resort hotel, pools, and 24/7 gated security — the most comprehensively amenitized residential community on the island.' },
+      { q: 'What rental yield can I expect from a Pristine Bay property?', a: 'Rental yields in Pristine Bay run 6–8% annually, supported by the resort\'s managed rental program and high-end short-term visitor demand. Year-over-year appreciation has run approximately 7.1%, the highest of any Roatán neighborhood.' },
     ],
     facts: [
       { label: 'Price Range', value: '$400,000 – $3,000,000+' },
       { label: 'Vibe', value: 'Exclusive gated resort community with full amenities' },
       { label: 'Best For', value: 'Luxury buyers, marina access, privacy, golf' },
       { label: 'Amenities', value: 'Marina, golf course, resort hotel, beach club, pools' },
-      { label: 'Location', value: 'East end of Roatan — less developed, more exclusive' },
+      { label: 'Location', value: 'East end of Roatán — less developed, more exclusive' },
       { label: 'Security', value: 'Gated with 24/7 on-site security and management' },
     ],
     faqs: [
       {
-        q: 'Is Pristine Bay the most expensive neighborhood in Roatan?',
+        q: 'Is Pristine Bay the most expensive neighborhood in Roatán?',
         a: 'Pristine Bay commands the highest prices overall, particularly for its oceanfront villas and marina-access properties. It competes with West Bay Beach for the top end of the market, but the scale and amenities of Pristine Bay make it unique.',
       },
       {
@@ -299,7 +299,7 @@ const neighborhoods: Neighborhood[] = [
       },
       {
         q: 'How far is Pristine Bay from the airport?',
-        a: 'Pristine Bay is located on the east end of Roatan, approximately 30–40 minutes from the Roatan International Airport (RTB). The drive takes you through the more local and authentic parts of the island.',
+        a: 'Pristine Bay is located on the east end of Roatán, approximately 30–40 minutes from the Roatán International Airport (RTB). The drive takes you through the more local and authentic parts of the island.',
       },
       {
         q: 'Can non-residents use the Pristine Bay resort amenities?',
@@ -310,9 +310,9 @@ const neighborhoods: Neighborhood[] = [
   {
     slug: 'french-harbour',
     name: 'French Harbour',
-    tagline: 'Roatan\'s commercial hub with authentic local character',
+    tagline: 'Roatán\'s commercial hub with authentic local character',
     description: [
-      'French Harbour is the commercial and fishing center of Roatan — a busy, authentic working town with a very different character from the tourist-focused western neighborhoods. It is home to the island\'s main shrimp and lobster processing facilities, a large local fishing fleet, and the biggest grocery stores and commercial services on the island.',
+      'French Harbour is the commercial and fishing center of Roatán — a busy, authentic working town with a very different character from the tourist-focused western neighborhoods. It is home to the island\'s main shrimp and lobster processing facilities, a large local fishing fleet, and the biggest grocery stores and commercial services on the island.',
       'Real estate in French Harbour is more affordable than the western end and appeals to buyers looking for practical, livable properties close to local infrastructure. The area has a strong local Honduran community, and daily life here feels genuinely integrated with the island\'s economy and culture.',
       'For buyers interested in commercial real estate, business opportunities, or practical residential properties without the tourist-area price premium, French Harbour offers solid value. It is also centrally located on the island, making it easy to access both the east and west ends.',
     ],
@@ -331,7 +331,7 @@ const neighborhoods: Neighborhood[] = [
     buyerGuide: [
       {
         title: 'What to Buy in French Harbour',
-        content: 'French Harbour is Roatan\'s commercial center — home to the island\'s largest supermarkets, hardware stores, and marine services. Real estate here is priced for value: homes and condos below $300,000 are common, and land for development is available at prices unavailable on the west end. Commercial real estate investors will find the most opportunity here of any neighborhood on the island.',
+        content: 'French Harbour is Roatán\'s commercial center — home to the island\'s largest supermarkets, hardware stores, and marine services. Real estate here is priced for value: homes and condos below $300,000 are common, and land for development is available at prices unavailable on the west end. Commercial real estate investors will find the most opportunity here of any neighborhood on the island.',
       },
       {
         title: 'Who Should Buy Here',
@@ -343,8 +343,8 @@ const neighborhoods: Neighborhood[] = [
       },
     ],
     faqSchemaItems: [
-      { q: 'What is the average property price in French Harbour Roatan?', a: 'The median sale price in French Harbour is approximately $195,000. Price range runs from $100,000 for entry-level properties to $500,000 for larger homes or commercial real estate.' },
-      { q: 'Is French Harbour Roatan a good place to buy commercial real estate?', a: 'French Harbour is Roatan\'s commercial center and the best neighborhood on the island for commercial real estate investment. It is home to the island\'s largest supermarkets, hardware stores, and marine services — the primary service hub for both residents and the fishing industry.' },
+      { q: 'What is the average property price in French Harbour Roatán?', a: 'The median sale price in French Harbour is approximately $195,000. Price range runs from $100,000 for entry-level properties to $500,000 for larger homes or commercial real estate.' },
+      { q: 'Is French Harbour Roatán a good place to buy commercial real estate?', a: 'French Harbour is Roatán\'s commercial center and the best neighborhood on the island for commercial real estate investment. It is home to the island\'s largest supermarkets, hardware stores, and marine services — the primary service hub for both residents and the fishing industry.' },
       { q: 'What rental yield can I expect from a French Harbour property?', a: 'French Harbour is primarily a residential and commercial market rather than a vacation rental market. Long-term rental yields run approximately 4–6% annually. Buyers here typically prioritize value and practical utility over short-term rental income.' },
     ],
     facts: [
@@ -352,7 +352,7 @@ const neighborhoods: Neighborhood[] = [
       { label: 'Vibe', value: 'Authentic working town — commercial and fishing industry hub' },
       { label: 'Best For', value: 'Local lifestyle, commercial buyers, affordable practical living' },
       { label: 'Commerce', value: 'Island\'s main grocery stores, hardware, and commercial services' },
-      { label: 'Location', value: 'Central Roatan — easy access to east and west' },
+      { label: 'Location', value: 'Central Roatán — easy access to east and west' },
       { label: 'Community', value: 'Strong local Honduran community, less expat-heavy' },
     ],
     faqs: [
@@ -377,9 +377,9 @@ const neighborhoods: Neighborhood[] = [
   {
     slug: 'coxen-hole',
     name: 'Coxen Hole',
-    tagline: 'Roatan\'s capital — the most affordable entry point',
+    tagline: 'Roatán\'s capital — the most affordable entry point',
     description: [
-      'Coxen Hole is the capital city of Roatan and the Bay Islands, and it is where you will find most of the island\'s government offices, banks, legal services, and official infrastructure. It is also the most affordable neighborhood for real estate on the island, making it the entry point for buyers with tighter budgets or those focused on practical investment.',
+      'Coxen Hole is the capital city of Roatán and the Bay Islands, and it is where you will find most of the island\'s government offices, banks, legal services, and official infrastructure. It is also the most affordable neighborhood for real estate on the island, making it the entry point for buyers with tighter budgets or those focused on practical investment.',
       'The neighborhood has a very local character — less tourism, more day-to-day island life. The ferry terminal for La Ceiba is here, as is the main courthouse and immigration office. For buyers who plan to spend significant time handling legal or administrative matters related to their property or residency, proximity to Coxen Hole is a practical advantage.',
       'Real estate in Coxen Hole is priced well below the island average and offers an opportunity for buyers willing to invest in renovations or looking for commercial or mixed-use properties. The area is undergoing gradual improvement as the island\'s overall real estate market rises.',
     ],
@@ -398,20 +398,20 @@ const neighborhoods: Neighborhood[] = [
     buyerGuide: [
       {
         title: 'What to Buy in Coxen Hole',
-        content: 'Coxen Hole is Roatan\'s administrative capital and the most affordable real estate market on the island. Entry-level condos start below $100,000; modest homes can be found under $200,000. The neighborhood is primarily a local residential and commercial market, with limited international buyer activity.',
+        content: 'Coxen Hole is Roatán\'s administrative capital and the most affordable real estate market on the island. Entry-level condos start below $100,000; modest homes can be found under $200,000. The neighborhood is primarily a local residential and commercial market, with limited international buyer activity.',
       },
       {
         title: 'Who Should Buy Here',
-        content: 'Coxen Hole is for buyers who want the absolute lowest entry point on the island and are comfortable with a local-market investment. It suits buyers who plan to live in Roatan full-time and want to minimize acquisition cost, and investors who want commercial exposure to the island\'s primary port and administrative hub.',
+        content: 'Coxen Hole is for buyers who want the absolute lowest entry point on the island and are comfortable with a local-market investment. It suits buyers who plan to live in Roatán full-time and want to minimize acquisition cost, and investors who want commercial exposure to the island\'s primary port and administrative hub.',
       },
       {
         title: 'Market Dynamics',
-        content: 'Coxen Hole\'s appreciation has historically lagged the west end, but the island\'s overall growth trajectory eventually lifts all markets. As Roatan\'s total visitor count grows and the west end becomes more expensive, overflow demand will gradually push buyers east — making early positioning in Coxen Hole a contrarian long-term play.',
+        content: 'Coxen Hole\'s appreciation has historically lagged the west end, but the island\'s overall growth trajectory eventually lifts all markets. As Roatán\'s total visitor count grows and the west end becomes more expensive, overflow demand will gradually push buyers east — making early positioning in Coxen Hole a contrarian long-term play.',
       },
     ],
     faqSchemaItems: [
-      { q: 'What is the average property price in Coxen Hole Roatan?', a: 'The median sale price in Coxen Hole is approximately $155,000. Price range runs from $80,000 for entry-level condos to $350,000 for larger homes — making it the most affordable neighborhood on the island.' },
-      { q: 'Why is Coxen Hole the most affordable neighborhood in Roatan?', a: 'Coxen Hole is Roatan\'s administrative capital and primary port — a working town with limited beach access and less international buyer demand than the western tourist areas. Its affordability reflects its local-market character rather than any underlying weakness in the island\'s fundamentals.' },
+      { q: 'What is the average property price in Coxen Hole Roatán?', a: 'The median sale price in Coxen Hole is approximately $155,000. Price range runs from $80,000 for entry-level condos to $350,000 for larger homes — making it the most affordable neighborhood on the island.' },
+      { q: 'Why is Coxen Hole the most affordable neighborhood in Roatán?', a: 'Coxen Hole is Roatán\'s administrative capital and primary port — a working town with limited beach access and less international buyer demand than the western tourist areas. Its affordability reflects its local-market character rather than any underlying weakness in the island\'s fundamentals.' },
       { q: 'What rental yield can I expect from a Coxen Hole property?', a: 'Coxen Hole is primarily a local residential and commercial market. Rental yields run approximately 3–5% annually. The investment case here is based on low acquisition cost and long-term appreciation as the island\'s overall market rises.' },
     ],
     facts: [
@@ -420,24 +420,24 @@ const neighborhoods: Neighborhood[] = [
       { label: 'Best For', value: 'Budget buyers, commercial real estate, fixer-uppers' },
       { label: 'Government', value: 'Island\'s main government offices, courts, immigration, banks' },
       { label: 'Transport', value: 'Ferry terminal to La Ceiba, Honduras mainland' },
-      { label: 'Affordability', value: 'Most affordable neighborhood on Roatan' },
+      { label: 'Affordability', value: 'Most affordable neighborhood on Roatán' },
     ],
     faqs: [
       {
-        q: 'Why is Coxen Hole so much more affordable than the rest of Roatan?',
+        q: 'Why is Coxen Hole so much more affordable than the rest of Roatán?',
         a: 'Coxen Hole lacks the beachfront access and tourist infrastructure that drives prices up in the western neighborhoods. However, it is the island\'s administrative and commercial capital, which gives it practical advantages for residents managing legal and financial affairs.',
       },
       {
         q: 'Is Coxen Hole a good investment area?',
-        a: 'For buyers willing to take on more risk and who have a longer time horizon, Coxen Hole offers the most affordable entry point on the island. As the broader Roatan market appreciates, more centrally located and affordable areas tend to see proportional gains.',
+        a: 'For buyers willing to take on more risk and who have a longer time horizon, Coxen Hole offers the most affordable entry point on the island. As the broader Roatán market appreciates, more centrally located and affordable areas tend to see proportional gains.',
       },
       {
-        q: 'Where are the banks and legal offices on Roatan?',
-        a: 'Most of Roatan\'s banks, notary offices, and legal services are concentrated in Coxen Hole. If you\'re going through the property purchase process, you will likely need to make several trips to Coxen Hole for official paperwork.',
+        q: 'Where are the banks and legal offices on Roatán?',
+        a: 'Most of Roatán\'s banks, notary offices, and legal services are concentrated in Coxen Hole. If you\'re going through the property purchase process, you will likely need to make several trips to Coxen Hole for official paperwork.',
       },
       {
         q: 'How far is Coxen Hole from the airport?',
-        a: 'The Roatan International Airport is located just outside Coxen Hole — it\'s the closest neighborhood to the airport, typically just 5–10 minutes away.',
+        a: 'The Roatán International Airport is located just outside Coxen Hole — it\'s the closest neighborhood to the airport, typically just 5–10 minutes away.',
       },
     ],
   },

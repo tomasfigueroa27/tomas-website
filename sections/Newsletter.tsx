@@ -41,7 +41,7 @@ const Newsletter = () => {
               lineHeight: 1.3,
             }}
           >
-            Roatan Real Estate Insights &amp; Opportunities
+            Roatán Real Estate Insights &amp; Opportunities
           </h2>
           <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 28 }}>
             Market updates, new developments, and strategic analysis — for investors and buyers who want clarity before committing.

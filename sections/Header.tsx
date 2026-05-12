@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
+import { trackSchedule, openSavvyCal } from '@/lib/analytics';
 
 const navLinks = [
   { label: 'Browse MLS', href: '/properties' },
@@ -11,7 +12,7 @@ const navLinks = [
   { label: 'Where to Buy', href: '/where-to-buy-in-roatan' },
   { label: "Buyer's Guide", href: '/us-buyers-guide-roatan' },
   { label: 'About', href: '/about' },
-  { label: 'FAQ', href: '/faq' },
+  { label: 'Market Guide', href: '/roatan-market' },
 ];
 
 const navLinkStyle = {
@@ -72,10 +73,8 @@ const Header = () => {
           </nav>
 
           <div className="hidden lg:block">
-            <a
-              href="https://savvycal.com/tomasfigueroa/chat-with-tomas"
-              target="_blank"
-              rel="noopener"
+            <button
+              onClick={() => { trackSchedule(); openSavvyCal(); }}
               style={{
                 display: 'inline-block',
                 padding: '10px 22px',
@@ -86,14 +85,15 @@ const Header = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.12em',
-                textDecoration: 'none',
+                border: 'none',
+                cursor: 'pointer',
                 transition: 'background-color 0.2s',
               }}
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#63868d')}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#789ead')}
             >
-              Let&apos;s Connect
-            </a>
+              Schedule a Strategy Call
+            </button>
           </div>
 
           <button
@@ -148,12 +148,11 @@ const Header = () => {
             >
               Contact
             </button>
-            <a
-              href="https://savvycal.com/tomasfigueroa/chat-with-tomas"
-              target="_blank"
-              rel="noopener"
+            <button
+              onClick={() => { trackSchedule(); openSavvyCal(); setIsMobileMenuOpen(false); }}
               style={{
                 display: 'block',
+                width: '100%',
                 marginTop: 12,
                 padding: '12px 20px',
                 backgroundColor: '#789ead',
@@ -164,11 +163,12 @@ const Header = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.12em',
-                textDecoration: 'none',
+                border: 'none',
+                cursor: 'pointer',
               }}
             >
-              Let&apos;s Connect
-            </a>
+              Schedule a Strategy Call
+            </button>
           </div>
         </div>
       )}

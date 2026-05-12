@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, Calendar } from 'lucide-react';
+import { trackSchedule, openSavvyCal } from '@/lib/analytics';
 
 const FAQItem = ({ q, a }: { q: string; a: string }) => {
   const [open, setOpen] = useState(false);
@@ -211,9 +212,9 @@ export default function FaqContent() {
           <div style={{ backgroundColor: '#093f4f', padding: '40px 32px', textAlign: 'center', color: '#ffffff' }}>
             <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 400, color: '#ffffff', marginTop: 0, marginBottom: 10 }}>Still have questions?</h2>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, marginBottom: 24 }}>Schedule a free 30-minute call with Tomas and get straight answers for your specific situation.</p>
-            <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-              <Calendar style={{ width: 16, height: 16 }} /> Schedule a Call with Tomas
-            </a>
+            <button onClick={() => { trackSchedule(); openSavvyCal(); }} className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+              <Calendar style={{ width: 16, height: 16 }} /> Schedule a Strategy Call
+            </button>
           </div>
         </div>
       </section>

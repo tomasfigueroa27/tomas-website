@@ -69,7 +69,7 @@ const HomeAbout = () => {
               Who is Tomas Figueroa?
             </h2>
             <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 16 }}>
-              Licensed Realtor at Keller Williams Roatan. 20+ years of international sales experience, 4 years on the ground in Roatan — working with US, Canadian, and global buyers in the premium segment.
+              Licensed Realtor at Keller Williams Roatan. 20+ years of international sales experience, 4 years on the ground in Roatán — working with US, Canadian, and global buyers in the premium segment.
             </p>
             <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 16 }}>
               My read on this market: Roatán sits at a clear inflection point — improving airlift, branded hospitality arriving, and a new development cycle underway. Buyers who understand the island now are making decisions with context, not catching up later.
