@@ -1,15 +1,16 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { openBriefingModal, trackSchedule, openSavvyCal } from '@/lib/analytics';
 
 const TOC_ITEMS = [
-  { id: 'can-americans-buy', label: 'Can Americans buy property in Roatán?' },
-  { id: 'where-to-compare', label: 'What areas should U.S. buyers compare first?' },
+  { id: 'can-americans-buy', label: 'Can Americans buy in Roatán?' },
+  { id: 'where-to-compare', label: 'What areas to compare first?' },
   { id: 'buying-process', label: 'What is the buying process?' },
   { id: 'legal-due-diligence', label: 'What legal due diligence matters?' },
   { id: 'how-rentals-work', label: 'How do rentals work?' },
-  { id: 'pre-construction', label: 'What should I know before buying pre-construction?' },
+  { id: 'pre-construction', label: 'What about pre-construction?' },
 ];
 
 const sectionStyle: React.CSSProperties = {
@@ -19,11 +20,11 @@ const sectionStyle: React.CSSProperties = {
 
 const h2Style: React.CSSProperties = {
   fontFamily: 'Georgia, "Times New Roman", serif',
-  fontSize: 'clamp(20px, 2.5vw, 28px)',
+  fontSize: 'clamp(20px, 2.5vw, 26px)',
   fontWeight: 400,
   color: '#093f4f',
   marginTop: 0,
-  marginBottom: 24,
+  marginBottom: 20,
   paddingBottom: 16,
   borderBottom: '2px solid #d4e8ed',
   lineHeight: 1.25,
@@ -31,7 +32,7 @@ const h2Style: React.CSSProperties = {
 
 const h3Style: React.CSSProperties = {
   fontFamily: 'Georgia, "Times New Roman", serif',
-  fontSize: 18,
+  fontSize: 17,
   fontWeight: 400,
   color: '#093f4f',
   marginTop: 32,
@@ -45,6 +46,169 @@ const bodyStyle: React.CSSProperties = {
   lineHeight: 1.85,
   margin: '0 0 16px',
 };
+
+// Sub-components
+
+function ShortAnswer({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      style={{
+        backgroundColor: '#f0f8fb',
+        borderLeft: '3px solid #789ead',
+        padding: '16px 20px',
+        marginBottom: 28,
+      }}
+    >
+      <p
+        style={{
+          fontFamily: 'Arial, Helvetica, sans-serif',
+          fontSize: 10,
+          fontWeight: 700,
+          textTransform: 'uppercase',
+          letterSpacing: '0.14em',
+          color: '#789ead',
+          margin: '0 0 8px',
+        }}
+      >
+        SHORT ANSWER
+      </p>
+      <p
+        style={{
+          fontFamily: 'Arial, Helvetica, sans-serif',
+          fontSize: 15,
+          color: '#093f4f',
+          fontWeight: 500,
+          lineHeight: 1.7,
+          margin: 0,
+        }}
+      >
+        {children}
+      </p>
+    </div>
+  );
+}
+
+function Checklist({ items }: { items: string[] }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
+      {items.map((item) => (
+        <div key={item} style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', gap: 10 }}>
+          <div
+            style={{
+              width: 18,
+              height: 18,
+              backgroundColor: 'rgba(9,63,79,0.08)',
+              borderRadius: '50%',
+              flexShrink: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginTop: 2,
+            }}
+          >
+            <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+              <path d="M1.5 4L3.5 6L6.5 2" stroke="#093f4f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+          <span
+            style={{
+              fontFamily: 'Arial, Helvetica, sans-serif',
+              fontSize: 14,
+              color: '#444',
+              lineHeight: 1.7,
+            }}
+          >
+            {item}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function WarnBox({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      style={{
+        backgroundColor: 'rgba(201,168,76,0.07)',
+        borderLeft: '3px solid #c9a84c',
+        padding: '14px 18px',
+        marginBottom: 24,
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 10,
+        alignItems: 'flex-start',
+      }}
+    >
+      <span style={{ color: '#c9a84c', flexShrink: 0, fontSize: 14, lineHeight: 1.7 }}>⚠</span>
+      <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: '#555', lineHeight: 1.7 }}>
+        {children}
+      </span>
+    </div>
+  );
+}
+
+interface InlineCTAProps {
+  heading: string;
+  cta: string;
+  onClick?: () => void;
+  href?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+
+function InlineCTA({ heading, cta, onClick, href, secondaryLabel, secondaryHref }: InlineCTAProps) {
+  return (
+    <div
+      style={{
+        backgroundColor: '#093f4f',
+        padding: '24px 28px',
+        margin: '36px 0',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        gap: 16,
+      }}
+    >
+      <p
+        style={{
+          fontFamily: 'Georgia, "Times New Roman", serif',
+          fontSize: 16,
+          color: '#ffffff',
+          margin: 0,
+          lineHeight: 1.4,
+        }}
+      >
+        {heading}
+      </p>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8 }}>
+        {href ? (
+          <Link href={href} className="btn-accent">
+            {cta}
+          </Link>
+        ) : onClick ? (
+          <button onClick={onClick} className="btn-accent">
+            {cta}
+          </button>
+        ) : null}
+        {secondaryLabel && secondaryHref && (
+          <Link
+            href={secondaryHref}
+            style={{
+              fontFamily: 'Arial, Helvetica, sans-serif',
+              fontSize: 12,
+              color: 'rgba(255,255,255,0.65)',
+              textDecoration: 'none',
+            }}
+          >
+            {secondaryLabel}
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default function USBuyersGuideContent() {
   const [tocOpen, setTocOpen] = useState(false);
@@ -114,7 +278,7 @@ export default function USBuyersGuideContent() {
 
       {/* Body */}
       <div style={{ backgroundColor: '#ffffff' }}>
-        <div className="section-container" style={{ maxWidth: 1100, paddingTop: 56, paddingBottom: 96 }}>
+        <div className="section-container" style={{ maxWidth: 1200, paddingTop: 56, paddingBottom: 96 }}>
 
           {/* Intro */}
           <p
@@ -124,10 +288,21 @@ export default function USBuyersGuideContent() {
               color: '#444444',
               lineHeight: 1.85,
               maxWidth: 760,
-              marginBottom: 52,
+              marginBottom: 12,
             }}
           >
             Roatán is one of the most accessible Caribbean markets for U.S. buyers — but the legal framework, process, and due diligence look different than they do at home. This guide answers the most common questions Americans ask before buying property in the Bay Islands of Honduras.
+          </p>
+          <p
+            style={{
+              fontFamily: 'Arial, Helvetica, sans-serif',
+              fontSize: 12,
+              fontStyle: 'italic',
+              color: '#aaaaaa',
+              marginBottom: 52,
+            }}
+          >
+            Reviewed May 2026 by Tomás Figueroa, Keller Williams Roatán.
           </p>
 
           {/* Two-column layout */}
@@ -209,25 +384,77 @@ export default function USBuyersGuideContent() {
                     ))}
                   </nav>
                 </div>
+
+                {/* Sidebar CTA card */}
+                <div
+                  className="hidden lg:block"
+                  style={{
+                    marginTop: 32,
+                    border: '1px solid #d4e8ed',
+                    padding: 20,
+                    backgroundColor: '#f9fbfc',
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: 'Georgia, "Times New Roman", serif',
+                      fontSize: 15,
+                      color: '#093f4f',
+                      margin: '0 0 8px',
+                      fontWeight: 400,
+                    }}
+                  >
+                    Questions before you commit?
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: 'Arial, Helvetica, sans-serif',
+                      fontSize: 13,
+                      color: '#666',
+                      lineHeight: 1.65,
+                      margin: '0 0 16px',
+                    }}
+                  >
+                    A 20-minute call can clarify structure, area fit, and timeline.
+                  </p>
+                  <button
+                    onClick={handleSchedule}
+                    style={{
+                      width: '100%',
+                      backgroundColor: '#093f4f',
+                      color: '#ffffff',
+                      border: 'none',
+                      padding: '10px 16px',
+                      fontFamily: 'Arial, Helvetica, sans-serif',
+                      fontSize: 11,
+                      fontWeight: 700,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.12em',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Schedule a Call →
+                  </button>
+                </div>
               </div>
             </aside>
 
             {/* Main content */}
             <main style={{ flex: 1, minWidth: 0 }}>
 
-              {/* Placeholders — filled in subsequent commits */}
+              {/* Section 01 */}
               <section id="can-americans-buy" style={sectionStyle}>
                 <h2 style={h2Style}>01 — Can Americans buy property in Roatán?</h2>
 
-                <p style={{ ...bodyStyle, fontWeight: 600, fontSize: 16, color: '#093f4f' }}>
-                  Yes. Americans can own freehold property in Roatán with the same rights as Honduran citizens.
-                </p>
+                <ShortAnswer>
+                  Yes. Americans can buy property in Roatán, but they should verify title, understand the ownership structure, and use qualified local legal guidance before signing.
+                </ShortAnswer>
 
                 <p style={bodyStyle}>
-                  Roatán sits within the Bay Islands of Honduras, which carry a constitutional designation that allows foreigners to own land within 40 kilometers of the coastline — a key distinction from mainland Honduras, where coastal foreign ownership is restricted. This makes the Bay Islands one of the most straightforward Caribbean markets for U.S. buyers to enter.
+                  Roatán sits within the Bay Islands of Honduras, which carry a constitutional designation that allows foreigners to own land within 40 kilometers of the coastline — a key distinction from mainland Honduras, where coastal foreign ownership is restricted. Americans can own freehold property in Roatán with the same rights as Honduran citizens, making the Bay Islands one of the most accessible Caribbean markets for U.S. buyers to enter.
                 </p>
 
-                <h3 style={h3Style}>Ownership vehicles</h3>
+                <h3 style={h3Style}>Ownership structures</h3>
 
                 <p style={bodyStyle}>
                   Property can be held in three main structures, each with different tax, succession, and exit implications:
@@ -266,60 +493,145 @@ export default function USBuyersGuideContent() {
                   ))}
                 </div>
 
-                <p style={{ ...bodyStyle, fontStyle: 'italic', color: '#789ead' }}>
-                  Get the structure right at entry. Fixing it later is expensive.
-                </p>
+                <WarnBox>
+                  Get the structure right at entry. Changing ownership structure after closing typically requires a new deed and additional transfer taxes — it is not a free correction.
+                </WarnBox>
+
+                <InlineCTA
+                  heading="Not sure which structure fits your situation?"
+                  cta="Talk through your buying structure"
+                  onClick={handleSchedule}
+                />
               </section>
 
+              {/* Section 02 */}
               <section id="where-to-compare" style={sectionStyle}>
                 <h2 style={h2Style}>02 — What areas should U.S. buyers compare first?</h2>
 
-                <p style={{ ...bodyStyle, fontWeight: 600, color: '#093f4f' }}>
-                  Roatán is not one market. Each lifestyle node attracts a different buyer.
-                </p>
+                <ShortAnswer>
+                  Start with West Bay for premium beach and rental logic, West End for walkable lifestyle, Sandy Bay for quiet hillside living, Pristine Bay for gated resort amenities, or French Harbour for emerging value. Each area attracts a different buyer.
+                </ShortAnswer>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 0, margin: '0 0 28px', border: '1px solid #e8f0f3' }}>
-                  {[
-                    { area: 'West Bay', desc: 'Premium beach, highest $/sqft, strongest vacation rental logic.' },
-                    { area: 'West End', desc: 'Walkable village, restaurants, diving, community character.' },
-                    { area: 'Sandy Bay', desc: 'Quieter residential life near the reef; emerging luxury tier.' },
-                    { area: 'Pristine Bay', desc: 'Gated resort, golf, controlled environment.' },
-                    { area: 'French Harbour & East', desc: 'Emerging value, longer-term development exposure.' },
-                  ].map((item, i, arr) => (
-                    <div
-                      key={item.area}
-                      style={{
-                        display: 'flex',
-                        gap: 16,
-                        padding: '14px 20px',
-                        borderBottom: i < arr.length - 1 ? '1px solid #e8f0f3' : 'none',
-                        alignItems: 'baseline',
-                      }}
-                    >
-                      <span style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 14, fontWeight: 400, color: '#093f4f', flexShrink: 0, minWidth: 140 }}>
-                        {item.area}
-                      </span>
-                      <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: '#555555', lineHeight: 1.6 }}>
-                        {item.desc}
-                      </span>
-                    </div>
-                  ))}
+                <div style={{ overflowX: 'auto', marginBottom: 28 }}>
+                  <table
+                    style={{
+                      width: '100%',
+                      borderCollapse: 'collapse',
+                      border: '1px solid #e8f0f3',
+                      fontFamily: 'Arial, Helvetica, sans-serif',
+                    }}
+                  >
+                    <thead>
+                      <tr>
+                        {['Area', 'Character', 'Best Buyer Fit'].map((col) => (
+                          <th
+                            key={col}
+                            style={{
+                              fontSize: 10,
+                              fontWeight: 700,
+                              textTransform: 'uppercase',
+                              letterSpacing: '0.12em',
+                              color: '#789ead',
+                              padding: '12px 16px',
+                              textAlign: 'left',
+                              borderBottom: '1px solid #e8f0f3',
+                              backgroundColor: '#f9fbfc',
+                            }}
+                          >
+                            {col}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        {
+                          area: 'West Bay',
+                          character: 'Premium beach, highest $/sqft, strongest vacation rental logic.',
+                          fit: 'Investor or vacation buyer',
+                        },
+                        {
+                          area: 'West End',
+                          character: 'Walkable village, restaurants, diving, community character.',
+                          fit: 'Lifestyle buyer, diver, expat',
+                        },
+                        {
+                          area: 'Sandy Bay',
+                          character: 'Quieter hillside, reef access, emerging luxury tier.',
+                          fit: 'Retiree, long-term resident',
+                        },
+                        {
+                          area: 'Pristine Bay',
+                          character: 'Gated resort, golf, marina, turnkey management.',
+                          fit: 'Amenity buyer, golf/marina',
+                        },
+                        {
+                          area: 'French Harbour & East',
+                          character: 'Lower entry, local infrastructure, development exposure.',
+                          fit: 'Value investor, long horizon',
+                        },
+                      ].map((row, i) => (
+                        <tr
+                          key={row.area}
+                          style={{ backgroundColor: i % 2 === 0 ? '#f9fbfc' : '#ffffff' }}
+                        >
+                          <td
+                            style={{
+                              padding: '12px 16px',
+                              fontSize: 14,
+                              fontWeight: 600,
+                              color: '#093f4f',
+                              borderBottom: '1px solid #e8f0f3',
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            {row.area}
+                          </td>
+                          <td
+                            style={{
+                              padding: '12px 16px',
+                              fontSize: 14,
+                              color: '#555555',
+                              lineHeight: 1.6,
+                              borderBottom: '1px solid #e8f0f3',
+                            }}
+                          >
+                            {row.character}
+                          </td>
+                          <td
+                            style={{
+                              padding: '12px 16px',
+                              fontSize: 14,
+                              color: '#555555',
+                              lineHeight: 1.6,
+                              borderBottom: '1px solid #e8f0f3',
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            {row.fit}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
 
-                <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: '#555555', lineHeight: 1.75, margin: 0 }}>
-                  For a deeper look at each area&apos;s character, price range, and future buyer — see{' '}
-                  <a href="/neighborhoods" style={{ color: '#789ead', textDecoration: 'underline' }}>Neighborhoods →</a>
-                  {' '}Or explore the interactive lifestyle map at{' '}
-                  <a href="/where-to-buy-in-roatan" style={{ color: '#789ead', textDecoration: 'underline' }}>Where to Buy in Roatán →</a>
-                </p>
+                <InlineCTA
+                  heading="Compare all five areas side by side."
+                  cta="Explore the lifestyle map"
+                  href="/where-to-buy-in-roatan"
+                  secondaryLabel="Neighborhood profiles"
+                  secondaryHref="/neighborhoods"
+                />
               </section>
 
+              {/* Section 03 */}
               <section id="buying-process" style={sectionStyle}>
                 <h2 style={h2Style}>03 — What is the buying process?</h2>
 
-                <p style={{ ...bodyStyle, fontWeight: 600, color: '#093f4f' }}>
-                  A typical Roatán purchase moves through six stages. Standard timeline: 30–60 days from signed intent to registered deed.
-                </p>
+                <ShortAnswer>
+                  A Roatán purchase moves through six stages — from signed intent to registered deed. Standard timeline is 30–60 days to closing, plus an additional 30–60 days for title registration.
+                </ShortAnswer>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 0, margin: '28px 0' }}>
                   {[
@@ -396,12 +708,13 @@ export default function USBuyersGuideContent() {
                 </p>
               </section>
 
+              {/* Section 04 */}
               <section id="legal-due-diligence" style={sectionStyle}>
                 <h2 style={h2Style}>04 — What legal due diligence matters?</h2>
 
-                <p style={{ ...bodyStyle, fontWeight: 600, color: '#093f4f' }}>
-                  Due diligence in Honduras is more manual than U.S. buyers expect. The process works — but it requires a competent attorney and enough time to do it properly.
-                </p>
+                <ShortAnswer>
+                  Due diligence in Honduras is more manual than U.S. buyers expect. Budget 30–45 days, use an independent attorney, and verify title, boundaries, taxes, and HOA terms before signing anything.
+                </ShortAnswer>
 
                 <h3 style={h3Style}>Title search</h3>
                 <p style={bodyStyle}>
@@ -409,22 +722,21 @@ export default function USBuyersGuideContent() {
                 </p>
 
                 <h3 style={h3Style}>What to verify before signing</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, margin: '0 0 24px' }}>
-                  {[
+                <Checklist
+                  items={[
                     'Title is registered in the seller\'s name with no outstanding liens or encumbrances',
                     'Property boundaries match the registered survey (catastro) — confirm physical markers on site',
                     'No outstanding property taxes (impuesto sobre bienes inmuebles) or municipal fees',
-                    'HOA fees, rules, and restrictions are disclosed and reviewed',
+                    'HOA fees, rules, and restrictions are disclosed and reviewed in full',
                     'Rental permissions are explicit in the HOA documents (if short-term rentals are planned)',
                     'Environmental or coastal setback restrictions do not limit intended use',
-                    'Building permits are in order for existing structures',
-                  ].map((item) => (
-                    <div key={item} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                      <span style={{ color: '#789ead', flexShrink: 0, marginTop: 2, fontWeight: 700, fontSize: 14 }}>—</span>
-                      <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: '#555555', lineHeight: 1.7 }}>{item}</span>
-                    </div>
-                  ))}
-                </div>
+                    'Building permits are in order for all existing structures',
+                  ]}
+                />
+
+                <WarnBox>
+                  Never use the developer&apos;s or seller&apos;s recommended attorney. Your attorney must represent only your interests — they cannot simultaneously represent the other side.
+                </WarnBox>
 
                 <h3 style={h3Style}>Choosing your attorney</h3>
                 <p style={bodyStyle}>
@@ -436,57 +748,52 @@ export default function USBuyersGuideContent() {
                   If you cannot be present in Honduras for closing, your attorney can execute the transaction on your behalf via a notarized and apostilled power of attorney. This is common and routine for U.S. buyers. Your U.S. attorney or notary can assist with the apostille process.
                 </p>
 
-                <p style={{ ...bodyStyle, fontStyle: 'italic', color: '#789ead' }}>
-                  Budget 30–45 days for a thorough due diligence process. Rushing it is the most common mistake first-time buyers make.
-                </p>
+                <InlineCTA
+                  heading="Want to walk through the due diligence process for a specific property?"
+                  cta="Schedule a Strategy Call"
+                  onClick={handleSchedule}
+                />
               </section>
 
+              {/* Section 05 */}
               <section id="how-rentals-work" style={sectionStyle}>
                 <h2 style={h2Style}>05 — How do rentals work?</h2>
 
-                <p style={{ ...bodyStyle, fontWeight: 600, color: '#093f4f' }}>
-                  Short-term vacation rentals are the dominant income model for Roatán investment properties. Most buyers underestimate management costs and overestimate occupancy.
-                </p>
+                <ShortAnswer>
+                  Short-term vacation rentals are viable in West Bay, West End, and select Pristine Bay units. Most buyers overestimate occupancy and underestimate management costs. Net yields after costs are typically lower than gross revenue suggests.
+                </ShortAnswer>
 
                 <h3 style={h3Style}>The short-term rental market</h3>
                 <p style={bodyStyle}>
                   West Bay Beach is the strongest short-term rental market on the island — high demand, premium nightly rates, and proven guest volume. West End, Sandy Bay, and select Pristine Bay units also generate meaningful short-term income. Properties further east see more limited demand from international renters.
                 </p>
                 <p style={bodyStyle}>
-                  Most Roatán vacation rentals list on VRBO, Airbnb, and direct-booking channels. A well-managed West Bay oceanfront unit typically achieves 55–75% occupancy at $150–$350/night depending on unit size and finishes.
-                </p>
-
-                <h3 style={h3Style}>Property management</h3>
-                <p style={bodyStyle}>
-                  If you are not based in Roatán, you will need a local property manager. Management fees range from 20–35% of gross rental revenue depending on the scope of services (marketing, guest communication, cleaning, maintenance coordination). Choose a manager with a track record specific to your neighborhood — management quality varies significantly across the island.
+                  Most Roatán vacation rentals list on VRBO, Airbnb, and direct-booking channels. A well-managed West Bay oceanfront unit typically achieves 55–75% occupancy at $150–$350 per night depending on unit size and finishes.
                 </p>
 
                 <h3 style={h3Style}>Underwriting rentals conservatively</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, margin: '0 0 24px' }}>
-                  {[
+                <Checklist
+                  items={[
                     'Use 50–60% occupancy as your baseline, not best-case',
                     'Deduct management fees (25–30%), cleaning costs, HOA fees, and maintenance reserves before calculating net income',
                     'Budget for an annual slow season (typically May–June)',
                     'Account for property tax, income tax, and any HOA rental restrictions',
-                  ].map((item) => (
-                    <div key={item} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                      <span style={{ color: '#789ead', flexShrink: 0, marginTop: 2, fontWeight: 700, fontSize: 14 }}>—</span>
-                      <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: '#555555', lineHeight: 1.7 }}>{item}</span>
-                    </div>
-                  ))}
-                </div>
+                    'Confirm management exclusivity clauses are not written into your HOA or purchase agreement',
+                  ]}
+                />
 
-                <p style={{ ...bodyStyle, fontStyle: 'italic', color: '#789ead' }}>
-                  The right question is not &ldquo;what can this rent for?&rdquo; but &ldquo;what will I net after all costs in a realistic year?&rdquo;
-                </p>
+                <WarnBox>
+                  Management fees range from 20–35% of gross rental revenue. The right question is not &ldquo;what can this rent for?&rdquo; but &ldquo;what will I net after all costs in a realistic year?&rdquo;
+                </WarnBox>
               </section>
 
+              {/* Section 06 */}
               <section id="pre-construction" style={{ ...sectionStyle, marginBottom: 0 }}>
                 <h2 style={h2Style}>06 — What should I know before buying pre-construction?</h2>
 
-                <p style={{ ...bodyStyle, fontWeight: 600, color: '#093f4f' }}>
-                  Pre-construction offers real upside — but the risk profile is fundamentally different from resale. Know what you&apos;re underwriting.
-                </p>
+                <ShortAnswer>
+                  Pre-construction offers real entry-price upside, but carries execution risk. Vet the developer&apos;s track record, confirm deposits are held in escrow, and build 6–18 months of timeline buffer into your planning.
+                </ShortAnswer>
 
                 <h3 style={h3Style}>Developer vetting</h3>
                 <p style={bodyStyle}>
@@ -494,26 +801,20 @@ export default function USBuyersGuideContent() {
                 </p>
 
                 <h3 style={h3Style}>Contract terms to review</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, margin: '0 0 24px' }}>
-                  {[
+                <Checklist
+                  items={[
                     'Deposit schedule and what triggers each payment milestone',
-                    'What happens if the developer delays or fails to deliver — are deposits held in escrow or in operating accounts?',
+                    'Whether deposits are held in escrow or in the developer\'s operating account',
                     'Completion guarantee or performance bond',
                     'Defined specifications for finishes and common areas — vague language allows substitution',
                     'Rental management exclusivity clauses — some developers require you to use their management company',
                     'Resale restrictions or right-of-first-refusal during the construction period',
-                  ].map((item) => (
-                    <div key={item} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                      <span style={{ color: '#789ead', flexShrink: 0, marginTop: 2, fontWeight: 700, fontSize: 14 }}>—</span>
-                      <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: '#555555', lineHeight: 1.7 }}>{item}</span>
-                    </div>
-                  ))}
-                </div>
+                  ]}
+                />
 
-                <h3 style={h3Style}>Timeline expectations</h3>
-                <p style={bodyStyle}>
-                  Caribbean construction timelines routinely run 6–18 months beyond the published schedule. Build buffer into your financial model and personal planning. Confirm the project has permits in hand — not just permits applied for — before signing a purchase agreement.
-                </p>
+                <WarnBox>
+                  Caribbean construction timelines routinely run 6–18 months beyond the published schedule. Build buffer into your financial model. Confirm permits are in hand — not just applied for — before signing.
+                </WarnBox>
 
                 <p style={{ ...bodyStyle, fontStyle: 'italic', color: '#789ead' }}>
                   Pre-construction pricing is the reward for accepting execution risk. Make sure the discount is real and the developer has the track record to deliver.
