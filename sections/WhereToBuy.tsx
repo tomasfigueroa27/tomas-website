@@ -94,7 +94,7 @@ export default function WhereToBuy() {
         </div>
 
         <Link
-          href="/neighborhoods"
+          href="/where-to-buy-in-roatan"
           style={{
             fontSize: 12,
             fontWeight: 600,
@@ -103,7 +103,7 @@ export default function WhereToBuy() {
             fontFamily: 'Arial, Helvetica, sans-serif',
           }}
         >
-          Explore each neighborhood in depth →
+          Explore the interactive map →
         </Link>
       </div>
     </section>

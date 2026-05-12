@@ -77,16 +77,9 @@ export default function ActiveDevelopments() {
                       style={{
                         width: '100%',
                         height: '100%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
                         background: 'linear-gradient(135deg, rgba(120,158,173,0.15) 0%, rgba(9,63,79,0.3) 100%)',
                       }}
-                    >
-                      <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.25)', fontFamily: 'Arial, Helvetica, sans-serif', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                        Image coming soon
-                      </span>
-                    </div>
+                    />
                   )}
                   {project.badge && (
                     <span

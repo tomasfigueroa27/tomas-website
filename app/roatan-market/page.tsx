@@ -489,7 +489,7 @@ export default function RoatanMarketPage() {
         <div className="section-container" style={{ maxWidth: 800 }}>
           <div style={{ backgroundColor: '#093f4f', padding: '40px 32px', textAlign: 'center', color: '#ffffff' }}>
             <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 400, color: '#ffffff', marginTop: 0, marginBottom: 12 }}>Ready to Explore the Roatan Market?</h2>
-            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 540, margin: '0 auto 8px' }}>Roatan is the Caribbean&apos;s last undervalued market. The catalysts are arriving. The window is open — but not forever.</p>
+            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 540, margin: '0 auto 8px' }}>Roatán is improving on multiple fronts — airlift, hospitality, and infrastructure. Buyers who understand the market now can choose with context and confidence.</p>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 540, margin: '0 auto 28px' }}>Schedule a call and I&apos;ll walk you through current listings, neighborhood comparisons, and the investment strategy that fits your specific goals.</p>
             <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 24 }}>
               <Calendar style={{ width: 16, height: 16 }} aria-hidden="true" /> Schedule a Call with Tomas

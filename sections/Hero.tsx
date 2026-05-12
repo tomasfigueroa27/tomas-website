@@ -56,11 +56,11 @@ const Hero = () => {
             A simpler, small-island Caribbean lifestyle is becoming easier for U.S. buyers to reach, understand, and own. I help you choose the right location, project, and strategy — before the best parts of the island become obvious.
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-            <button onClick={openBriefingModal} className="btn-accent">
-              Download the Investor Briefing
+            <button onClick={handleSchedule} className="btn-accent">
+              Schedule a Strategy Call
             </button>
             <button
-              onClick={handleSchedule}
+              onClick={openBriefingModal}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -76,13 +76,13 @@ const Hero = () => {
                 fontFamily: 'Arial, Helvetica, sans-serif',
               }}
             >
-              Schedule a Strategy Call
+              Download the Investor Briefing
             </button>
             <Link
-              href="/properties"
+              href="/where-to-buy-in-roatan"
               style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', textDecoration: 'none', fontWeight: 600 }}
             >
-              Browse MLS →
+              Explore Where to Buy →
             </Link>
           </div>
         </div>

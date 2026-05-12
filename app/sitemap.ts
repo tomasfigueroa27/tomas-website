@@ -14,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/neighborhoods`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/new-developments`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/roatan-market`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/where-to-buy-in-roatan`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/us-buyers-guide-roatan`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
     { url: `${base}/faq`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${base}/guides`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },

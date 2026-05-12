@@ -6,11 +6,11 @@ import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
-  { label: 'Home', href: '/' },
   { label: 'Browse MLS', href: '/properties' },
   { label: 'New Developments', href: '/new-developments' },
+  { label: 'Where to Buy', href: '/where-to-buy-in-roatan' },
+  { label: "Buyer's Guide", href: '/us-buyers-guide-roatan' },
   { label: 'About', href: '/about' },
-  { label: 'Resources', href: '/resources' },
   { label: 'FAQ', href: '/faq' },
 ];
 
