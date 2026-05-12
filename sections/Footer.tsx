@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { MapPin, Phone, Mail } from 'lucide-react';
+import { openBriefingModal } from '@/lib/analytics';
 
 const colTitleStyle: React.CSSProperties = {
   fontFamily: 'Arial, Helvetica, sans-serif',
@@ -53,7 +54,7 @@ const Footer = () => {
   return (
     <footer style={{ backgroundColor: '#0a1628' }}>
       <div className="section-container" style={{ paddingTop: 64, paddingBottom: 48 }}>
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
 
           {/* Brand */}
           <div>
@@ -94,23 +95,46 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* Start Here */}
+          <div>
+            <span style={colTitleStyle}>Start Here</span>
+            {[
+              { href: '/us-buyers-guide-roatan', label: 'U.S. Buyer Guide' },
+              { href: '/where-to-buy-in-roatan', label: 'Where to Buy in Roatán' },
+              { href: '/new-developments', label: 'New Developments' },
+              { href: '/roatan-market', label: 'Market Guide' },
+            ].map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                style={linkStyle}
+                onMouseEnter={(e) => (e.currentTarget.style.color = '#ffffff')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
+              >
+                {label}
+              </Link>
+            ))}
+            <button
+              onClick={openBriefingModal}
+              style={{ ...linkStyle, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#ffffff')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
+            >
+              Investor Briefing
+            </button>
+          </div>
+
           {/* Navigation */}
           <div>
-            <span style={colTitleStyle}>Navigation</span>
+            <span style={colTitleStyle}>Explore</span>
             {[
-              { href: '/', label: 'Home' },
-              { href: '/new-developments', label: 'New Developments' },
               { href: '/properties', label: 'Browse MLS' },
-              { href: '/where-to-buy-in-roatan', label: 'Where to Buy' },
-              { href: '/us-buyers-guide-roatan', label: "Buyer's Guide" },
-              { href: '/roatan-market', label: 'Market Guide' },
               { href: '/neighborhoods', label: 'Neighborhoods' },
-              { href: '/about', label: 'About' },
-              { href: '/resources', label: 'Resources' },
               { href: '/blog', label: 'Blog' },
               { href: '/guides', label: 'Guides' },
-              { href: '/calculator', label: 'Closing Calculator' },
               { href: '/faq', label: 'FAQ' },
+              { href: '/calculator', label: 'Closing Calculator' },
+              { href: '/about', label: 'About' },
             ].map(({ href, label }) => (
               <Link
                 key={href}
