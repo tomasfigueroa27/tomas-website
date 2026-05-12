@@ -309,6 +309,8 @@ export default function USBuyersGuideContent() {
                 <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: '#555555', lineHeight: 1.75, margin: 0 }}>
                   For a deeper look at each area&apos;s character, price range, and future buyer — see{' '}
                   <a href="/neighborhoods" style={{ color: '#789ead', textDecoration: 'underline' }}>Neighborhoods →</a>
+                  {' '}Or explore the interactive lifestyle map at{' '}
+                  <a href="/where-to-buy-in-roatan" style={{ color: '#789ead', textDecoration: 'underline' }}>Where to Buy in Roatán →</a>
                 </p>
               </section>
 
@@ -386,6 +388,12 @@ export default function USBuyersGuideContent() {
                     </div>
                   ))}
                 </div>
+
+                <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: '#555555', lineHeight: 1.75, marginTop: 20, marginBottom: 0 }}>
+                  Before making an offer, use the{' '}
+                  <a href="/calculator" style={{ color: '#789ead', textDecoration: 'underline' }}>closing cost calculator →</a>
+                  {' '}to model your total acquisition cost, including transfer tax, legal fees, and registry costs.
+                </p>
               </section>
 
               <section id="legal-due-diligence" style={sectionStyle}>

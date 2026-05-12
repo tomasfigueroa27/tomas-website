@@ -84,7 +84,7 @@ function RoatanMap({
   onNodeHover: (id: number | null) => void;
 }) {
   return (
-    <div style={{ position: 'relative', width: '100%', paddingBottom: '43.75%' }}>
+    <div style={{ position: 'relative', width: '100%', paddingBottom: '43.75%', minHeight: 240 }}>
       <svg
         viewBox="0 0 1600 700"
         role="img"

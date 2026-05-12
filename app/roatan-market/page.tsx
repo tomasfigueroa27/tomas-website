@@ -457,6 +457,10 @@ export default function RoatanMarketPage() {
           <div style={{ backgroundColor: '#f5f2ee', padding: '16px 20px' }}>
             <p style={{ fontSize: 13, color: '#555555', lineHeight: 1.75, margin: 0 }}><strong style={{ color: '#093f4f' }}>Seller&apos;s expenses:</strong> Capital gains tax (4% in Roatan, 10% on the Honduran mainland), real estate commissions for both agents (10% total), updated cadastral certificate and survey. The buyer pays no real estate commission.</p>
           </div>
+          <p style={{ fontSize: 13, color: '#555555', lineHeight: 1.75, marginTop: 16, marginBottom: 0 }}>
+            Model your total acquisition cost before making an offer — use the{' '}
+            <Link href="/calculator" style={{ color: '#093f4f', textDecoration: 'underline' }}>closing cost calculator →</Link>
+          </p>
         </div>
       </section>
 
@@ -499,8 +503,8 @@ export default function RoatanMarketPage() {
               {[
                 { href: '/properties', label: 'Browse the MLS →' },
                 { href: '/new-developments', label: 'New Developments →' },
-                { href: '/faq', label: 'Full FAQ →' },
-                { href: '/resources', label: "Buyer's Guide →" },
+                { href: '/us-buyers-guide-roatan', label: "U.S. Buyer's Guide →" },
+                { href: '/calculator', label: 'Closing Calculator →' },
               ].map(({ href, label }) => (
                 <Link key={href} href={href} style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }} className="link-dim">
                   {label}
