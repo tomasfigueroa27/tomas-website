@@ -5,42 +5,42 @@ import { openBriefingModal } from '@/lib/analytics';
 const criteria = [
   {
     num: '01',
-    title: 'Location',
-    body: 'West Bay, select West End, Sandy Bay waterfront, Pristine Bay, and emerging nodes with genuine access, views, or resort logic.',
+    title: 'Location Fit',
+    body: 'West Bay, select West End, Sandy Bay waterfront, Pristine Bay, and emerging nodes with genuine access, views, or resort logic — matched to your lifestyle and use case.',
   },
   {
     num: '02',
-    title: 'View & Access',
-    body: 'Beachfront, walkable beach access, protected ocean views, marina access, or reef-adjacent lifestyle.',
+    title: 'Project Selection',
+    body: 'Finding the right project type — pre-construction, resale, beachfront, hillside — against your use case, hold period, and exit expectations.',
   },
   {
     num: '03',
-    title: 'Legal Clarity',
-    body: 'Clean title, clear ownership structure, transparent HOA rules, rental permissions, and professional closing guidance.',
+    title: 'Title & Legal Clarity',
+    body: 'Clean title, clear ownership structure, transparent HOA rules, rental permissions confirmed in writing, and professional closing guidance from an independent Honduran attorney.',
   },
   {
     num: '04',
-    title: 'Product Quality',
-    body: 'Architecture, finishes, layout, amenities, and maintenance standards that match the future buyer pool.',
+    title: 'Developer Quality',
+    body: 'Vetting the developer behind a project — track record, completed phases, financial structure, delivery timeline, and alignment between what is promised and what gets built.',
   },
   {
     num: '05',
     title: 'Rental Realism',
-    body: 'Conservative underwriting that separates gross rental revenue from net owner cash flow.',
+    body: 'Conservative underwriting that separates gross rental revenue from net owner cash flow — after management fees, HOA, maintenance, vacancy, and seasonal slowdowns.',
   },
   {
     num: '06',
-    title: 'Exit Liquidity',
-    body: 'A future buyer should understand the asset quickly without needing a complicated explanation.',
+    title: 'Exit Strategy',
+    body: 'A future buyer should understand the asset quickly and cleanly. Liquidity depends on location, legal structure, and product quality — all evaluated at entry, not at exit.',
   },
 ];
 
 export default function HowToChoose() {
   return (
-    <section style={{ backgroundColor: '#093f4f', paddingTop: 64, paddingBottom: 64 }}>
+    <section style={{ backgroundColor: '#093f4f', paddingTop: 72, paddingBottom: 72 }}>
       <div className="section-container" style={{ maxWidth: 1100 }}>
         <div style={{ marginBottom: 48 }}>
-          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>How to Choose</span>
+          <span className="label-caps block mb-4" style={{ color: '#789ead' }}>How Tomás Helps</span>
           <h2
             style={{
               fontFamily: 'Georgia, "Times New Roman", serif',
@@ -55,7 +55,7 @@ export default function HowToChoose() {
             Start with the lifestyle. Then underwrite the asset.
           </h2>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', lineHeight: 1.75, margin: 0 }}>
-            A disciplined buyer should prioritize:
+            Every buyer Tomás works with goes through the same six disciplines:
           </p>
         </div>
 
