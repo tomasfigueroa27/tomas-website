@@ -133,18 +133,24 @@ function CompactRow({ post, last }: { post: BlogPost; last: boolean }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      style={{ display: 'flex', alignItems: 'baseline', gap: 16, padding: '13px 0', textDecoration: 'none', borderBottom: last ? 'none' : '1px solid #ede9e2', flexWrap: 'wrap' }}
+      style={{ display: 'block', padding: '13px 0', textDecoration: 'none', borderBottom: last ? 'none' : '1px solid #ede9e2' }}
       className="group"
     >
-      <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, color: '#ccc', whiteSpace: 'nowrap', minWidth: 88, flexShrink: 0 }}>
-        {fmt(post.date)}
-      </span>
-      <span style={{ flexShrink: 0 }}><CategoryPill label={post.category} /></span>
-      <span style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 14, color: '#093f4f', lineHeight: 1.35, flex: 1, minWidth: 160 }}
-        className="group-hover:underline">
-        {post.title}
-      </span>
-      <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, color: '#789ead', whiteSpace: 'nowrap', flexShrink: 0 }}>Read →</span>
+      {/* Top line: date + category */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
+        <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, color: '#ccc', whiteSpace: 'nowrap', flexShrink: 0 }}>
+          {fmt(post.date)}
+        </span>
+        <CategoryPill label={post.category} />
+      </div>
+      {/* Bottom line: title + read arrow */}
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
+        <span style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 14, color: '#093f4f', lineHeight: 1.35, flex: 1 }}
+          className="group-hover:underline">
+          {post.title}
+        </span>
+        <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, color: '#789ead', whiteSpace: 'nowrap', flexShrink: 0 }}>Read →</span>
+      </div>
     </Link>
   );
 }

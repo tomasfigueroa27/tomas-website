@@ -64,15 +64,14 @@ export default function StartHere() {
               href={href}
               style={{
                 display: 'block',
-                padding: '36px 32px',
+                padding: '28px 24px',
                 textDecoration: 'none',
-                borderRight: i < cards.length - 1 ? '1px solid #e5e7eb' : 'none',
                 opacity: visible ? 1 : 0,
                 transform: visible ? 'translateY(0)' : 'translateY(20px)',
                 transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
                 transitionDelay: visible ? `${i * 100}ms` : '0ms',
               }}
-              className="card-hover group"
+              className="card-hover group start-here-card"
             >
               <div
                 style={{

@@ -5,6 +5,7 @@ import Header from '@/sections/Header';
 import Footer from '@/sections/Footer';
 import InvestorBriefingModal from '@/components/InvestorBriefingModal';
 import ServiceWorkerRegister from '@/components/ServiceWorkerRegister';
+import MobileStickyCTA from '@/components/MobileStickyCTA';
 
 const GA_ID = 'G-3YVFSNRZJ6';
 
@@ -177,9 +178,10 @@ export default function RootLayout({
         <Script src="https://embed.savvycal.com/v1/embed.js" strategy="afterInteractive" />
         <ServiceWorkerRegister />
         <Header />
-        <main>{children}</main>
+        <main className="pb-20 lg:pb-0">{children}</main>
         <Footer />
         <InvestorBriefingModal />
+        <MobileStickyCTA />
       </body>
     </html>
   );

@@ -79,7 +79,50 @@ function ComparisonMatrix({ onSchedule }: { onSchedule: () => void }) {
           Pick your lifestyle. Then pick your property.
         </h2>
 
-        <div style={{ overflowX: 'auto' }}>
+        {/* Mobile card list (< md) */}
+        <div className="md:hidden" style={{ display: 'flex', flexDirection: 'column', gap: 2, backgroundColor: '#ede9e2' }}>
+          {NODES.map((node) => (
+            <div key={node.id} style={{ backgroundColor: '#ffffff', padding: '20px 20px' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 6 }}>
+                <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', color: '#c9a84c', textTransform: 'uppercase', flexShrink: 0 }}>
+                  {node.num}
+                </span>
+                <span style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 18, fontWeight: 400, color: '#093f4f' }}>
+                  {node.name}
+                </span>
+              </div>
+              <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#789ead', margin: '0 0 14px' }}>
+                {node.lifestyle}
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 16 }}>
+                {([
+                  { label: 'Best For', value: node.bestFor, color: '#444' },
+                  { label: 'Typical Product', value: node.typicalProduct, color: '#444' },
+                  { label: 'Watch Out', value: node.watchout, color: '#888' },
+                  { label: 'Price Range', value: node.priceRange, color: '#093f4f' },
+                ] as const).map(({ label, value, color }) => (
+                  <div key={label}>
+                    <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#789ead', display: 'block', marginBottom: 3 }}>
+                      {label}
+                    </span>
+                    <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, color, lineHeight: 1.5 }}>
+                      {value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <Link
+                href={`/neighborhoods/${node.neighborhoodSlug}`}
+                style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, fontWeight: 600, color: '#789ead', textDecoration: 'underline' }}
+              >
+                Full neighborhood profile →
+              </Link>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop table (≥ md) */}
+        <div className="hidden md:block" style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13 }}>
             <thead>
               <tr style={{ borderBottom: '2px solid #c9a84c' }}>
