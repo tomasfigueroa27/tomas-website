@@ -6,7 +6,7 @@ const cards = [
   {
     num: '01',
     title: 'Access Is Opening',
-    body: 'Year-round direct flights from Miami, Houston, Atlanta, and Minneapolis. Air Canada launching from Montréal and Toronto in December 2026. Buyers pricing themselves out of Cayman and TCI are arriving at Roatán earlier in the curve.',
+    body: 'United Airlines operates daily year-round service from Houston; American Airlines daily from Miami. Seasonal service from Dallas-Fort Worth, Atlanta, Denver, Minneapolis, Montréal, Toronto, and Guatemala City continues to expand. Buyers pricing themselves out of Cayman and TCI are arriving at Roatán earlier in the curve.',
   },
   {
     num: '02',
