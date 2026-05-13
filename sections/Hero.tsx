@@ -2,14 +2,13 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { trackSchedule, openSavvyCal, openBriefingModal } from '@/lib/analytics';
+import { openBriefingModal } from '@/lib/analytics';
 
 // Set to true once /hero-video.mp4 is available (8-12s muted loop: reef/coastline, West Bay water,
 // West End lifestyle, hillside ocean-view home). Video should be ~5-8 MB H.264, 1920×1080.
 const VIDEO_AVAILABLE = false;
 
 const Hero = () => {
-  const handleSchedule = () => { trackSchedule(); openSavvyCal(); };
   const bgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -82,9 +81,9 @@ const Hero = () => {
             A simpler, small-island Caribbean lifestyle is becoming easier for U.S. buyers to reach, understand, and own. I help you choose the right location, project, and strategy — before the best parts of the island become obvious.
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-            <button onClick={handleSchedule} className="btn-accent">
-              Schedule a Strategy Call
-            </button>
+            <Link href="/properties" className="btn-accent">
+              Browse MLS
+            </Link>
             <button
               onClick={openBriefingModal}
               style={{
@@ -104,12 +103,6 @@ const Hero = () => {
             >
               Download the Investor Briefing
             </button>
-            <Link
-              href="/where-to-buy-in-roatan"
-              style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', textDecoration: 'none', fontWeight: 600 }}
-            >
-              Explore Where to Buy →
-            </Link>
           </div>
         </div>
       </div>
@@ -118,3 +111,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
