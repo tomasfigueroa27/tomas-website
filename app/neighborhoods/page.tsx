@@ -5,9 +5,15 @@ import neighborhoods from '@/data/neighborhoods';
 import ScheduleButton from '@/components/ScheduleButton';
 
 export const metadata: Metadata = {
-  title: 'Roatan Neighborhoods Guide',
-  description: "Explore Roatan's top neighborhoods — from West Bay Beach luxury condos to the expat-friendly West End village. Compare price ranges, lifestyle, and investment potential for each area.",
+  title: 'Roatán Neighborhoods Guide — Compare Every Area',
+  description: "Compare Roatán's six neighborhoods: West Bay Beach, West End, Sandy Bay, Pristine Bay, French Harbour, and Coxen Hole. Price ranges, lifestyle character, rental potential, and buyer fit — side by side. Tomás Figueroa, Keller Williams Roatán.",
   alternates: { canonical: 'https://www.tomasfigueroa.com/neighborhoods' },
+  openGraph: {
+    title: 'Roatán Neighborhoods Guide — Compare Every Area',
+    description: "Compare Roatán's six neighborhoods by price range, lifestyle, rental potential, and buyer fit — from West Bay Beach to French Harbour.",
+    url: 'https://www.tomasfigueroa.com/neighborhoods',
+    images: [{ url: '/opengraph.jpg', width: 1200, height: 630, alt: 'Roatán Neighborhoods Guide' }],
+  },
 };
 
 export default function NeighborhoodsPage() {
@@ -20,9 +26,26 @@ export default function NeighborhoodsPage() {
     ],
   };
 
+  const itemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Roatán Neighborhoods Guide',
+    description: "Compare Roatán's six neighborhoods by price range, lifestyle, and buyer fit.",
+    url: 'https://www.tomasfigueroa.com/neighborhoods',
+    numberOfItems: neighborhoods.length,
+    itemListElement: neighborhoods.map((n, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: n.name,
+      url: `https://www.tomasfigueroa.com/neighborhoods/${n.slug}`,
+      description: n.tagline,
+    })),
+  };
+
   return (
     <div className="min-h-screen" style={{ paddingTop: 80, paddingBottom: 64, backgroundColor: '#ffffff' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
       <section style={{ backgroundColor: '#093f4f', color: '#ffffff', paddingTop: 64, paddingBottom: 64 }}>
         <div className="section-container" style={{ textAlign: 'center' }}>
           <span className="label-caps block mb-4" style={{ color: '#789ead' }}>Neighborhood Guide</span>
@@ -134,7 +157,7 @@ export default function NeighborhoodsPage() {
         <div className="section-container" style={{ maxWidth: 800 }}>
           <div style={{ backgroundColor: '#093f4f', padding: '40px 32px', textAlign: 'center', color: '#ffffff' }}>
             <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 400, color: '#ffffff', marginTop: 0, marginBottom: 12 }}>Not Sure Which Neighborhood Is Right for You?</h2>
-            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 480, margin: '0 auto 24px' }}>Tomas can help you evaluate each area against your specific goals — whether that&apos;s rental income, lifestyle, appreciation, or all three.</p>
+            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 480, margin: '0 auto 24px' }}>Tomás can help you evaluate each area against your specific goals — whether that&apos;s rental income, lifestyle, appreciation, or all three.</p>
             <ScheduleButton className="btn-accent">
               Schedule a Strategy Call
             </ScheduleButton>

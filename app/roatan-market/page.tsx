@@ -4,9 +4,15 @@ import { Calendar } from 'lucide-react';
 import ScheduleButton from '@/components/ScheduleButton';
 
 export const metadata: Metadata = {
-  title: 'Roatan Real Estate Market 2026',
-  description: 'Up-to-date Roatan real estate market data: average prices, rental yields, foreign ownership rules, buying process, and key investment facts for 2026.',
+  title: 'Roatán Real Estate Market Guide 2026 — Prices, Yields & Ownership',
+  description: 'Roatán real estate market data for 2026: price benchmarks by neighborhood, vacation rental yields, foreign ownership rules, the 7-step buying process, and closing costs. Tomás Figueroa, Keller Williams Roatán.',
   alternates: { canonical: 'https://www.tomasfigueroa.com/roatan-market' },
+  openGraph: {
+    title: 'Roatán Real Estate Market Guide 2026 — Tomás Figueroa Real Estate',
+    description: 'Price benchmarks, rental yields, foreign ownership rules, and the buying process for Roatán, Honduras real estate in 2026.',
+    url: 'https://www.tomasfigueroa.com/roatan-market',
+    images: [{ url: '/opengraph.jpg', width: 1200, height: 630, alt: 'Roatán Real Estate Market Guide 2026' }],
+  },
 };
 
 const marketSchema = {
@@ -14,8 +20,8 @@ const marketSchema = {
   '@type': 'Article',
   headline: 'Roatan Real Estate Market Guide 2026',
   description: 'Comprehensive overview of the Roatan, Honduras real estate market.',
-  author: { '@type': 'Person', name: 'Tomas Figueroa', url: 'https://www.tomasfigueroa.com/about' },
-  publisher: { '@type': 'Organization', name: 'Tomas Figueroa Real Estate', url: 'https://www.tomasfigueroa.com' },
+  author: { '@type': 'Person', name: 'Tomás Figueroa', url: 'https://www.tomasfigueroa.com/about' },
+  publisher: { '@type': 'Organization', name: 'Tomás Figueroa Real Estate', url: 'https://www.tomasfigueroa.com' },
   url: 'https://www.tomasfigueroa.com/roatan-market',
   datePublished: '2026-04-01',
   dateModified: '2026-05-07',
@@ -485,7 +491,7 @@ export default function RoatanMarketPage() {
         <div className="section-container" style={{ maxWidth: 800 }}>
           <span className="label-caps block mb-4">About the Author</span>
           <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 20 }}>About the Author</h2>
-          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75 }}>Tomas Figueroa is a real estate professional with <Link href="/about" style={{ color: '#093f4f', textDecoration: 'underline' }}>Keller Williams Roatan</Link>, Bay Islands, Honduras. He brings 20 years of international sales and business development experience and has spent the last four years working as a boots-on-ground agent on Roatan. His specialty is buyer and seller representation, developer partnerships, and investment deal sourcing for clients in the US, Canada, and globally. Fluent in English and Spanish.</p>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75 }}>Tomás Figueroa is a licensed real estate agent with <Link href="/about" style={{ color: '#093f4f', textDecoration: 'underline' }}>Keller Williams Roatán</Link>, Bay Islands, Honduras. He brings 20+ years of international sales and business development experience and has spent the last four years working as a boots-on-ground agent in Roatán. His specialty is buyer and seller representation, developer partnerships, and investment deal sourcing for clients in the U.S., Canada, and globally. Fluent in English and Spanish.</p>
         </div>
       </section>
 
