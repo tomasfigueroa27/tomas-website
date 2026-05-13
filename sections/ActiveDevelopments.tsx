@@ -4,26 +4,18 @@ const projects = [
   {
     name: 'Starfish at Latitude 16',
     location: 'West Bay · Roatán',
-    valueProp: 'Pre-sale oceanfront residences, from $299,999. 14–30% below comparable West Bay product.',
+    valueProp: 'Pre-sale oceanfront residences from $299,999. West Bay beachfront access, short-term rental permissions, and a verified developer track record.',
     href: 'https://starfishroatan.com',
     image: '/starfsh.jpg',
-  },
-  {
-    name: 'Blue Vista Roatán',
-    location: 'Sandy Bay · Roatán',
-    valueProp: 'Premium hillside development. Coming soon.',
-    href: 'https://bluevistaroatan.com',
-    image: '/bluevista homepage.jpg',
-    disabled: false,
-    badge: 'Coming Soon',
+    external: true,
   },
   {
     name: 'Browse All Projects',
     location: 'Roatán · All Areas',
-    valueProp: 'See the full pipeline — active projects, pre-construction, and upcoming opportunities across the island.',
+    valueProp: 'See the full pipeline — active projects, pre-construction, and upcoming opportunities across the island. West Bay, Sandy Bay, Pristine Bay, and emerging nodes.',
     href: '/new-developments',
     image: null,
-    isInternal: true,
+    external: false,
   },
 ];
 
@@ -47,18 +39,17 @@ export default function ActiveDevelopments() {
             Premium projects, currently selling.
           </h2>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.45)', lineHeight: 1.75, margin: 0 }}>
-            Each project goes through the same discipline: underwriting first, narrative second.
+            Projects evaluated for title clarity, developer track record, rental permissions, and exit liquidity — before they appear here.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           {projects.map((project) => {
             const cardContent = (
               <>
-                {/* Image */}
                 <div
                   style={{
-                    height: 180,
+                    height: 200,
                     backgroundColor: 'rgba(255,255,255,0.05)',
                     overflow: 'hidden',
                     position: 'relative',
@@ -68,7 +59,7 @@ export default function ActiveDevelopments() {
                     <img
                       src={project.image}
                       alt={project.name}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: project.disabled ? 0.4 : 1 }}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                       loading="lazy"
                     />
                   ) : (
@@ -77,31 +68,18 @@ export default function ActiveDevelopments() {
                         width: '100%',
                         height: '100%',
                         background: 'linear-gradient(135deg, rgba(120,158,173,0.15) 0%, rgba(9,63,79,0.3) 100%)',
-                      }}
-                    />
-                  )}
-                  {project.badge && (
-                    <span
-                      style={{
-                        position: 'absolute',
-                        top: 12,
-                        left: 12,
-                        fontSize: 9,
-                        fontWeight: 700,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.1em',
-                        backgroundColor: '#789ead',
-                        color: '#ffffff',
-                        padding: '3px 8px',
-                        fontFamily: 'Arial, Helvetica, sans-serif',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                       }}
                     >
-                      {project.badge}
-                    </span>
+                      <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.3)' }}>
+                        Full Pipeline →
+                      </span>
+                    </div>
                   )}
                 </div>
 
-                {/* Body */}
                 <div style={{ padding: '20px 24px 24px' }}>
                   <p style={{ fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#789ead', margin: '0 0 8px', fontFamily: 'Arial, Helvetica, sans-serif' }}>
                     {project.location}
@@ -111,32 +89,30 @@ export default function ActiveDevelopments() {
                       fontFamily: 'Georgia, "Times New Roman", serif',
                       fontSize: 18,
                       fontWeight: 400,
-                      color: project.disabled ? 'rgba(255,255,255,0.3)' : '#ffffff',
+                      color: '#ffffff',
                       marginTop: 0,
                       marginBottom: 10,
                     }}
                   >
                     {project.name}
                   </h3>
-                  <p style={{ fontSize: 13, color: project.disabled ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.55)', lineHeight: 1.7, margin: '0 0 20px' }}>
+                  <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, margin: '0 0 20px' }}>
                     {project.valueProp}
                   </p>
-                  {!project.disabled && (
-                    <span
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        fontSize: 11,
-                        fontWeight: 600,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.1em',
-                        color: '#789ead',
-                        fontFamily: 'Arial, Helvetica, sans-serif',
-                      }}
-                    >
-                      Review New Developments →
-                    </span>
-                  )}
+                  <span
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      fontSize: 11,
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.1em',
+                      color: '#789ead',
+                      fontFamily: 'Arial, Helvetica, sans-serif',
+                    }}
+                  >
+                    Review New Developments →
+                  </span>
                 </div>
               </>
             );
@@ -148,41 +124,19 @@ export default function ActiveDevelopments() {
               display: 'block',
               textDecoration: 'none',
               transition: 'border-color 0.2s',
-              cursor: project.disabled ? 'default' : 'pointer',
-              opacity: project.disabled ? 0.6 : 1,
             };
 
-            if (project.href && !project.disabled) {
-              if (project.isInternal) {
-                return (
-                  <Link
-                    key={project.name}
-                    href={project.href}
-                    style={cardStyle}
-                    className="card-hover"
-                  >
-                    {cardContent}
-                  </Link>
-                );
-              }
+            if (project.external) {
               return (
-                <Link
-                  key={project.name}
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={cardStyle}
-                  className="card-hover"
-                >
+                <Link key={project.name} href={project.href} target="_blank" rel="noopener noreferrer" style={cardStyle} className="card-hover">
                   {cardContent}
                 </Link>
               );
             }
-
             return (
-              <div key={project.name} style={cardStyle}>
+              <Link key={project.name} href={project.href} style={cardStyle} className="card-hover">
                 {cardContent}
-              </div>
+              </Link>
             );
           })}
         </div>
