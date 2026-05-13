@@ -103,7 +103,7 @@ export default function WhereToBuy() {
             fontFamily: 'Arial, Helvetica, sans-serif',
           }}
         >
-          Explore the interactive map →
+          Explore Where to Buy →
         </Link>
       </div>
     </section>

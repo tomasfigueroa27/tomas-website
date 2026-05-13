@@ -133,7 +133,7 @@ function ClosingCTA({ onSchedule }: { onSchedule: () => void }) {
         <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(22px, 2.5vw, 30px)', fontWeight: 400, color: '#ffffff', margin: '0 0 20px', lineHeight: 1.3 }}>
           Want to walk through your options live?
         </h2>
-        <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, marginTop: 0, marginBottom: 36, maxWidth: 520, marginLeft: 'auto', marginRight: 'auto' }}>
+        <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, marginTop: 0, marginBottom: 36 }}>
           Every buyer&apos;s situation is different — budget, lifestyle intent, hold period, and risk appetite all shape which node makes sense. A 20-minute call covers your priorities and maps them to specific projects.
         </p>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center' }}>
@@ -169,7 +169,7 @@ export default function DiscoveryMapContent() {
           <h1 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(28px, 3.5vw, 42px)', fontWeight: 400, color: '#ffffff', lineHeight: 1.15, margin: 0 }}>
             One island. Five lifestyles.
           </h1>
-          <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, marginTop: 16, marginBottom: 0, maxWidth: 580 }}>
+          <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, marginTop: 16, marginBottom: 0, maxWidth: 680 }}>
             Roatán is not one market. Compare the island by lifestyle, location, product type, and buyer fit before you choose a property.
           </p>
         </div>

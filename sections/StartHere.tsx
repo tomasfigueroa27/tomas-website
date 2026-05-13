@@ -32,7 +32,7 @@ export default function StartHere() {
   return (
     <section style={{ backgroundColor: '#ffffff', paddingTop: 72, paddingBottom: 72 }}>
       <div className="section-container" style={{ maxWidth: 1100 }}>
-        <div style={{ marginBottom: 48, maxWidth: 640 }}>
+        <div style={{ marginBottom: 48 }}>
           <span className="label-caps block mb-4">Start Here</span>
           <h2
             style={{

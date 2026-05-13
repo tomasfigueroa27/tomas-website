@@ -344,19 +344,21 @@ export default function NewDevelopmentsContent() {
       {/* How I evaluate new projects */}
       <section style={{ backgroundColor: '#f5f2ee', paddingTop: 72, paddingBottom: 72 }}>
         <div className="section-container" style={{ maxWidth: 1100 }}>
-          <div style={{ marginBottom: 48 }}>
-            <span className="label-caps block mb-4">Evaluation Framework</span>
-            <h2 style={{
-              fontFamily: 'Georgia, "Times New Roman", serif',
-              fontSize: 'clamp(24px, 3vw, 34px)', fontWeight: 400,
-              color: '#093f4f', margin: '0 0 12px', lineHeight: 1.2,
-            }}>
-              How I evaluate new projects.
-            </h2>
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-end" style={{ marginBottom: 48 }}>
+            <div>
+              <span className="label-caps block mb-4">Evaluation Framework</span>
+              <h2 style={{
+                fontFamily: 'Georgia, "Times New Roman", serif',
+                fontSize: 'clamp(24px, 3vw, 34px)', fontWeight: 400,
+                color: '#093f4f', margin: 0, lineHeight: 1.2,
+              }}>
+                How I evaluate new projects.
+              </h2>
+            </div>
             <p style={{
               fontFamily: 'Arial, Helvetica, sans-serif',
               fontSize: 14, color: '#666666', lineHeight: 1.75,
-              margin: 0, maxWidth: 560,
+              margin: 0,
             }}>
               More projects are coming to Roatán. The advantage is knowing which ones preserve the island&apos;s lifestyle while improving product quality, management, and buyer confidence. Every project I recommend goes through the same six tests.
             </p>
@@ -391,7 +393,7 @@ export default function NewDevelopmentsContent() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6" style={{ maxWidth: 860 }}>
+          <div className="grid md:grid-cols-2 gap-6">
             {PROJECTS.map((project) => (
               <ProjectCard key={project.name} project={project} onSchedule={handleSchedule} />
             ))}
