@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import { FileText, Map, Building2 } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const cards = [
   {
@@ -29,6 +32,8 @@ const cards = [
 ];
 
 export default function StartHere() {
+  const { ref, visible } = useScrollReveal<HTMLDivElement>();
+
   return (
     <section style={{ backgroundColor: '#ffffff', paddingTop: 72, paddingBottom: 72 }}>
       <div className="section-container" style={{ maxWidth: 1100 }}>
@@ -52,7 +57,7 @@ export default function StartHere() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3" style={{ border: '1px solid #e5e7eb' }}>
+        <div ref={ref} className="grid md:grid-cols-3" style={{ border: '1px solid #e5e7eb' }}>
           {cards.map(({ icon: Icon, label, title, desc, href, cta }, i) => (
             <Link
               key={href}
@@ -62,6 +67,10 @@ export default function StartHere() {
                 padding: '36px 32px',
                 textDecoration: 'none',
                 borderRight: i < cards.length - 1 ? '1px solid #e5e7eb' : 'none',
+                opacity: visible ? 1 : 0,
+                transform: visible ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
+                transitionDelay: visible ? `${i * 100}ms` : '0ms',
               }}
               className="card-hover group"
             >

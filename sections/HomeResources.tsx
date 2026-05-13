@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, Download, Map, FileText } from 'lucide-react';
 import { openBriefingModal } from '@/lib/analytics';
 import posts from '@/data/blog';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const recentPosts = posts.slice(0, 3);
 
@@ -11,6 +12,9 @@ const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 export default function HomeResources() {
+  const { ref: resourcesRef, visible: resourcesVisible } = useScrollReveal<HTMLDivElement>();
+  const { ref: postsRef, visible: postsVisible } = useScrollReveal<HTMLDivElement>(0.08);
+
   return (
     <section style={{ backgroundColor: '#f5f2ee', paddingTop: 72, paddingBottom: 72 }}>
       <div className="section-container" style={{ maxWidth: 1100 }}>
@@ -33,7 +37,7 @@ export default function HomeResources() {
         </div>
 
         {/* Featured resources */}
-        <div className="grid md:grid-cols-3 gap-4" style={{ marginBottom: 48 }}>
+        <div ref={resourcesRef} className="grid md:grid-cols-3 gap-4" style={{ marginBottom: 48 }}>
 
           {/* Investor Briefing */}
           <div
@@ -42,6 +46,9 @@ export default function HomeResources() {
               padding: '36px 28px',
               display: 'flex',
               flexDirection: 'column',
+              opacity: resourcesVisible ? 1 : 0,
+              transform: resourcesVisible ? 'translateY(0)' : 'translateY(20px)',
+              transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
             }}
           >
             <div
@@ -106,7 +113,7 @@ export default function HomeResources() {
           {/* U.S. Buyer Guide */}
           <Link
             href="/us-buyers-guide-roatan"
-            style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#ffffff', padding: '36px 28px', textDecoration: 'none' }}
+            style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#ffffff', padding: '36px 28px', textDecoration: 'none', opacity: resourcesVisible ? 1 : 0, transform: resourcesVisible ? 'translateY(0)' : 'translateY(20px)', transition: 'opacity 0.5s ease-out 0.1s, transform 0.5s ease-out 0.1s' }}
             className="card-hover group"
           >
             <div
@@ -176,7 +183,7 @@ export default function HomeResources() {
           {/* Where to Buy */}
           <Link
             href="/where-to-buy-in-roatan"
-            style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#ffffff', padding: '36px 28px', textDecoration: 'none' }}
+            style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#ffffff', padding: '36px 28px', textDecoration: 'none', opacity: resourcesVisible ? 1 : 0, transform: resourcesVisible ? 'translateY(0)' : 'translateY(20px)', transition: 'opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s' }}
             className="card-hover group"
           >
             <div
@@ -273,12 +280,12 @@ export default function HomeResources() {
               All articles →
             </Link>
           </div>
-          <div className="grid md:grid-cols-3 gap-4">
-            {recentPosts.map((post) => (
+          <div ref={postsRef} className="grid md:grid-cols-3 gap-4">
+            {recentPosts.map((post, i) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                style={{ display: 'block', backgroundColor: '#ffffff', padding: '24px 20px', textDecoration: 'none' }}
+                style={{ display: 'block', backgroundColor: '#ffffff', padding: '24px 20px', textDecoration: 'none', opacity: postsVisible ? 1 : 0, transform: postsVisible ? 'translateY(0)' : 'translateY(20px)', transition: `opacity 0.5s ease-out, transform 0.5s ease-out`, transitionDelay: postsVisible ? `${i * 80}ms` : '0ms' }}
                 className="card-hover group"
               >
                 <span
