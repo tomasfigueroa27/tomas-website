@@ -15,7 +15,7 @@ const jsonLd = {
     {
       '@type': 'Person',
       '@id': 'https://www.tomasfigueroa.com/#person',
-      name: 'Tomas Figueroa',
+      name: 'Tomás Figueroa',
       jobTitle: 'Real Estate Agent',
       url: 'https://www.tomasfigueroa.com',
       image: 'https://www.tomasfigueroa.com/tomas-about.jpg',
@@ -26,14 +26,14 @@ const jsonLd = {
       ],
       worksFor: {
         '@type': 'RealEstateAgent',
-        name: 'Keller Williams Roatan',
+        name: 'Keller Williams Roatán',
         url: 'https://www.tomasfigueroa.com',
       },
     },
     {
       '@type': 'RealEstateAgent',
       '@id': 'https://www.tomasfigueroa.com/#business',
-      name: 'Tomas Figueroa Real Estate',
+      name: 'Tomás Figueroa Real Estate',
       url: 'https://www.tomasfigueroa.com',
       telephone: '+50488483226',
       email: 'tomas@kwroatan.com',
@@ -41,7 +41,7 @@ const jsonLd = {
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Lawson Rock, Sandy Bay',
-        addressLocality: 'Roatan',
+        addressLocality: 'Roatán',
         addressRegion: 'Bay Islands',
         addressCountry: 'HN',
       },
@@ -50,15 +50,15 @@ const jsonLd = {
         latitude: 16.3279,
         longitude: -86.5358,
       },
-      areaServed: { '@type': 'Place', name: 'Roatan, Bay Islands, Honduras' },
+      areaServed: { '@type': 'Place', name: 'Roatán, Bay Islands, Honduras' },
       priceRange: '$$',
     },
     {
       '@type': 'LocalBusiness',
       '@id': 'https://www.tomasfigueroa.com/#localbusiness',
-      name: 'Tomas Figueroa Real Estate',
+      name: 'Tomás Figueroa Real Estate',
       description:
-        'Licensed real estate agent in Roatan, Honduras specializing in Caribbean property sales, investment properties, and new developments at Keller Williams Roatan.',
+        'Licensed real estate agent in Roatán, Honduras specializing in Caribbean property sales, investment properties, and new developments at Keller Williams Roatán.',
       url: 'https://www.tomasfigueroa.com',
       telephone: '+50488483226',
       email: 'tomas@kwroatan.com',
@@ -66,7 +66,7 @@ const jsonLd = {
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Lawson Rock, Sandy Bay',
-        addressLocality: 'Roatan',
+        addressLocality: 'Roatán',
         addressRegion: 'Bay Islands',
         addressCountry: 'HN',
       },
@@ -78,8 +78,8 @@ const jsonLd = {
       openingHours: 'Mo-Su 08:00-18:00',
       currenciesAccepted: 'USD',
       paymentAccepted: 'Cash, Wire Transfer',
-      areaServed: { '@type': 'Place', name: 'Roatan, Bay Islands, Honduras' },
-      hasMap: 'https://maps.google.com/?q=Roatan,+Bay+Islands,+Honduras',
+      areaServed: { '@type': 'Place', name: 'Roatán, Bay Islands, Honduras' },
+      hasMap: 'https://maps.google.com/?q=Roat%C3%A1n,+Bay+Islands,+Honduras',
       sameAs: [
         'https://www.facebook.com/profile.php?id=61557310059412',
         'https://www.instagram.com/roatanbytomas/',

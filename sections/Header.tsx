@@ -27,7 +27,7 @@ const navConfig: NavEntry[] = [
     type: 'group',
     label: 'Explore Roatán',
     items: [
-      { label: 'Where to Buy Map', href: '/where-to-buy-in-roatan' },
+      { label: 'Where to Buy in Roatán', href: '/where-to-buy-in-roatan' },
       { label: 'Neighborhoods', href: '/neighborhoods' },
       { label: 'New Developments', href: '/new-developments' },
     ],
