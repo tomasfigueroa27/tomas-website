@@ -134,7 +134,7 @@ export default function ActiveDevelopments() {
                         fontFamily: 'Arial, Helvetica, sans-serif',
                       }}
                     >
-                      Explore →
+                      Review New Developments →
                     </span>
                   )}
                 </div>

@@ -138,7 +138,7 @@ function ClosingCTA({ onSchedule }: { onSchedule: () => void }) {
         </p>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center' }}>
           <button onClick={onSchedule} className="btn-accent">
-            Schedule a Call with Tomás →
+            Schedule a Strategy Call →
           </button>
           <button
             onClick={() => openBriefingModal()}

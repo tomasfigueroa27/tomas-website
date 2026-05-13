@@ -281,7 +281,7 @@ function DevelopmentMap() {
               target="_blank" rel="noopener"
               style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 11, color: '#789ead', fontWeight: 600, textDecoration: 'none', fontFamily: 'Arial, Helvetica, sans-serif', textTransform: 'uppercase', letterSpacing: '0.08em' }}
             >
-              <MapPin style={{ width: 12, height: 12 }} /> Open full map
+              <MapPin style={{ width: 12, height: 12 }} /> View on Google Maps →
             </a>
           </div>
         </div>

@@ -33,7 +33,7 @@ const START_HERE = [
     num: '04',
     title: 'Investor Briefing',
     desc: 'PDF overview of the Roatán investment thesis — market structure, pricing, rental logic, and entry points.',
-    cta: 'Download Free',
+    cta: 'Download the Investor Briefing',
     href: null,
   },
 ];

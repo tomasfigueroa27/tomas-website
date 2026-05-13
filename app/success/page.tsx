@@ -40,7 +40,7 @@ export default function SuccessPage() {
             rel="noopener"
             className="btn-outline-dark"
           >
-            Schedule a Call
+            Schedule a Strategy Call
           </a>
         </div>
       </div>

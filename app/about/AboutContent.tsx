@@ -86,7 +86,7 @@ export default function AboutContent() {
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                 <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                  <Calendar style={{ width: 16, height: 16 }} /> Schedule a Call
+                  <Calendar style={{ width: 16, height: 16 }} /> Schedule a Strategy Call
                 </a>
                 <a href="tel:+50488483226" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', backgroundColor: 'rgba(255,255,255,0.1)', color: '#ffffff', textDecoration: 'none', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'Arial, Helvetica, sans-serif', transition: 'background-color 0.2s' }}
                   onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.18)')}

@@ -16,7 +16,7 @@ const cards = [
     title: 'Five Lifestyle Nodes',
     desc: "Roatán is not one market. Each area has a distinct character, price range, and future buyer. Find where you fit.",
     href: '/where-to-buy-in-roatan',
-    cta: 'Explore the map →',
+    cta: 'Explore Where to Buy →',
   },
   {
     icon: Building2,

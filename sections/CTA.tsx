@@ -83,7 +83,7 @@ const CTA = () => {
               <div style={{ width: 44, height: 44, backgroundColor: 'rgba(120,158,173,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
                 <Phone style={{ width: 18, height: 18, color: '#d4e8ed' }} />
               </div>
-              <h3 style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, fontWeight: 600, color: '#ffffff', marginBottom: 6, marginTop: 0 }}>Call Now</h3>
+              <h3 style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, fontWeight: 600, color: '#ffffff', marginBottom: 6, marginTop: 0 }}>Direct Line</h3>
               <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', margin: 0 }}>(504) 8848-3226</p>
             </a>
 
@@ -104,8 +104,8 @@ const CTA = () => {
               <div style={{ width: 44, height: 44, backgroundColor: '#d4e8ed', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
                 <Calendar style={{ width: 18, height: 18, color: '#093f4f' }} />
               </div>
-              <h3 style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, fontWeight: 600, color: '#093f4f', marginBottom: 6, marginTop: 0 }}>Schedule a Call</h3>
-              <p style={{ fontSize: 12, color: '#63868d', margin: 0 }}>Book a consultation</p>
+              <h3 style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, fontWeight: 600, color: '#093f4f', marginBottom: 6, marginTop: 0 }}>Schedule a Strategy Call</h3>
+              <p style={{ fontSize: 12, color: '#63868d', margin: 0 }}>20-minute strategy session</p>
             </a>
 
             <a
@@ -127,7 +127,7 @@ const CTA = () => {
                 <MessageCircle style={{ width: 18, height: 18, color: '#d4e8ed' }} />
               </div>
               <h3 style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, fontWeight: 600, color: '#ffffff', marginBottom: 6, marginTop: 0 }}>WhatsApp</h3>
-              <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', margin: 0 }}>Send a message</p>
+              <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', margin: 0 }}>Send a Message</p>
             </a>
           </div>
         </div>
