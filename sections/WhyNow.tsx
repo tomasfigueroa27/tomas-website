@@ -1,3 +1,7 @@
+'use client';
+
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+
 const cards = [
   {
     num: '01',
@@ -27,6 +31,8 @@ const cards = [
 ];
 
 export default function WhyNow() {
+  const { ref, visible } = useScrollReveal<HTMLDivElement>();
+
   return (
     <section style={{ backgroundColor: '#0a1628', paddingTop: 72, paddingBottom: 72, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
       <div className="section-container" style={{ maxWidth: 1100 }}>
@@ -50,14 +56,18 @@ export default function WhyNow() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {cards.map((card) => (
+        <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {cards.map((card, i) => (
             <div
               key={card.num}
               style={{
                 padding: '28px 24px',
                 backgroundColor: 'rgba(255,255,255,0.04)',
                 border: '1px solid rgba(255,255,255,0.08)',
+                opacity: visible ? 1 : 0,
+                transform: visible ? 'translateY(0)' : 'translateY(24px)',
+                transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
+                transitionDelay: visible ? `${i * 80}ms` : '0ms',
               }}
             >
               <p

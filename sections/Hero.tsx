@@ -1,26 +1,52 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { trackSchedule, openSavvyCal, openBriefingModal } from '@/lib/analytics';
 
+// Set to true once /hero-video.mp4 is available (8-12s muted loop: reef/coastline, West Bay water,
+// West End lifestyle, hillside ocean-view home). Video should be ~5-8 MB H.264, 1920×1080.
+const VIDEO_AVAILABLE = false;
+
 const Hero = () => {
-  const handleSchedule = () => {
-    trackSchedule();
-    openSavvyCal();
-  };
+  const handleSchedule = () => { trackSchedule(); openSavvyCal(); };
+  const bgRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const onScroll = () => {
+      if (!bgRef.current) return;
+      bgRef.current.style.transform = `translateY(${Math.min(window.scrollY * 0.25, 80)}px)`;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <section id="hero" className="relative w-full flex flex-col" style={{ minHeight: 580 }}>
-      <div className="absolute inset-0">
-        <img
-          src="/hero-bg.webp"
-          alt="Roatan beachfront real estate aerial view Bay Islands Honduras"
-          className="w-full h-full object-cover"
-          fetchPriority="high"
-          decoding="async"
-          width="1920"
-          height="1080"
-        />
+    <section id="hero" className="relative w-full flex flex-col" style={{ minHeight: 580, overflow: 'hidden' }}>
+      <div ref={bgRef} className="absolute inset-0" style={{ willChange: 'transform' }}>
+        {VIDEO_AVAILABLE ? (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/hero-bg.webp"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          >
+            <source src="/hero-video.mp4" type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            src="/hero-bg.webp"
+            alt="Roatan beachfront real estate aerial view Bay Islands Honduras"
+            className="w-full h-full object-cover"
+            fetchPriority="high"
+            decoding="async"
+            width="1920"
+            height="1080"
+          />
+        )}
         <div className="absolute inset-0" style={{ backgroundColor: 'rgba(9,63,79,0.87)' }} />
       </div>
 
@@ -87,7 +113,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
     </section>
   );
 };
