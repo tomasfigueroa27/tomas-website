@@ -2,9 +2,15 @@ import type { Metadata } from 'next';
 import ClosingCalculator from '@/components/ClosingCalculator';
 
 export const metadata: Metadata = {
-  title: 'Roatan Closing Cost Calculator',
-  description: 'Estimate your closing costs when buying property in Roatan, Honduras. Calculate transfer taxes, attorney fees, and registration costs for direct or corporate share transfers.',
+  title: 'Roatán Closing Cost Calculator — Estimate Your Total Acquisition Cost',
+  description: 'Estimate your total closing costs before making an offer on Roatán property. Calculate transfer tax, attorney fees, and registration costs for direct or corporate share purchases. Tomás Figueroa, Keller Williams Roatán.',
   alternates: { canonical: 'https://www.tomasfigueroa.com/calculator' },
+  openGraph: {
+    title: 'Roatán Closing Cost Calculator — Tomás Figueroa Real Estate',
+    description: 'Estimate transfer tax, attorney fees, and registration costs for buying property in Roatán, Honduras — before you make an offer.',
+    url: 'https://www.tomasfigueroa.com/calculator',
+    images: [{ url: '/opengraph.jpg', width: 1200, height: 630, alt: 'Roatán Closing Cost Calculator' }],
+  },
 };
 
 export default function CalculatorPage() {

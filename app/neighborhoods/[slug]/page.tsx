@@ -12,10 +12,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const n = neighborhoods.find((n) => n.slug === slug);
   if (!n) return {};
+  const description = `${n.tagline}. ${n.description[0].slice(0, 130)}...`;
   return {
-    title: `${n.name} Real Estate Guide`,
-    description: `${n.tagline}. ${n.description[0].slice(0, 120)}...`,
+    title: `${n.name} Real Estate Guide — Roatán, Bay Islands | Tomás Figueroa`,
+    description,
     alternates: { canonical: `https://www.tomasfigueroa.com/neighborhoods/${n.slug}` },
+    openGraph: {
+      title: `${n.name} Real Estate Guide — Roatán, Bay Islands`,
+      description,
+      url: `https://www.tomasfigueroa.com/neighborhoods/${n.slug}`,
+      images: [{ url: '/opengraph.jpg', width: 1200, height: 630, alt: `${n.name}, Roatán — Real Estate Guide` }],
+    },
   };
 }
 

@@ -91,11 +91,11 @@ const jsonLd = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.tomasfigueroa.com'),
   title: {
-    default: 'Roatan Real Estate | Tomas Figueroa – KW Roatan',
-    template: '%s | Tomas Figueroa – KW Roatan',
+    default: 'Roatán Real Estate | Tomás Figueroa – Keller Williams Roatán',
+    template: '%s | Tomás Figueroa – Keller Williams Roatán',
   },
   description:
-    'Buy, sell, or invest in Roatan, Honduras real estate with Tomas Figueroa at Keller Williams Roatan. Expert guidance on Caribbean property, new developments, and investment opportunities.',
+    'Buy, sell, or invest in Roatán, Honduras real estate with Tomás Figueroa at Keller Williams Roatán. Expert guidance on Caribbean property, new developments, and investment opportunities in the Bay Islands.',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,

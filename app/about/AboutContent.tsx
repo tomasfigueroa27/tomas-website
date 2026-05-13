@@ -7,14 +7,14 @@ const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   '@id': 'https://www.tomasfigueroa.com/#person',
-  name: 'Tomas Figueroa',
+  name: 'Tomás Figueroa',
   jobTitle: 'Licensed Real Estate Agent',
   url: 'https://www.tomasfigueroa.com',
   image: 'https://www.tomasfigueroa.com/tomas-about.jpg',
   telephone: '+50488483226',
   email: 'tomas@kwroatan.com',
-  knowsAbout: ['Roatan real estate', 'Caribbean property investment', 'Honduras property law'],
-  worksFor: { '@type': 'RealEstateAgent', name: 'Keller Williams Roatan', url: 'https://www.tomasfigueroa.com' },
+  knowsAbout: ['Roatán real estate', 'Caribbean property investment', 'Honduras property law'],
+  worksFor: { '@type': 'RealEstateAgent', name: 'Keller Williams Roatán', url: 'https://www.tomasfigueroa.com' },
   sameAs: ['https://www.facebook.com/profile.php?id=61557310059412', 'https://www.instagram.com/roatanbytomas/', 'https://www.linkedin.com/in/roatanbytomas/'],
 };
 
@@ -67,7 +67,7 @@ export default function AboutContent() {
                   lineHeight: 1.15,
                 }}
               >
-                Tomas Figueroa
+                Tomás Figueroa
               </h1>
               <div style={{ marginBottom: 28 }}>
                 <div style={{ marginBottom: 18 }}>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { ChevronDown, ChevronUp, Calendar } from 'lucide-react';
 import { trackSchedule, openSavvyCal } from '@/lib/analytics';
 
@@ -92,9 +93,9 @@ const themes = [
   },
   {
     id: 'getting-started',
-    title: 'Getting Started with Tomas',
+    title: 'Getting Started with Tomás',
     faqs: [
-      { q: 'How do I get started with Tomas Figueroa?', a: 'The best first step is a 30-minute strategy call. Tomas will listen to your goals, walk you through current market conditions, step by step process review and explain how to approach finding the right property in Roatan.' },
+      { q: 'How do I get started with Tomás Figueroa?', a: 'The best first step is a 20-minute strategy call. Tomás will listen to your goals, walk you through current market conditions, and explain how to approach finding the right property in Roatán.' },
     ],
   },
 ];
@@ -140,12 +141,43 @@ export default function FaqContent() {
               lineHeight: 1.15,
             }}
           >
-            Roatan Real Estate FAQ
+            Roatán Real Estate FAQ
           </h1>
-          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', marginTop: 8, marginBottom: 12 }}>Last reviewed: May 2026 · Roatan Real Estate FAQ</p>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', marginTop: 8, marginBottom: 12 }}>Last reviewed: May 2026 · Roatán Real Estate FAQ</p>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 560 }}>
-            Common questions about buying, investing, and living in Roatan — organized by topic.
+            Common questions about buying, investing, and living in Roatán — organized by topic.
           </p>
+        </div>
+      </section>
+
+      {/* Quick answers — AEO */}
+      <section style={{ backgroundColor: '#f0f8fb', paddingTop: 40, paddingBottom: 40, borderBottom: '1px solid #d4e8ed' }}>
+        <div className="section-container" style={{ maxWidth: 860 }}>
+          <span className="label-caps block mb-5" style={{ color: '#789ead' }}>Quick Answers</span>
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              {
+                q: 'Can foreigners own property in Roatán?',
+                a: 'Yes. Foreigners can own property directly in Roatán. Individual buyers can hold up to 3,000 m² in their personal name. Larger parcels are held through a Honduran corporation — which a foreigner can fully control.',
+              },
+              {
+                q: 'What do buyers pay at closing?',
+                a: 'Buyer closing costs run 3–6% of the purchase price: transfer tax (1.5%), cadastral certificate (1–2%), registry fees (~0.5%), and legal fees (2–3%). Agent commissions are paid by the seller.',
+              },
+              {
+                q: 'How long does the purchase take?',
+                a: 'Typically 30–60 days from signed offer to closing. Full title registration at the Public Property Registry takes an additional 3–4 months after the deed is executed.',
+              },
+            ].map(({ q, a }) => (
+              <div key={q} style={{ backgroundColor: '#ffffff', borderLeft: '3px solid #789ead', padding: '18px 20px' }}>
+                <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#789ead', margin: '0 0 8px' }}>
+                  Quick Answer
+                </p>
+                <p style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 13, fontWeight: 400, color: '#093f4f', margin: '0 0 8px', lineHeight: 1.35 }}>{q}</p>
+                <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, color: '#444', lineHeight: 1.7, margin: 0 }}>{a}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -206,12 +238,38 @@ export default function FaqContent() {
         </div>
       </section>
 
+      {/* Related guides */}
+      <section style={{ backgroundColor: '#f5f2ee', paddingTop: 52, paddingBottom: 52 }}>
+        <div className="section-container" style={{ maxWidth: 860 }}>
+          <span className="label-caps block mb-5" style={{ color: '#789ead' }}>Go Deeper</span>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {[
+              { href: '/us-buyers-guide-roatan', label: 'For U.S. Buyers', title: "U.S. Buyer's Guide", cta: 'Read the guide →' },
+              { href: '/where-to-buy-in-roatan', label: 'Location', title: 'Where to Buy in Roatán', cta: 'Explore the map →' },
+              { href: '/roatan-market', label: 'Market Data', title: 'Market Guide 2026', cta: 'View market data →' },
+              { href: '/neighborhoods', label: 'Neighborhoods', title: 'Neighborhood Profiles', cta: 'Compare areas →' },
+            ].map(({ href, label, title, cta }) => (
+              <Link
+                key={href}
+                href={href}
+                style={{ display: 'block', backgroundColor: '#ffffff', padding: '20px 22px', textDecoration: 'none' }}
+                className="card-hover group"
+              >
+                <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.13em', color: '#789ead', display: 'block', marginBottom: 8 }}>{label}</span>
+                <p style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 14, fontWeight: 400, color: '#093f4f', margin: '0 0 12px', lineHeight: 1.3 }}>{title}</p>
+                <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#093f4f' }}>{cta}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section style={{ paddingBottom: 64 }}>
         <div className="section-container" style={{ maxWidth: 720 }}>
           <div style={{ backgroundColor: '#093f4f', padding: '40px 32px', textAlign: 'center', color: '#ffffff' }}>
             <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 400, color: '#ffffff', marginTop: 0, marginBottom: 10 }}>Still have questions?</h2>
-            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, marginBottom: 24 }}>Schedule a free 30-minute call with Tomas and get straight answers for your specific situation.</p>
+            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, marginBottom: 24 }}>Schedule a free 30-minute call with Tomás and get straight answers for your specific situation.</p>
             <button onClick={() => { trackSchedule(); openSavvyCal(); }} className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
               <Calendar style={{ width: 16, height: 16 }} /> Schedule a Strategy Call
             </button>
