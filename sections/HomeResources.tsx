@@ -99,7 +99,7 @@ export default function HomeResources() {
               className="btn-accent"
               style={{ alignSelf: 'flex-start' }}
             >
-              Download Free
+              Download the Investor Briefing
             </button>
           </div>
 
@@ -239,7 +239,7 @@ export default function HomeResources() {
                 color: '#093f4f',
               }}
             >
-              Explore the map →
+              Explore Where to Buy →
             </span>
           </Link>
         </div>

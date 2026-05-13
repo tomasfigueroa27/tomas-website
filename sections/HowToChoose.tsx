@@ -94,7 +94,7 @@ export default function HowToChoose() {
 
         <div style={{ textAlign: 'center' }}>
           <button onClick={openBriefingModal} className="btn-accent">
-            Get the full Investor Briefing →
+            Download the Investor Briefing →
           </button>
         </div>
       </div>

@@ -203,7 +203,7 @@ export default function InvestorBriefingModal() {
             <X style={{ width: 20, height: 20 }} />
           </button>
           <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(20px, 3vw, 26px)', fontWeight: 400, color: '#ffffff', margin: 0, lineHeight: 1.2 }}>
-            Get the Roatan Investor Briefing
+            Download the Investor Briefing
           </h2>
           <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, marginTop: 10, marginBottom: 0 }}>
             Two minutes. Tell me a little about what you&apos;re looking for and I&apos;ll send the briefing — the catalysts, the math, current developments, and how to evaluate them honestly.
@@ -249,7 +249,7 @@ export default function InvestorBriefingModal() {
                   onClick={handleSuccessCall}
                   style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#093f4f', textDecoration: 'underline', fontFamily: 'Arial, Helvetica, sans-serif', padding: 0 }}
                 >
-                  Schedule a Call →
+                  Schedule a Strategy Call →
                 </button>
               </div>
             </div>

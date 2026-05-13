@@ -433,7 +433,7 @@ export default function USBuyersGuideContent() {
                       cursor: 'pointer',
                     }}
                   >
-                    Schedule a Call →
+                    Schedule a Strategy Call →
                   </button>
                 </div>
               </div>
