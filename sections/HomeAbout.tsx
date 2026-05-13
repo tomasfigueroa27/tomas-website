@@ -30,7 +30,7 @@ const HomeAbout = () => {
             <div style={{ aspectRatio: '4/5', overflow: 'hidden' }}>
               <img
                 src="/tomas-about.jpg"
-                alt="Tomas Figueroa – Roatan Real Estate Agent"
+                alt="Tomás Figueroa — Licensed Realtor, Keller Williams Roatán"
                 className="w-full h-full object-cover object-top"
                 loading="lazy"
                 decoding="async"
@@ -66,16 +66,16 @@ const HomeAbout = () => {
                 lineHeight: 1.2,
               }}
             >
-              Who is Tomas Figueroa?
+              Tomás Figueroa
             </h2>
             <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 16 }}>
-              Licensed Realtor at Keller Williams Roatan. 20+ years of international sales experience, 4 years on the ground in Roatán — working with US, Canadian, and global buyers in the premium segment.
+              Licensed Realtor at Keller Williams Roatán. 20+ years of international sales experience, 4 years on the ground in Roatán — working with U.S., Canadian, and global buyers in the premium segment.
             </p>
             <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 16 }}>
-              My read on this market: Roatán sits at a clear inflection point — improving airlift, branded hospitality arriving, and a new development cycle underway. Buyers who understand the island now are making decisions with context, not catching up later.
+              Improving airlift, three institutional hotel brands now operating, and a new development cycle underway. Buyers who understand the island now are positioned ahead of the curve — not catching up after it.
             </p>
             <p style={{ fontSize: 12, color: '#999999', fontStyle: 'italic', marginBottom: 28 }}>
-              Last reviewed: May 2026 · Licensed Realtor, Keller Williams Roatan, Bay Islands, Honduras.
+              Last reviewed: May 2026 · Licensed Realtor, Keller Williams Roatán, Bay Islands, Honduras.
             </p>
             <Link href="/about" className="btn-primary">
               Learn More About Me
