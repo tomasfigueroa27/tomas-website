@@ -173,7 +173,7 @@ export default function BlogContent() {
           <h1 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 400, color: '#ffffff', margin: 0, lineHeight: 1.15 }}>
             The Roatán Real Estate Blog
           </h1>
-          <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, marginTop: 14, marginBottom: 0, maxWidth: 540 }}>
+          <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, marginTop: 14, marginBottom: 0, maxWidth: 660 }}>
             Market reports, buyer guides, neighborhood analysis, and island intelligence — written from the ground in Roatán.
           </p>
         </div>

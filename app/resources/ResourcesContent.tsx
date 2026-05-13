@@ -119,7 +119,7 @@ export default function ResourcesContent() {
           <h1 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 400, color: '#ffffff', margin: 0, lineHeight: 1.15 }}>
             Everything you need to buy in Roatán.
           </h1>
-          <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, marginTop: 14, marginBottom: 0, maxWidth: 520 }}>
+          <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 14, color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, marginTop: 14, marginBottom: 0, maxWidth: 660 }}>
             Guides, market data, neighborhood profiles, and tools — built for buyers who want to understand the market before they commit.
           </p>
         </div>
