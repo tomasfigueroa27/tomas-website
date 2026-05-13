@@ -134,7 +134,7 @@ export default function RoatanMarketPage() {
           <div style={{ backgroundColor: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.14)', padding: '24px 32px', maxWidth: 720, margin: '0 auto 32px', textAlign: 'left' }}>
             <p style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#789ead', marginTop: 0, marginBottom: 12 }}>Quick Read</p>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.82)', lineHeight: 1.75, margin: 0 }}>
-              Roatán's market fundamentals compare favorably to most Caribbean markets — and the catalysts that precede sustained buyer attention are now in place. Average condo prices are $325,000. Average homes are $397,000. Well-located rentals yield 5–8% annually. Foreign ownership is permitted under Decree 90-90, with property over 3,000 square meters held through a Honduran corporation. The catalysts — Air Canada nonstop service from Montr&eacute;al and Toronto starting winter 2026/27, the Meli&aacute;-affiliated Hotel Roat&aacute;n Media Luna, the Margaritaville all-inclusive opening 2027 — are arriving now, not someday.
+              Roatán's market fundamentals compare favorably to most Caribbean markets — and the catalysts that precede sustained buyer attention are now in place. Average condo prices are $325,000. Average homes are $397,000. Well-located rentals yield 5–8% annually. Foreign ownership is permitted under Decree 90-90, with property over 3,000 square meters held through a Honduran corporation. The catalysts — Air Canada seasonal service from Montr&eacute;al and Toronto, the Meli&aacute;-affiliated Hotel Roat&aacute;n Media Luna, the Margaritaville all-inclusive opening 2027 — are arriving now, not someday.
             </p>
           </div>
           <ScheduleButton className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
@@ -164,11 +164,11 @@ export default function RoatanMarketPage() {
           <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75, marginBottom: 24 }}>The single biggest signal in Roatan right now is that international institutions are voting with capital. Airlines, hotel brands, and infrastructure operators do not commit to a market on hope. They commit on data. Here is what arrived in the last 12 months:</p>
           <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px' }}>
             {[
-              { company: 'Air Canada', text: 'announced its first-ever nonstop service from Montréal and Toronto to Roatán, launching December 2026 and running through April 2027. This makes Roatan one of the few Caribbean destinations now reachable nonstop from both major Canadian hubs.' },
+              { company: 'Air Canada', text: 'launched seasonal nonstop service from Montréal and Toronto to Roatán for the 2026/27 winter season, expanding Canadian access to the island.' },
               { company: 'Hotel Roatán Media Luna', text: 'joined the Meliá portfolio (January 2026), bringing global hospitality network distribution to the island for the first time at scale.' },
               { company: 'Margaritaville Island Reserve Resort Roatán', text: 'by Karisma Hotels & Resorts broke ground in March 2025 and is on track to open in 2027 with 170 all-inclusive rooms.' },
               { company: 'Kimpton Grand Roatán Resort & Spa', text: 'is established and operating on West Bay Beach with 122 rooms, suites, and bungalows.' },
-              { company: 'U.S. carrier connectivity', text: 'continues to expand: American (daily Miami), United (near-daily Houston), Delta (Atlanta), Sun Country (Minneapolis), with seasonal routes from Dallas and Denver.' },
+              { company: 'U.S. carrier connectivity', text: 'United Airlines operates daily year-round service from Houston; American Airlines daily from Miami. Seasonal service from Dallas-Fort Worth, Atlanta, Denver, Minneapolis, and Guatemala City continues to expand — schedules subject to change.' },
             ].map(({ company, text }) => (
               <li key={company} style={{ display: 'flex', gap: 14, padding: '14px 0', borderBottom: '1px solid #d4e8ed', fontSize: 14, color: '#555555', lineHeight: 1.75 }}>
                 <span style={{ marginTop: 9, width: 6, height: 6, backgroundColor: '#093f4f', flexShrink: 0, display: 'inline-block' }} />

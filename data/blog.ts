@@ -966,11 +966,11 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: 'Getting to Roatán is relatively straightforward, with several travel options available to suit different preferences and budgets. Most international travelers fly into Juan Manuel Gálvez International Airport (RTB), located on the western side of the island near Coxen Hole. Direct flights are available from major cities in the United States, Canada, and Central America, making it convenient for North American travelers.',
+        text: 'Getting to Roatán is relatively straightforward. Most international travelers fly into Juan Manuel Gálvez International Airport (RTB), near Coxen Hole on the western side of the island. United Airlines operates daily year-round service from Houston; American Airlines operates daily from Miami. Seasonal service from Dallas-Fort Worth, Atlanta, Denver, Minneapolis, Montréal, Toronto, and Guatemala City continues to expand — schedules subject to change.',
       },
       {
         type: 'p',
-        text: 'For those traveling from within Honduras or neighboring countries, domestic flights to Roatán are frequent and affordable. Airlines such as Avianca, American Airlines, and Delta offer regular flights, ensuring you have multiple options to choose from. Once you land at RTB, you\'ll find various transportation options such as taxis, shuttles, and rental cars to take you to your accommodation.',
+        text: 'For those traveling from within Honduras or neighboring countries, regional carriers connect Roatán to Tegucigalpa, San Pedro Sula, and other Central American cities. Once you land at RTB, you\'ll find taxis, shuttles, and rental cars to reach your accommodation.',
       },
       {
         type: 'p',
@@ -1103,7 +1103,7 @@ const posts: BlogPost[] = [
       'Roatán is located 35 miles off the northern coast of Honduras in the western Caribbean Sea.',
       'The island is approximately 40 miles long and sits along the Mesoamerican Barrier Reef.',
       'Temperatures stay between 70°F and 80°F year-round with minimal hurricane risk.',
-      'Direct flights are available from major U.S. cities including Houston, Miami, Atlanta, and Dallas.',
+      'United Airlines flies daily year-round from Houston; American Airlines daily from Miami. Seasonal service from Atlanta, Dallas-Fort Worth, Denver, Minneapolis, and more.',
       'U.S. dollars are widely accepted and English is commonly spoken throughout the island.',
     ],
     body: [
@@ -1187,12 +1187,10 @@ const posts: BlogPost[] = [
       {
         type: 'ul',
         items: [
-          'United Airlines: Daily non-stop flights from Houston (IAH) and regular service from Denver (DEN).',
-          'American Airlines: Daily non-stop flights from Miami (MIA) and regular service from Dallas-Fort Worth (DFW).',
-          'Delta Air Lines: Regular flights from Atlanta (ATL).',
-          'Sun Country Airlines: Seasonal flights from Minneapolis (MSP).',
-          'CM Airlines, Tropic Air, and other regional carriers offer flights to and from Central America.',
-          'WestJet and other charter services also provide seasonal flights from Canada.',
+          'United Airlines: Daily year-round service from Houston (IAH).',
+          'American Airlines: Daily service from Miami (MIA).',
+          'Seasonal service from Dallas-Fort Worth (DFW), Atlanta (ATL), Denver (DEN), Minneapolis (MSP), Montréal, Toronto, and Guatemala City — schedules subject to change.',
+          'Regional carriers serve Central American routes.',
         ],
       },
       {
