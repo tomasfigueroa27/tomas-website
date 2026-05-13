@@ -328,11 +328,9 @@ export default function NewDevelopmentsContent() {
               href="/us-buyers-guide-roatan"
               style={{
                 fontFamily: 'Arial, Helvetica, sans-serif',
-                fontSize: 11, fontWeight: 600,
-                textTransform: 'uppercase', letterSpacing: '0.12em',
-                color: 'rgba(255,255,255,0.6)',
+                fontSize: 12, fontWeight: 600,
+                color: 'rgba(255,255,255,0.65)',
                 textDecoration: 'none',
-                padding: '12px 0',
               }}
             >
               Read the U.S. Buyer&apos;s Guide →
@@ -403,7 +401,7 @@ export default function NewDevelopmentsContent() {
           <div style={{
             marginTop: 32,
             border: '1px solid rgba(255,255,255,0.08)',
-            padding: '32px 36px',
+            padding: 'clamp(20px, 4vw, 32px) clamp(20px, 4vw, 36px)',
             display: 'flex',
             flexWrap: 'wrap',
             gap: 24,

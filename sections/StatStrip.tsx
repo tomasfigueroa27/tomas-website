@@ -13,9 +13,9 @@ export default function StatStrip() {
           {stats.map((stat, i) => (
             <div
               key={i}
+              className="stat-item"
               style={{
                 padding: '20px 16px',
-                borderRight: i < stats.length - 1 ? '1px solid rgba(255,255,255,0.1)' : 'none',
               }}
             >
               <p

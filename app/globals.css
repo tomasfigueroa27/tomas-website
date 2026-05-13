@@ -241,3 +241,53 @@
 ::-webkit-scrollbar-track { background: #f5f2ee; }
 ::-webkit-scrollbar-thumb { background: #789ead; }
 ::-webkit-scrollbar-thumb:hover { background: #093f4f; }
+
+/* StatStrip: responsive right-borders for 2-col mobile / 4-col desktop grid */
+.stat-item {
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.stat-item:last-child {
+  border-right: none;
+}
+@media (max-width: 767px) {
+  /* in 2-col grid, even items sit in the right column — no right border needed */
+  .stat-item:nth-child(2n) {
+    border-right: none;
+  }
+}
+
+/* StartHere cards: bottom border on 1-col mobile, right border on 3-col desktop */
+.start-here-card {
+  border-right: none;
+  border-bottom: 1px solid #e5e7eb;
+}
+.start-here-card:last-child {
+  border-bottom: none;
+}
+@media (min-width: 768px) {
+  .start-here-card {
+    border-bottom: none;
+    border-right: 1px solid #e5e7eb;
+  }
+  .start-here-card:last-child {
+    border-right: none;
+  }
+}
+
+/* Compact table scroll hint for mobile */
+.table-scroll-hint {
+  position: relative;
+}
+.table-scroll-hint::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 32px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.8));
+  pointer-events: none;
+}
+@media (min-width: 768px) {
+  .table-scroll-hint::after { display: none; }
+}
