@@ -3,7 +3,6 @@
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const POINTS = [
-  "The island is still small. The lifestyle is still personal. The reef is still right there.",
   "Airlift is improving, branded hospitality is arriving, and a new development cycle is raising the product standard.",
   "International buyers are starting to see Roatán as more than a diving destination — before the best parts become obvious.",
 ];

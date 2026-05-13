@@ -48,7 +48,7 @@ export default function WhereToBuy() {
             Five lifestyle nodes. One island.
           </h2>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.45)', lineHeight: 1.75, margin: 0 }}>
-            Roatán isn&apos;t one market. Each lifestyle node has a distinct character, price range, and future buyer.
+            Each area attracts a different buyer. Know where you fit before you compare listings.
           </p>
         </div>
 
