@@ -26,7 +26,7 @@ const jsonLd = {
       ],
       worksFor: {
         '@type': 'RealEstateAgent',
-        name: 'Keller Williams Roatán',
+        name: 'Roatan Reef',
         url: 'https://www.tomasfigueroa.com',
       },
     },
@@ -58,7 +58,7 @@ const jsonLd = {
       '@id': 'https://www.tomasfigueroa.com/#localbusiness',
       name: 'Tomás Figueroa Real Estate',
       description:
-        'Licensed real estate agent in Roatán, Honduras specializing in Caribbean property sales, investment properties, and new developments at Keller Williams Roatán.',
+        'Licensed real estate agent in Roatán, Honduras specializing in Caribbean property sales, investment properties, and new developments.',
       url: 'https://www.tomasfigueroa.com',
       telephone: '+50488483226',
       email: 'tomas@kwroatan.com',
@@ -92,11 +92,11 @@ const jsonLd = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.tomasfigueroa.com'),
   title: {
-    default: 'Roatán Real Estate | Tomás Figueroa – Keller Williams Roatán',
-    template: '%s | Tomás Figueroa – Keller Williams Roatán',
+    default: 'Roatán Real Estate | Tomás Figueroa – Roatan Reef',
+    template: '%s | Tomás Figueroa – Roatan Reef',
   },
   description:
-    'Buy, sell, or invest in Roatán, Honduras real estate with Tomás Figueroa at Keller Williams Roatán. Expert guidance on Caribbean property, new developments, and investment opportunities in the Bay Islands.',
+    'Buy, sell, or invest in Roatán, Honduras real estate with Tomás Figueroa at Roatan Reef. Expert guidance on Caribbean property, new developments, and investment opportunities in the Bay Islands.',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
@@ -114,10 +114,10 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.tomasfigueroa.com',
-    siteName: 'Tomas Figueroa – KW Roatan',
-    title: 'Roatan Real Estate | Tomas Figueroa – KW Roatan',
-    description: 'Strategic real estate guidance for investors and buyers considering property in Roatan, Honduras. Licensed Realtor at Keller Williams Roatan.',
-    images: [{ url: 'https://www.tomasfigueroa.com/opengraph.jpg', width: 1200, height: 630, alt: 'Tomas Figueroa – Licensed Realtor, Keller Williams Roatan, Bay Islands Honduras' }],
+    siteName: 'Tomas Figueroa – Roatan Reef',
+    title: 'Roatan Real Estate | Tomas Figueroa – Roatan Reef',
+    description: 'Strategic real estate guidance for investors and buyers considering property in Roatan, Honduras. Licensed Realtor at Roatan Reef.',
+    images: [{ url: 'https://www.tomasfigueroa.com/opengraph.jpg', width: 1200, height: 630, alt: 'Tomas Figueroa – Licensed Realtor, Roatan Reef, Bay Islands Honduras' }],
   },
   robots: {
     index: true,

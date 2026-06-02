@@ -194,11 +194,7 @@ const Footer = () => {
             <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)', margin: 0 }}>
               © {currentYear} Tomas Figueroa Real Estate. All rights reserved.
             </p>
-            <img
-              src="/kw-logo-white.png"
-              alt="Keller Williams Roatan"
-              style={{ height: 28, width: 'auto', opacity: 0.3 }}
-            />
+            <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.2)', fontFamily: 'Arial, Helvetica, sans-serif', letterSpacing: '0.06em' }}>Roatan Reef</span>
           </div>
         </div>
       </div>

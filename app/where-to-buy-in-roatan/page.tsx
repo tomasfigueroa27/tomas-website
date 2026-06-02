@@ -4,7 +4,7 @@ import DiscoveryMapContent from './DiscoveryMapContent';
 export const metadata: Metadata = {
   title: 'Where to Buy in Roatán: 5 Lifestyle Nodes — Tomás Figueroa Real Estate',
   description:
-    "An interactive map of Roatán's five lifestyle nodes — West Bay, West End, Sandy Bay, Pristine Bay, and French Harbour & East. Compare lifestyles, price ranges, and buyer profiles before you choose. Tomás Figueroa, Keller Williams Roatán.",
+    "An interactive map of Roatán's five lifestyle nodes — West Bay, West End, Sandy Bay, Pristine Bay, and French Harbour & East. Compare lifestyles, price ranges, and buyer profiles before you choose. Tomás Figueroa, Roatan Reef.",
   alternates: {
     canonical: 'https://www.tomasfigueroa.com/where-to-buy-in-roatan',
   },

@@ -3,7 +3,7 @@ import FaqContent from './FaqContent';
 
 export const metadata: Metadata = {
   title: 'Roatán Real Estate FAQ — Common Buyer Questions Answered',
-  description: 'Answers to the most common questions about buying, investing, and living in Roatán, Honduras — foreign ownership, the buying process, closing costs, financing, and neighborhood selection. Tomás Figueroa, Keller Williams Roatán.',
+  description: 'Answers to the most common questions about buying, investing, and living in Roatán, Honduras — foreign ownership, the buying process, closing costs, financing, and neighborhood selection. Tomás Figueroa, Roatan Reef.',
   alternates: { canonical: 'https://www.tomasfigueroa.com/faq' },
   openGraph: {
     title: 'Roatán Real Estate FAQ — Common Buyer Questions Answered',

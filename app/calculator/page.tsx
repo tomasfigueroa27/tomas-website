@@ -3,7 +3,7 @@ import ClosingCalculator from '@/components/ClosingCalculator';
 
 export const metadata: Metadata = {
   title: 'Roatán Closing Cost Calculator — Estimate Your Total Acquisition Cost',
-  description: 'Estimate your total closing costs before making an offer on Roatán property. Calculate transfer tax, attorney fees, and registration costs for direct or corporate share purchases. Tomás Figueroa, Keller Williams Roatán.',
+  description: 'Estimate your total closing costs before making an offer on Roatán property. Calculate transfer tax, attorney fees, and registration costs for direct or corporate share purchases. Tomás Figueroa, Roatan Reef.',
   alternates: { canonical: 'https://www.tomasfigueroa.com/calculator' },
   openGraph: {
     title: 'Roatán Closing Cost Calculator — Tomás Figueroa Real Estate',

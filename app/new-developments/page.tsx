@@ -4,7 +4,7 @@ import NewDevelopmentsContent from './NewDevelopmentsContent';
 export const metadata: Metadata = {
   title: 'New Developments in Roatán — Tomás Figueroa Real Estate',
   description:
-    'Active and upcoming real estate developments in Roatán, Honduras — pre-construction oceanfront residences, resort communities, and emerging hillside projects. Evaluated by Tomás Figueroa, Keller Williams Roatán.',
+    'Active and upcoming real estate developments in Roatán, Honduras — pre-construction oceanfront residences, resort communities, and emerging hillside projects. Evaluated by Tomás Figueroa, Roatan Reef.',
   alternates: { canonical: 'https://www.tomasfigueroa.com/new-developments' },
   openGraph: {
     title: 'New Developments in Roatán — Tomás Figueroa Real Estate',

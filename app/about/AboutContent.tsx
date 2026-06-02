@@ -14,7 +14,7 @@ const personSchema = {
   telephone: '+50488483226',
   email: 'tomas@kwroatan.com',
   knowsAbout: ['Roatán real estate', 'Caribbean property investment', 'Honduras property law'],
-  worksFor: { '@type': 'RealEstateAgent', name: 'Keller Williams Roatán', url: 'https://www.tomasfigueroa.com' },
+  worksFor: { '@type': 'RealEstateAgent', name: 'Roatan Reef', url: 'https://www.tomasfigueroa.com' },
   sameAs: ['https://www.facebook.com/profile.php?id=61557310059412', 'https://www.instagram.com/roatanbytomas/', 'https://www.linkedin.com/in/roatanbytomas/'],
 };
 
@@ -82,7 +82,7 @@ export default function AboutContent() {
                   <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#789ead', display: 'block', marginBottom: 6 }}>The Market Thesis</span>
                   <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', lineHeight: 1.75, margin: 0 }}>Roatán is in a clear improvement arc: airlift is expanding, branded hospitality has arrived, and a new development cycle is underway. The market is still quiet enough that buyers who take the time to understand it can choose well — without competing against mainstream real estate awareness.</p>
                 </div>
-                <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', margin: 0 }}>Last reviewed: May 2026 · Licensed Realtor, Keller Williams Roatan, Bay Islands, Honduras.</p>
+                <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', margin: 0 }}>Last reviewed: May 2026 · Licensed Realtor, Roatan Reef, Bay Islands, Honduras.</p>
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                 <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
@@ -97,7 +97,7 @@ export default function AboutContent() {
               </div>
             </div>
             <div style={{ overflow: 'hidden', aspectRatio: '3/4' }}>
-              <img src="/tomas-portrait.jpg" alt="Tomas Figueroa licensed Realtor Keller Williams Roatan" className="w-full h-full object-cover" />
+              <img src="/tomas-portrait.jpg" alt="Tomas Figueroa licensed Realtor Roatan Reef" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -134,7 +134,7 @@ export default function AboutContent() {
                 Why Work With Me?
               </h2>
               <div style={{ fontSize: 14, color: '#555555', lineHeight: 1.75 }} className="space-y-4">
-                <p>With over 20 years of experience in international sales, business development, and leadership, I bring a strategic and disciplined approach to real estate in Roatan. As a licensed agent with Keller Williams Roatan, I advise buyers, sellers, and developers with clarity, structure, and a long-term perspective.</p>
+                <p>With over 20 years of experience in international sales, business development, and leadership, I bring a strategic and disciplined approach to real estate in Roatan. As a licensed agent with Roatan Reef — and formerly with RE/MAX and Keller Williams — I advise buyers, sellers, and developers with clarity, structure, and a long-term perspective.</p>
                 <p>For buyers and investors, I focus on aligning property selection with clearly defined objectives — whether that means cash flow, long-term appreciation, lifestyle flexibility, or relocation. Every opportunity is evaluated through market fundamentals, positioning, and future development patterns.</p>
                 <p>For sellers and developers, I combine strategic pricing, global exposure, professional marketing, and strong negotiation to maximize positioning and value in Roatan&apos;s evolving market.</p>
               </div>
