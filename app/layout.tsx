@@ -36,7 +36,7 @@ const jsonLd = {
       name: 'Tomás Figueroa Real Estate',
       url: 'https://www.tomasfigueroa.com',
       telephone: '+50488483226',
-      email: 'tomas@kwroatan.com',
+      email: 'tomas@tomasfigueroa.com',
       image: 'https://www.tomasfigueroa.com/logo-white.webp',
       address: {
         '@type': 'PostalAddress',
@@ -61,7 +61,7 @@ const jsonLd = {
         'Licensed real estate agent in Roatán, Honduras specializing in Caribbean property sales, investment properties, and new developments.',
       url: 'https://www.tomasfigueroa.com',
       telephone: '+50488483226',
-      email: 'tomas@kwroatan.com',
+      email: 'tomas@tomasfigueroa.com',
       image: 'https://www.tomasfigueroa.com/logo-white.webp',
       address: {
         '@type': 'PostalAddress',

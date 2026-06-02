@@ -33,7 +33,7 @@ const personSchema = {
   worksFor: { '@type': 'Organization', name: 'Roatan Reef' },
   url: 'https://www.tomasfigueroa.com',
   telephone: '+50488483226',
-  email: 'tomas@kwroatan.com',
+  email: 'tomas@tomasfigueroa.com',
   sameAs: [
     'https://www.linkedin.com/in/roatanbytomas/',
     'https://www.instagram.com/roatanbytomas/',
@@ -49,7 +49,7 @@ const businessSchema = {
   name: 'Tomás Figueroa – Roatan Reef',
   url: 'https://www.tomasfigueroa.com',
   telephone: '+50488483226',
-  email: 'tomas@kwroatan.com',
+  email: 'tomas@tomasfigueroa.com',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Roatán',
