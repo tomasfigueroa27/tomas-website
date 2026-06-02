@@ -223,7 +223,7 @@ export default function InvestorBriefingModal() {
                 Briefing on its way.
               </h3>
               <p style={{ fontSize: 13, color: '#555555', lineHeight: 1.75, marginBottom: 28 }}>
-                Check your email in 2 minutes — the briefing is on its way from tomas@kwroatan.com. Want it right now?
+                Check your email in 2 minutes — the briefing is on its way. Want it right now?
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {/* TODO: Replace /roatan-investor-briefing.pdf with the real briefing PDF before launch */}

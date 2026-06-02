@@ -203,7 +203,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "Working through an internationally recognized brokerage (Keller Williams, Sotheby's, RE/MAX, Coldwell Banker) gives you process protections, compliance standards, and recourse paths that solo agents typically cannot replicate.",
+        text: "Working through an established brokerage gives you process protections, compliance standards, and recourse paths that solo agents typically cannot replicate.",
       },
       {
         type: 'h3',
@@ -332,7 +332,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "Tomas Figueroa is a real estate professional with Keller Williams Roatan, Bay Islands, Honduras. He brings 20 years of international sales and business development experience and has spent the last four years working as a boots-on-ground agent on Roatán. He represents both buyers and sellers, partners with local developers, and sources investment deals for clients across the US, Canada, and globally. He is fluent in English and Spanish.",
+        text: "Tomas Figueroa is a real estate professional with Roatan Reef, Bay Islands, Honduras — formerly with RE/MAX and Keller Williams. He brings 20 years of international sales and business development experience and has spent the last four years working as a boots-on-ground agent on Roatán. He represents both buyers and sellers, partners with local developers, and sources investment deals for clients across the US, Canada, and globally. He is fluent in English and Spanish.",
       },
     ],
   },
@@ -834,7 +834,7 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: 'You can read verified client reviews for Tomas Figueroa, Keller Williams Roatan, directly on Google.',
+        text: 'You can read verified client reviews for Tomas Figueroa, Roatan Reef, directly on Google.',
         links: [
           { anchor: 'read verified client reviews', href: 'https://share.google/0BOwKXj6DOXlgtZJq' },
         ],

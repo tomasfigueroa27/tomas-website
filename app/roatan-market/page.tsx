@@ -5,7 +5,7 @@ import ScheduleButton from '@/components/ScheduleButton';
 
 export const metadata: Metadata = {
   title: 'Roatán Real Estate Market Guide 2026 — Prices, Yields & Ownership',
-  description: 'Roatán real estate market data for 2026: price benchmarks by neighborhood, vacation rental yields, foreign ownership rules, the 7-step buying process, and closing costs. Tomás Figueroa, Keller Williams Roatán.',
+  description: 'Roatán real estate market data for 2026: price benchmarks by neighborhood, vacation rental yields, foreign ownership rules, the 7-step buying process, and closing costs. Tomás Figueroa, Roatan Reef.',
   alternates: { canonical: 'https://www.tomasfigueroa.com/roatan-market' },
   openGraph: {
     title: 'Roatán Real Estate Market Guide 2026 — Tomás Figueroa Real Estate',
@@ -130,7 +130,7 @@ export default function RoatanMarketPage() {
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 600, margin: '0 auto 6px' }}>
             Key data, pricing benchmarks, investment fundamentals, and everything you need to understand the Roatan property market before making a decision.
           </p>
-          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', marginBottom: 32 }}>Updated May 2026 · By Tomas Figueroa, Keller Williams Roatan</p>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', marginBottom: 32 }}>Updated May 2026 · By Tomas Figueroa, Roatan Reef</p>
           <div style={{ backgroundColor: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.14)', padding: '24px 32px', maxWidth: 720, margin: '0 auto 32px', textAlign: 'left' }}>
             <p style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#789ead', marginTop: 0, marginBottom: 12 }}>Quick Read</p>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.82)', lineHeight: 1.75, margin: 0 }}>
@@ -213,7 +213,7 @@ export default function RoatanMarketPage() {
               </tbody>
             </table>
           </div>
-          <p style={{ fontSize: 11, color: '#999999', margin: 0 }}>Source: Keller Williams Roatan transaction data, Roatan MLS, and Instituto Hondureño de Turismo, 2025–2026.</p>
+          <p style={{ fontSize: 11, color: '#999999', margin: 0 }}>Source: Roatan Reef transaction data, Roatan MLS, and Instituto Hondureño de Turismo, 2025–2026.</p>
         </div>
       </section>
 
@@ -491,7 +491,7 @@ export default function RoatanMarketPage() {
         <div className="section-container" style={{ maxWidth: 800 }}>
           <span className="label-caps block mb-4">About the Author</span>
           <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, color: '#093f4f', marginTop: 0, marginBottom: 20 }}>About the Author</h2>
-          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75 }}>Tomás Figueroa is a licensed real estate agent with <Link href="/about" style={{ color: '#093f4f', textDecoration: 'underline' }}>Keller Williams Roatán</Link>, Bay Islands, Honduras. He brings 20+ years of international sales and business development experience and has spent the last four years working as a boots-on-ground agent in Roatán. His specialty is buyer and seller representation, developer partnerships, and investment deal sourcing for clients in the U.S., Canada, and globally. Fluent in English and Spanish.</p>
+          <p style={{ fontSize: 14, color: '#555555', lineHeight: 1.75 }}>Tomás Figueroa is a licensed real estate agent with <Link href="/about" style={{ color: '#093f4f', textDecoration: 'underline' }}>Roatan Reef</Link>, Bay Islands, Honduras — formerly with RE/MAX and Keller Williams. He brings 20+ years of international sales and business development experience and has spent the last four years working as a boots-on-ground agent in Roatán. His specialty is buyer and seller representation, developer partnerships, and investment deal sourcing for clients in the U.S., Canada, and globally. Fluent in English and Spanish.</p>
         </div>
       </section>
 
@@ -525,7 +525,7 @@ export default function RoatanMarketPage() {
       <section style={{ paddingBottom: 48 }}>
         <div className="section-container" style={{ maxWidth: 800 }}>
           <p style={{ fontSize: 11, color: '#999999', lineHeight: 1.75, margin: 0 }}>
-            <strong style={{ color: '#777777' }}>Sources and methodology:</strong> Data on this page reflects 2025–2026 averages from Keller Williams Roatan transaction records, the Roatan Multiple Listing Service, the Roatan Realtors Association, and the Instituto Hondureño de Turismo. Comparative Caribbean market data sourced from publicly available government and tourism authority publications. Catalyst announcements verified against primary sources (Caribbean Journal, Karisma Hotels &amp; Resorts press releases, Air Canada route announcements, Hospitality Design).
+            <strong style={{ color: '#777777' }}>Sources and methodology:</strong> Data on this page reflects 2025–2026 averages from Roatan Reef transaction records, the Roatan Multiple Listing Service, the Roatan Realtors Association, and the Instituto Hondureño de Turismo. Comparative Caribbean market data sourced from publicly available government and tourism authority publications. Catalyst announcements verified against primary sources (Caribbean Journal, Karisma Hotels &amp; Resorts press releases, Air Canada route announcements, Hospitality Design).
           </p>
         </div>
       </section>

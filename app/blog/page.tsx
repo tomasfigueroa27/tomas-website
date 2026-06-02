@@ -3,7 +3,7 @@ import BlogContent from './BlogContent';
 
 export const metadata: Metadata = {
   title: 'Real Estate Blog — Roatán Market Reports, Buyer Guides & Neighborhood Insights',
-  description: 'Market reports, buyer guides, neighborhood breakdowns, and investment analysis for Roatán, Honduras real estate. Written by Tomás Figueroa, Keller Williams Roatán.',
+  description: 'Market reports, buyer guides, neighborhood breakdowns, and investment analysis for Roatán, Honduras real estate. Written by Tomás Figueroa, Roatan Reef.',
   alternates: { canonical: 'https://www.tomasfigueroa.com/blog' },
   openGraph: {
     title: 'Real Estate Blog — Roatán Market Reports, Buyer Guides & Neighborhood Insights',

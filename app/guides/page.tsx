@@ -4,7 +4,7 @@ import GuidesContent from './GuidesContent';
 export const metadata: Metadata = {
   title: "Roatán Real Estate Guide Library — Buyer's Guides, Market Data & Tools",
   description:
-    "Six guides covering every stage of buying property in Roatán, Honduras — legal ownership, where to buy, market data, new developments, closing costs, and FAQ. Tomás Figueroa, Keller Williams Roatán.",
+    "Six guides covering every stage of buying property in Roatán, Honduras — legal ownership, where to buy, market data, new developments, closing costs, and FAQ. Tomás Figueroa, Roatan Reef.",
   alternates: { canonical: 'https://www.tomasfigueroa.com/guides' },
   openGraph: {
     title: "Roatán Real Estate Guide Library — Buyer's Guides, Market Data & Tools",

@@ -131,7 +131,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Tomas Figueroa – KW Roatan',
+      name: 'Tomas Figueroa – Roatan Reef',
       url: 'https://www.tomasfigueroa.com',
       logo: {
         '@type': 'ImageObject',
@@ -197,7 +197,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           >
             {post.title}
           </h1>
-          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', marginTop: 10, marginBottom: 0 }}>Published: {formatMonthYear(post.date)} · By Tomas Figueroa, Keller Williams Roatan</p>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', marginTop: 10, marginBottom: 0 }}>Published: {formatMonthYear(post.date)} · By Tomas Figueroa, Roatan Reef</p>
         </div>
       </section>
 

@@ -4,7 +4,7 @@ import USBuyersGuideContent from './USBuyersGuideContent';
 export const metadata: Metadata = {
   title: "U.S. Buyer's Guide to Roatán Real Estate",
   description:
-    "Everything Americans need to understand before buying property in Roatán, Honduras — legal framework, buying process, due diligence, rentals, and pre-construction. Tomás Figueroa, Keller Williams Roatán.",
+    "Everything Americans need to understand before buying property in Roatán, Honduras — legal framework, buying process, due diligence, rentals, and pre-construction. Tomás Figueroa, Roatan Reef.",
   alternates: {
     canonical: 'https://www.tomasfigueroa.com/us-buyers-guide-roatan',
   },
@@ -91,7 +91,7 @@ const articleSchema = {
   '@type': 'Article',
   headline: "The U.S. Buyer's Guide to Roatán Real Estate",
   description:
-    "Everything Americans need to understand before buying property in Roatán, Honduras — legal framework, buying process, due diligence, rentals, and pre-construction. Tomás Figueroa, Keller Williams Roatán.",
+    "Everything Americans need to understand before buying property in Roatán, Honduras — legal framework, buying process, due diligence, rentals, and pre-construction. Tomás Figueroa, Roatan Reef.",
   url: 'https://www.tomasfigueroa.com/us-buyers-guide-roatan',
   datePublished: '2025-01-01',
   dateModified: '2026-05-12',
@@ -102,7 +102,7 @@ const articleSchema = {
     jobTitle: 'Licensed Realtor',
     worksFor: {
       '@type': 'Organization',
-      name: 'Keller Williams Roatán',
+      name: 'Roatan Reef',
     },
   },
   publisher: {

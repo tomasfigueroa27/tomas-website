@@ -11,14 +11,14 @@ import CTA from '@/sections/CTA';
 export const metadata: Metadata = {
   title: 'Discover Roatán Before Everybody Does — Tomás Figueroa Real Estate',
   description:
-    "Roatán's quietest premium Caribbean market is becoming easier for U.S. buyers to understand. Strategic guidance on lifestyle, location, project selection, and timing — before the best parts of the island become obvious. Tomás Figueroa, Keller Williams Roatán.",
+    "Roatán's quietest premium Caribbean market is becoming easier for U.S. buyers to understand. Strategic guidance on lifestyle, location, project selection, and timing — before the best parts of the island become obvious. Tomás Figueroa, Roatan Reef.",
   alternates: {
     canonical: 'https://www.tomasfigueroa.com/',
   },
   openGraph: {
     title: 'Discover Roatán Before Everybody Does — Tomás Figueroa Real Estate',
     description:
-      "Roatán's quietest premium Caribbean market is becoming easier for U.S. buyers to understand. Strategic guidance on lifestyle, location, project selection, and timing — before the best parts of the island become obvious. Tomás Figueroa, Keller Williams Roatán.",
+      "Roatán's quietest premium Caribbean market is becoming easier for U.S. buyers to understand. Strategic guidance on lifestyle, location, project selection, and timing — before the best parts of the island become obvious. Tomás Figueroa, Roatan Reef.",
     url: 'https://www.tomasfigueroa.com/',
     images: [{ url: '/tomas-about.jpg', width: 800, height: 1000 }],
   },
@@ -30,10 +30,10 @@ const personSchema = {
   '@id': 'https://www.tomasfigueroa.com/#person',
   name: 'Tomás Figueroa',
   jobTitle: 'Licensed Realtor',
-  worksFor: { '@type': 'Organization', name: 'Keller Williams Roatán' },
+  worksFor: { '@type': 'Organization', name: 'Roatan Reef' },
   url: 'https://www.tomasfigueroa.com',
   telephone: '+50488483226',
-  email: 'tomas@kwroatan.com',
+  email: 'tomas@tomasfigueroa.com',
   sameAs: [
     'https://www.linkedin.com/in/roatanbytomas/',
     'https://www.instagram.com/roatanbytomas/',
@@ -46,10 +46,10 @@ const personSchema = {
 const businessSchema = {
   '@context': 'https://schema.org',
   '@type': ['RealEstateAgent', 'LocalBusiness'],
-  name: 'Tomás Figueroa – Keller Williams Roatán',
+  name: 'Tomás Figueroa – Roatan Reef',
   url: 'https://www.tomasfigueroa.com',
   telephone: '+50488483226',
-  email: 'tomas@kwroatan.com',
+  email: 'tomas@tomasfigueroa.com',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Roatán',

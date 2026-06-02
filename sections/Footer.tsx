@@ -174,12 +174,12 @@ const Footer = () => {
               <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                 <Mail style={{ width: 14, height: 14, color: '#789ead', flexShrink: 0 }} aria-hidden="true" />
                 <a
-                  href="mailto:tomas@kwroatan.com"
+                  href="mailto:tomas@tomasfigueroa.com"
                   style={{ ...linkStyle, margin: 0 }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = '#ffffff')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
                 >
-                  tomas@kwroatan.com
+                  tomas@tomasfigueroa.com
                 </a>
               </div>
             </div>
@@ -194,11 +194,7 @@ const Footer = () => {
             <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)', margin: 0 }}>
               © {currentYear} Tomas Figueroa Real Estate. All rights reserved.
             </p>
-            <img
-              src="/kw-logo-white.png"
-              alt="Keller Williams Roatan"
-              style={{ height: 28, width: 'auto', opacity: 0.3 }}
-            />
+            <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.2)', fontFamily: 'Arial, Helvetica, sans-serif', letterSpacing: '0.06em' }}>Roatan Reef</span>
           </div>
         </div>
       </div>

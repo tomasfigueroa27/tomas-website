@@ -167,7 +167,7 @@ export default async function NeighborhoodDetailPage({ params }: { params: Promi
                 </tbody>
               </table>
             </div>
-            <p style={{ fontSize: 11, color: '#999999', marginTop: 10, marginBottom: 0 }}>Source: Keller Williams Roatan transaction data and Roatan MLS, 2025–2026.</p>
+            <p style={{ fontSize: 11, color: '#999999', marginTop: 10, marginBottom: 0 }}>Source: Roatan Reef transaction data and Roatan MLS, 2025–2026.</p>
           </div>
 
           {/* Buyer Guide */}

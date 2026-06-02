@@ -302,7 +302,7 @@ export default function USBuyersGuideContent() {
               marginBottom: 52,
             }}
           >
-            Reviewed May 2026 by Tomás Figueroa, Keller Williams Roatán.
+            Reviewed May 2026 by Tomás Figueroa, Roatan Reef.
           </p>
 
           {/* Two-column layout */}

@@ -6,7 +6,7 @@ import ScheduleButton from '@/components/ScheduleButton';
 
 export const metadata: Metadata = {
   title: 'Roatán Neighborhoods Guide — Compare Every Area',
-  description: "Compare Roatán's six neighborhoods: West Bay Beach, West End, Sandy Bay, Pristine Bay, French Harbour, and Coxen Hole. Price ranges, lifestyle character, rental potential, and buyer fit — side by side. Tomás Figueroa, Keller Williams Roatán.",
+  description: "Compare Roatán's six neighborhoods: West Bay Beach, West End, Sandy Bay, Pristine Bay, French Harbour, and Coxen Hole. Price ranges, lifestyle character, rental potential, and buyer fit — side by side. Tomás Figueroa, Roatan Reef.",
   alternates: { canonical: 'https://www.tomasfigueroa.com/neighborhoods' },
   openGraph: {
     title: 'Roatán Neighborhoods Guide — Compare Every Area',
