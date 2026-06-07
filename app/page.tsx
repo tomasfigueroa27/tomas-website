@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import Hero from '@/sections/Hero';
-import StartHere from '@/sections/StartHere';
+import HeroDescent from '@/sections/HeroDescent';
 import LifestyleThesis from '@/sections/LifestyleThesis';
 import WhereToBuy from '@/sections/WhereToBuy';
 import WhyNow from '@/sections/WhyNow';
@@ -70,11 +69,8 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }} />
 
-      {/* 1. Hero */}
-      <Hero />
-
-      {/* 2. Start Here — three gateway cards */}
-      <StartHere />
+      {/* 1. Hero — scroll-scrubbed video (desktop) / static poster (mobile) */}
+      <HeroDescent />
 
       {/* 3. Lifestyle thesis */}
       <LifestyleThesis />
