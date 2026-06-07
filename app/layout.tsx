@@ -1,11 +1,27 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { EB_Garamond, Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/sections/Header';
 import Footer from '@/sections/Footer';
 import InvestorBriefingModal from '@/components/InvestorBriefingModal';
 import ServiceWorkerRegister from '@/components/ServiceWorkerRegister';
 import MobileStickyCTA from '@/components/MobileStickyCTA';
+
+const ebGaramond = EB_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
+  variable: '--font-garamond',
+  display: 'swap',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-inter',
+  display: 'swap',
+});
 
 const GA_ID = 'G-3YVFSNRZJ6';
 
@@ -141,7 +157,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${ebGaramond.variable} ${inter.variable}`}>
       <head>
         <meta name="theme-color" content="#093f4f" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
