@@ -219,9 +219,6 @@ function DesktopScrollHero() {
   const lerpedRef  = useRef(0);      // lerped playhead (seconds)
   const canSeekRef = useRef(false);  // gates seeking until loadedmetadata/readyState≥2
 
-  // TEST — REVERT LATER: tracks iOS gesture unlock; pre-set true on non-touch devices
-  const unlockedRef = useRef(false);
-
   // TEST — REVERT LATER: ref for debug overlay DOM node (updated directly to avoid re-renders)
   const debugRef = useRef<HTMLDivElement>(null);
 
@@ -241,7 +238,7 @@ function DesktopScrollHero() {
   const cardsOpacity = useTransform(scrollYProgress, [0.62, 1.0], [0, 1]);
   const cardsY       = useTransform(scrollYProgress, [0.62, 1.0], [40, 0]);
 
-  // TEST — REVERT LATER: webkit-playsinline + iOS gesture unlock setup
+  // TEST — REVERT LATER: webkit-playsinline + iOS gesture unlock (independent of rAF loop)
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -250,17 +247,14 @@ function DesktopScrollHero() {
     // (playsInline in JSX sets the W3C attribute; this covers the legacy webkit prefix)
     video.setAttribute('webkit-playsinline', '');
 
-    // TEST — REVERT LATER: non-touch devices don't need the gesture unlock
-    if (navigator.maxTouchPoints === 0) {
-      unlockedRef.current = true;
-    }
-
     // TEST — REVERT LATER: iOS silently refuses currentTime changes until the video has
     // been "unlocked" by a user gesture. One play/pause on first touch releases the lock.
+    // This listener is COMPLETELY INDEPENDENT of the rAF loop — it does NOT gate it.
+    let unlocked = false;
     const unlock = () => {
-      if (unlockedRef.current) return;
+      if (unlocked) return;
+      unlocked = true;
       video.play().then(() => video.pause()).catch(() => {});
-      unlockedRef.current = true;
     };
     document.addEventListener('touchstart', unlock, { passive: true });
     document.addEventListener('pointerdown', unlock);
@@ -284,8 +278,7 @@ function DesktopScrollHero() {
     }
 
     const tick = () => {
-      // TEST — REVERT LATER: unlockedRef gates iOS (always true on desktop)
-      if (canSeekRef.current && unlockedRef.current && video.duration > 0) {
+      if (canSeekRef.current && video.duration > 0) {
         const target = Math.max(
           0,
           Math.min(video.duration, scrollYProgress.get() * video.duration),
