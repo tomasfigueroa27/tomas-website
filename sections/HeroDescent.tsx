@@ -5,6 +5,10 @@ import Link from 'next/link';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { openBriefingModal } from '@/lib/analytics';
 
+// TEST — REVERT LATER: set to true to force scroll-scrub on all viewports
+// (bypasses the ≥768px + prefers-reduced-motion gate). Flip back to false when done.
+const FORCE_SCRUB_ON_MOBILE = true;
+
 // ─── Font aliases (CSS vars injected by layout.tsx) ──────────────────────────
 const SERIF = 'var(--font-garamond), Georgia, "Times New Roman", serif';
 const SANS  = 'var(--font-inter), Arial, Helvetica, sans-serif';
@@ -206,13 +210,20 @@ function StaticHero() {
 
 // ─── Desktop scroll hero ──────────────────────────────────────────────────────
 // Drives video.currentTime via a lerped rAF loop, scroll progress from Framer Motion.
-// Only mounted when: window.innerWidth ≥ 768 AND !prefers-reduced-motion.
+// Only mounted when: window.innerWidth ≥ 768 AND !prefers-reduced-motion
+// (or when FORCE_SCRUB_ON_MOBILE overrides both).
 function DesktopScrollHero() {
-  const outerRef  = useRef<HTMLElement>(null);
-  const videoRef  = useRef<HTMLVideoElement>(null);
-  const rafRef    = useRef<number | null>(null);
-  const lerpedRef = useRef(0);      // lerped playhead (seconds)
-  const canSeekRef = useRef(false); // gates seeking until metadata ready
+  const outerRef   = useRef<HTMLElement>(null);
+  const videoRef   = useRef<HTMLVideoElement>(null);
+  const rafRef     = useRef<number | null>(null);
+  const lerpedRef  = useRef(0);      // lerped playhead (seconds)
+  const canSeekRef = useRef(false);  // gates seeking until loadedmetadata/readyState≥2
+
+  // TEST — REVERT LATER: tracks iOS gesture unlock; pre-set true on non-touch devices
+  const unlockedRef = useRef(false);
+
+  // TEST — REVERT LATER: ref for debug overlay DOM node (updated directly to avoid re-renders)
+  const debugRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: outerRef,
@@ -230,6 +241,36 @@ function DesktopScrollHero() {
   const cardsOpacity = useTransform(scrollYProgress, [0.62, 1.0], [0, 1]);
   const cardsY       = useTransform(scrollYProgress, [0.62, 1.0], [40, 0]);
 
+  // TEST — REVERT LATER: webkit-playsinline + iOS gesture unlock setup
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // TEST — REVERT LATER: set webkit-playsinline for older iOS WebKit builds
+    // (playsInline in JSX sets the W3C attribute; this covers the legacy webkit prefix)
+    video.setAttribute('webkit-playsinline', '');
+
+    // TEST — REVERT LATER: non-touch devices don't need the gesture unlock
+    if (navigator.maxTouchPoints === 0) {
+      unlockedRef.current = true;
+    }
+
+    // TEST — REVERT LATER: iOS silently refuses currentTime changes until the video has
+    // been "unlocked" by a user gesture. One play/pause on first touch releases the lock.
+    const unlock = () => {
+      if (unlockedRef.current) return;
+      video.play().then(() => video.pause()).catch(() => {});
+      unlockedRef.current = true;
+    };
+    document.addEventListener('touchstart', unlock, { passive: true });
+    document.addEventListener('pointerdown', unlock);
+
+    return () => {
+      document.removeEventListener('touchstart', unlock);
+      document.removeEventListener('pointerdown', unlock);
+    };
+  }, []);
+
   // ── rAF lerp loop: drives video playhead ─────────────────────────────────
   useEffect(() => {
     const video = videoRef.current;
@@ -243,13 +284,20 @@ function DesktopScrollHero() {
     }
 
     const tick = () => {
-      if (canSeekRef.current && video.duration > 0) {
+      // TEST — REVERT LATER: unlockedRef gates iOS (always true on desktop)
+      if (canSeekRef.current && unlockedRef.current && video.duration > 0) {
         const target = Math.max(
           0,
           Math.min(video.duration, scrollYProgress.get() * video.duration),
         );
         lerpedRef.current += (target - lerpedRef.current) * 0.1;
         video.currentTime = lerpedRef.current;
+
+        // TEST — REVERT LATER: write debug values directly to DOM node (no re-render)
+        if (FORCE_SCRUB_ON_MOBILE && debugRef.current) {
+          debugRef.current.textContent =
+            `prog ${scrollYProgress.get().toFixed(2)}  ·  target ${target.toFixed(2)}s  ·  actual ${video.currentTime.toFixed(2)}s`;
+        }
       }
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -268,6 +316,7 @@ function DesktopScrollHero() {
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
 
         {/* Full-bleed scrubbed video — no autoplay, playhead driven by scroll */}
+        {/* TEST — REVERT LATER: added webkit-playsinline (set via setAttribute in useEffect) */}
         <video
           ref={videoRef}
           muted
@@ -285,6 +334,30 @@ function DesktopScrollHero() {
         >
           <source src="/descent.mp4" type="video/mp4" />
         </video>
+
+        {/* TEST — REVERT LATER: debug overlay — live scroll/seek values */}
+        {FORCE_SCRUB_ON_MOBILE && (
+          <div
+            ref={debugRef}
+            style={{
+              position: 'fixed',
+              top: 12,
+              right: 12,
+              zIndex: 9999,
+              backgroundColor: 'rgba(0,0,0,0.72)',
+              color: '#00ff88',
+              fontFamily: 'monospace',
+              fontSize: 11,
+              lineHeight: 1.4,
+              padding: '6px 10px',
+              pointerEvents: 'none',
+              whiteSpace: 'nowrap',
+              borderRadius: 3,
+            }}
+          >
+            waiting for seek…
+          </div>
+        )}
 
         {/* ── Scrim ──────────────────────────────────────────────────────────
             Bottom-weighted gradient, fades in over progress 0.55–1.0.
@@ -386,11 +459,18 @@ function DesktopScrollHero() {
 // SSR always renders StaticHero (safe default).
 // After mount, upgrades to DesktopScrollHero if: viewport ≥ 768px AND
 // the user has not enabled prefers-reduced-motion.
+// TEST — REVERT LATER: FORCE_SCRUB_ON_MOBILE skips both checks when true.
 export default function HeroDescent() {
   const [eligible, setEligible] = useState(false);
   const [mounted,  setMounted]  = useState(false);
 
   useEffect(() => {
+    // TEST — REVERT LATER: bypasses viewport + reduced-motion gate entirely
+    if (FORCE_SCRUB_ON_MOBILE) {
+      setEligible(true);
+      setMounted(true);
+      return;
+    }
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     setEligible(!reduced && window.innerWidth >= 768);
     setMounted(true);
