@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useScroll, useTransform, motion } from 'framer-motion';
+import { useScroll, useTransform, motion, type MotionValue } from 'framer-motion';
 import { openBriefingModal } from '@/lib/analytics';
 
 // ─── Font aliases (CSS vars injected by layout.tsx) ──────────────────────────
@@ -112,6 +112,33 @@ function FrostCard({ label, title, desc, href }: (typeof CARDS)[number]) {
   );
 }
 
+// ─── Per-letter color fill ────────────────────────────────────────────────────
+// Each letter receives its own slice of the 0.36–0.74 scroll range and fills
+// from ghost rgba(255,255,255,0.12) to solid white as the user scrolls through it.
+// Defined at module level so useTransform is called at the component root (hooks rules).
+function AnimatedLetter({
+  char,
+  scrollYProgress,
+  start,
+  end,
+}: {
+  char: string;
+  scrollYProgress: MotionValue<number>;
+  start: number;
+  end: number;
+}) {
+  const color = useTransform(
+    scrollYProgress,
+    [start, end],
+    ['rgba(255,255,255,0.12)', '#ffffff'],
+  );
+  // Spaces: render as a fixed-width gap; no animation needed.
+  if (char === ' ') {
+    return <span style={{ display: 'inline-block', width: '0.28em' }} aria-hidden="true" />;
+  }
+  return <motion.span style={{ color }}>{char}</motion.span>;
+}
+
 // ─── Static hero ─────────────────────────────────────────────────────────────
 // Rendered only for prefers-reduced-motion users. All other viewports,
 // including mobile, receive the scroll hero below.
@@ -218,14 +245,30 @@ function ScrollHero() {
   });
 
   // ── Overlay MotionValues ──────────────────────────────────────────────────
-  // Headline: opacity 1→0, drift up 0→−40px   (progress 0–0.35)
-  const headlineOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
-  const headlineY       = useTransform(scrollYProgress, [0, 0.35], [0, -40]);
-  // Scrim: bottom gradient fades in            (progress 0.55–1.0)
-  const scrimOpacity    = useTransform(scrollYProgress, [0.55, 1.0], [0, 1]);
-  // Cards: rise from +40px                     (progress 0.62–1.0)
-  const cardsOpacity    = useTransform(scrollYProgress, [0.62, 1.0], [0, 1]);
-  const cardsY          = useTransform(scrollYProgress, [0.62, 1.0], [40, 0]);
+
+  // Surface state (eyebrow, H1, subhead, CTAs): fully gone by 0.30
+  const aboveOpacity = useTransform(scrollYProgress, [0, 0.30], [1, 0]);
+  const aboveY       = useTransform(scrollYProgress, [0, 0.30], [0, -40]);
+
+  // Scrim: bottom gradient fades in 0.50→0.85 for legibility over the reef
+  const scrimOpacity = useTransform(scrollYProgress, [0.50, 0.85], [0, 1]);
+
+  // Underwater headline container: crossfades in 0.28→0.36 so the ghost letters
+  // are already visible before color-fill begins at 0.36
+  const underHeadOpacity = useTransform(scrollYProgress, [0.28, 0.36], [0, 1]);
+
+  // Cards: fade/rise in 0.72→1.0, below the headline in the centered stack
+  const cardsOpacity = useTransform(scrollYProgress, [0.72, 1.0], [0, 1]);
+  const cardsY       = useTransform(scrollYProgress, [0.72, 1.0], [40, 0]);
+
+  // ── Letter fill distribution ──────────────────────────────────────────────
+  // "Let's start here" split into 16 chars; each gets a 2-slot fill window
+  // (double the per-letter gap) so adjacent fills overlap smoothly.
+  const PHRASE     = "Let's start here";
+  const LETTERS    = PHRASE.split('');
+  const FILL_START = 0.36;
+  const FILL_END   = 0.74;
+  const PER_SLOT   = (FILL_END - FILL_START) / LETTERS.length;
 
   // ── Video setup: readiness, poster crossfade, iOS unlock ─────────────────
   useEffect(() => {
@@ -377,28 +420,29 @@ function ScrollHero() {
           }}
         />
 
-        {/* ── Scrim: bottom-weighted gradient, fades in over 0.55–1.0 ─────── */}
+        {/* ── Scrim: bottom-weighted gradient, fades in 0.50–0.85 ──────────── */}
         <motion.div
           aria-hidden="true"
           style={{
             position: 'absolute',
             inset: 0,
             background:
-              'linear-gradient(to bottom, transparent 30%, rgba(1,64,81,0.55) 100%)',
+              'linear-gradient(to bottom, transparent 30%, rgba(1,64,81,0.65) 100%)',
             opacity: scrimOpacity,
             pointerEvents: 'none',
           }}
         />
 
-        {/* ── Headline + CTAs: fades/drifts out over 0–0.35 ──────────────── */}
+        {/* ── Surface state: eyebrow + H1 + subhead + CTAs ─────────────────── */}
+        {/* Fully faded out (opacity 0) by scrollYProgress 0.30 */}
         <motion.div
           style={{
             position: 'absolute',
             inset: 0,
             display: 'flex',
             alignItems: 'center',
-            opacity: headlineOpacity,
-            y: headlineY,
+            opacity: aboveOpacity,
+            y: aboveY,
           }}
         >
           <div className="section-container" style={{ maxWidth: 760 }}>
@@ -440,27 +484,59 @@ function ScrollHero() {
           </div>
         </motion.div>
 
-        {/* ── Start Here cards: rises from +40px over 0.62–1.0 ────────────── */}
-        <motion.div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
+        {/* ── Underwater state: headline + cards, vertically centered ─────── */}
+        {/* Nothing from the surface state shows here. */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 40,
+          padding: '0 24px',
+        }}>
+
+          {/* "Let's start here" — ghost letters fade in 0.28→0.36, then fill
+              left-to-right across 0.36–0.74 via per-letter useTransform. */}
+          <motion.div
+            style={{ opacity: underHeadOpacity, textAlign: 'center' }}
+            aria-hidden="true"
+          >
+            <h2 style={{
+              fontFamily: SERIF,
+              fontSize: 'clamp(38px, 5.5vw, 72px)',
+              fontWeight: 500,
+              lineHeight: 1.1,
+              letterSpacing: '-0.01em',
+              whiteSpace: 'nowrap',
+              margin: 0,
+            }}>
+              {LETTERS.map((char, i) => (
+                <AnimatedLetter
+                  key={i}
+                  char={char}
+                  scrollYProgress={scrollYProgress}
+                  start={FILL_START + i * PER_SLOT}
+                  end={Math.min(FILL_END, FILL_START + (i + 2) * PER_SLOT)}
+                />
+              ))}
+            </h2>
+          </motion.div>
+
+          {/* Start Here cards — rise in 0.72→1.0, below the headline */}
+          <motion.div style={{
             opacity: cardsOpacity,
             y: cardsY,
-          }}
-        >
-          <div className="section-container" style={{ maxWidth: 1100, paddingBottom: 52 }}>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: 12,
-            }}>
+            width: '100%',
+            maxWidth: 920,
+          }}>
+            <div className="grid sm:grid-cols-3 gap-3">
               {CARDS.map(c => <FrostCard key={c.href} {...c} />)}
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+
+        </div>
 
       </div>
     </section>
