@@ -5,10 +5,6 @@ import Link from 'next/link';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { openBriefingModal } from '@/lib/analytics';
 
-// TEST — REVERT LATER: set to true to force scroll-scrub on all viewports
-// (bypasses the ≥768px + prefers-reduced-motion gate). Flip back to false when done.
-const FORCE_SCRUB_ON_MOBILE = true;
-
 // ─── Font aliases (CSS vars injected by layout.tsx) ──────────────────────────
 const SERIF = 'var(--font-garamond), Georgia, "Times New Roman", serif';
 const SANS  = 'var(--font-inter), Arial, Helvetica, sans-serif';
@@ -35,7 +31,7 @@ const CARDS = [
   },
 ] as const;
 
-// ─── CTA row (shared between static and desktop) ─────────────────────────────
+// ─── CTA row ─────────────────────────────────────────────────────────────────
 function CTARow() {
   return (
     <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -63,7 +59,7 @@ function CTARow() {
   );
 }
 
-// ─── Frosted-glass Start Here card ───────────────────────────────────────────
+// ─── Frosted-glass card ───────────────────────────────────────────────────────
 function FrostCard({ label, title, desc, href }: (typeof CARDS)[number]) {
   return (
     <Link
@@ -116,8 +112,9 @@ function FrostCard({ label, title, desc, href }: (typeof CARDS)[number]) {
   );
 }
 
-// ─── Static hero: poster image + headline + cards in document flow ─────────
-// Used for: mobile viewports (<768px) and prefers-reduced-motion.
+// ─── Static hero ─────────────────────────────────────────────────────────────
+// Rendered only for prefers-reduced-motion users. All other viewports,
+// including mobile, receive the scroll hero below.
 function StaticHero() {
   return (
     <>
@@ -129,7 +126,6 @@ function StaticHero() {
         display: 'flex',
         flexDirection: 'column',
       }}>
-        {/* Poster image */}
         <img
           src="/descent-poster.webp"
           alt="Aerial view of Roatán, Bay Islands, Honduras"
@@ -143,15 +139,12 @@ function StaticHero() {
             objectFit: 'cover',
           }}
         />
-        {/* Darkening overlay */}
         <div style={{
           position: 'absolute',
           inset: 0,
           background:
             'linear-gradient(155deg, rgba(1,64,81,0.78) 0%, rgba(1,64,81,0.55) 50%, rgba(1,64,81,0.82) 100%)',
         }} />
-
-        {/* Headline content */}
         <div
           className="relative z-10 section-container flex-1 flex flex-col justify-center"
           style={{ paddingTop: 140, paddingBottom: 64 }}
@@ -187,16 +180,15 @@ function StaticHero() {
               margin: '0 0 32px',
               maxWidth: 540,
             }}>
-              A simpler, small-island Caribbean lifestyle is becoming easier for U.S. buyers to reach,
-              understand, and own. I help you choose the right location, project, and strategy —
-              before the best parts of the island become obvious.
+              A simpler, small-island Caribbean lifestyle is becoming easier for U.S. buyers to
+              reach, understand, and own. I help you choose the right location, project, and
+              strategy — before the best parts of the island become obvious.
             </p>
             <CTARow />
           </div>
         </div>
       </section>
 
-      {/* Start Here cards below the fold in normal document flow */}
       <section style={{ backgroundColor: '#093f4f', paddingTop: 40, paddingBottom: 40 }}>
         <div className="section-container" style={{ maxWidth: 1100 }}>
           <div className="grid sm:grid-cols-3 gap-3">
@@ -208,48 +200,94 @@ function StaticHero() {
   );
 }
 
-// ─── Desktop scroll hero ──────────────────────────────────────────────────────
-// Drives video.currentTime via a lerped rAF loop, scroll progress from Framer Motion.
-// Only mounted when: window.innerWidth ≥ 768 AND !prefers-reduced-motion
-// (or when FORCE_SCRUB_ON_MOBILE overrides both).
-function DesktopScrollHero() {
-  const outerRef   = useRef<HTMLElement>(null);
-  const videoRef   = useRef<HTMLVideoElement>(null);
-  const rafRef     = useRef<number | null>(null);
-  const lerpedRef  = useRef(0);      // lerped playhead (seconds)
-  const canSeekRef = useRef(false);  // gates seeking until loadedmetadata/readyState≥2
-
-  // TEST — REVERT LATER: ref for debug overlay DOM node (updated directly to avoid re-renders)
-  const debugRef = useRef<HTMLDivElement>(null);
+// ─── Scroll hero ──────────────────────────────────────────────────────────────
+// All viewports (mobile + desktop), no prefers-reduced-motion.
+// Drives video.currentTime from scrollYProgress via a lerped rAF loop.
+function ScrollHero() {
+  const outerRef    = useRef<HTMLElement>(null);
+  const videoRef    = useRef<HTMLVideoElement>(null);
+  const posterRef   = useRef<HTMLImageElement>(null);
+  const rafRef      = useRef<number | null>(null);
+  const lerpedRef   = useRef(0);      // lerped playhead in seconds
+  const isReadyRef  = useRef(false);  // true once video is genuinely seekable
+  const durationRef = useRef(0);      // cached finite duration
 
   const { scrollYProgress } = useScroll({
     target: outerRef,
     offset: ['start start', 'end end'],
   });
 
-  // ── Headline block: opacity 1→0, drift up 0→-40px  (progress 0–0.35) ──────
+  // ── Overlay MotionValues ──────────────────────────────────────────────────
+  // Headline: opacity 1→0, drift up 0→−40px   (progress 0–0.35)
   const headlineOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
   const headlineY       = useTransform(scrollYProgress, [0, 0.35], [0, -40]);
+  // Scrim: bottom gradient fades in            (progress 0.55–1.0)
+  const scrimOpacity    = useTransform(scrollYProgress, [0.55, 1.0], [0, 1]);
+  // Cards: rise from +40px                     (progress 0.62–1.0)
+  const cardsOpacity    = useTransform(scrollYProgress, [0.62, 1.0], [0, 1]);
+  const cardsY          = useTransform(scrollYProgress, [0.62, 1.0], [40, 0]);
 
-  // ── Scrim: bottom-weighted gradient fades in          (progress 0.55–1.0) ──
-  const scrimOpacity = useTransform(scrollYProgress, [0.55, 1.0], [0, 1]);
-
-  // ── Start Here cards: rise from +40px                (progress 0.62–1.0) ──
-  const cardsOpacity = useTransform(scrollYProgress, [0.62, 1.0], [0, 1]);
-  const cardsY       = useTransform(scrollYProgress, [0.62, 1.0], [40, 0]);
-
-  // TEST — REVERT LATER: webkit-playsinline + iOS gesture unlock (independent of rAF loop)
+  // ── Video setup: readiness, poster crossfade, iOS unlock ─────────────────
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // TEST — REVERT LATER: set webkit-playsinline for older iOS WebKit builds
-    // (playsInline in JSX sets the W3C attribute; this covers the legacy webkit prefix)
+    // webkit-playsinline for older iOS WebKit (playsInline covers the W3C attribute)
     video.setAttribute('webkit-playsinline', '');
 
-    // TEST — REVERT LATER: iOS silently refuses currentTime changes until the video has
-    // been "unlocked" by a user gesture. One play/pause on first touch releases the lock.
-    // This listener is COMPLETELY INDEPENDENT of the rAF loop — it does NOT gate it.
+    // Force a fresh load pass; works in tandem with preload="auto"
+    video.load();
+
+    // isReady becomes true only when the video is genuinely seekable:
+    // readyState ≥ 2 ensures data is available, and we guard against
+    // NaN/Infinity duration that Chrome/Safari can briefly report.
+    const checkReady = () => {
+      const dur = video.duration;
+      if (video.readyState >= 2 && isFinite(dur) && dur > 0) {
+        isReadyRef.current = true;
+        durationRef.current = dur;
+      }
+    };
+    checkReady(); // may already be satisfied for a cached resource
+    video.addEventListener('loadedmetadata', checkReady);
+    video.addEventListener('canplay', checkReady);
+    video.addEventListener('durationchange', checkReady);
+
+    // Poster crossfade — the <img> covers the blank video surface at opacity 1.
+    // We fade it to 0 (300ms CSS transition) only after confirming a real frame
+    // has been painted, so we never flash a blank canvas underneath.
+    //
+    // Sequence:
+    //   1. 'seeked' fires after the first successful video.currentTime assignment.
+    //   2a. If requestVideoFrameCallback is available (Chrome / Safari ≥15.4):
+    //       wait one more step for the compositor to actually paint that frame,
+    //       then crossfade. Eliminates any risk of fading to a blank frame.
+    //   2b. Otherwise 'seeked' is accurate enough — crossfade immediately.
+    //
+    // On iOS before the gesture unlock, video.currentTime is silently rejected,
+    // so 'seeked' won't fire. The poster stays up (correct image) until the first
+    // touch, at which point the unlock fires, currentTime starts working, 'seeked'
+    // fires, and the crossfade runs.
+    let hasFaded = false;
+    const doFade = () => {
+      if (hasFaded) return;
+      hasFaded = true;
+      if (posterRef.current) posterRef.current.style.opacity = '0';
+    };
+    const onFirstSeeked = () => {
+      if ('requestVideoFrameCallback' in video) {
+        (video as HTMLVideoElement & {
+          requestVideoFrameCallback: (cb: () => void) => number;
+        }).requestVideoFrameCallback(doFade);
+      } else {
+        doFade();
+      }
+    };
+    video.addEventListener('seeked', onFirstSeeked, { once: true });
+
+    // iOS gesture unlock — independent of the rAF loop; does NOT gate it.
+    // iOS refuses video.currentTime changes until the element is "unlocked" by
+    // a user gesture. One play/pause sequence on first touch releases the lock.
     let unlocked = false;
     const unlock = () => {
       if (unlocked) return;
@@ -260,37 +298,30 @@ function DesktopScrollHero() {
     document.addEventListener('pointerdown', unlock);
 
     return () => {
+      video.removeEventListener('loadedmetadata', checkReady);
+      video.removeEventListener('canplay', checkReady);
+      video.removeEventListener('durationchange', checkReady);
       document.removeEventListener('touchstart', unlock);
       document.removeEventListener('pointerdown', unlock);
     };
   }, []);
 
-  // ── rAF lerp loop: drives video playhead ─────────────────────────────────
+  // ── rAF lerp loop ─────────────────────────────────────────────────────────
+  // Starts on mount, runs every frame. The loop itself is never gated — only
+  // the currentTime assignment waits for isReadyRef. While !isReady the poster
+  // stays visible; once ready, the lerp drives the playhead smoothly.
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const markReady = () => { canSeekRef.current = true; };
-    if (video.readyState >= 2) {
-      markReady();
-    } else {
-      video.addEventListener('loadedmetadata', markReady, { once: true });
-    }
-
     const tick = () => {
-      if (canSeekRef.current && video.duration > 0) {
+      if (isReadyRef.current && durationRef.current > 0) {
         const target = Math.max(
           0,
-          Math.min(video.duration, scrollYProgress.get() * video.duration),
+          Math.min(durationRef.current, scrollYProgress.get() * durationRef.current),
         );
         lerpedRef.current += (target - lerpedRef.current) * 0.1;
         video.currentTime = lerpedRef.current;
-
-        // TEST — REVERT LATER: write debug values directly to DOM node (no re-render)
-        if (FORCE_SCRUB_ON_MOBILE && debugRef.current) {
-          debugRef.current.textContent =
-            `prog ${scrollYProgress.get().toFixed(2)}  ·  target ${target.toFixed(2)}s  ·  actual ${video.currentTime.toFixed(2)}s`;
-        }
       }
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -302,20 +333,18 @@ function DesktopScrollHero() {
   }, [scrollYProgress]);
 
   return (
-    // Outer scroll section — 300vh gives the scroll distance
+    // Outer section — 300vh provides the scroll travel distance
     <section ref={outerRef} style={{ height: '300vh', position: 'relative' }}>
 
-      {/* Sticky stage — the fixed 100vh canvas everything renders into */}
+      {/* Sticky stage — 100vh canvas; all layers render inside here */}
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
 
-        {/* Full-bleed scrubbed video — no autoplay, playhead driven by scroll */}
-        {/* TEST — REVERT LATER: added webkit-playsinline (set via setAttribute in useEffect) */}
+        {/* Full-bleed video — muted, playsInline, no autoplay */}
         <video
           ref={videoRef}
           muted
           playsInline
           preload="auto"
-          poster="/descent-poster.webp"
           style={{
             position: 'absolute',
             inset: 0,
@@ -328,33 +357,27 @@ function DesktopScrollHero() {
           <source src="/descent.mp4" type="video/mp4" />
         </video>
 
-        {/* TEST — REVERT LATER: debug overlay — live scroll/seek values */}
-        {FORCE_SCRUB_ON_MOBILE && (
-          <div
-            ref={debugRef}
-            style={{
-              position: 'fixed',
-              top: 12,
-              right: 12,
-              zIndex: 9999,
-              backgroundColor: 'rgba(0,0,0,0.72)',
-              color: '#00ff88',
-              fontFamily: 'monospace',
-              fontSize: 11,
-              lineHeight: 1.4,
-              padding: '6px 10px',
-              pointerEvents: 'none',
-              whiteSpace: 'nowrap',
-              borderRadius: 3,
-            }}
-          >
-            waiting for seek…
-          </div>
-        )}
+        {/* Poster layer — sits above the video in DOM order (no z-index needed).
+            Starts at opacity 1; fades to 0 via 300ms CSS transition once the
+            first video frame is confirmed painted (see onFirstSeeked above).
+            Eliminates the white-flash iOS shows before any frame is rendered. */}
+        <img
+          ref={posterRef}
+          src="/descent-poster.webp"
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            transition: 'opacity 300ms ease',
+          }}
+        />
 
-        {/* ── Scrim ──────────────────────────────────────────────────────────
-            Bottom-weighted gradient, fades in over progress 0.55–1.0.
-            Keeps Start Here cards legible against the reef footage.          */}
+        {/* ── Scrim: bottom-weighted gradient, fades in over 0.55–1.0 ─────── */}
         <motion.div
           aria-hidden="true"
           style={{
@@ -367,9 +390,7 @@ function DesktopScrollHero() {
           }}
         />
 
-        {/* ── Headline block ─────────────────────────────────────────────────
-            Eyebrow + h1 + subhead + CTAs.
-            Fades out and drifts up over progress 0–0.35.                     */}
+        {/* ── Headline + CTAs: fades/drifts out over 0–0.35 ──────────────── */}
         <motion.div
           style={{
             position: 'absolute',
@@ -419,9 +440,7 @@ function DesktopScrollHero() {
           </div>
         </motion.div>
 
-        {/* ── Start Here cards ───────────────────────────────────────────────
-            Frosted-glass row pinned to the bottom of the sticky stage.
-            Rises from +40px into position over progress 0.62–1.0.            */}
+        {/* ── Start Here cards: rises from +40px over 0.62–1.0 ────────────── */}
         <motion.div
           style={{
             position: 'absolute',
@@ -449,26 +468,18 @@ function DesktopScrollHero() {
 }
 
 // ─── Entry point ──────────────────────────────────────────────────────────────
-// SSR always renders StaticHero (safe default).
-// After mount, upgrades to DesktopScrollHero if: viewport ≥ 768px AND
-// the user has not enabled prefers-reduced-motion.
-// TEST — REVERT LATER: FORCE_SCRUB_ON_MOBILE skips both checks when true.
+// SSR renders StaticHero (no JS, safe default).
+// On mount: all viewports upgrade to ScrollHero unless prefers-reduced-motion.
 export default function HeroDescent() {
   const [eligible, setEligible] = useState(false);
   const [mounted,  setMounted]  = useState(false);
 
   useEffect(() => {
-    // TEST — REVERT LATER: bypasses viewport + reduced-motion gate entirely
-    if (FORCE_SCRUB_ON_MOBILE) {
-      setEligible(true);
-      setMounted(true);
-      return;
-    }
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    setEligible(!reduced && window.innerWidth >= 768);
+    setEligible(!reduced);
     setMounted(true);
   }, []);
 
   if (!mounted || !eligible) return <StaticHero />;
-  return <DesktopScrollHero />;
+  return <ScrollHero />;
 }
