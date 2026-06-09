@@ -5,20 +5,15 @@ import Link from 'next/link';
 import { useScroll, useTransform, useMotionValueEvent, motion, type MotionValue } from 'framer-motion';
 import { openBriefingModal } from '@/lib/analytics';
 
-// ─── Font aliases (CSS vars injected by layout.tsx) ──────────────────────────
 const SERIF = 'var(--font-garamond), Georgia, "Times New Roman", serif';
 const SANS  = 'var(--font-inter), Arial, Helvetica, sans-serif';
 
-// ─── Frame sequence ───────────────────────────────────────────────────────────
 const TOTAL_FRAMES = 121;
 
 function frameUrl(i: number): string {
   return `/hero/frames/frame_${String(i).padStart(4, '0')}.webp`;
 }
 
-// Cover-fit draw in CSS-pixel space.
-// ctx must already have ctx.scale(dpr,dpr) applied so that drawImage
-// coordinates are in logical CSS px, not physical device px.
 function drawFrame(
   ctx: CanvasRenderingContext2D,
   cssW: number,
@@ -44,7 +39,6 @@ function nearestLoaded(index: number, loaded: boolean[]): number {
   return -1;
 }
 
-// ─── Card data ────────────────────────────────────────────────────────────────
 const CARDS = [
   {
     label: 'For U.S. Buyers',
@@ -66,7 +60,6 @@ const CARDS = [
   },
 ] as const;
 
-// ─── CTA row — used in both surface and underwater stacks ─────────────────────
 function CTARow() {
   return (
     <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -94,7 +87,6 @@ function CTARow() {
   );
 }
 
-// ─── Frosted-glass card ───────────────────────────────────────────────────────
 function FrostCard({ label, title, desc, href }: (typeof CARDS)[number]) {
   return (
     <Link
@@ -148,7 +140,6 @@ function FrostCard({ label, title, desc, href }: (typeof CARDS)[number]) {
   );
 }
 
-// ─── Per-letter color fill ────────────────────────────────────────────────────
 function AnimatedLetter({
   char,
   scrollYProgress,
@@ -171,7 +162,6 @@ function AnimatedLetter({
   return <motion.span style={{ color }}>{char}</motion.span>;
 }
 
-// ─── Static hero (reduced-motion / no-JS fallback) ───────────────────────────
 function StaticHero() {
   return (
     <>
@@ -257,12 +247,10 @@ function StaticHero() {
   );
 }
 
-// ─── Scroll hero ──────────────────────────────────────────────────────────────
 function ScrollHero() {
   const outerRef          = useRef<HTMLElement>(null);
   const stageRef          = useRef<HTMLDivElement>(null);
   const canvasRef         = useRef<HTMLCanvasElement>(null);
-  const debugRef          = useRef<HTMLDivElement>(null);
   const surfaceRef        = useRef<HTMLDivElement>(null);
   const imagesRef         = useRef<HTMLImageElement[]>([]);
   const loadedRef         = useRef<boolean[]>([]);
@@ -274,30 +262,19 @@ function ScrollHero() {
     offset: ['start start', 'end end'],
   });
 
-  // Surface opacity: 1 → 0 over 0.00–0.30; clamped at 0 thereafter (never reverses)
-  const surfaceOpacity = useTransform(scrollYProgress, [0, 0.30], [1, 0]);
+  const surfaceOpacity = useTransform(scrollYProgress, [0, 0.26], [1, 0]);
+  const underOpacity   = useTransform(scrollYProgress, [0.30, 0.38], [0, 1]);
+  const scrimOpacity   = useTransform(scrollYProgress, [0.50, 0.85], [0, 1]);
+  const btnOpacity     = useTransform(scrollYProgress, [0.40, 0.52], [0, 1]);
+  const cardsOpacity   = useTransform(scrollYProgress, [0.72, 1.0], [0, 1]);
+  const cardsY         = useTransform(scrollYProgress, [0.72, 1.0], [40, 0]);
 
-  // Underwater stack: 0 → 1 over 0.30–0.36; clamped at 1 thereafter
-  const underOpacity   = useTransform(scrollYProgress, [0.30, 0.36], [0, 1]);
-
-  // ── Scrim: bottom-weighted, fades in 0.50–0.85 ───────────────────────────
-  const scrimOpacity       = useTransform(scrollYProgress, [0.50, 0.85], [0, 1]);
-
-  // ── Underwater buttons: fade in 0.38–0.50 ────────────────────────────────
-  const btnOpacity         = useTransform(scrollYProgress, [0.38, 0.50], [0, 1]);
-
-  // ── Cards: fade + rise 0.72–1.0 ──────────────────────────────────────────
-  const cardsOpacity       = useTransform(scrollYProgress, [0.72, 1.0], [0, 1]);
-  const cardsY             = useTransform(scrollYProgress, [0.72, 1.0], [40, 0]);
-
-  // ── Per-letter fill: 0.40–0.74, 2-slot window per letter ─────────────────
   const PHRASE     = "Let's start here";
   const LETTERS    = PHRASE.split('');
-  const FILL_START = 0.40;
+  const FILL_START = 0.42;
   const FILL_END   = 0.74;
   const PER_SLOT   = (FILL_END - FILL_START) / LETTERS.length;
 
-  // ── Canvas sizing — useLayoutEffect fires before paint ───────────────────
   useLayoutEffect(() => {
     const canvas = canvasRef.current;
     const stage  = stageRef.current;
@@ -332,43 +309,22 @@ function ScrollHero() {
     return () => ro.disconnect();
   }, []);
 
-  // ── Frame preload ─────────────────────────────────────────────────────────
   useEffect(() => {
     const imgs: HTMLImageElement[] = Array.from({ length: TOTAL_FRAMES }, () => new Image());
     const loaded = new Array<boolean>(TOTAL_FRAMES).fill(false);
     imagesRef.current = imgs;
     loadedRef.current = loaded;
 
-    let nLoaded = 0;
-    let nFailed = 0;
-
-    console.log(
-      '[HeroDescent] Preloading', TOTAL_FRAMES, 'frames.',
-      'Frame 1 resolved URL:', new URL(frameUrl(1), window.location.href).href,
-    );
-
-    const reportSettled = () => {
-      console.log(
-        `[HeroDescent] Settled — attempted: ${TOTAL_FRAMES},`,
-        `loaded: ${nLoaded}, failed: ${nFailed}`,
-      );
-    };
-
     imgs.forEach((img, idx) => {
-      const frameNum = idx + 1;
-      const src = frameUrl(frameNum);
+      const src = frameUrl(idx + 1);
 
       img.onload = () => {
         loaded[idx] = true;
-        nLoaded++;
-        if (nLoaded + nFailed === TOTAL_FRAMES) reportSettled();
-
         const canvas = canvasRef.current;
         const { w, h } = cssSizeRef.current;
         if (!canvas || !w || !h) return;
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
-
         if (idx === 0 && lastDrawnIndexRef.current < 0) {
           drawFrame(ctx, w, h, img);
           lastDrawnIndexRef.current = 0;
@@ -376,30 +332,19 @@ function ScrollHero() {
       };
 
       img.onerror = () => {
-        nFailed++;
         console.error('[HeroDescent] Frame failed to load:', src);
-        if (nLoaded + nFailed === TOTAL_FRAMES) reportSettled();
       };
 
       img.src = src;
     });
   }, []);
 
-  // ── Scroll → canvas redraw + pointer-events ──────────────────────────────
-  // pointer-events is driven via direct DOM ref — never as a string MotionValue,
-  // which can corrupt the numeric transform pipeline in Framer Motion 12.
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
-    // Surface pointer-events: off at 0.30 so underwater buttons are reachable
     if (surfaceRef.current) {
-      surfaceRef.current.style.pointerEvents = v >= 0.30 ? 'none' : 'auto';
+      surfaceRef.current.style.pointerEvents = v >= 0.26 ? 'none' : 'auto';
     }
 
     const idx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(v * (TOTAL_FRAMES - 1))));
-
-    if (debugRef.current) {
-      debugRef.current.textContent = `scroll ${v.toFixed(3)}  frame ${idx + 1}/${TOTAL_FRAMES}`;
-    }
-
     if (idx === lastDrawnIndexRef.current) return;
 
     const canvas = canvasRef.current;
@@ -415,10 +360,8 @@ function ScrollHero() {
 
   return (
     <section ref={outerRef} style={{ height: '300vh', position: 'relative' }}>
-
       <div ref={stageRef} style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
 
-        {/* Poster safety net — visible through transparent canvas until frame 0 loads */}
         <div
           aria-hidden="true"
           style={{
@@ -430,7 +373,6 @@ function ScrollHero() {
           }}
         />
 
-        {/* Canvas — CSS 100%×100%; physical size = CSS × dpr */}
         <canvas
           ref={canvasRef}
           aria-hidden="true"
@@ -443,27 +385,6 @@ function ScrollHero() {
           }}
         />
 
-        {/* DEBUG — remove once scroll + frames confirmed working */}
-        <div
-          ref={debugRef}
-          style={{
-            position: 'absolute',
-            top: 12,
-            right: 12,
-            zIndex: 9999,
-            background: 'rgba(0,0,0,0.65)',
-            color: '#fff',
-            padding: '5px 10px',
-            fontFamily: 'monospace',
-            fontSize: 12,
-            pointerEvents: 'none',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          scroll 0.000  frame 1/121
-        </div>
-
-        {/* Scrim: bottom-weighted gradient, fades in 0.50–0.85 */}
         <motion.div
           aria-hidden="true"
           style={{
@@ -475,8 +396,6 @@ function ScrollHero() {
           }}
         />
 
-        {/* ── SURFACE STACK ────────────────────────────────────────────────── */}
-        {/* opacity 1→0 over 0–0.30, clamped at 0; pointer-events via DOM ref */}
         <motion.div
           ref={surfaceRef}
           style={{
@@ -526,8 +445,6 @@ function ScrollHero() {
           </div>
         </motion.div>
 
-        {/* ── UNDERWATER STACK ─────────────────────────────────────────────── */}
-        {/* Opacity 0→1 over 0.30–0.36; same left offset as surface stack      */}
         <motion.div
           style={{
             position: 'absolute',
@@ -538,7 +455,6 @@ function ScrollHero() {
           }}
         >
           <div className="section-container" style={{ maxWidth: 760 }}>
-            {/* Invisible eyebrow spacer — keeps H2 vertically aligned with surface H1 */}
             <span
               aria-hidden="true"
               style={{
@@ -553,7 +469,6 @@ function ScrollHero() {
               Why Roatán, Why Now
             </span>
 
-            {/* "Let's start here" — per-letter fill 0.40–0.74 */}
             <h2 style={{
               fontFamily: SERIF,
               fontSize: 'clamp(44px, 5.5vw, 72px)',
@@ -573,12 +488,10 @@ function ScrollHero() {
               ))}
             </h2>
 
-            {/* Buttons — fade in 0.38–0.50 */}
             <motion.div style={{ opacity: btnOpacity, marginBottom: 40 }}>
               <CTARow />
             </motion.div>
 
-            {/* Cards — fade + rise 0.72–1.0 */}
             <motion.div style={{ opacity: cardsOpacity, y: cardsY }}>
               <div className="grid sm:grid-cols-3 gap-3">
                 {CARDS.map(c => <FrostCard key={c.href} {...c} />)}
@@ -592,7 +505,6 @@ function ScrollHero() {
   );
 }
 
-// ─── Entry point ──────────────────────────────────────────────────────────────
 export default function HeroDescent() {
   const [eligible, setEligible] = useState(false);
   const [mounted,  setMounted]  = useState(false);
