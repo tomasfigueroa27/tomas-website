@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useLayoutEffect, useState } from 'react';
 import Link from 'next/link';
 import { useScroll, useTransform, motion, type MotionValue } from 'framer-motion';
 import { openBriefingModal } from '@/lib/analytics';
@@ -12,32 +12,33 @@ const SANS  = 'var(--font-inter), Arial, Helvetica, sans-serif';
 // ─── Frame sequence ───────────────────────────────────────────────────────────
 const TOTAL_FRAMES = 121;
 
+// i is 1-indexed (1..121) matching actual filenames frame_0001.webp…frame_0121.webp
 function frameUrl(i: number): string {
-  // i is 0-indexed; files are frame_0001.webp … frame_0121.webp
-  return `/hero/frames/frame_${String(i + 1).padStart(4, '0')}.webp`;
+  return `/hero/frames/frame_${String(i).padStart(4, '0')}.webp`;
 }
 
-// "Cover" fit: scale the image to fill the canvas, centered-cropped. Works in
-// physical (dpr-adjusted) pixels so the result is always crisp.
-function drawCover(
+// Cover-fit draw in CSS-pixel space.
+// IMPORTANT: ctx must already have ctx.scale(dpr,dpr) applied so that drawImage
+// coordinates are in logical CSS px, not physical device px.
+// Guard: no-ops if canvas or image have zero dimensions.
+function drawFrame(
   ctx: CanvasRenderingContext2D,
-  canvas: HTMLCanvasElement,
+  cssW: number,
+  cssH: number,
   img: HTMLImageElement,
 ): void {
-  const cw = canvas.width;
-  const ch = canvas.height;
   const iw = img.naturalWidth;
   const ih = img.naturalHeight;
-  if (!iw || !ih) return;
-  const scale = Math.max(cw / iw, ch / ih);
+  if (!cssW || !cssH || !iw || !ih) return;
+  const scale = Math.max(cssW / iw, cssH / ih);
   const sw = iw * scale;
   const sh = ih * scale;
-  ctx.clearRect(0, 0, cw, ch);
-  ctx.drawImage(img, (cw - sw) / 2, (ch - sh) / 2, sw, sh);
+  ctx.clearRect(0, 0, cssW, cssH);
+  ctx.drawImage(img, (cssW - sw) / 2, (cssH - sh) / 2, sw, sh);
 }
 
 // Walk outward from `index` to find the nearest frame that has finished loading.
-// Returns -1 only if no frames are loaded at all.
+// Returns -1 only if no frames are loaded at all yet.
 function nearestLoaded(index: number, loaded: boolean[]): number {
   if (loaded[index]) return index;
   for (let d = 1; d < loaded.length; d++) {
@@ -151,9 +152,6 @@ function FrostCard({ label, title, desc, href }: (typeof CARDS)[number]) {
 }
 
 // ─── Per-letter color fill ────────────────────────────────────────────────────
-// Each letter receives its own slice of the 0.36–0.74 scroll range and fills
-// from ghost rgba(255,255,255,0.12) to solid white as the user scrolls through it.
-// Defined at module level so useTransform is called at the component root (hooks rules).
 function AnimatedLetter({
   char,
   scrollYProgress,
@@ -170,7 +168,6 @@ function AnimatedLetter({
     [start, end],
     ['rgba(255,255,255,0.12)', '#ffffff'],
   );
-  // Spaces: render as a fixed-width gap; no animation needed.
   if (char === ' ') {
     return <span style={{ display: 'inline-block', width: '0.28em' }} aria-hidden="true" />;
   }
@@ -178,8 +175,6 @@ function AnimatedLetter({
 }
 
 // ─── Static hero ─────────────────────────────────────────────────────────────
-// Rendered only for prefers-reduced-motion users. All other viewports,
-// including mobile, receive the scroll hero below.
 function StaticHero() {
   return (
     <>
@@ -266,127 +261,160 @@ function StaticHero() {
 }
 
 // ─── Scroll hero ──────────────────────────────────────────────────────────────
-// All viewports (mobile + desktop), no prefers-reduced-motion.
-// Draws preloaded WebP frames to a <canvas> whose playhead is driven by
-// scrollYProgress via a lerped rAF loop.
 function ScrollHero() {
   const outerRef     = useRef<HTMLElement>(null);
+  const stageRef     = useRef<HTMLDivElement>(null);  // sticky container — ResizeObserver target
   const canvasRef    = useRef<HTMLCanvasElement>(null);
   const imagesRef    = useRef<HTMLImageElement[]>([]);
   const loadedRef    = useRef<boolean[]>([]);
   const rafRef       = useRef<number | null>(null);
-  const lerpedRef    = useRef(0);   // lerped float frame index
-  const lastDrawnRef = useRef(-1);  // actual frame index last drawn to canvas
+  const lerpedRef    = useRef(0);                    // lerped float frame index
+  const lastDrawnRef = useRef(-1);                   // actual index last drawn (-1 = none yet)
+  const cssSizeRef   = useRef({ w: 0, h: 0 });      // logical CSS-px dimensions
 
   const { scrollYProgress } = useScroll({
     target: outerRef,
     offset: ['start start', 'end end'],
   });
 
-  // ── Overlay MotionValues ──────────────────────────────────────────────────
-
-  // Surface state (eyebrow, H1, subhead, CTAs): fully gone by 0.30
-  const aboveOpacity = useTransform(scrollYProgress, [0, 0.30], [1, 0]);
-  const aboveY       = useTransform(scrollYProgress, [0, 0.30], [0, -40]);
-
-  // Scrim: bottom gradient fades in 0.50→0.85 for legibility over the reef
-  const scrimOpacity = useTransform(scrollYProgress, [0.50, 0.85], [0, 1]);
-
-  // Underwater headline container: crossfades in 0.28→0.36 so the ghost letters
-  // are already visible before color-fill begins at 0.36
+  // ── Overlay MotionValues (unchanged) ─────────────────────────────────────
+  const aboveOpacity     = useTransform(scrollYProgress, [0, 0.30], [1, 0]);
+  const aboveY           = useTransform(scrollYProgress, [0, 0.30], [0, -40]);
+  const scrimOpacity     = useTransform(scrollYProgress, [0.50, 0.85], [0, 1]);
   const underHeadOpacity = useTransform(scrollYProgress, [0.28, 0.36], [0, 1]);
+  const cardsOpacity     = useTransform(scrollYProgress, [0.72, 1.0], [0, 1]);
+  const cardsY           = useTransform(scrollYProgress, [0.72, 1.0], [40, 0]);
 
-  // Cards: fade/rise in 0.72→1.0, below the headline in the centered stack
-  const cardsOpacity = useTransform(scrollYProgress, [0.72, 1.0], [0, 1]);
-  const cardsY       = useTransform(scrollYProgress, [0.72, 1.0], [40, 0]);
-
-  // ── Letter fill distribution ──────────────────────────────────────────────
-  // "Let's start here" split into 16 chars; each gets a 2-slot fill window
-  // (double the per-letter gap) so adjacent fills overlap smoothly.
   const PHRASE     = "Let's start here";
   const LETTERS    = PHRASE.split('');
   const FILL_START = 0.36;
   const FILL_END   = 0.74;
   const PER_SLOT   = (FILL_END - FILL_START) / LETTERS.length;
 
-  // ── Canvas sizing ─────────────────────────────────────────────────────────
-  // Sets physical pixel dimensions to clientWidth×dpr so sub-pixel rendering
-  // is sharp on Retina/HiDPI. Setting canvas.width/height clears the canvas,
-  // so the next rAF tick redraws; the poster CSS background shows through
-  // during the brief gap.
-  useEffect(() => {
+  // ── Canvas sizing — useLayoutEffect fires before paint ───────────────────
+  // Sets physical px = CSS px × dpr, applies ctx.scale(dpr,dpr) so that all
+  // subsequent drawImage calls use logical CSS-pixel coordinates.
+  // A ResizeObserver on the stage keeps this in sync through orientation changes
+  // and browser-chrome show/hide on mobile.
+  useLayoutEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const stage  = stageRef.current;
+    if (!canvas || !stage) return;
 
-    const resize = () => {
-      const dpr = window.devicePixelRatio || 1;
-      const w   = Math.round(canvas.clientWidth  * dpr);
-      const h   = Math.round(canvas.clientHeight * dpr);
-      if (canvas.width !== w || canvas.height !== h) {
-        canvas.width  = w;
-        canvas.height = h;
-        // rAF loop redraws on the next tick; no explicit redraw needed here
-      }
+    const applySize = () => {
+      const dpr  = window.devicePixelRatio || 1;
+      const w    = stage.clientWidth;
+      const h    = stage.clientHeight;
+      if (!w || !h) return;                         // stage not yet laid out — skip
+
+      const physW = Math.round(w * dpr);
+      const physH = Math.round(h * dpr);
+
+      // Only reset if dimensions actually changed; avoids clearing canvas on every
+      // ResizeObserver callback when nothing moved.
+      if (canvas.width === physW && canvas.height === physH) return;
+
+      cssSizeRef.current = { w, h };
+      canvas.width  = physW;   // resets canvas state (clears + identity transform)
+      canvas.height = physH;
+
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      // canvas.width assignment already reset to identity; re-apply dpr scale
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+
+      // Redraw current frame immediately so nothing goes blank on resize
+      const idx = nearestLoaded(Math.max(0, lastDrawnRef.current), loadedRef.current);
+      if (idx >= 0) drawFrame(ctx, w, h, imagesRef.current[idx]);
     };
 
-    resize();
-    window.addEventListener('resize', resize);
-    return () => window.removeEventListener('resize', resize);
+    applySize();
+    const ro = new ResizeObserver(applySize);
+    ro.observe(stage);
+    return () => ro.disconnect();
   }, []);
 
-  // ── Frame preload ─────────────────────────────────────────────────────────
-  // Start loading all 121 frames immediately. The moment frame 0 arrives,
-  // paint it so there is never a blank/white canvas state.
+  // ── Frame preload with diagnostic logging ────────────────────────────────
   useEffect(() => {
-    const imgs: HTMLImageElement[] = Array.from(
-      { length: TOTAL_FRAMES },
-      () => new Image(),
-    );
+    const imgs: HTMLImageElement[] = Array.from({ length: TOTAL_FRAMES }, () => new Image());
     const loaded = new Array<boolean>(TOTAL_FRAMES).fill(false);
     imagesRef.current = imgs;
     loadedRef.current = loaded;
 
-    imgs.forEach((img, i) => {
+    let nLoaded = 0;
+    let nFailed = 0;
+
+    // Immediate log so we can verify the path without waiting for loads
+    console.log(
+      '[HeroDescent] Preloading', TOTAL_FRAMES, 'frames.',
+      'Frame 1 resolved URL:', new URL(frameUrl(1), window.location.href).href,
+    );
+
+    const reportSettled = () => {
+      console.log(
+        `[HeroDescent] Settled — attempted: ${TOTAL_FRAMES},`,
+        `loaded: ${nLoaded}, failed: ${nFailed}`,
+      );
+    };
+
+    imgs.forEach((img, idx) => {
+      const frameNum = idx + 1;  // array is 0-indexed; filenames are 1-indexed
+      const src = frameUrl(frameNum);
+
       img.onload = () => {
-        loaded[i] = true;
-        // Paint frame 0 the instant it arrives — eliminates any blank-canvas flash
-        if (i === 0 && lastDrawnRef.current < 0) {
-          const canvas = canvasRef.current;
-          if (!canvas) return;
-          // Guarantee a valid size in case the resize effect hasn't run yet
-          if (!canvas.width || !canvas.height) {
-            const dpr = window.devicePixelRatio || 1;
-            canvas.width  = Math.round(canvas.clientWidth  * dpr);
-            canvas.height = Math.round(canvas.clientHeight * dpr);
-          }
-          const ctx = canvas.getContext('2d');
-          if (ctx) {
-            drawCover(ctx, canvas, img);
-            lastDrawnRef.current = 0;
-          }
+        loaded[idx] = true;
+        nLoaded++;
+        if (nLoaded + nFailed === TOTAL_FRAMES) reportSettled();
+
+        const canvas = canvasRef.current;
+        const { w, h } = cssSizeRef.current;
+        if (!canvas || !w || !h) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        // Paint frame 0 the instant it arrives — canvas must never stay blank
+        if (idx === 0 && lastDrawnRef.current < 0) {
+          drawFrame(ctx, w, h, img);
+          lastDrawnRef.current = 0;
+          return;
+        }
+
+        // If this frame matches the current scrub target, upgrade the draw
+        // (covers the case where the user scrolled before this frame finished loading)
+        const want = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(lerpedRef.current)));
+        if (idx === want && idx !== lastDrawnRef.current) {
+          drawFrame(ctx, w, h, img);
+          lastDrawnRef.current = idx;
         }
       };
-      img.src = frameUrl(i);
+
+      img.onerror = () => {
+        nFailed++;
+        console.error('[HeroDescent] Frame failed to load:', src);
+        if (nLoaded + nFailed === TOTAL_FRAMES) reportSettled();
+      };
+
+      img.src = src;
     });
   }, []);
 
   // ── rAF scrub loop ────────────────────────────────────────────────────────
   // Maps scrollYProgress → lerped float index → nearest loaded frame.
-  // Only redraws when the actual drawn frame changes; skips if no frames are
-  // loaded at the target position yet (poster remains visible through canvas).
+  // Guards against zero-size canvas. Only redraws when the drawn frame changes.
   useEffect(() => {
     const tick = () => {
       const canvas = canvasRef.current;
-      if (canvas) {
+      const { w, h } = cssSizeRef.current;
+      if (canvas && w && h) {
         const target = scrollYProgress.get() * (TOTAL_FRAMES - 1);
         lerpedRef.current += (target - lerpedRef.current) * 0.1;
         const want = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(lerpedRef.current)));
         const idx  = nearestLoaded(want, loadedRef.current);
-
         if (idx >= 0 && idx !== lastDrawnRef.current) {
           const ctx = canvas.getContext('2d');
           if (ctx) {
-            drawCover(ctx, canvas, imagesRef.current[idx]);
+            drawFrame(ctx, w, h, imagesRef.current[idx]);
             lastDrawnRef.current = idx;
           }
         }
@@ -394,22 +422,20 @@ function ScrollHero() {
       rafRef.current = requestAnimationFrame(tick);
     };
     rafRef.current = requestAnimationFrame(tick);
-
     return () => {
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
     };
   }, [scrollYProgress]);
 
   return (
-    // Outer section — 300vh provides the scroll travel distance
     <section ref={outerRef} style={{ height: '300vh', position: 'relative' }}>
 
-      {/* Sticky stage — 100vh canvas; all layers render inside here */}
-      <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
+      {/* stageRef lives here so ResizeObserver tracks the sticky container */}
+      <div ref={stageRef} style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
 
-        {/* Poster safety net — visible through the canvas (which is transparent by
-            default) until frame 0 is painted. CSS background-size:cover mirrors the
-            canvas cover-fit so there is no layout jump when the first frame arrives. */}
+        {/* Poster safety net — CSS background shows through the canvas (which is
+            fully transparent until frame 0 is drawn). background-size:cover mirrors
+            the canvas cover-fit so there is no visible jump when frame 0 paints. */}
         <div
           aria-hidden="true"
           style={{
@@ -421,8 +447,9 @@ function ScrollHero() {
           }}
         />
 
-        {/* Canvas — full-bleed, dpr-aware. Physical size set by the resize effect;
-            CSS size always 100%×100% of the sticky stage. */}
+        {/* Canvas — CSS size always 100%×100%; physical size = CSS × dpr (set above).
+            drawImage coordinates are in logical CSS px because ctx.scale(dpr,dpr)
+            is applied on every size change. */}
         <canvas
           ref={canvasRef}
           aria-hidden="true"
@@ -500,7 +527,6 @@ function ScrollHero() {
         </motion.div>
 
         {/* ── Underwater state: headline + cards, vertically centered ─────── */}
-        {/* Nothing from the surface state shows here. */}
         <div style={{
           position: 'absolute',
           inset: 0,
@@ -512,8 +538,7 @@ function ScrollHero() {
           padding: '0 24px',
         }}>
 
-          {/* "Let's start here" — ghost letters fade in 0.28→0.36, then fill
-              left-to-right across 0.36–0.74 via per-letter useTransform. */}
+          {/* "Let's start here" — ghost letters fade in 0.28→0.36, fill 0.36→0.74 */}
           <motion.div
             style={{ opacity: underHeadOpacity, textAlign: 'center' }}
             aria-hidden="true"
@@ -539,7 +564,7 @@ function ScrollHero() {
             </h2>
           </motion.div>
 
-          {/* Start Here cards — rise in 0.72→1.0, below the headline */}
+          {/* Start Here cards — rise in 0.72→1.0 */}
           <motion.div style={{
             opacity: cardsOpacity,
             y: cardsY,
@@ -559,8 +584,6 @@ function ScrollHero() {
 }
 
 // ─── Entry point ──────────────────────────────────────────────────────────────
-// SSR renders StaticHero (no JS, safe default).
-// On mount: all viewports upgrade to ScrollHero unless prefers-reduced-motion.
 export default function HeroDescent() {
   const [eligible, setEligible] = useState(false);
   const [mounted,  setMounted]  = useState(false);
