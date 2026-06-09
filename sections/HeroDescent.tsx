@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useLayoutEffect, useState } from 'react';
 import Link from 'next/link';
-import { useScroll, useTransform, motion, type MotionValue } from 'framer-motion';
+import { useScroll, useTransform, useMotionValueEvent, motion, type MotionValue } from 'framer-motion';
 import { openBriefingModal } from '@/lib/analytics';
 
 // ─── Font aliases (CSS vars injected by layout.tsx) ──────────────────────────
@@ -262,15 +262,14 @@ function StaticHero() {
 
 // ─── Scroll hero ──────────────────────────────────────────────────────────────
 function ScrollHero() {
-  const outerRef     = useRef<HTMLElement>(null);
-  const stageRef     = useRef<HTMLDivElement>(null);  // sticky container — ResizeObserver target
-  const canvasRef    = useRef<HTMLCanvasElement>(null);
-  const imagesRef    = useRef<HTMLImageElement[]>([]);
-  const loadedRef    = useRef<boolean[]>([]);
-  const rafRef       = useRef<number | null>(null);
-  const lerpedRef    = useRef(0);                    // lerped float frame index
-  const lastDrawnRef = useRef(-1);                   // actual index last drawn (-1 = none yet)
-  const cssSizeRef   = useRef({ w: 0, h: 0 });      // logical CSS-px dimensions
+  const outerRef          = useRef<HTMLElement>(null);
+  const stageRef          = useRef<HTMLDivElement>(null);
+  const canvasRef         = useRef<HTMLCanvasElement>(null);
+  const debugRef          = useRef<HTMLDivElement>(null);  // debug overlay — remove after confirming
+  const imagesRef         = useRef<HTMLImageElement[]>([]);
+  const loadedRef         = useRef<boolean[]>([]);
+  const lastDrawnIndexRef = useRef(-1);                    // frame index currently on canvas
+  const cssSizeRef        = useRef({ w: 0, h: 0 });
 
   const { scrollYProgress } = useScroll({
     target: outerRef,
@@ -325,7 +324,7 @@ function ScrollHero() {
       ctx.scale(dpr, dpr);
 
       // Redraw current frame immediately so nothing goes blank on resize
-      const idx = nearestLoaded(Math.max(0, lastDrawnRef.current), loadedRef.current);
+      const idx = nearestLoaded(Math.max(0, lastDrawnIndexRef.current), loadedRef.current);
       if (idx >= 0) drawFrame(ctx, w, h, imagesRef.current[idx]);
     };
 
@@ -374,18 +373,9 @@ function ScrollHero() {
         if (!ctx) return;
 
         // Paint frame 0 the instant it arrives — canvas must never stay blank
-        if (idx === 0 && lastDrawnRef.current < 0) {
+        if (idx === 0 && lastDrawnIndexRef.current < 0) {
           drawFrame(ctx, w, h, img);
-          lastDrawnRef.current = 0;
-          return;
-        }
-
-        // If this frame matches the current scrub target, upgrade the draw
-        // (covers the case where the user scrolled before this frame finished loading)
-        const want = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(lerpedRef.current)));
-        if (idx === want && idx !== lastDrawnRef.current) {
-          drawFrame(ctx, w, h, img);
-          lastDrawnRef.current = idx;
+          lastDrawnIndexRef.current = 0;
         }
       };
 
@@ -399,33 +389,31 @@ function ScrollHero() {
     });
   }, []);
 
-  // ── rAF scrub loop ────────────────────────────────────────────────────────
-  // Maps scrollYProgress → lerped float index → nearest loaded frame.
-  // Guards against zero-size canvas. Only redraws when the drawn frame changes.
-  useEffect(() => {
-    const tick = () => {
-      const canvas = canvasRef.current;
-      const { w, h } = cssSizeRef.current;
-      if (canvas && w && h) {
-        const target = scrollYProgress.get() * (TOTAL_FRAMES - 1);
-        lerpedRef.current += (target - lerpedRef.current) * 0.1;
-        const want = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(lerpedRef.current)));
-        const idx  = nearestLoaded(want, loadedRef.current);
-        if (idx >= 0 && idx !== lastDrawnRef.current) {
-          const ctx = canvas.getContext('2d');
-          if (ctx) {
-            drawFrame(ctx, w, h, imagesRef.current[idx]);
-            lastDrawnRef.current = idx;
-          }
-        }
-      }
-      rafRef.current = requestAnimationFrame(tick);
-    };
-    rafRef.current = requestAnimationFrame(tick);
-    return () => {
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
-    };
-  }, [scrollYProgress]);
+  // ── Scroll → canvas redraw ────────────────────────────────────────────────
+  // useMotionValueEvent fires synchronously on every scrollYProgress change,
+  // which is the only reliable way to drive canvas redraws from a MotionValue.
+  // (polling via rAF + .get() misses updates because the value is already stale
+  // by the time the next animation frame runs.)
+  useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    const idx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(v * (TOTAL_FRAMES - 1))));
+
+    // Debug overlay — shows live progress + frame number; remove once confirmed working
+    if (debugRef.current) {
+      debugRef.current.textContent = `scroll ${v.toFixed(3)}  frame ${idx + 1}/${TOTAL_FRAMES}`;
+    }
+
+    if (idx === lastDrawnIndexRef.current) return;
+
+    const canvas = canvasRef.current;
+    const { w, h } = cssSizeRef.current;
+    if (!canvas || !w || !h) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const actual = nearestLoaded(idx, loadedRef.current);
+    if (actual < 0) return;
+    drawFrame(ctx, w, h, imagesRef.current[actual]);
+    lastDrawnIndexRef.current = idx;
+  });
 
   return (
     <section ref={outerRef} style={{ height: '300vh', position: 'relative' }}>
@@ -461,6 +449,26 @@ function ScrollHero() {
             display: 'block',
           }}
         />
+
+        {/* DEBUG — remove once scroll + frames confirmed working */}
+        <div
+          ref={debugRef}
+          style={{
+            position: 'absolute',
+            top: 12,
+            right: 12,
+            zIndex: 9999,
+            background: 'rgba(0,0,0,0.65)',
+            color: '#fff',
+            padding: '5px 10px',
+            fontFamily: 'monospace',
+            fontSize: 12,
+            pointerEvents: 'none',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          scroll 0.000  frame 1/121
+        </div>
 
         {/* ── Scrim: bottom-weighted gradient, fades in 0.50–0.85 ──────────── */}
         <motion.div
