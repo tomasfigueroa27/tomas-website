@@ -9,6 +9,44 @@ import { openBriefingModal } from '@/lib/analytics';
 const SERIF = 'var(--font-garamond), Georgia, "Times New Roman", serif';
 const SANS  = 'var(--font-inter), Arial, Helvetica, sans-serif';
 
+// ─── Frame sequence ───────────────────────────────────────────────────────────
+const TOTAL_FRAMES = 121;
+
+function frameUrl(i: number): string {
+  // i is 0-indexed; files are frame_0001.webp … frame_0121.webp
+  return `/hero/frames/frame_${String(i + 1).padStart(4, '0')}.webp`;
+}
+
+// "Cover" fit: scale the image to fill the canvas, centered-cropped. Works in
+// physical (dpr-adjusted) pixels so the result is always crisp.
+function drawCover(
+  ctx: CanvasRenderingContext2D,
+  canvas: HTMLCanvasElement,
+  img: HTMLImageElement,
+): void {
+  const cw = canvas.width;
+  const ch = canvas.height;
+  const iw = img.naturalWidth;
+  const ih = img.naturalHeight;
+  if (!iw || !ih) return;
+  const scale = Math.max(cw / iw, ch / ih);
+  const sw = iw * scale;
+  const sh = ih * scale;
+  ctx.clearRect(0, 0, cw, ch);
+  ctx.drawImage(img, (cw - sw) / 2, (ch - sh) / 2, sw, sh);
+}
+
+// Walk outward from `index` to find the nearest frame that has finished loading.
+// Returns -1 only if no frames are loaded at all.
+function nearestLoaded(index: number, loaded: boolean[]): number {
+  if (loaded[index]) return index;
+  for (let d = 1; d < loaded.length; d++) {
+    if (index - d >= 0 && loaded[index - d]) return index - d;
+    if (index + d < loaded.length && loaded[index + d]) return index + d;
+  }
+  return -1;
+}
+
 // ─── Card data ────────────────────────────────────────────────────────────────
 const CARDS = [
   {
@@ -154,7 +192,7 @@ function StaticHero() {
         flexDirection: 'column',
       }}>
         <img
-          src="/descent-poster.webp"
+          src="/hero/descent-poster.webp"
           alt="Aerial view of Roatán, Bay Islands, Honduras"
           fetchPriority="high"
           decoding="async"
@@ -229,15 +267,16 @@ function StaticHero() {
 
 // ─── Scroll hero ──────────────────────────────────────────────────────────────
 // All viewports (mobile + desktop), no prefers-reduced-motion.
-// Drives video.currentTime from scrollYProgress via a lerped rAF loop.
+// Draws preloaded WebP frames to a <canvas> whose playhead is driven by
+// scrollYProgress via a lerped rAF loop.
 function ScrollHero() {
-  const outerRef    = useRef<HTMLElement>(null);
-  const videoRef    = useRef<HTMLVideoElement>(null);
-  const posterRef   = useRef<HTMLImageElement>(null);
-  const rafRef      = useRef<number | null>(null);
-  const lerpedRef   = useRef(0);      // lerped playhead in seconds
-  const isReadyRef  = useRef(false);  // true once video is genuinely seekable
-  const durationRef = useRef(0);      // cached finite duration
+  const outerRef     = useRef<HTMLElement>(null);
+  const canvasRef    = useRef<HTMLCanvasElement>(null);
+  const imagesRef    = useRef<HTMLImageElement[]>([]);
+  const loadedRef    = useRef<boolean[]>([]);
+  const rafRef       = useRef<number | null>(null);
+  const lerpedRef    = useRef(0);   // lerped float frame index
+  const lastDrawnRef = useRef(-1);  // actual frame index last drawn to canvas
 
   const { scrollYProgress } = useScroll({
     target: outerRef,
@@ -270,101 +309,87 @@ function ScrollHero() {
   const FILL_END   = 0.74;
   const PER_SLOT   = (FILL_END - FILL_START) / LETTERS.length;
 
-  // ── Video setup: readiness, poster crossfade, iOS unlock ─────────────────
+  // ── Canvas sizing ─────────────────────────────────────────────────────────
+  // Sets physical pixel dimensions to clientWidth×dpr so sub-pixel rendering
+  // is sharp on Retina/HiDPI. Setting canvas.width/height clears the canvas,
+  // so the next rAF tick redraws; the poster CSS background shows through
+  // during the brief gap.
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    // webkit-playsinline for older iOS WebKit (playsInline covers the W3C attribute)
-    video.setAttribute('webkit-playsinline', '');
-
-    // Force a fresh load pass; works in tandem with preload="auto"
-    video.load();
-
-    // isReady becomes true only when the video is genuinely seekable:
-    // readyState ≥ 2 ensures data is available, and we guard against
-    // NaN/Infinity duration that Chrome/Safari can briefly report.
-    const checkReady = () => {
-      const dur = video.duration;
-      if (video.readyState >= 2 && isFinite(dur) && dur > 0) {
-        isReadyRef.current = true;
-        durationRef.current = dur;
+    const resize = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const w   = Math.round(canvas.clientWidth  * dpr);
+      const h   = Math.round(canvas.clientHeight * dpr);
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width  = w;
+        canvas.height = h;
+        // rAF loop redraws on the next tick; no explicit redraw needed here
       }
     };
-    checkReady(); // may already be satisfied for a cached resource
-    video.addEventListener('loadedmetadata', checkReady);
-    video.addEventListener('canplay', checkReady);
-    video.addEventListener('durationchange', checkReady);
 
-    // Poster crossfade — the <img> covers the blank video surface at opacity 1.
-    // We fade it to 0 (300ms CSS transition) only after confirming a real frame
-    // has been painted, so we never flash a blank canvas underneath.
-    //
-    // Sequence:
-    //   1. 'seeked' fires after the first successful video.currentTime assignment.
-    //   2a. If requestVideoFrameCallback is available (Chrome / Safari ≥15.4):
-    //       wait one more step for the compositor to actually paint that frame,
-    //       then crossfade. Eliminates any risk of fading to a blank frame.
-    //   2b. Otherwise 'seeked' is accurate enough — crossfade immediately.
-    //
-    // On iOS before the gesture unlock, video.currentTime is silently rejected,
-    // so 'seeked' won't fire. The poster stays up (correct image) until the first
-    // touch, at which point the unlock fires, currentTime starts working, 'seeked'
-    // fires, and the crossfade runs.
-    let hasFaded = false;
-    const doFade = () => {
-      if (hasFaded) return;
-      hasFaded = true;
-      if (posterRef.current) posterRef.current.style.opacity = '0';
-    };
-    const onFirstSeeked = () => {
-      if ('requestVideoFrameCallback' in video) {
-        (video as HTMLVideoElement & {
-          requestVideoFrameCallback: (cb: () => void) => number;
-        }).requestVideoFrameCallback(doFade);
-      } else {
-        doFade();
-      }
-    };
-    video.addEventListener('seeked', onFirstSeeked, { once: true });
-
-    // iOS gesture unlock — independent of the rAF loop; does NOT gate it.
-    // iOS refuses video.currentTime changes until the element is "unlocked" by
-    // a user gesture. One play/pause sequence on first touch releases the lock.
-    let unlocked = false;
-    const unlock = () => {
-      if (unlocked) return;
-      unlocked = true;
-      video.play().then(() => video.pause()).catch(() => {});
-    };
-    document.addEventListener('touchstart', unlock, { passive: true });
-    document.addEventListener('pointerdown', unlock);
-
-    return () => {
-      video.removeEventListener('loadedmetadata', checkReady);
-      video.removeEventListener('canplay', checkReady);
-      video.removeEventListener('durationchange', checkReady);
-      document.removeEventListener('touchstart', unlock);
-      document.removeEventListener('pointerdown', unlock);
-    };
+    resize();
+    window.addEventListener('resize', resize);
+    return () => window.removeEventListener('resize', resize);
   }, []);
 
-  // ── rAF lerp loop ─────────────────────────────────────────────────────────
-  // Starts on mount, runs every frame. The loop itself is never gated — only
-  // the currentTime assignment waits for isReadyRef. While !isReady the poster
-  // stays visible; once ready, the lerp drives the playhead smoothly.
+  // ── Frame preload ─────────────────────────────────────────────────────────
+  // Start loading all 121 frames immediately. The moment frame 0 arrives,
+  // paint it so there is never a blank/white canvas state.
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    const imgs: HTMLImageElement[] = Array.from(
+      { length: TOTAL_FRAMES },
+      () => new Image(),
+    );
+    const loaded = new Array<boolean>(TOTAL_FRAMES).fill(false);
+    imagesRef.current = imgs;
+    loadedRef.current = loaded;
 
+    imgs.forEach((img, i) => {
+      img.onload = () => {
+        loaded[i] = true;
+        // Paint frame 0 the instant it arrives — eliminates any blank-canvas flash
+        if (i === 0 && lastDrawnRef.current < 0) {
+          const canvas = canvasRef.current;
+          if (!canvas) return;
+          // Guarantee a valid size in case the resize effect hasn't run yet
+          if (!canvas.width || !canvas.height) {
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width  = Math.round(canvas.clientWidth  * dpr);
+            canvas.height = Math.round(canvas.clientHeight * dpr);
+          }
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            drawCover(ctx, canvas, img);
+            lastDrawnRef.current = 0;
+          }
+        }
+      };
+      img.src = frameUrl(i);
+    });
+  }, []);
+
+  // ── rAF scrub loop ────────────────────────────────────────────────────────
+  // Maps scrollYProgress → lerped float index → nearest loaded frame.
+  // Only redraws when the actual drawn frame changes; skips if no frames are
+  // loaded at the target position yet (poster remains visible through canvas).
+  useEffect(() => {
     const tick = () => {
-      if (isReadyRef.current && durationRef.current > 0) {
-        const target = Math.max(
-          0,
-          Math.min(durationRef.current, scrollYProgress.get() * durationRef.current),
-        );
+      const canvas = canvasRef.current;
+      if (canvas) {
+        const target = scrollYProgress.get() * (TOTAL_FRAMES - 1);
         lerpedRef.current += (target - lerpedRef.current) * 0.1;
-        video.currentTime = lerpedRef.current;
+        const want = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(lerpedRef.current)));
+        const idx  = nearestLoaded(want, loadedRef.current);
+
+        if (idx >= 0 && idx !== lastDrawnRef.current) {
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            drawCover(ctx, canvas, imagesRef.current[idx]);
+            lastDrawnRef.current = idx;
+          }
+        }
       }
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -382,41 +407,31 @@ function ScrollHero() {
       {/* Sticky stage — 100vh canvas; all layers render inside here */}
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
 
-        {/* Full-bleed video — muted, playsInline, no autoplay */}
-        <video
-          ref={videoRef}
-          muted
-          playsInline
-          preload="auto"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            display: 'block',
-          }}
-        >
-          <source src="/descent.mp4" type="video/mp4" />
-        </video>
-
-        {/* Poster layer — sits above the video in DOM order (no z-index needed).
-            Starts at opacity 1; fades to 0 via 300ms CSS transition once the
-            first video frame is confirmed painted (see onFirstSeeked above).
-            Eliminates the white-flash iOS shows before any frame is rendered. */}
-        <img
-          ref={posterRef}
-          src="/descent-poster.webp"
-          alt=""
+        {/* Poster safety net — visible through the canvas (which is transparent by
+            default) until frame 0 is painted. CSS background-size:cover mirrors the
+            canvas cover-fit so there is no layout jump when the first frame arrives. */}
+        <div
           aria-hidden="true"
-          fetchPriority="high"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'url(/hero/descent-poster.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+
+        {/* Canvas — full-bleed, dpr-aware. Physical size set by the resize effect;
+            CSS size always 100%×100% of the sticky stage. */}
+        <canvas
+          ref={canvasRef}
+          aria-hidden="true"
           style={{
             position: 'absolute',
             inset: 0,
             width: '100%',
             height: '100%',
-            objectFit: 'cover',
-            transition: 'opacity 300ms ease',
+            display: 'block',
           }}
         />
 
