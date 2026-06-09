@@ -1,13 +1,52 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useLayoutEffect, useState } from 'react';
 import Link from 'next/link';
-import { useScroll, useTransform, motion } from 'framer-motion';
+import { useScroll, useTransform, useMotionValueEvent, motion, type MotionValue } from 'framer-motion';
 import { openBriefingModal } from '@/lib/analytics';
 
 // ─── Font aliases (CSS vars injected by layout.tsx) ──────────────────────────
 const SERIF = 'var(--font-garamond), Georgia, "Times New Roman", serif';
 const SANS  = 'var(--font-inter), Arial, Helvetica, sans-serif';
+
+// ─── Frame sequence ───────────────────────────────────────────────────────────
+const TOTAL_FRAMES = 121;
+
+// i is 1-indexed (1..121) matching actual filenames frame_0001.webp…frame_0121.webp
+function frameUrl(i: number): string {
+  return `/hero/frames/frame_${String(i).padStart(4, '0')}.webp`;
+}
+
+// Cover-fit draw in CSS-pixel space.
+// IMPORTANT: ctx must already have ctx.scale(dpr,dpr) applied so that drawImage
+// coordinates are in logical CSS px, not physical device px.
+// Guard: no-ops if canvas or image have zero dimensions.
+function drawFrame(
+  ctx: CanvasRenderingContext2D,
+  cssW: number,
+  cssH: number,
+  img: HTMLImageElement,
+): void {
+  const iw = img.naturalWidth;
+  const ih = img.naturalHeight;
+  if (!cssW || !cssH || !iw || !ih) return;
+  const scale = Math.max(cssW / iw, cssH / ih);
+  const sw = iw * scale;
+  const sh = ih * scale;
+  ctx.clearRect(0, 0, cssW, cssH);
+  ctx.drawImage(img, (cssW - sw) / 2, (cssH - sh) / 2, sw, sh);
+}
+
+// Walk outward from `index` to find the nearest frame that has finished loading.
+// Returns -1 only if no frames are loaded at all yet.
+function nearestLoaded(index: number, loaded: boolean[]): number {
+  if (loaded[index]) return index;
+  for (let d = 1; d < loaded.length; d++) {
+    if (index - d >= 0 && loaded[index - d]) return index - d;
+    if (index + d < loaded.length && loaded[index + d]) return index + d;
+  }
+  return -1;
+}
 
 // ─── Card data ────────────────────────────────────────────────────────────────
 const CARDS = [
@@ -112,9 +151,30 @@ function FrostCard({ label, title, desc, href }: (typeof CARDS)[number]) {
   );
 }
 
+// ─── Per-letter color fill ────────────────────────────────────────────────────
+function AnimatedLetter({
+  char,
+  scrollYProgress,
+  start,
+  end,
+}: {
+  char: string;
+  scrollYProgress: MotionValue<number>;
+  start: number;
+  end: number;
+}) {
+  const color = useTransform(
+    scrollYProgress,
+    [start, end],
+    ['rgba(255,255,255,0.12)', '#ffffff'],
+  );
+  if (char === ' ') {
+    return <span style={{ display: 'inline-block', width: '0.28em' }} aria-hidden="true" />;
+  }
+  return <motion.span style={{ color }}>{char}</motion.span>;
+}
+
 // ─── Static hero ─────────────────────────────────────────────────────────────
-// Rendered only for prefers-reduced-motion users. All other viewports,
-// including mobile, receive the scroll hero below.
 function StaticHero() {
   return (
     <>
@@ -127,7 +187,7 @@ function StaticHero() {
         flexDirection: 'column',
       }}>
         <img
-          src="/descent-poster.webp"
+          src="/hero/descent-poster.webp"
           alt="Aerial view of Roatán, Bay Islands, Honduras"
           fetchPriority="high"
           decoding="async"
@@ -201,204 +261,238 @@ function StaticHero() {
 }
 
 // ─── Scroll hero ──────────────────────────────────────────────────────────────
-// All viewports (mobile + desktop), no prefers-reduced-motion.
-// Drives video.currentTime from scrollYProgress via a lerped rAF loop.
 function ScrollHero() {
-  const outerRef    = useRef<HTMLElement>(null);
-  const videoRef    = useRef<HTMLVideoElement>(null);
-  const posterRef   = useRef<HTMLImageElement>(null);
-  const rafRef      = useRef<number | null>(null);
-  const lerpedRef   = useRef(0);      // lerped playhead in seconds
-  const isReadyRef  = useRef(false);  // true once video is genuinely seekable
-  const durationRef = useRef(0);      // cached finite duration
+  const outerRef          = useRef<HTMLElement>(null);
+  const stageRef          = useRef<HTMLDivElement>(null);
+  const canvasRef         = useRef<HTMLCanvasElement>(null);
+  const debugRef          = useRef<HTMLDivElement>(null);  // debug overlay — remove after confirming
+  const imagesRef         = useRef<HTMLImageElement[]>([]);
+  const loadedRef         = useRef<boolean[]>([]);
+  const lastDrawnIndexRef = useRef(-1);                    // frame index currently on canvas
+  const cssSizeRef        = useRef({ w: 0, h: 0 });
 
   const { scrollYProgress } = useScroll({
     target: outerRef,
     offset: ['start start', 'end end'],
   });
 
-  // ── Overlay MotionValues ──────────────────────────────────────────────────
-  // Headline: opacity 1→0, drift up 0→−40px   (progress 0–0.35)
-  const headlineOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
-  const headlineY       = useTransform(scrollYProgress, [0, 0.35], [0, -40]);
-  // Scrim: bottom gradient fades in            (progress 0.55–1.0)
-  const scrimOpacity    = useTransform(scrollYProgress, [0.55, 1.0], [0, 1]);
-  // Cards: rise from +40px                     (progress 0.62–1.0)
-  const cardsOpacity    = useTransform(scrollYProgress, [0.62, 1.0], [0, 1]);
-  const cardsY          = useTransform(scrollYProgress, [0.62, 1.0], [40, 0]);
+  // ── Overlay MotionValues (unchanged) ─────────────────────────────────────
+  const aboveOpacity     = useTransform(scrollYProgress, [0, 0.30], [1, 0]);
+  const aboveY           = useTransform(scrollYProgress, [0, 0.30], [0, -40]);
+  const scrimOpacity     = useTransform(scrollYProgress, [0.50, 0.85], [0, 1]);
+  const underHeadOpacity = useTransform(scrollYProgress, [0.28, 0.36], [0, 1]);
+  const cardsOpacity     = useTransform(scrollYProgress, [0.72, 1.0], [0, 1]);
+  const cardsY           = useTransform(scrollYProgress, [0.72, 1.0], [40, 0]);
 
-  // ── Video setup: readiness, poster crossfade, iOS unlock ─────────────────
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+  const PHRASE     = "Let's start here";
+  const LETTERS    = PHRASE.split('');
+  const FILL_START = 0.36;
+  const FILL_END   = 0.74;
+  const PER_SLOT   = (FILL_END - FILL_START) / LETTERS.length;
 
-    // webkit-playsinline for older iOS WebKit (playsInline covers the W3C attribute)
-    video.setAttribute('webkit-playsinline', '');
+  // ── Canvas sizing — useLayoutEffect fires before paint ───────────────────
+  // Sets physical px = CSS px × dpr, applies ctx.scale(dpr,dpr) so that all
+  // subsequent drawImage calls use logical CSS-pixel coordinates.
+  // A ResizeObserver on the stage keeps this in sync through orientation changes
+  // and browser-chrome show/hide on mobile.
+  useLayoutEffect(() => {
+    const canvas = canvasRef.current;
+    const stage  = stageRef.current;
+    if (!canvas || !stage) return;
 
-    // Force a fresh load pass; works in tandem with preload="auto"
-    video.load();
+    const applySize = () => {
+      const dpr  = window.devicePixelRatio || 1;
+      const w    = stage.clientWidth;
+      const h    = stage.clientHeight;
+      if (!w || !h) return;                         // stage not yet laid out — skip
 
-    // isReady becomes true only when the video is genuinely seekable:
-    // readyState ≥ 2 ensures data is available, and we guard against
-    // NaN/Infinity duration that Chrome/Safari can briefly report.
-    const checkReady = () => {
-      const dur = video.duration;
-      if (video.readyState >= 2 && isFinite(dur) && dur > 0) {
-        isReadyRef.current = true;
-        durationRef.current = dur;
-      }
+      const physW = Math.round(w * dpr);
+      const physH = Math.round(h * dpr);
+
+      // Only reset if dimensions actually changed; avoids clearing canvas on every
+      // ResizeObserver callback when nothing moved.
+      if (canvas.width === physW && canvas.height === physH) return;
+
+      cssSizeRef.current = { w, h };
+      canvas.width  = physW;   // resets canvas state (clears + identity transform)
+      canvas.height = physH;
+
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      // canvas.width assignment already reset to identity; re-apply dpr scale
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+
+      // Redraw current frame immediately so nothing goes blank on resize
+      const idx = nearestLoaded(Math.max(0, lastDrawnIndexRef.current), loadedRef.current);
+      if (idx >= 0) drawFrame(ctx, w, h, imagesRef.current[idx]);
     };
-    checkReady(); // may already be satisfied for a cached resource
-    video.addEventListener('loadedmetadata', checkReady);
-    video.addEventListener('canplay', checkReady);
-    video.addEventListener('durationchange', checkReady);
 
-    // Poster crossfade — the <img> covers the blank video surface at opacity 1.
-    // We fade it to 0 (300ms CSS transition) only after confirming a real frame
-    // has been painted, so we never flash a blank canvas underneath.
-    //
-    // Sequence:
-    //   1. 'seeked' fires after the first successful video.currentTime assignment.
-    //   2a. If requestVideoFrameCallback is available (Chrome / Safari ≥15.4):
-    //       wait one more step for the compositor to actually paint that frame,
-    //       then crossfade. Eliminates any risk of fading to a blank frame.
-    //   2b. Otherwise 'seeked' is accurate enough — crossfade immediately.
-    //
-    // On iOS before the gesture unlock, video.currentTime is silently rejected,
-    // so 'seeked' won't fire. The poster stays up (correct image) until the first
-    // touch, at which point the unlock fires, currentTime starts working, 'seeked'
-    // fires, and the crossfade runs.
-    let hasFaded = false;
-    const doFade = () => {
-      if (hasFaded) return;
-      hasFaded = true;
-      if (posterRef.current) posterRef.current.style.opacity = '0';
-    };
-    const onFirstSeeked = () => {
-      if ('requestVideoFrameCallback' in video) {
-        (video as HTMLVideoElement & {
-          requestVideoFrameCallback: (cb: () => void) => number;
-        }).requestVideoFrameCallback(doFade);
-      } else {
-        doFade();
-      }
-    };
-    video.addEventListener('seeked', onFirstSeeked, { once: true });
-
-    // iOS gesture unlock — independent of the rAF loop; does NOT gate it.
-    // iOS refuses video.currentTime changes until the element is "unlocked" by
-    // a user gesture. One play/pause sequence on first touch releases the lock.
-    let unlocked = false;
-    const unlock = () => {
-      if (unlocked) return;
-      unlocked = true;
-      video.play().then(() => video.pause()).catch(() => {});
-    };
-    document.addEventListener('touchstart', unlock, { passive: true });
-    document.addEventListener('pointerdown', unlock);
-
-    return () => {
-      video.removeEventListener('loadedmetadata', checkReady);
-      video.removeEventListener('canplay', checkReady);
-      video.removeEventListener('durationchange', checkReady);
-      document.removeEventListener('touchstart', unlock);
-      document.removeEventListener('pointerdown', unlock);
-    };
+    applySize();
+    const ro = new ResizeObserver(applySize);
+    ro.observe(stage);
+    return () => ro.disconnect();
   }, []);
 
-  // ── rAF lerp loop ─────────────────────────────────────────────────────────
-  // Starts on mount, runs every frame. The loop itself is never gated — only
-  // the currentTime assignment waits for isReadyRef. While !isReady the poster
-  // stays visible; once ready, the lerp drives the playhead smoothly.
+  // ── Frame preload with diagnostic logging ────────────────────────────────
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    const imgs: HTMLImageElement[] = Array.from({ length: TOTAL_FRAMES }, () => new Image());
+    const loaded = new Array<boolean>(TOTAL_FRAMES).fill(false);
+    imagesRef.current = imgs;
+    loadedRef.current = loaded;
 
-    const tick = () => {
-      if (isReadyRef.current && durationRef.current > 0) {
-        const target = Math.max(
-          0,
-          Math.min(durationRef.current, scrollYProgress.get() * durationRef.current),
-        );
-        lerpedRef.current += (target - lerpedRef.current) * 0.1;
-        video.currentTime = lerpedRef.current;
-      }
-      rafRef.current = requestAnimationFrame(tick);
-    };
-    rafRef.current = requestAnimationFrame(tick);
+    let nLoaded = 0;
+    let nFailed = 0;
 
-    return () => {
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    // Immediate log so we can verify the path without waiting for loads
+    console.log(
+      '[HeroDescent] Preloading', TOTAL_FRAMES, 'frames.',
+      'Frame 1 resolved URL:', new URL(frameUrl(1), window.location.href).href,
+    );
+
+    const reportSettled = () => {
+      console.log(
+        `[HeroDescent] Settled — attempted: ${TOTAL_FRAMES},`,
+        `loaded: ${nLoaded}, failed: ${nFailed}`,
+      );
     };
-  }, [scrollYProgress]);
+
+    imgs.forEach((img, idx) => {
+      const frameNum = idx + 1;  // array is 0-indexed; filenames are 1-indexed
+      const src = frameUrl(frameNum);
+
+      img.onload = () => {
+        loaded[idx] = true;
+        nLoaded++;
+        if (nLoaded + nFailed === TOTAL_FRAMES) reportSettled();
+
+        const canvas = canvasRef.current;
+        const { w, h } = cssSizeRef.current;
+        if (!canvas || !w || !h) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        // Paint frame 0 the instant it arrives — canvas must never stay blank
+        if (idx === 0 && lastDrawnIndexRef.current < 0) {
+          drawFrame(ctx, w, h, img);
+          lastDrawnIndexRef.current = 0;
+        }
+      };
+
+      img.onerror = () => {
+        nFailed++;
+        console.error('[HeroDescent] Frame failed to load:', src);
+        if (nLoaded + nFailed === TOTAL_FRAMES) reportSettled();
+      };
+
+      img.src = src;
+    });
+  }, []);
+
+  // ── Scroll → canvas redraw ────────────────────────────────────────────────
+  // useMotionValueEvent fires synchronously on every scrollYProgress change,
+  // which is the only reliable way to drive canvas redraws from a MotionValue.
+  // (polling via rAF + .get() misses updates because the value is already stale
+  // by the time the next animation frame runs.)
+  useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    const idx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(v * (TOTAL_FRAMES - 1))));
+
+    // Debug overlay — shows live progress + frame number; remove once confirmed working
+    if (debugRef.current) {
+      debugRef.current.textContent = `scroll ${v.toFixed(3)}  frame ${idx + 1}/${TOTAL_FRAMES}`;
+    }
+
+    if (idx === lastDrawnIndexRef.current) return;
+
+    const canvas = canvasRef.current;
+    const { w, h } = cssSizeRef.current;
+    if (!canvas || !w || !h) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const actual = nearestLoaded(idx, loadedRef.current);
+    if (actual < 0) return;
+    drawFrame(ctx, w, h, imagesRef.current[actual]);
+    lastDrawnIndexRef.current = idx;
+  });
 
   return (
-    // Outer section — 300vh provides the scroll travel distance
     <section ref={outerRef} style={{ height: '300vh', position: 'relative' }}>
 
-      {/* Sticky stage — 100vh canvas; all layers render inside here */}
-      <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
+      {/* stageRef lives here so ResizeObserver tracks the sticky container */}
+      <div ref={stageRef} style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
 
-        {/* Full-bleed video — muted, playsInline, no autoplay */}
-        <video
-          ref={videoRef}
-          muted
-          playsInline
-          preload="auto"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            display: 'block',
-          }}
-        >
-          <source src="/descent.mp4" type="video/mp4" />
-        </video>
-
-        {/* Poster layer — sits above the video in DOM order (no z-index needed).
-            Starts at opacity 1; fades to 0 via 300ms CSS transition once the
-            first video frame is confirmed painted (see onFirstSeeked above).
-            Eliminates the white-flash iOS shows before any frame is rendered. */}
-        <img
-          ref={posterRef}
-          src="/descent-poster.webp"
-          alt=""
+        {/* Poster safety net — CSS background shows through the canvas (which is
+            fully transparent until frame 0 is drawn). background-size:cover mirrors
+            the canvas cover-fit so there is no visible jump when frame 0 paints. */}
+        <div
           aria-hidden="true"
-          fetchPriority="high"
           style={{
             position: 'absolute',
             inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            transition: 'opacity 300ms ease',
+            backgroundImage: 'url(/hero/descent-poster.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
           }}
         />
 
-        {/* ── Scrim: bottom-weighted gradient, fades in over 0.55–1.0 ─────── */}
+        {/* Canvas — CSS size always 100%×100%; physical size = CSS × dpr (set above).
+            drawImage coordinates are in logical CSS px because ctx.scale(dpr,dpr)
+            is applied on every size change. */}
+        <canvas
+          ref={canvasRef}
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            display: 'block',
+          }}
+        />
+
+        {/* DEBUG — remove once scroll + frames confirmed working */}
+        <div
+          ref={debugRef}
+          style={{
+            position: 'absolute',
+            top: 12,
+            right: 12,
+            zIndex: 9999,
+            background: 'rgba(0,0,0,0.65)',
+            color: '#fff',
+            padding: '5px 10px',
+            fontFamily: 'monospace',
+            fontSize: 12,
+            pointerEvents: 'none',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          scroll 0.000  frame 1/121
+        </div>
+
+        {/* ── Scrim: bottom-weighted gradient, fades in 0.50–0.85 ──────────── */}
         <motion.div
           aria-hidden="true"
           style={{
             position: 'absolute',
             inset: 0,
             background:
-              'linear-gradient(to bottom, transparent 30%, rgba(1,64,81,0.55) 100%)',
+              'linear-gradient(to bottom, transparent 30%, rgba(1,64,81,0.65) 100%)',
             opacity: scrimOpacity,
             pointerEvents: 'none',
           }}
         />
 
-        {/* ── Headline + CTAs: fades/drifts out over 0–0.35 ──────────────── */}
+        {/* ── Surface state: eyebrow + H1 + subhead + CTAs ─────────────────── */}
+        {/* Fully faded out (opacity 0) by scrollYProgress 0.30 */}
         <motion.div
           style={{
             position: 'absolute',
             inset: 0,
             display: 'flex',
             alignItems: 'center',
-            opacity: headlineOpacity,
-            y: headlineY,
+            opacity: aboveOpacity,
+            y: aboveY,
           }}
         >
           <div className="section-container" style={{ maxWidth: 760 }}>
@@ -440,27 +534,57 @@ function ScrollHero() {
           </div>
         </motion.div>
 
-        {/* ── Start Here cards: rises from +40px over 0.62–1.0 ────────────── */}
-        <motion.div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
+        {/* ── Underwater state: headline + cards, vertically centered ─────── */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 40,
+          padding: '0 24px',
+        }}>
+
+          {/* "Let's start here" — ghost letters fade in 0.28→0.36, fill 0.36→0.74 */}
+          <motion.div
+            style={{ opacity: underHeadOpacity, textAlign: 'center' }}
+            aria-hidden="true"
+          >
+            <h2 style={{
+              fontFamily: SERIF,
+              fontSize: 'clamp(38px, 5.5vw, 72px)',
+              fontWeight: 500,
+              lineHeight: 1.1,
+              letterSpacing: '-0.01em',
+              whiteSpace: 'nowrap',
+              margin: 0,
+            }}>
+              {LETTERS.map((char, i) => (
+                <AnimatedLetter
+                  key={i}
+                  char={char}
+                  scrollYProgress={scrollYProgress}
+                  start={FILL_START + i * PER_SLOT}
+                  end={Math.min(FILL_END, FILL_START + (i + 2) * PER_SLOT)}
+                />
+              ))}
+            </h2>
+          </motion.div>
+
+          {/* Start Here cards — rise in 0.72→1.0 */}
+          <motion.div style={{
             opacity: cardsOpacity,
             y: cardsY,
-          }}
-        >
-          <div className="section-container" style={{ maxWidth: 1100, paddingBottom: 52 }}>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: 12,
-            }}>
+            width: '100%',
+            maxWidth: 920,
+          }}>
+            <div className="grid sm:grid-cols-3 gap-3">
               {CARDS.map(c => <FrostCard key={c.href} {...c} />)}
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+
+        </div>
 
       </div>
     </section>
@@ -468,8 +592,6 @@ function ScrollHero() {
 }
 
 // ─── Entry point ──────────────────────────────────────────────────────────────
-// SSR renders StaticHero (no JS, safe default).
-// On mount: all viewports upgrade to ScrollHero unless prefers-reduced-motion.
 export default function HeroDescent() {
   const [eligible, setEligible] = useState(false);
   const [mounted,  setMounted]  = useState(false);
