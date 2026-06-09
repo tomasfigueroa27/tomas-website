@@ -252,6 +252,7 @@ function ScrollHero() {
   const stageRef          = useRef<HTMLDivElement>(null);
   const canvasRef         = useRef<HTMLCanvasElement>(null);
   const surfaceRef        = useRef<HTMLDivElement>(null);
+  const dbgRef            = useRef<HTMLPreElement>(null);
   const imagesRef         = useRef<HTMLImageElement[]>([]);
   const loadedRef         = useRef<boolean[]>([]);
   const lastDrawnIndexRef = useRef(-1);
@@ -342,6 +343,21 @@ function ScrollHero() {
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
     if (surfaceRef.current) {
       surfaceRef.current.style.pointerEvents = v >= 0.26 ? 'none' : 'auto';
+    }
+
+    // DEBUG PANEL — temporary, remove after diagnosis
+    if (dbgRef.current) {
+      const surfaceComputedOp = surfaceRef.current
+        ? getComputedStyle(surfaceRef.current).opacity
+        : 'n/a';
+      dbgRef.current.textContent = [
+        `scrollYProgress : ${v.toFixed(3)}`,
+        `surfaceOpacity  : ${surfaceOpacity.get().toFixed(3)}`,
+        `underOpacity    : ${underOpacity.get().toFixed(3)}`,
+        `cardsOpacity    : ${cardsOpacity.get().toFixed(3)}`,
+        `surface computed: ${surfaceComputedOp}`,
+        `hero            : ScrollHero`,
+      ].join('\n');
     }
 
     const idx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(v * (TOTAL_FRAMES - 1))));
@@ -499,6 +515,28 @@ function ScrollHero() {
             </motion.div>
           </div>
         </motion.div>
+
+        {/* DEBUG PANEL — fixed top-left, remove after diagnosis */}
+        <pre
+          ref={dbgRef}
+          style={{
+            position: 'fixed',
+            top: 12,
+            left: 12,
+            zIndex: 99999,
+            background: 'rgba(0,0,0,0.82)',
+            color: '#0f0',
+            padding: '8px 12px',
+            fontFamily: 'monospace',
+            fontSize: 11,
+            lineHeight: 1.6,
+            pointerEvents: 'none',
+            whiteSpace: 'pre',
+            margin: 0,
+          }}
+        >
+          {`scrollYProgress : 0.000\nsurfaceOpacity  : 1.000\nunderOpacity    : 0.000\ncardsOpacity    : 0.000\nsurface computed: 1\nhero            : ScrollHero`}
+        </pre>
 
       </div>
     </section>
