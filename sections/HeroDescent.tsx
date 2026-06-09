@@ -263,6 +263,7 @@ function ScrollHero() {
   const stageRef          = useRef<HTMLDivElement>(null);
   const canvasRef         = useRef<HTMLCanvasElement>(null);
   const debugRef          = useRef<HTMLDivElement>(null);
+  const surfaceRef        = useRef<HTMLDivElement>(null);
   const imagesRef         = useRef<HTMLImageElement[]>([]);
   const loadedRef         = useRef<boolean[]>([]);
   const lastDrawnIndexRef = useRef(-1);
@@ -273,14 +274,11 @@ function ScrollHero() {
     offset: ['start start', 'end end'],
   });
 
-  // ── Surface stack: fade out + lift, pointer-events off after 0.30 ─────────
-  const aboveOpacity       = useTransform(scrollYProgress, [0, 0.30], [1, 0]);
-  const aboveY             = useTransform(scrollYProgress, [0, 0.30], [0, -40]);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const abovePointerEvents = useTransform(scrollYProgress, (v) => (v >= 0.30 ? 'none' : 'auto')) as any;
+  // Surface opacity: 1 → 0 over 0.00–0.30; clamped at 0 thereafter (never reverses)
+  const surfaceOpacity = useTransform(scrollYProgress, [0, 0.30], [1, 0]);
 
-  // ── Underwater stack: fade in 0.30–0.36 ──────────────────────────────────
-  const underOpacity       = useTransform(scrollYProgress, [0.30, 0.36], [0, 1]);
+  // Underwater stack: 0 → 1 over 0.30–0.36; clamped at 1 thereafter
+  const underOpacity   = useTransform(scrollYProgress, [0.30, 0.36], [0, 1]);
 
   // ── Scrim: bottom-weighted, fades in 0.50–0.85 ───────────────────────────
   const scrimOpacity       = useTransform(scrollYProgress, [0.50, 0.85], [0, 1]);
@@ -387,8 +385,15 @@ function ScrollHero() {
     });
   }, []);
 
-  // ── Scroll → canvas redraw ────────────────────────────────────────────────
+  // ── Scroll → canvas redraw + pointer-events ──────────────────────────────
+  // pointer-events is driven via direct DOM ref — never as a string MotionValue,
+  // which can corrupt the numeric transform pipeline in Framer Motion 12.
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    // Surface pointer-events: off at 0.30 so underwater buttons are reachable
+    if (surfaceRef.current) {
+      surfaceRef.current.style.pointerEvents = v >= 0.30 ? 'none' : 'auto';
+    }
+
     const idx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(v * (TOTAL_FRAMES - 1))));
 
     if (debugRef.current) {
@@ -471,16 +476,15 @@ function ScrollHero() {
         />
 
         {/* ── SURFACE STACK ────────────────────────────────────────────────── */}
-        {/* Opacity 1→0 over 0.00–0.30; pointer-events:none from 0.30 onward  */}
+        {/* opacity 1→0 over 0–0.30, clamped at 0; pointer-events via DOM ref */}
         <motion.div
+          ref={surfaceRef}
           style={{
             position: 'absolute',
             inset: 0,
             display: 'flex',
             alignItems: 'center',
-            opacity: aboveOpacity,
-            y: aboveY,
-            pointerEvents: abovePointerEvents,
+            opacity: surfaceOpacity,
           }}
         >
           <div className="section-container" style={{ maxWidth: 760 }}>
