@@ -21,6 +21,96 @@ export interface BlogPost {
 
 const posts: BlogPost[] = [
   {
+    slug: 'utila-market-spotlight-2026',
+    title: "Is This the Beginning of Utila's Next Boom?",
+    date: '2026-06-17',
+    category: 'Market Report',
+    // TODO: add hero image — replace with actual Utila photo before publish
+    image: '/utila-market-spotlight-2026.jpg',
+    excerpt: "After three quiet years, Utila has closed more property in five months of 2026 than all of 2025. Inside the data behind a possible new boom.",
+    summary: [
+      "Utila has already closed 17 properties for $3.23M in the first five months of 2026 — more deals than all of 2025 combined (16), in less than half the time.",
+      "Versus the same period last year (6 deals / $1.33M): +183% in deal count and +142% in volume — the strongest start to a year since the 2022 peak.",
+      "65% of 2026 sales are land, and 42 of 61 active listings are land — the classic signature of investors accumulating ahead of a development cycle.",
+    ],
+    body: [
+      {
+        type: 'p',
+        text: "While most of the Bay Islands conversation centers on Roatán, Utila's 2026 numbers deserve their own headline. After three quiet years, Utila has come roaring back — and the pattern looks a lot like how its last boom began.",
+      },
+      {
+        type: 'h2',
+        text: 'The 5-Month Snapshot',
+      },
+      {
+        type: 'ul',
+        items: [
+          "Utila has already closed 17 properties for $3.23M in the first five months of 2026 — more deals than all of 2025 combined (16), in less than half the time.",
+          "Versus the same period last year (6 deals / $1.33M): +183% in deal count and +142% in volume — the strongest start to a year since the 2022 peak.",
+          "65% of 2026 sales are land, and 42 of 61 active listings are land — the classic signature of investors accumulating ahead of a development cycle.",
+        ],
+      },
+      {
+        type: 'h2',
+        text: 'Utila — All Property Types (Closed Sales)',
+      },
+      {
+        type: 'table',
+        headers: ['Year', 'Deals', 'Volume', 'Avg Price', 'Land Share'],
+        rows: [
+          ['2020', '13', '$2.13M', '$164K', '62%'],
+          ['2021', '54', '$7.06M', '$131K', '70%'],
+          ['2022', '50', '$8.85M', '$177K', '62%'],
+          ['2023', '40', '$4.30M', '$108K', '78%'],
+          ['2024', '23', '$3.18M', '$138K', '74%'],
+          ['2025', '16', '$3.45M', '$216K', '50%'],
+          ['2026*', '17', '$3.23M', '$190K', '65%'],
+        ],
+      },
+      {
+        type: 'p',
+        text: '*2026 figures are January–May only — already pacing toward ~40 closings and ~$7.7M for the year, which would be Utila\'s second-strongest since 2020.',
+      },
+      {
+        type: 'h2',
+        text: "What's Driving It",
+      },
+      {
+        type: 'p',
+        text: "Utila's last boom (2021–2022) was land-led — 50-plus closings a year, with land making up the majority of every transaction. That cycle faded through 2023–2025, bottoming at just 16 sales last year. 2026 is a sharp reversal, and it's being led by land again: investors and builders are buying dirt before the vertical product and price appreciation arrive.",
+      },
+      {
+        type: 'p',
+        text: 'Sellers are holding firm at ~94% of list, and 10 contracts are already pending. This is the accumulation phase — capital flowing in, prices firming — with the appreciation phase still ahead.',
+      },
+      {
+        type: 'h2',
+        text: 'Our Read: Early Innings of a Real Up-Cycle',
+      },
+      {
+        type: 'p',
+        text: "We believe this is the credible beginning of Utila's next boom. The most convincing signal is the land-buying surge, because that's exactly how 2021–22 started. Two things to watch before calling it confirmed: average days on market is still ~418, and there are 61 active listings (~$24.3M) to absorb. If that inventory starts clearing quickly through Q3–Q4 and DOM compresses, Utila's boom is officially on.",
+      },
+      {
+        type: 'p',
+        text: "And because so much Utila land and pre-construction trades off-MLS, the real momentum is likely running even further ahead of these published numbers.",
+      },
+      {
+        type: 'h2',
+        text: 'Thinking About Utila?',
+      },
+      {
+        type: 'p',
+        text: "The best entry points in any boom are early. Reply or book a 15-minute call to see what's moving on Utila right now.",
+        links: [{ anchor: 'Reply or book a 15-minute call', href: '/contact' }],
+      },
+      {
+        type: 'p',
+        text: 'Source: Roatán Bay Islands MLS, closed sales 2020–2026 (2026 through May 31), all property types.',
+      },
+    ],
+  },
+  {
     slug: 'why-buyers-use-real-estate-agents-roatan',
     title: 'Why 9 out of 10 American Buyers Still Use a Real Estate Agent — and What That Means for Buying Property in Roatán',
     seoTitle: 'Why Use a Real Estate Agent in Roatán?',
