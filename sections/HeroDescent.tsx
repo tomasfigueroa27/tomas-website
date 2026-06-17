@@ -2,13 +2,20 @@
 
 import { useRef, useEffect, useLayoutEffect, useState } from 'react';
 import Link from 'next/link';
-import { useScroll, useTransform, useMotionValueEvent, motion, type MotionValue } from 'framer-motion';
+import { useScroll, useMotionValueEvent } from 'framer-motion';
 import { openBriefingModal } from '@/lib/analytics';
 
 const SERIF = 'var(--font-garamond), Georgia, "Times New Roman", serif';
 const SANS  = 'var(--font-inter), Arial, Helvetica, sans-serif';
 
 const TOTAL_FRAMES = 121;
+
+// Letter-fill constants at module level — stable, no per-render allocation
+const PHRASE     = "Let's start here";
+const LETTERS    = PHRASE.split('');
+const FILL_START = 0.42;
+const FILL_END   = 0.74;
+const PER_SLOT   = (FILL_END - FILL_START) / LETTERS.length;
 
 function frameUrl(i: number): string {
   return `/hero/frames/frame_${String(i).padStart(4, '0')}.webp`;
@@ -140,28 +147,7 @@ function FrostCard({ label, title, desc, href }: (typeof CARDS)[number]) {
   );
 }
 
-function AnimatedLetter({
-  char,
-  scrollYProgress,
-  start,
-  end,
-}: {
-  char: string;
-  scrollYProgress: MotionValue<number>;
-  start: number;
-  end: number;
-}) {
-  const color = useTransform(
-    scrollYProgress,
-    [start, end],
-    ['rgba(255,255,255,0.12)', '#ffffff'],
-  );
-  if (char === ' ') {
-    return <span style={{ display: 'inline-block', width: '0.28em' }} aria-hidden="true" />;
-  }
-  return <motion.span style={{ color }}>{char}</motion.span>;
-}
-
+// ─── Static hero (reduced-motion / no-JS fallback) ───────────────────────────
 function StaticHero() {
   return (
     <>
@@ -247,12 +233,17 @@ function StaticHero() {
   );
 }
 
+// ─── Scroll hero ──────────────────────────────────────────────────────────────
 function ScrollHero() {
   const outerRef          = useRef<HTMLElement>(null);
   const stageRef          = useRef<HTMLDivElement>(null);
   const canvasRef         = useRef<HTMLCanvasElement>(null);
   const surfaceRef        = useRef<HTMLDivElement>(null);
-  const dbgRef            = useRef<HTMLPreElement>(null);
+  const underRef          = useRef<HTMLDivElement>(null);
+  const btnRef            = useRef<HTMLDivElement>(null);
+  const cardsRef          = useRef<HTMLDivElement>(null);
+  const lettersRef        = useRef<HTMLHeadingElement>(null);
+  const scrimRef          = useRef<HTMLDivElement>(null);
   const imagesRef         = useRef<HTMLImageElement[]>([]);
   const loadedRef         = useRef<boolean[]>([]);
   const lastDrawnIndexRef = useRef(-1);
@@ -263,19 +254,45 @@ function ScrollHero() {
     offset: ['start start', 'end end'],
   });
 
-  const surfaceOpacity = useTransform(scrollYProgress, [0, 0.26], [1, 0]);
-  const underOpacity   = useTransform(scrollYProgress, [0.30, 0.38], [0, 1]);
-  const scrimOpacity   = useTransform(scrollYProgress, [0.50, 0.85], [0, 1]);
-  const btnOpacity     = useTransform(scrollYProgress, [0.40, 0.52], [0, 1]);
-  const cardsOpacity   = useTransform(scrollYProgress, [0.72, 1.0], [0, 1]);
-  const cardsY         = useTransform(scrollYProgress, [0.72, 1.0], [40, 0]);
+  const clamp01 = (x: number) => Math.max(0, Math.min(1, x));
 
-  const PHRASE     = "Let's start here";
-  const LETTERS    = PHRASE.split('');
-  const FILL_START = 0.42;
-  const FILL_END   = 0.74;
-  const PER_SLOT   = (FILL_END - FILL_START) / LETTERS.length;
+  // All overlay/text opacity is written directly to the DOM here.
+  // Framer Motion 12 routes motion.div opacity through WAAPI which doesn't
+  // track MotionValues reliably — direct DOM writes are the only safe path.
+  const updateScroll = (v: number) => {
+    if (surfaceRef.current) {
+      surfaceRef.current.style.opacity      = String(clamp01(1 - v / 0.26));
+      surfaceRef.current.style.pointerEvents = v >= 0.26 ? 'none' : 'auto';
+    }
+    if (underRef.current) {
+      underRef.current.style.opacity      = String(clamp01((v - 0.30) / 0.08));
+      underRef.current.style.pointerEvents = v >= 0.30 ? 'auto' : 'none';
+    }
+    if (scrimRef.current) {
+      scrimRef.current.style.opacity = String(clamp01((v - 0.50) / 0.35));
+    }
+    if (btnRef.current) {
+      btnRef.current.style.opacity = String(clamp01((v - 0.40) / 0.12));
+    }
+    if (cardsRef.current) {
+      const cp = clamp01((v - 0.72) / 0.28);
+      cardsRef.current.style.opacity   = String(cp);
+      cardsRef.current.style.transform = `translateY(${40 * (1 - cp)}px)`;
+    }
+    if (lettersRef.current) {
+      const spans = lettersRef.current.children;
+      LETTERS.forEach((char, i) => {
+        if (char === ' ') return;
+        const start = FILL_START + i * PER_SLOT;
+        const end   = Math.min(FILL_END, FILL_START + (i + 2) * PER_SLOT);
+        const t     = clamp01((v - start) / (end - start));
+        const span  = spans[i] as HTMLElement | undefined;
+        if (span) span.style.color = `rgba(255,255,255,${0.12 + 0.88 * t})`;
+      });
+    }
+  };
 
+  // ── Canvas sizing ─────────────────────────────────────────────────────────
   useLayoutEffect(() => {
     const canvas = canvasRef.current;
     const stage  = stageRef.current;
@@ -310,6 +327,7 @@ function ScrollHero() {
     return () => ro.disconnect();
   }, []);
 
+  // ── Frame preload ─────────────────────────────────────────────────────────
   useEffect(() => {
     const imgs: HTMLImageElement[] = Array.from({ length: TOTAL_FRAMES }, () => new Image());
     const loaded = new Array<boolean>(TOTAL_FRAMES).fill(false);
@@ -340,25 +358,15 @@ function ScrollHero() {
     });
   }, []);
 
-  useMotionValueEvent(scrollYProgress, 'change', (v) => {
-    if (surfaceRef.current) {
-      surfaceRef.current.style.pointerEvents = v >= 0.26 ? 'none' : 'auto';
-    }
+  // ── Set initial DOM state before any scroll event fires ───────────────────
+  useEffect(() => {
+    updateScroll(scrollYProgress.get());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    // DEBUG PANEL — temporary, remove after diagnosis
-    if (dbgRef.current) {
-      const surfaceComputedOp = surfaceRef.current
-        ? getComputedStyle(surfaceRef.current).opacity
-        : 'n/a';
-      dbgRef.current.textContent = [
-        `scrollYProgress : ${v.toFixed(3)}`,
-        `surfaceOpacity  : ${surfaceOpacity.get().toFixed(3)}`,
-        `underOpacity    : ${underOpacity.get().toFixed(3)}`,
-        `cardsOpacity    : ${cardsOpacity.get().toFixed(3)}`,
-        `surface computed: ${surfaceComputedOp}`,
-        `hero            : ScrollHero`,
-      ].join('\n');
-    }
+  // ── Scroll → DOM (all overlays) + canvas ─────────────────────────────────
+  useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    updateScroll(v);
 
     const idx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(v * (TOTAL_FRAMES - 1))));
     if (idx === lastDrawnIndexRef.current) return;
@@ -378,6 +386,7 @@ function ScrollHero() {
     <section ref={outerRef} style={{ height: '300vh', position: 'relative' }}>
       <div ref={stageRef} style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
 
+        {/* Poster safety net */}
         <div
           aria-hidden="true"
           style={{
@@ -389,6 +398,7 @@ function ScrollHero() {
           }}
         />
 
+        {/* Canvas */}
         <canvas
           ref={canvasRef}
           aria-hidden="true"
@@ -401,25 +411,27 @@ function ScrollHero() {
           }}
         />
 
-        <motion.div
+        {/* Scrim — driven imperatively by updateScroll */}
+        <div
+          ref={scrimRef}
           aria-hidden="true"
           style={{
             position: 'absolute',
             inset: 0,
             background: 'linear-gradient(to bottom, transparent 30%, rgba(1,64,81,0.65) 100%)',
-            opacity: scrimOpacity,
+            opacity: 0,
             pointerEvents: 'none',
           }}
         />
 
-        <motion.div
+        {/* ── SURFACE STACK — opacity 1→0 over 0→0.26 ─────────────────────── */}
+        <div
           ref={surfaceRef}
           style={{
             position: 'absolute',
             inset: 0,
             display: 'flex',
             alignItems: 'center',
-            opacity: surfaceOpacity,
           }}
         >
           <div className="section-container" style={{ maxWidth: 760 }}>
@@ -459,18 +471,22 @@ function ScrollHero() {
             </p>
             <CTARow />
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
+        {/* ── UNDERWATER STACK — opacity 0→1 over 0.30→0.38 ───────────────── */}
+        <div
+          ref={underRef}
           style={{
             position: 'absolute',
             inset: 0,
             display: 'flex',
             alignItems: 'center',
-            opacity: underOpacity,
+            opacity: 0,
+            pointerEvents: 'none',
           }}
         >
           <div className="section-container" style={{ maxWidth: 760 }}>
+            {/* Invisible spacer — aligns h2 with surface h1 */}
             <span
               aria-hidden="true"
               style={{
@@ -485,64 +501,47 @@ function ScrollHero() {
               Why Roatán, Why Now
             </span>
 
-            <h2 style={{
-              fontFamily: SERIF,
-              fontSize: 'clamp(44px, 5.5vw, 72px)',
-              fontWeight: 400,
-              lineHeight: 1.06,
-              margin: '0 0 32px',
-              whiteSpace: 'nowrap',
-            }}>
-              {LETTERS.map((char, i) => (
-                <AnimatedLetter
-                  key={i}
-                  char={char}
-                  scrollYProgress={scrollYProgress}
-                  start={FILL_START + i * PER_SLOT}
-                  end={Math.min(FILL_END, FILL_START + (i + 2) * PER_SLOT)}
-                />
-              ))}
+            {/* "Let's start here" — plain spans, colors written by updateScroll */}
+            <h2
+              ref={lettersRef}
+              style={{
+                fontFamily: SERIF,
+                fontSize: 'clamp(44px, 5.5vw, 72px)',
+                fontWeight: 400,
+                lineHeight: 1.06,
+                margin: '0 0 32px',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {LETTERS.map((char, i) =>
+                char === ' ' ? (
+                  <span key={i} style={{ display: 'inline-block', width: '0.28em' }} aria-hidden="true" />
+                ) : (
+                  <span key={i} style={{ color: 'rgba(255,255,255,0.12)' }}>{char}</span>
+                )
+              )}
             </h2>
 
-            <motion.div style={{ opacity: btnOpacity, marginBottom: 40 }}>
+            {/* Buttons — opacity 0→1 over 0.40→0.52 */}
+            <div ref={btnRef} style={{ opacity: 0, marginBottom: 40 }}>
               <CTARow />
-            </motion.div>
+            </div>
 
-            <motion.div style={{ opacity: cardsOpacity, y: cardsY }}>
+            {/* Cards — opacity 0→1, translateY 40→0 over 0.72→1.0 */}
+            <div ref={cardsRef} style={{ opacity: 0, transform: 'translateY(40px)' }}>
               <div className="grid sm:grid-cols-3 gap-3">
                 {CARDS.map(c => <FrostCard key={c.href} {...c} />)}
               </div>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
-
-        {/* DEBUG PANEL — fixed top-left, remove after diagnosis */}
-        <pre
-          ref={dbgRef}
-          style={{
-            position: 'fixed',
-            top: 12,
-            left: 12,
-            zIndex: 99999,
-            background: 'rgba(0,0,0,0.82)',
-            color: '#0f0',
-            padding: '8px 12px',
-            fontFamily: 'monospace',
-            fontSize: 11,
-            lineHeight: 1.6,
-            pointerEvents: 'none',
-            whiteSpace: 'pre',
-            margin: 0,
-          }}
-        >
-          {`scrollYProgress : 0.000\nsurfaceOpacity  : 1.000\nunderOpacity    : 0.000\ncardsOpacity    : 0.000\nsurface computed: 1\nhero            : ScrollHero`}
-        </pre>
+        </div>
 
       </div>
     </section>
   );
 }
 
+// ─── Entry point ──────────────────────────────────────────────────────────────
 export default function HeroDescent() {
   const [eligible, setEligible] = useState(false);
   const [mounted,  setMounted]  = useState(false);
