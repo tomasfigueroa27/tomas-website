@@ -85,7 +85,7 @@ export default function AboutContent() {
                 <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', margin: 0 }}>Last reviewed: May 2026 · Licensed Realtor, Roatan Reef, Bay Islands, Honduras.</p>
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-                <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                <a href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                   <Calendar style={{ width: 16, height: 16 }} /> Schedule a Strategy Call
                 </a>
                 <a href="tel:+50488483226" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', backgroundColor: 'rgba(255,255,255,0.1)', color: '#ffffff', textDecoration: 'none', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'Arial, Helvetica, sans-serif', transition: 'background-color 0.2s' }}
@@ -202,7 +202,7 @@ export default function AboutContent() {
             <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, color: '#ffffff', marginTop: 0, marginBottom: 12 }}>Ready to Explore Roatan Real Estate?</h2>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', lineHeight: 1.75, maxWidth: 480, margin: '0 auto 28px' }}>Let&apos;s define your objectives and build a strategy aligned with your long-term goals.</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center' }}>
-              <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+              <a href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30" target="_blank" rel="noopener" className="btn-accent" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                 <Calendar style={{ width: 16, height: 16 }} /> Schedule a Call
               </a>
               <a href="mailto:tomas@tomasfigueroa.com" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', backgroundColor: 'rgba(255,255,255,0.1)', color: '#ffffff', textDecoration: 'none', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'Arial, Helvetica, sans-serif', transition: 'background-color 0.2s' }}
