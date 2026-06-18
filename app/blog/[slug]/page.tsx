@@ -248,7 +248,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div style={{ backgroundColor: '#093f4f', padding: '36px 28px', textAlign: 'center', color: '#ffffff' }}>
           <h2 style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(20px, 3vw, 26px)', fontWeight: 400, color: '#ffffff', marginTop: 0, marginBottom: 10 }}>Interested in Roatan Real Estate?</h2>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, marginBottom: 24 }}>Let&apos;s talk about finding the right property for you.</p>
-          <a href="https://savvycal.com/tomasfigueroa/chat-with-tomas" target="_blank" rel="noopener" className="btn-accent">
+          <a href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30" target="_blank" rel="noopener" className="btn-accent">
             Schedule a Strategy Call
           </a>
         </div>

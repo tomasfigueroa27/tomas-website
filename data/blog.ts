@@ -101,7 +101,7 @@ const posts: BlogPost[] = [
       {
         type: 'p',
         text: "The best entry points in any boom are early. Book a 15-minute call to see what's moving on Utila right now.",
-        links: [{ anchor: 'Book a 15-minute call', href: 'https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas' }],
+        links: [{ anchor: 'Book a 15-minute call', href: 'https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30' }],
       },
       {
         type: 'p',

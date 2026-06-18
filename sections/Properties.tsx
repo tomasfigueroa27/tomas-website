@@ -71,7 +71,7 @@ const Properties = () => {
         <div className={`text-center mt-12 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <p style={{ fontSize: 14, color: '#555555', marginBottom: 12 }}>Can&apos;t find what you&apos;re looking for? Let&apos;s talk about exclusive listings.</p>
           <a
-            href="https://savvycal.com/tomasfigueroa/chat-with-tomas"
+            href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30"
             target="_blank"
             rel="noopener"
             style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#093f4f', textDecoration: 'none', transition: 'color 0.2s' }}
