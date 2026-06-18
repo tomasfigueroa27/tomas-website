@@ -25,8 +25,7 @@ const posts: BlogPost[] = [
     title: "Is This the Beginning of Utila's Next Boom?",
     date: '2026-06-17',
     category: 'Market Report',
-    // TODO: add hero image — replace with actual Utila photo before publish
-    image: '/utila-market-spotlight-2026.jpg',
+    image: '/Utila.jpg',
     excerpt: "After three quiet years, Utila has closed more property in five months of 2026 than all of 2025. Inside the data behind a possible new boom.",
     summary: [
       "Utila has already closed 17 properties for $3.23M in the first five months of 2026 — more deals than all of 2025 combined (16), in less than half the time.",
@@ -101,8 +100,8 @@ const posts: BlogPost[] = [
       },
       {
         type: 'p',
-        text: "The best entry points in any boom are early. Reply or book a 15-minute call to see what's moving on Utila right now.",
-        links: [{ anchor: 'Reply or book a 15-minute call', href: '/contact' }],
+        text: "The best entry points in any boom are early. Book a 15-minute call to see what's moving on Utila right now.",
+        links: [{ anchor: 'Book a 15-minute call', href: 'https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas' }],
       },
       {
         type: 'p',
