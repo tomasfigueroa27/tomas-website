@@ -8,50 +8,45 @@ import { trackSchedule, openSavvyCal, openBriefingModal } from '@/lib/analytics'
 
 type SubItem = { label: string; href?: string; action?: () => void };
 type NavEntry =
-  | { type: 'group'; label: string; items: SubItem[] }
+  | { type: 'group'; label: string; href?: string; items: SubItem[] }
   | { type: 'link'; label: string; href: string }
   | { type: 'action'; label: string; action: () => void };
 
 const navConfig: NavEntry[] = [
   {
     type: 'group',
-    label: 'Start Here',
+    label: 'Where to Buy',
+    href: '/where-to-buy-in-roatan',
     items: [
-      { label: 'U.S. Buyer Guide', href: '/us-buyers-guide-roatan' },
-      { label: 'Where to Buy in Roatán', href: '/where-to-buy-in-roatan' },
-      { label: 'Investor Briefing', action: openBriefingModal },
-      { label: 'Market Guide', href: '/roatan-market' },
-    ],
-  },
-  {
-    type: 'group',
-    label: 'Explore Roatán',
-    items: [
-      { label: 'Where to Buy in Roatán', href: '/where-to-buy-in-roatan' },
-      { label: 'Neighborhoods', href: '/neighborhoods' },
-      { label: 'New Developments', href: '/new-developments' },
+      { label: 'West Bay Beach', href: '/neighborhoods/west-bay-beach' },
+      { label: 'West End', href: '/neighborhoods/west-end' },
+      { label: 'Sandy Bay', href: '/neighborhoods/sandy-bay' },
+      { label: 'Pristine Bay', href: '/neighborhoods/pristine-bay' },
+      { label: 'French Harbour', href: '/neighborhoods/french-harbour' },
+      { label: 'Coxen Hole', href: '/neighborhoods/coxen-hole' },
     ],
   },
   {
     type: 'group',
     label: 'Properties',
     items: [
-      { label: 'Browse MLS', href: '/properties' },
       { label: 'New Developments', href: '/new-developments' },
+      { label: 'Browse MLS', href: '/properties' },
     ],
   },
   {
     type: 'group',
-    label: 'Resources',
+    label: 'Guides',
     items: [
-      { label: 'Blog', href: '/blog' },
-      { label: 'Guides', href: '/guides' },
-      { label: 'FAQ', href: '/faq' },
+      { label: 'U.S. Buyer Guide', href: '/us-buyers-guide-roatan' },
+      { label: 'Investor Briefing', action: openBriefingModal },
+      { label: 'Market Guide & Data', href: '/roatan-market' },
       { label: 'Closing Calculator', href: '/calculator' },
+      { label: 'FAQ', href: '/faq' },
     ],
   },
+  { type: 'link', label: 'Blog', href: '/blog' },
   { type: 'link', label: 'About', href: '/about' },
-  { type: 'action', label: 'Contact', action: openSavvyCal },
 ];
 
 const baseLabelStyle: React.CSSProperties = {
@@ -124,30 +119,36 @@ const Header = () => {
                     onMouseEnter={() => handleGroupEnter(entry.label)}
                     onMouseLeave={handleGroupLeave}
                   >
-                    <button
-                      style={{
-                        ...baseLabelStyle,
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 4,
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        padding: 0,
-                      }}
-                      className="hover:!text-white"
-                      aria-expanded={openGroup === entry.label}
-                    >
-                      {entry.label}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                      {entry.href ? (
+                        <Link href={entry.href} style={baseLabelStyle} className="hover:!text-white">
+                          {entry.label}
+                        </Link>
+                      ) : (
+                        <button
+                          style={{
+                            ...baseLabelStyle,
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            padding: 0,
+                          }}
+                          className="hover:!text-white"
+                          aria-expanded={openGroup === entry.label}
+                        >
+                          {entry.label}
+                        </button>
+                      )}
                       <ChevronDown
                         style={{
                           width: 12,
                           height: 12,
+                          color: 'rgba(255,255,255,0.75)',
                           transition: 'transform 0.2s',
                           transform: openGroup === entry.label ? 'rotate(180deg)' : 'rotate(0deg)',
                         }}
                       />
-                    </button>
+                    </div>
 
                     {openGroup === entry.label && (
                       <div
@@ -281,37 +282,54 @@ const Header = () => {
                 const isOpen = openMobileGroup === entry.label;
                 return (
                   <div key={entry.label} style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                    <button
-                      onClick={() => toggleMobileGroup(entry.label)}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        width: '100%',
-                        padding: '12px 0',
-                        color: 'rgba(255,255,255,0.75)',
-                        fontFamily: 'Arial, Helvetica, sans-serif',
-                        fontSize: 12,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.1em',
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        textAlign: 'left',
-                      }}
-                    >
-                      {entry.label}
-                      <ChevronDown
-                        style={{
-                          width: 14,
-                          height: 14,
-                          color: 'rgba(255,255,255,0.5)',
-                          transition: 'transform 0.2s',
-                          transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                          flexShrink: 0,
-                        }}
-                      />
-                    </button>
+                    <div style={{ display: 'flex', alignItems: 'center', padding: '12px 0' }}>
+                      {entry.href ? (
+                        <Link
+                          href={entry.href}
+                          style={{
+                            flex: 1,
+                            color: 'rgba(255,255,255,0.75)',
+                            fontFamily: 'Arial, Helvetica, sans-serif',
+                            fontSize: 12,
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.1em',
+                            textDecoration: 'none',
+                          }}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {entry.label}
+                        </Link>
+                      ) : (
+                        <span
+                          style={{
+                            flex: 1,
+                            color: 'rgba(255,255,255,0.75)',
+                            fontFamily: 'Arial, Helvetica, sans-serif',
+                            fontSize: 12,
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.1em',
+                          }}
+                        >
+                          {entry.label}
+                        </span>
+                      )}
+                      <button
+                        onClick={() => toggleMobileGroup(entry.label)}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}
+                        aria-label={`Toggle ${entry.label} submenu`}
+                      >
+                        <ChevronDown
+                          style={{
+                            width: 14,
+                            height: 14,
+                            color: 'rgba(255,255,255,0.5)',
+                            transition: 'transform 0.2s',
+                            transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                            flexShrink: 0,
+                          }}
+                        />
+                      </button>
+                    </div>
                     {isOpen && (
                       <div style={{ paddingBottom: 8 }}>
                         {entry.items.map((item) =>

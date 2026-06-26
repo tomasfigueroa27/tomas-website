@@ -1,22 +1,23 @@
 'use client';
 
+import Link from 'next/link';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const cards = [
   {
     num: '01',
     title: 'Access Is Opening',
-    body: 'United Airlines operates daily year-round service from Houston; American Airlines daily from Miami. Seasonal service from Dallas-Fort Worth, Atlanta, Denver, Minneapolis, Montréal, Toronto, and Guatemala City continues to expand. Buyers pricing themselves out of Cayman and TCI are arriving at Roatán earlier in the curve.',
+    body: 'United, American, and Air Canada — new nonstop routes keep arriving.',
   },
   {
     num: '02',
-    title: 'Branded Hospitality',
-    body: "Kimpton Grand Roatán is operating on West Bay. Margaritaville Island Reserve broke ground in 2025 for a 2027 opening. Hotel Roatán Media Luna joined the Meliá portfolio in 2026. Institutional brands don't commit on hope.",
+    title: 'Branded Hospitality Has Arrived',
+    body: "Kimpton is open. Margaritaville breaks ground in 2025. Meliá signed in 2026.",
   },
   {
     num: '03',
     title: 'A New Development Cycle',
-    body: 'A pipeline of 20+ projects is coming through the island. The question is not whether Roatán will develop — it is which projects preserve the lifestyle and which ones dilute it.',
+    body: '20+ projects in the pipeline — the question is which ones preserve what makes Roatán worth coming to.',
   },
 ];
 
@@ -89,6 +90,21 @@ export default function WhyNow() {
               </p>
             </div>
           ))}
+        </div>
+
+        <div style={{ marginTop: 32 }}>
+          <Link
+            href="/blog/roatan-q1-2026-market-report"
+            style={{
+              fontSize: 12,
+              fontWeight: 600,
+              color: '#789ead',
+              textDecoration: 'none',
+              fontFamily: 'Arial, Helvetica, sans-serif',
+            }}
+          >
+            Read the Q1 2026 market report →
+          </Link>
         </div>
       </div>
     </section>

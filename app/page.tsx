@@ -4,6 +4,8 @@ import LifestyleThesis from '@/sections/LifestyleThesis';
 import WhereToBuy from '@/sections/WhereToBuy';
 import WhyNow from '@/sections/WhyNow';
 import HowToChoose from '@/sections/HowToChoose';
+import ResourcesStrip from '@/sections/ResourcesStrip';
+import NewDevelopmentsPreview from '@/sections/NewDevelopmentsPreview';
 import HomeResources from '@/sections/HomeResources';
 import CTA from '@/sections/CTA';
 
@@ -84,7 +86,13 @@ export default function HomePage() {
       {/* 6. How Tomás Helps */}
       <HowToChoose />
 
-      {/* 7. Resources & Latest Insights */}
+      {/* 7. Buyer Resources strip */}
+      <ResourcesStrip />
+
+      {/* 8. New Developments preview */}
+      <NewDevelopmentsPreview />
+
+      {/* 9. Latest Insights */}
       <HomeResources />
 
       {/* 9. Final CTA */}

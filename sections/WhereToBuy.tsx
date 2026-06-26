@@ -2,29 +2,39 @@ import Link from 'next/link';
 
 const nodes = [
   {
-    name: 'West Bay',
+    name: 'West Bay Beach',
     subline: 'FOR THE BEACH BUYER',
-    body: 'The most recognizable beach on the island and the strongest vacation-rental logic. Premium oceanfront commands the highest $/sqft on Roatán.',
+    hook: "Roatán's strongest vacation rental logic and highest-demand beachfront.",
+    priceTier: '$300K – $2M+',
+    href: '/neighborhoods/west-bay-beach',
   },
   {
     name: 'West End',
     subline: 'FOR THE WALKABLE BUYER',
-    body: 'Walkable village, restaurants, diving, and community. Authentic island character at a lower entry.',
+    hook: 'Village lifestyle, world-class diving, authentic expat community.',
+    priceTier: '$150K – $600K',
+    href: '/neighborhoods/west-end',
   },
   {
     name: 'Sandy Bay',
     subline: 'FOR THE QUIET BUYER',
-    body: 'Quieter residential life near the reef. The emerging luxury tier with panoramic ocean views.',
+    hook: 'Quiet residential living near the reef with panoramic ocean views.',
+    priceTier: '$200K – $800K',
+    href: '/neighborhoods/sandy-bay',
   },
   {
     name: 'Pristine Bay',
     subline: 'FOR THE RESORT BUYER',
-    body: 'Gated resort amenities, golf, and a more controlled environment. The most institutional product on the island.',
+    hook: "Gated luxury, golf, marina, and Roatán's most exclusive address.",
+    priceTier: '$400K – $3M+',
+    href: '/neighborhoods/pristine-bay',
   },
   {
     name: 'French Harbour & East',
     subline: 'FOR THE EMERGING BUYER',
-    body: 'Emerging value, local infrastructure, and longer-term development exposure. Selective entry.',
+    hook: 'Authentic island life, commercial infrastructure, maximum value.',
+    priceTier: '$100K – $400K',
+    href: '/neighborhoods/french-harbour',
   },
 ];
 
@@ -54,13 +64,19 @@ export default function WhereToBuy() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4" style={{ marginBottom: 32 }}>
           {nodes.map((node) => (
-            <div
+            <Link
               key={node.name}
+              href={node.href}
               style={{
-                padding: '28px 24px',
+                display: 'block',
+                padding: '24px',
                 backgroundColor: 'rgba(255,255,255,0.04)',
                 border: '1px solid rgba(255,255,255,0.08)',
+                textDecoration: 'none',
+                transition: 'border-color 0.2s',
               }}
+              onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'rgba(120,158,173,0.4)')}
+              onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}
             >
               <p
                 style={{
@@ -81,15 +97,29 @@ export default function WhereToBuy() {
                   fontSize: 18,
                   fontWeight: 400,
                   color: '#ffffff',
-                  margin: '0 0 12px',
+                  margin: '0 0 10px',
                 }}
               >
                 {node.name}
               </h3>
-              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, margin: 0 }}>
-                {node.body}
+              <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', lineHeight: 1.65, margin: '0 0 14px' }}>
+                {node.hook}
               </p>
-            </div>
+              <span
+                style={{
+                  display: 'inline-block',
+                  fontSize: 10,
+                  fontWeight: 600,
+                  fontFamily: 'Arial, Helvetica, sans-serif',
+                  color: '#789ead',
+                  backgroundColor: 'rgba(120,158,173,0.12)',
+                  padding: '3px 8px',
+                  letterSpacing: '0.04em',
+                }}
+              >
+                {node.priceTier}
+              </span>
+            </Link>
           ))}
         </div>
 
