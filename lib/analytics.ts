@@ -25,7 +25,7 @@ export function trackSchedule() {
 
 export function openSavvyCal() {
   if (typeof window !== 'undefined' && typeof window.SavvyCal === 'function') {
-    window.SavvyCal('open', { link: 'tomasfigueroa/chat-with-tomas' });
+    window.SavvyCal('open', { link: 'Tomas-Figueroa-24db422b/chat-with-tomas' });
   }
 }
 

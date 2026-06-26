@@ -35,7 +35,7 @@ export default function SuccessPage() {
             Back to Home
           </Link>
           <a
-            href="https://savvycal.com/tomasfigueroa/chat-with-tomas"
+            href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30"
             target="_blank"
             rel="noopener"
             className="btn-outline-dark"
