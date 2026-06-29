@@ -42,7 +42,32 @@ const CRITERIA = [
 
 // ─── Projects ─────────────────────────────────────────────────────────────────
 
-const PROJECTS = [
+interface Project {
+  name: string;
+  location: string;
+  status: string;
+  statusActive: boolean;
+  productType: string;
+  bestFor: string;
+  priceFrom: string | null;
+  image: string;
+  href: string;
+  external: boolean;
+}
+
+const PROJECTS: Project[] = [
+  {
+    name: 'The Palm Haus',
+    location: 'West Bay – West End Corridor · Roatán',
+    status: 'Pre-Construction',
+    statusActive: true,
+    productType: 'Studio to 2-Bedroom Condominiums',
+    bestFor: "Buyers seeking competitive pre-construction entry pricing in Roatán's most active tourism corridor, with resort amenities and a 75/25 rental program.",
+    priceFrom: null,
+    image: '/neighborhood-westbay.jpg',
+    href: '/new-developments/the-palm-haus',
+    external: false,
+  },
   {
     name: 'Starfish at Latitude 16',
     location: 'West Bay Beach · Roatán',
@@ -67,7 +92,7 @@ const PROJECTS = [
     href: 'https://bluevistaroatan.com',
     external: true,
   },
-] as const;
+];
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -98,7 +123,7 @@ function CriteriaCard({ num, title, body }: { num: string; title: string; body: 
   );
 }
 
-function ProjectCard({ project, onSchedule }: { project: typeof PROJECTS[number]; onSchedule: () => void }) {
+function ProjectCard({ project, onSchedule }: { project: Project; onSchedule: () => void }) {
   return (
     <div style={{
       backgroundColor: 'rgba(255,255,255,0.04)',
@@ -217,7 +242,7 @@ function ProjectCard({ project, onSchedule }: { project: typeof PROJECTS[number]
                 display: 'block', paddingTop: 2,
               }}
             >
-              View project site →
+              {project.external ? 'View project site →' : 'View full details →'}
             </Link>
           )}
         </div>
@@ -391,7 +416,7 @@ export default function NewDevelopmentsContent() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {PROJECTS.map((project) => (
               <ProjectCard key={project.name} project={project} onSchedule={handleSchedule} />
             ))}
