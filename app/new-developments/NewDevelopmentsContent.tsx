@@ -64,7 +64,7 @@ const PROJECTS: Project[] = [
     productType: 'Studio to 2-Bedroom Condominiums',
     bestFor: "Buyers seeking competitive pre-construction entry pricing in Roatán's most active tourism corridor, with resort amenities and a 75/25 rental program.",
     priceFrom: null,
-    image: '/neighborhood-westbay.jpg',
+    image: '/palm-haus/exterior-ocean.jpg',
     href: '/new-developments/the-palm-haus',
     external: false,
   },

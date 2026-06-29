@@ -505,7 +505,7 @@ export default function PalmHausContent() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-px" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-px" style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}>
             {AMENITIES.map((name) => (
               <div key={name} style={{ backgroundColor: '#093f4f', padding: '18px 20px' }}>
                 <span style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>
@@ -513,12 +513,10 @@ export default function PalmHausContent() {
                 </span>
               </div>
             ))}
-            <div style={{ backgroundColor: '#093f4f', padding: '18px 20px', gridColumn: 'span 2' }}>
-              <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, color: 'rgba(255,255,255,0.35)', margin: 0, lineHeight: 1.65 }}>
-                Pool, jacuzzi, elevators, landscaping, security, and common area utilities included in HOA ($4/m²/month).
-              </p>
-            </div>
           </div>
+          <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 11, color: 'rgba(255,255,255,0.35)', margin: '16px 0 0', lineHeight: 1.65 }}>
+            Pool, jacuzzi, elevators, landscaping, security, and common area utilities included in HOA ($4/m²/month).
+          </p>
         </div>
 
         {/* Rooftop image below amenities grid */}
