@@ -154,6 +154,15 @@ export default function PalmHausContent() {
               >
                 A 12-story condominium between Roatán&apos;s two most active tourism hubs. Studio to two-bedroom residences delivered turnkey, with resort amenities and an owner-friendly rental program.
               </p>
+              <div style={{ marginBottom: 32 }}>
+                <p style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.4)', margin: '0 0 6px' }}>
+                  Starting From
+                </p>
+                <p style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 'clamp(28px, 3.5vw, 40px)', fontWeight: 400, color: '#c9a84c', margin: 0, lineHeight: 1 }}>
+                  $152,000 USD
+                </p>
+              </div>
+
               <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
                 <button
                   onClick={handleSchedule}
