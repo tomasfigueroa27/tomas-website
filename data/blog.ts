@@ -21,6 +21,227 @@ export interface BlogPost {
 
 const posts: BlogPost[] = [
   {
+    slug: 'bay-islands-market-report-q2-2026',
+    title: 'The Bay Islands Buyer\'s Market: What the Data Really Says About Q2 2026',
+    seoTitle: 'Bay Islands Real Estate Market Report Q2 2026',
+    date: '2026-07-08',
+    category: 'Market Report',
+    image: '/neighborhood-westbay.jpg',
+    excerpt:
+      'New listings outpaced closings 3.7-to-1 in Q2 2026 — the highest ratio in six quarters. H1 volume is down 32% on the MLS, yet $37.8M in off-market deals surpassed all official closed volume combined. Here\'s what the data actually says for buyers and sellers right now.',
+    summary: [
+      '3.7 new listings entered the market for every single closing in Q2 2026 — a clear acceleration, not a plateau.',
+      'H1 2026 produced 107 closed deals at $30.9M on-MLS — down 26% in count and 32% in volume year-over-year.',
+      '$37.8M in tracked off-market deals exceeded total on-MLS volume, including roughly $12M in individual unit sales at new residential projects.',
+      '1 in 4 active listings has already taken a price cut averaging 15%, yet those cut listings still closed at only 89.9% of their reduced asking price.',
+      'Residential median sale price rose 8.4% quarter-over-quarter to $363K, and contracts entered rose for a second straight quarter.',
+    ],
+    body: [
+      {
+        type: 'p',
+        text: "Walk onto any dock in Roatán right now and you'll hear two completely different stories about the market. One says it's dead — closings are down, deals are slow, nobody's buying. The other says money is pouring in — new developments breaking ground, investors snapping up acreage. Both are true, and the tension between them is the actual story of this quarter.",
+      },
+      {
+        type: 'h2',
+        text: 'The Number That Explains Everything Else',
+      },
+      {
+        type: 'p',
+        text: "Start with the number that explains everything else: the market is adding new listings faster than it's clearing them, and that gap is widening every quarter. For every property that closed in Q1 2025, roughly 2 new listings came onto the market. By Q4 2025 that ratio had climbed to 2.5. By Q1 2026, 2.6. By Q2 2026, it hit 3.7 new listings for every single closing — the highest of the last six quarters, and a clear acceleration, not a plateau.",
+      },
+      {
+        type: 'p',
+        text: "That's the clearest read we have on where this market is heading: sellers are entering faster than buyers are absorbing them, quarter after quarter.",
+      },
+      {
+        type: 'table',
+        headers: ['Quarter', 'New Listings per Closing'],
+        rows: [
+          ['Q1 2025', '2.0'],
+          ['Q2 2025', '1.1'],
+          ['Q3 2025', '2.2'],
+          ['Q4 2025', '2.5'],
+          ['Q1 2026', '2.6'],
+          ['Q2 2026', '3.7'],
+        ],
+      },
+      {
+        type: 'h2',
+        text: 'Closings: The Weakest First Half Since 2021',
+      },
+      {
+        type: 'p',
+        text: "Closings tell the same story from a different angle. The first half of 2026 produced just 107 closed Residential and Land deals island-wide, down 26% from a year ago, and $30.9M in volume, down 32%. Both numbers are the weakest first half we've seen since at least 2021. If you only read the headline, you'd think the market fell off a cliff.",
+      },
+      {
+        type: 'table',
+        headers: ['Metric', 'H1 2025', 'H1 2026', 'Change'],
+        rows: [
+          ['Closed deals (Residential + Land)', '145', '107', '−26%'],
+          ['Total closed volume', '$45.4M', '$30.9M', '−32%'],
+        ],
+      },
+      {
+        type: 'h2',
+        text: 'Where the Money Actually Went: The Off-Market Story',
+      },
+      {
+        type: 'p',
+        text: "But here's where it gets interesting: the money didn't actually disappear — it got concentrated. Off the MLS, we're tracking $37.8M in known private deals this year, more than the entire on-MLS closed volume combined. Roughly $12M of that total is individual unit sales at new residential projects — buyers committing directly with developers before those projects ever hit the MLS.",
+      },
+      {
+        type: 'p',
+        text: "Add that one deal to the official numbers, and suddenly H1 2026 is only 10% below last year — and actually close to the five-year average once you strip out 2022's outlier boom. Investors are still writing big checks. They're just writing fewer, bigger ones instead of the broad spread of ordinary resale transactions that used to define this market.",
+      },
+      {
+        type: 'h3',
+        text: 'Why the True Supply Is Even Larger Than It Looks',
+      },
+      {
+        type: 'p',
+        text: "That off-market total is almost certainly an undercount of what's really out there — in more ways than one. First, more sales are happening away from the MLS than we've ever tracked before; we simply haven't seen this volume of new projects launching at the same time. Second, and just as important: what shows up as \"active listings\" on the MLS often isn't the full inventory a new project actually has available. Many developments only list a sample unit or two publicly while holding the rest for direct or off-market sale. That means true available supply — not just true sales activity — is larger than our active listing counts suggest.",
+      },
+      {
+        type: 'h2',
+        text: 'The Price Cut Math: What It Actually Costs Sellers',
+      },
+      {
+        type: 'p',
+        text: "So what's a seller actually supposed to do with all this? The data has a clear answer: cut your price, and do it with intent.",
+      },
+      {
+        type: 'ul',
+        items: [
+          '1 in 4 active listings on the market has already taken a price cut',
+          'Average reduction: 15% off the original ask — about $77,000 on a typical listing',
+          '$14.3M in total asking-price value has been trimmed from the market\'s active inventory so far',
+          '34% of Q2 closings — roughly 1 in 3 — got there only after a price reduction',
+        ],
+      },
+      {
+        type: 'p',
+        text: "It's working, to a point. But even those cut listings didn't sell at the new asking price — they closed at an average of just 89.9% of their reduced list price, compared to 92.3% for listings that never needed a cut at all.",
+      },
+      {
+        type: 'table',
+        headers: ['Listing Type', 'Average Close-to-List Ratio'],
+        rows: [
+          ['Never reduced', '92.3%'],
+          ['Reduced before closing', '89.9%'],
+        ],
+      },
+      {
+        type: 'p',
+        text: "The lesson: a price cut gets you back in the conversation, but buyers still expect to negotiate further from there. Cutting too little, too late costs you twice.",
+      },
+      {
+        type: 'h2',
+        text: 'Where Pricing Power Is Actually Holding',
+      },
+      {
+        type: 'p',
+        text: "For sellers who do close, pricing power is improving where it counts: residential median sale price rose 8.4% quarter-over-quarter, hitting $363K, even as fewer residential deals closed overall. This signals that the deals getting done are weighted toward higher-quality, better-priced properties — not distressed sales dragging the median down.",
+      },
+      {
+        type: 'h2',
+        text: 'The Forward Signal: Contracts Are Rising',
+      },
+      {
+        type: 'p',
+        text: "The forward signal is cautiously encouraging. Contracts entered — the best leading indicator we have — rose for a second straight quarter after bottoming out in Q4 2025. It hasn't yet climbed back above where it was a year ago, and given the typical 6-to-12-week path from contract to close, we should start seeing that show up in actual closings within the next quarter or so.",
+      },
+      {
+        type: 'h2',
+        text: 'What This Means for Buyers and Sellers',
+      },
+      {
+        type: 'h3',
+        text: 'For sellers',
+      },
+      {
+        type: 'p',
+        text: "Pricing right isn't optional anymore — it's the difference between selling and sitting. With new listings outpacing closings nearly 4-to-1 this quarter, your property isn't just competing with the resale market it used to compete with. It's one option among a fast-growing pile of them, and the true pile is even bigger than what's visible on the MLS. That means pricing against the full landscape of options today, not against what a similar property fetched a year ago.",
+      },
+      {
+        type: 'h3',
+        text: 'For buyers',
+      },
+      {
+        type: 'p',
+        text: "This is genuinely a good moment. There's real room to negotiate on resales — sellers who have watched closings slow for six straight quarters are more motivated than the headlines suggest. And several serious new projects are open for buyers looking to get in early at pre-construction pricing. Either way, the smart move right now is making sure you're actually seeing everything on the table — resale and new construction alike — before you decide.",
+      },
+      {
+        type: 'h3',
+        text: 'For investors',
+      },
+      {
+        type: 'p',
+        text: "The off-market data tells two different stories that shouldn't be conflated. One is larger private deals — land acquisitions, parcel sales, and direct developer transactions that move significant capital away from the MLS entirely. The other is broad-based individual demand: roughly $12M of the tracked off-market total is individual buyers committing directly to new residential projects before those units ever hit the MLS — evidence that grassroots demand is there when the project and entry pricing are right. For investors, both signals matter. The gap between public perception (\"the market is dead\") and private reality ($37.8M in off-market deals in six months) is where the most motivated buyers — at every scale — are operating.",
+      },
+      {
+        type: 'h2',
+        text: 'The Bottom Line',
+      },
+      {
+        type: 'p',
+        text: "The Bay Islands market in Q2 2026 is a buyer's market with a nuanced interior. On the surface: closings are down, supply is rising, and price cuts are spreading. Inside that surface: median residential prices are up, contracts are rising for the second straight quarter, and a parallel off-market economy is moving more dollar volume than the MLS. The sellers who understand both layers — and price for the full competitive landscape — are the ones closing. The ones pricing against 2025 comps are the ones sitting.",
+      },
+      {
+        type: 'h2',
+        text: 'Frequently Asked Questions',
+      },
+      {
+        type: 'h3',
+        text: 'Is the Roatán real estate market up or down in Q2 2026?',
+      },
+      {
+        type: 'p',
+        text: "On-MLS closed volume is down 32% in dollar terms for the first half of 2026. However, off-market and private deal flow — $37.8M in tracked transactions — exceeded total on-MLS volume. The full picture is a market that is slowing in resale breadth while concentrating activity in larger private deals and new construction.",
+      },
+      {
+        type: 'h3',
+        text: 'What does the 3.7-to-1 listing-to-closing ratio mean for sellers?',
+      },
+      {
+        type: 'p',
+        text: "It means for every deal that closes, 3.7 new listings enter the market — and that ratio has increased every quarter for the past six. Sellers are competing against a fast-growing pile of options, including new development projects that often hold inventory off the MLS entirely. Pricing for today's full competitive landscape is essential.",
+      },
+      {
+        type: 'h3',
+        text: 'Why did residential median sale price rise if closings are down?',
+      },
+      {
+        type: 'p',
+        text: "When fewer deals close, the composition of those deals matters. Median residential sale price rose 8.4% quarter-over-quarter to $363K even as total deal count fell. We see prices and price-per-square-foot rising while volume drops — one consistent interpretation is that stronger properties are still moving while softer ones sit, but the underlying price-tier composition was not separately analyzed in this report.",
+      },
+      {
+        type: 'h3',
+        text: 'Should I cut my listing price if it hasn\'t sold?',
+      },
+      {
+        type: 'p',
+        text: "The data says yes. One in four active listings has already cut, and those that did closed at 89.9% of their reduced price on average — buyers still negotiate from the reduced ask. The analysis tracks whether a listing had any price cut, not the timing or number of reductions, so the data does not tell us whether cutting sooner or in fewer increments produces meaningfully different outcomes. What it does show clearly: a well-priced listing is still moving; aged inventory at aspirational prices is sitting.",
+      },
+      {
+        type: 'h3',
+        text: 'Are new developments a good investment in the Bay Islands right now?',
+      },
+      {
+        type: 'p',
+        text: "Several serious pre-construction projects are currently open for buyers seeking early-entry pricing. The off-market data shows strong demand when the project and pricing are right — roughly $12M of tracked off-market volume this year is individual buyers committing to new residential projects before those units hit the MLS, a sign that grassroots demand is there for the right entry. Pre-construction buyers who get in at the right project and pricing tier stand to benefit from both development appreciation and the rising residential median trend.",
+      },
+      {
+        type: 'h2',
+        text: 'Methodology',
+      },
+      {
+        type: 'p',
+        text: 'Closed-sale data sourced from the Roatán Bay Islands MLS for January 1–June 30, 2025 and January 1–June 30, 2026 (H1 figures). New-listing-to-closing ratios cover Q1 2025 through Q2 2026. Off-market deal tracking based on known private transactions, developer sales, and bulk transactions identified through direct market contacts — this figure is not exhaustive. Price cut data reflects active listings as of the report date (early July 2026). All figures cover Residential and Land transactions; the methodology is consistent with prior quarterly reports. This report is for informational purposes only and does not constitute investment advice.',
+      },
+    ],
+  },
+
+  {
     slug: 'utila-market-spotlight-2026',
     title: "Is This the Beginning of Utila's Next Boom?",
     date: '2026-06-17',
