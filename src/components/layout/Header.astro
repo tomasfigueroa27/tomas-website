@@ -96,8 +96,8 @@ const currentPath = Astro.url.pathname;
     position: sticky;
     top: 0;
     z-index: var(--z-nav);
-    background: var(--canvas);
-    border-bottom: var(--hairline);
+    background: var(--agency-red);
+    border-bottom: none;
     height: var(--nav-height);
   }
 
@@ -115,11 +115,11 @@ const currentPath = Astro.url.pathname;
   .logo-text {
     font-size: var(--text-xl);
     letter-spacing: 0.1em;
-    color: var(--iron);
+    color: var(--canvas);
   }
 
   .logo-sub {
-    color: var(--agency-red);
+    color: rgba(255,255,255,.75);
   }
 
   .header-nav {
@@ -144,14 +144,14 @@ const currentPath = Astro.url.pathname;
     font-size: var(--text-sm);
     letter-spacing: var(--tracking-sleek);
     text-transform: uppercase;
-    color: var(--iron-60);
+    color: rgba(255,255,255,.80);
     transition: color var(--duration-fast) var(--ease-brand);
     white-space: nowrap;
   }
 
   .nav-link:hover,
   .nav-link--active {
-    color: var(--iron);
+    color: var(--canvas);
   }
 
   .header-actions {
@@ -166,14 +166,15 @@ const currentPath = Astro.url.pathname;
     font-size: var(--text-sm);
     letter-spacing: var(--tracking-sleek);
     text-transform: uppercase;
-    background: var(--iron);
-    color: var(--canvas);
+    background: var(--canvas);
+    color: var(--agency-red);
     padding: var(--space-2) var(--space-4);
-    transition: background var(--duration-fast) var(--ease-brand);
+    transition: background var(--duration-fast) var(--ease-brand), color var(--duration-fast) var(--ease-brand);
   }
 
   .btn-whatsapp:hover {
-    background: var(--agency-red);
+    background: var(--iron);
+    color: var(--canvas);
   }
 
   .hamburger {
@@ -190,7 +191,7 @@ const currentPath = Astro.url.pathname;
     display: block;
     width: 22px;
     height: 1px;
-    background: var(--iron);
+    background: var(--canvas);
   }
 
   .mobile-nav {
