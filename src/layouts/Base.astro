@@ -14,6 +14,7 @@ export interface Props {
   ogImage?: string;
   noindex?: boolean;
   schema?: object | object[];
+  heroOverlap?: boolean;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   ogImage,
   noindex = false,
   schema,
+  heroOverlap = false,
 } = Astro.props;
 
 // SITE_MODE guard — staging forces noindex on every page
@@ -59,6 +61,7 @@ const forceNoindex = isStaging || noindex;
   <body>
     <Header />
     <main id="main-content">
+      {!heroOverlap && <div style={`height: var(--nav-height)`} aria-hidden="true"></div>}
       <slot />
     </main>
     <Footer />

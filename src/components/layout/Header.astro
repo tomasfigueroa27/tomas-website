@@ -3,9 +3,8 @@ const navLinks = [
   { label: 'New Developments', href: '/new-developments/' },
   { label: 'Properties',       href: '/properties/' },
   { label: 'Neighborhoods',    href: '/neighborhoods/' },
-  { label: 'Buy',              href: '/buy/' },
-  { label: 'Sell',             href: '/sell/' },
-  { label: 'Market Reports',   href: '/market-reports/' },
+  { label: 'Guides',           href: '/guides/' },
+  { label: 'Market',           href: '/market-reports/' },
   { label: 'About',            href: '/about/' },
   { label: 'Contact',          href: '/contact/' },
 ];
@@ -13,12 +12,15 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="site-header">
+<header class="site-header" id="site-header">
   <div class="header-inner container">
     <!-- Logo -->
-    <a href="/" class="header-logo" aria-label="Tomas Figueroa – The Agency Roatán – Home">
-      <!-- TODO: replace with <img> once logo assets are supplied -->
-      <span class="logo-text type-sleek">The Agency<span class="logo-sub"> Roatán</span></span>
+    <a href="/" class="header-logo" aria-label="The Agency Roatán – Home">
+      <!-- TODO: replace with <img> once Agency logo SVG is supplied -->
+      <span class="logo-wordmark">
+        <span class="logo-the">THE</span><span class="logo-agency">AGENCY</span>
+      </span>
+      <span class="logo-location">ROATÁN</span>
     </a>
 
     <!-- Desktop nav -->
@@ -37,27 +39,16 @@ const currentPath = Astro.url.pathname;
       </ul>
     </nav>
 
-    <!-- Right: WhatsApp + hamburger -->
-    <div class="header-actions">
-      <a
-        href="https://wa.me/15049999999"
-        class="btn-whatsapp"
-        aria-label="Chat on WhatsApp"
-        data-event="whatsapp_click"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        WhatsApp
-      </a>
-      <button
-        class="hamburger"
-        aria-controls="mobile-nav"
-        aria-expanded="false"
-        aria-label="Open menu"
-      >
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <!-- Hamburger (always visible — opens mobile drawer) -->
+    <button
+      class="hamburger"
+      aria-controls="mobile-nav"
+      aria-expanded="false"
+      aria-label="Open menu"
+    >
+      <span></span>
+      <span></span>
+    </button>
   </div>
 
   <!-- Mobile nav drawer -->
@@ -66,13 +57,27 @@ const currentPath = Astro.url.pathname;
       {navLinks.map(link => (
         <li><a href={link.href} class="mobile-nav-link">{link.label}</a></li>
       ))}
+      <li>
+        <a
+          href="https://wa.me/50499999999"
+          class="mobile-nav-link mobile-nav-whatsapp"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-event="whatsapp_click"
+        >
+          WhatsApp
+        </a>
+      </li>
     </ul>
   </nav>
 </header>
 
 <script>
+  const header = document.getElementById('site-header') as HTMLElement;
   const hamburger = document.querySelector('.hamburger') as HTMLButtonElement;
   const mobileNav = document.getElementById('mobile-nav');
+
+  // Mobile drawer toggle
   if (hamburger && mobileNav) {
     hamburger.addEventListener('click', () => {
       const open = hamburger.getAttribute('aria-expanded') === 'true';
@@ -81,7 +86,43 @@ const currentPath = Astro.url.pathname;
     });
   }
 
-  // Track WhatsApp clicks
+  // Scroll behavior: transparent → red → hidden → red (on scroll up)
+  let lastY = 0;
+  let ticking = false;
+
+  function updateHeader() {
+    const y = window.scrollY;
+
+    // Transparent at top, red after 60px
+    if (y > 60) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+
+    // Hide on scroll down past 300px, reveal on scroll up
+    if (y > 300) {
+      if (y > lastY) {
+        header.classList.add('header-hidden');
+      } else {
+        header.classList.remove('header-hidden');
+      }
+    } else {
+      header.classList.remove('header-hidden');
+    }
+
+    lastY = y;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // WhatsApp GA4 tracking
   document.querySelectorAll('[data-event="whatsapp_click"]').forEach(el => {
     el.addEventListener('click', () => {
       if (typeof gtag !== 'undefined') {
@@ -93,35 +134,69 @@ const currentPath = Astro.url.pathname;
 
 <style>
   .site-header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: var(--z-nav);
-    background: var(--agency-red);
-    border-bottom: none;
     height: var(--nav-height);
+    background: transparent;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  /* Solid red once user has scrolled past the hero */
+  .site-header.scrolled {
+    background: var(--agency-red);
+  }
+
+  /* Slide up when scrolling down deep into the page */
+  .site-header.header-hidden {
+    transform: translateY(-100%);
   }
 
   .header-inner {
     display: flex;
     align-items: center;
-    gap: var(--space-8);
     height: 100%;
+    gap: var(--space-8);
   }
 
+  /* ── Logo ── */
   .header-logo {
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    gap: 2px;
+    text-decoration: none;
   }
 
-  .logo-text {
+  .logo-wordmark {
+    display: block;
+    font-family: var(--font-sleek);
     font-size: var(--text-xl);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.04em;
     color: var(--canvas);
   }
 
-  .logo-sub {
-    color: rgba(255,255,255,.75);
+  .logo-the {
+    font-weight: 300;
   }
 
+  .logo-agency {
+    font-weight: 700;
+  }
+
+  .logo-location {
+    display: block;
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    color: rgba(255,255,255,.65);
+    text-transform: uppercase;
+  }
+
+  /* ── Desktop nav ── */
   .header-nav {
     flex: 1;
     display: none;
@@ -129,23 +204,23 @@ const currentPath = Astro.url.pathname;
 
   @media (min-width: 1024px) {
     .header-nav { display: block; }
-    .hamburger { display: none; }
   }
 
   .nav-list {
     display: flex;
-    gap: var(--space-6);
+    gap: var(--space-7);
     align-items: center;
     justify-content: flex-end;
+    list-style: none;
   }
 
   .nav-link {
     font-family: var(--font-text);
-    font-size: var(--text-sm);
+    font-size: var(--text-xs);
     letter-spacing: var(--tracking-sleek);
     text-transform: uppercase;
     color: rgba(255,255,255,.80);
-    transition: color var(--duration-fast) var(--ease-brand);
+    transition: color var(--duration-fast);
     white-space: nowrap;
   }
 
@@ -154,61 +229,45 @@ const currentPath = Astro.url.pathname;
     color: var(--canvas);
   }
 
-  .header-actions {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-    flex-shrink: 0;
-  }
-
-  .btn-whatsapp {
-    font-family: var(--font-text);
-    font-size: var(--text-sm);
-    letter-spacing: var(--tracking-sleek);
-    text-transform: uppercase;
-    background: var(--canvas);
-    color: var(--agency-red);
-    padding: var(--space-2) var(--space-4);
-    transition: background var(--duration-fast) var(--ease-brand), color var(--duration-fast) var(--ease-brand);
-  }
-
-  .btn-whatsapp:hover {
-    background: var(--iron);
-    color: var(--canvas);
-  }
-
+  /* ── Hamburger ── */
   .hamburger {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    justify-content: center;
+    gap: 6px;
     background: none;
     border: none;
     cursor: pointer;
     padding: var(--space-2);
+    margin-left: var(--space-4);
+    flex-shrink: 0;
   }
 
   .hamburger span {
     display: block;
-    width: 22px;
-    height: 1px;
+    width: 24px;
+    height: 1.5px;
     background: var(--canvas);
+    transition: background var(--duration-fast);
   }
 
+  /* ── Mobile drawer ── */
   .mobile-nav {
-    position: absolute;
+    position: fixed;
     top: var(--nav-height);
     left: 0;
     right: 0;
-    background: var(--canvas);
-    border-bottom: var(--hairline);
-    padding: var(--space-6) var(--gutter);
+    background: var(--agency-red);
+    padding: var(--space-8) var(--gutter) var(--space-10);
     z-index: var(--z-nav);
+    border-top: 1px solid rgba(255,255,255,.15);
   }
 
   .mobile-nav ul {
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
+    gap: var(--space-5);
+    list-style: none;
   }
 
   .mobile-nav-link {
@@ -216,6 +275,16 @@ const currentPath = Astro.url.pathname;
     font-size: var(--text-lg);
     letter-spacing: var(--tracking-sleek);
     text-transform: uppercase;
-    color: var(--iron);
+    color: rgba(255,255,255,.85);
+    transition: color var(--duration-fast);
+  }
+
+  .mobile-nav-link:hover {
+    color: var(--canvas);
+  }
+
+  .mobile-nav-whatsapp {
+    color: var(--canvas);
+    font-weight: 700;
   }
 </style>
