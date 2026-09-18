@@ -1,0 +1,84 @@
+---
+import '../styles/tokens.css';
+import '../styles/fonts.css';
+import '../styles/global.css';
+import SEO from '../components/seo/SEO.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import MobileBar from '../components/layout/MobileBar.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  schema?: object | object[];
+}
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  ogImage,
+  noindex = false,
+  schema,
+} = Astro.props;
+
+// SITE_MODE guard — staging forces noindex on every page
+const siteMode = import.meta.env.SITE_MODE ?? 'production';
+const isStaging = siteMode === 'staging';
+const forceNoindex = isStaging || noindex;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SEO
+      title={title}
+      description={description}
+      canonicalUrl={canonicalUrl ?? Astro.url.href}
+      ogImage={ogImage}
+      noindex={forceNoindex}
+      schema={schema}
+    />
+    <!-- Preload hero font -->
+    <link
+      rel="preload"
+      href="/fonts/noto-serif-display-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  </head>
+  <body>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <MobileBar />
+
+    {/* UTM capture — stores first-touch UTMs in sessionStorage */}
+    <script>
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const utmKeys = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
+        const stored: Record<string, string> = {};
+        let hasUtm = false;
+        for (const key of utmKeys) {
+          const val = params.get(key);
+          if (val) { stored[key] = val; hasUtm = true; }
+        }
+        if (hasUtm && !sessionStorage.getItem('utms')) {
+          sessionStorage.setItem('utms', JSON.stringify(stored));
+        }
+      } catch (_) { /* silent — private mode */ }
+    </script>
+  </body>
+</html>

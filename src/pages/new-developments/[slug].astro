@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content';
+import Development from '../../layouts/Development.astro';
+
+export async function getStaticPaths() {
+  const devs = await getCollection('developments');
+  return devs.map(dev => ({
+    params: { slug: dev.data.slug },
+    props: { dev },
+  }));
+}
+
+const { dev } = Astro.props;
+const { Content } = await render(dev);
+---
+
+<Development dev={dev}>
+  <Content />
+</Development>

@@ -1,13 +1,12 @@
 [build]
   command = "npm run build"
-  publish = "out"
+  publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
+  SITE_MODE = "staging"
 
 # Canonical domain redirects — enforce https://www.tomasfigueroa.com/
-# These run before any page is served. Both http and non-www variants
-# are 301'd to the www origin so Google sees a single canonical domain.
 [[redirects]]
   from   = "https://tomasfigueroa.com/*"
   to     = "https://www.tomasfigueroa.com/:splat"
@@ -26,5 +25,14 @@
   status = 301
   force  = true
 
-# Netlify Forms — these hidden forms enable form detection on static export
-# Keep in sync with Newsletter.tsx and Guides.tsx form names
+# Astro SSG: serve pre-built HTML, no SPA routing needed.
+# 404 fallback — Astro generates a 404.html
+[[redirects]]
+  from   = "/*"
+  to     = "/404"
+  status = 404
+
+# API routes (Astro SSR edge function)
+[[edge_functions]]
+  function = "entry"
+  path = "/api/*"

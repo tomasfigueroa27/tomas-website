@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Page Not Found | The Agency Roatán"
+  description="The page you're looking for doesn't exist."
+  noindex={true}
+>
+  <div class="not-found container">
+    <p class="not-found-code eyebrow">404</p>
+    <h1 class="type-chic not-found-title">Page not found.</h1>
+    <p class="not-found-sub">The page you're looking for has moved or doesn't exist.</p>
+    <div class="not-found-actions">
+      <a href="/" class="btn btn--solid btn--md">Go Home</a>
+      <a href="/new-developments/" class="btn btn--outline btn--md">View Developments</a>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .not-found {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: var(--space-5);
+    padding-block: var(--space-20);
+  }
+
+  .not-found-code { font-size: var(--text-xs); color: var(--agency-red); }
+  .not-found-title { font-size: var(--text-6xl); }
+  .not-found-sub { color: var(--iron-60); }
+
+  .not-found-actions {
+    display: flex;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+</style>

@@ -1,0 +1,176 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Badge from '../../components/ui/Badge.astro';
+import Eyebrow from '../../components/brand/Eyebrow.astro';
+
+const devs = await getCollection('developments');
+
+const statusOrder: Record<string, number> = {
+  'pre-sale': 0,
+  'under-construction': 1,
+  'coming-soon': 2,
+  'delivered': 3,
+};
+const sorted = devs.sort((a, b) =>
+  (statusOrder[a.data.status] ?? 9) - (statusOrder[b.data.status] ?? 9)
+);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'New Developments in Roatán – The Agency Roatán',
+  url: 'https://www.tomasfigueroa.com/new-developments/',
+  numberOfItems: sorted.length,
+};
+---
+
+<Base
+  title="New Developments in Roatán | Pre-Sale Condos & Residences"
+  description="Browse pre-sale and pre-construction condos in Roatán, Honduras. Ava Towers, Sunset Vista Condos, and more — curated by The Agency Roatán."
+  schema={schema}
+>
+  <div class="dev-index-hero">
+    <div class="container">
+      <Eyebrow text="New Developments" />
+      <h1 class="dev-index-title type-chic">Roatán's Newest Properties</h1>
+      <p class="dev-index-sub">Pre-sale condos and luxury residences — buy at developer prices before the public launch.</p>
+    </div>
+  </div>
+
+  <div class="container dev-index-content">
+    <div class="dev-grid">
+      {sorted.map(dev => {
+        const d = dev.data;
+        return (
+          <a href={`/new-developments/${d.slug}/`} class="dev-card">
+            <div class="dev-card-image" style={`background-image: url('${d.heroImage}')`}>
+              <Badge status={d.status} />
+            </div>
+            <div class="dev-card-body">
+              <p class="dev-card-area eyebrow">{d.area.replace(/-/g, ' ')}</p>
+              <h2 class="dev-card-title type-chic">{d.title}</h2>
+              <p class="dev-card-location">{d.location?.address ?? 'Roatán, Honduras'}</p>
+              <div class="dev-card-meta">
+                {d.priceFrom ? (
+                  <span class="dev-card-price">From USD ${d.priceFrom.toLocaleString()}</span>
+                ) : (
+                  <span class="dev-card-price dev-card-price--private">Price on registration</span>
+                )}
+                {d.unitTypes && d.unitTypes.length > 0 && (
+                  <span class="dev-card-units">{d.unitTypes.join(' · ')}</span>
+                )}
+              </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</Base>
+
+<style>
+  .dev-index-hero {
+    background: var(--plaster);
+    padding: var(--space-20) 0 var(--space-16);
+    border-bottom: var(--hairline);
+  }
+
+  .dev-index-title {
+    font-size: clamp(var(--text-4xl), 5vw, var(--text-6xl));
+    margin-top: var(--space-4);
+    max-width: 20ch;
+  }
+
+  .dev-index-sub {
+    margin-top: var(--space-4);
+    max-width: 55ch;
+    color: var(--iron-60);
+    font-size: var(--text-lg);
+  }
+
+  .dev-index-content {
+    padding-block: var(--space-16);
+  }
+
+  .dev-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .dev-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    border: var(--hairline);
+    transition: border-color var(--duration-fast);
+  }
+
+  .dev-card:hover {
+    border-color: var(--iron);
+  }
+
+  .dev-card-image {
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--plaster);
+    display: flex;
+    align-items: flex-start;
+    padding: var(--space-4);
+  }
+
+  .dev-card-body {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    flex: 1;
+  }
+
+  .dev-card-area {
+    font-size: var(--text-xs);
+    color: var(--agency-red);
+  }
+
+  .dev-card-title {
+    font-size: var(--text-2xl);
+    line-height: 1.2;
+  }
+
+  .dev-card-location {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+  }
+
+  .dev-card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: var(--hairline);
+  }
+
+  .dev-card-price {
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--iron);
+  }
+
+  .dev-card-price--private {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--iron-60);
+  }
+
+  .dev-card-units {
+    font-size: var(--text-xs);
+    color: var(--iron-60);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+  }
+</style>

@@ -1,0 +1,97 @@
+/* =============================================================
+   THE AGENCY – ROATÁN  |  Design Tokens
+   Colors: only these four. No tints, no new hues.
+   ============================================================= */
+
+:root {
+  /* ── Brand palette ── */
+  --agency-red: #ED2127;   /* Pantone 199C — accent only */
+  --iron:       #000000;   /* Primary text, dark sections, buttons */
+  --canvas:     #FFFFFF;   /* Main background */
+  --plaster:    #F7F8F6;   /* Alt section bg, cards */
+
+  /* Iron at reduced opacity (borders, secondary text — no new hues) */
+  --iron-80:  rgba(0, 0, 0, .80);
+  --iron-60:  rgba(0, 0, 0, .60);
+  --iron-40:  rgba(0, 0, 0, .40);
+  --iron-20:  rgba(0, 0, 0, .20);
+  --iron-10:  rgba(0, 0, 0, .10);
+
+  /* ── Typography stacks ──
+     Replace top value with licensed font file when supplied.  */
+  --font-sleek: "Barlow Condensed", system-ui, sans-serif;
+  --font-chic:  "Noto Serif", Georgia, serif;
+  --font-text:  "Roboto", system-ui, sans-serif;
+
+  /* Tracking */
+  --tracking-sleek: 0.075em;   /* ALL CAPS, used for sleek headlines & labels */
+  --tracking-chic:  0em;       /* Chic serif, title case */
+
+  /* ── Type scale (fluid) ── */
+  --text-xs:   0.75rem;    /* 12px */
+  --text-sm:   0.875rem;   /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg:   1.125rem;   /* 18px */
+  --text-xl:   1.25rem;    /* 20px */
+  --text-2xl:  1.5rem;     /* 24px */
+  --text-3xl:  1.875rem;   /* 30px */
+  --text-4xl:  2.25rem;    /* 36px */
+  --text-5xl:  3rem;       /* 48px */
+  --text-6xl:  3.75rem;    /* 60px */
+  --text-7xl:  4.5rem;     /* 72px */
+  --text-8xl:  6rem;       /* 96px */
+
+  /* ── Line heights ── */
+  --leading-tight:   1.1;
+  --leading-snug:    1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.65;
+
+  /* ── Spacing scale (8-point base) ── */
+  --space-1:   0.25rem;  /*  4px */
+  --space-2:   0.5rem;   /*  8px */
+  --space-3:   0.75rem;  /* 12px */
+  --space-4:   1rem;     /* 16px */
+  --space-5:   1.25rem;  /* 20px */
+  --space-6:   1.5rem;   /* 24px */
+  --space-8:   2rem;     /* 32px */
+  --space-10:  2.5rem;   /* 40px */
+  --space-12:  3rem;     /* 48px */
+  --space-16:  4rem;     /* 64px */
+  --space-20:  5rem;     /* 80px */
+  --space-24:  6rem;     /* 96px */
+  --space-32:  8rem;     /* 128px */
+  --space-40:  10rem;    /* 160px */
+
+  /* ── Layout ── */
+  --content-max:  1280px;
+  --content-wide: 1440px;
+  --gutter:       clamp(1rem, 4vw, 3rem);
+  --nav-height:   4.5rem;
+
+  /* ── Hairline ── */
+  --hairline: 1px solid var(--iron-20);
+
+  /* ── Motion ── */
+  --ease-brand:    cubic-bezier(.25, .46, .45, .94);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+
+  /* ── Shadows (use sparingly — brand is flat) ── */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.10);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,.14);
+
+  /* ── Z-index scale ── */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-overlay: 100;
+  --z-nav:     200;
+  --z-modal:   300;
+  --z-top:     400;
+}
+
+/* ── Accessibility: red text only at safe sizes ──
+   Red on canvas/plaster is 4.33:1 — passes only at ≥24px regular or ≥19px bold.
+   Components enforce this; this note documents the rule for future contributors. */

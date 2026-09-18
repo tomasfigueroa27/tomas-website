@@ -1,0 +1,159 @@
+---
+import Base from '../../layouts/Base.astro';
+import Eyebrow from '../../components/brand/Eyebrow.astro';
+---
+
+<Base
+  title="Contact Tomas Figueroa | The Agency Roatán"
+  description="Get in touch with Tomas Figueroa, The Agency Roatán. WhatsApp, email, or use the contact form."
+>
+  <div class="contact-page">
+    <div class="contact-hero">
+      <div class="container">
+        <Eyebrow text="Get in Touch" />
+        <h1 class="type-chic contact-title">Let's Talk Roatán</h1>
+      </div>
+    </div>
+
+    <div class="container contact-body">
+      <div class="contact-info">
+        <h2 class="contact-info-heading">Direct Contact</h2>
+        <dl class="contact-dl">
+          <dt>Email</dt>
+          <dd><a href="mailto:tomas.figueroa@theagencyre.com">tomas.figueroa@theagencyre.com</a></dd>
+          <dt>WhatsApp</dt>
+          <dd><a href="https://wa.me/50499999999" target="_blank" rel="noopener noreferrer">+504 9999-9999</a></dd>
+          <dt>Office</dt>
+          <dd>West Bay, Roatán, Bay Islands, Honduras</dd>
+        </dl>
+      </div>
+
+      <form class="contact-form" method="POST" action="/api/lead">
+        <input type="hidden" name="source" value="contact-page" />
+        <div class="form-row">
+          <label class="form-label" for="c-name">Full Name *</label>
+          <input id="c-name" class="form-input" type="text" name="name" required placeholder="Jane Smith" />
+        </div>
+        <div class="form-row">
+          <label class="form-label" for="c-email">Email *</label>
+          <input id="c-email" class="form-input" type="email" name="email" required placeholder="jane@example.com" />
+        </div>
+        <div class="form-row">
+          <label class="form-label" for="c-phone">Phone / WhatsApp</label>
+          <input id="c-phone" class="form-input" type="tel" name="phone" placeholder="+1 (___) ___-____" />
+        </div>
+        <div class="form-row">
+          <label class="form-label" for="c-message">How can I help?</label>
+          <textarea id="c-message" class="form-input" name="message" rows="5" placeholder="Tell me what you're looking for…"></textarea>
+        </div>
+        <div class="cf-turnstile" data-sitekey="TODO_TURNSTILE_SITE_KEY" data-theme="light"></div>
+        <p class="form-consent">
+          By submitting you agree to receive communication from Tomas Figueroa – The Agency Roatán.
+          <a href="/privacy-policy/">Privacy Policy</a>.
+        </p>
+        <button type="submit" class="btn btn--solid btn--lg">Send Message</button>
+      </form>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .contact-hero {
+    background: var(--plaster);
+    padding: var(--space-20) 0 var(--space-16);
+    border-bottom: var(--hairline);
+  }
+
+  .contact-title {
+    font-size: clamp(var(--text-4xl), 5vw, var(--text-6xl));
+    margin-top: var(--space-4);
+  }
+
+  .contact-body {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-20);
+    padding-block: var(--space-16);
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .contact-body { grid-template-columns: 1fr; }
+  }
+
+  .contact-info-heading {
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-60);
+    margin-bottom: var(--space-6);
+  }
+
+  .contact-dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-2) var(--space-6);
+    font-size: var(--text-sm);
+  }
+
+  .contact-dl dt {
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-60);
+    padding-top: 2px;
+  }
+
+  .contact-dl a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    max-width: 560px;
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .form-label {
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-60);
+  }
+
+  .form-input {
+    font-family: var(--font-text);
+    font-size: var(--text-base);
+    border: var(--hairline);
+    background: var(--canvas);
+    padding: var(--space-3) var(--space-4);
+    width: 100%;
+    color: var(--iron);
+    transition: border-color var(--duration-fast);
+    resize: vertical;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--iron);
+  }
+
+  .form-consent {
+    font-size: var(--text-xs);
+    color: var(--iron-40);
+    line-height: var(--leading-relaxed);
+  }
+
+  .form-consent a { text-decoration: underline; text-underline-offset: 2px; }
+</style>

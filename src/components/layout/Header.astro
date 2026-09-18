@@ -1,0 +1,220 @@
+---
+const navLinks = [
+  { label: 'New Developments', href: '/new-developments/' },
+  { label: 'Properties',       href: '/properties/' },
+  { label: 'Neighborhoods',    href: '/neighborhoods/' },
+  { label: 'Buy',              href: '/buy/' },
+  { label: 'Sell',             href: '/sell/' },
+  { label: 'Market Reports',   href: '/market-reports/' },
+  { label: 'About',            href: '/about/' },
+  { label: 'Contact',          href: '/contact/' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="header-inner container">
+    <!-- Logo -->
+    <a href="/" class="header-logo" aria-label="Tomas Figueroa – The Agency Roatán – Home">
+      <!-- TODO: replace with <img> once logo assets are supplied -->
+      <span class="logo-text type-sleek">The Agency<span class="logo-sub"> Roatán</span></span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="header-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              class:list={['nav-link', { 'nav-link--active': currentPath.startsWith(link.href) }]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Right: WhatsApp + hamburger -->
+    <div class="header-actions">
+      <a
+        href="https://wa.me/15049999999"
+        class="btn-whatsapp"
+        aria-label="Chat on WhatsApp"
+        data-event="whatsapp_click"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        WhatsApp
+      </a>
+      <button
+        class="hamburger"
+        aria-controls="mobile-nav"
+        aria-expanded="false"
+        aria-label="Open menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile nav drawer -->
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+    <ul>
+      {navLinks.map(link => (
+        <li><a href={link.href} class="mobile-nav-link">{link.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const hamburger = document.querySelector('.hamburger') as HTMLButtonElement;
+  const mobileNav = document.getElementById('mobile-nav');
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!open));
+      mobileNav.hidden = open;
+    });
+  }
+
+  // Track WhatsApp clicks
+  document.querySelectorAll('[data-event="whatsapp_click"]').forEach(el => {
+    el.addEventListener('click', () => {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'whatsapp_click', { event_category: 'engagement' });
+      }
+    });
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-nav);
+    background: var(--canvas);
+    border-bottom: var(--hairline);
+    height: var(--nav-height);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    height: 100%;
+  }
+
+  .header-logo {
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    font-size: var(--text-xl);
+    letter-spacing: 0.1em;
+    color: var(--iron);
+  }
+
+  .logo-sub {
+    color: var(--agency-red);
+  }
+
+  .header-nav {
+    flex: 1;
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .header-nav { display: block; }
+    .hamburger { display: none; }
+  }
+
+  .nav-list {
+    display: flex;
+    gap: var(--space-6);
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .nav-link {
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-60);
+    transition: color var(--duration-fast) var(--ease-brand);
+    white-space: nowrap;
+  }
+
+  .nav-link:hover,
+  .nav-link--active {
+    color: var(--iron);
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-shrink: 0;
+  }
+
+  .btn-whatsapp {
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    background: var(--iron);
+    color: var(--canvas);
+    padding: var(--space-2) var(--space-4);
+    transition: background var(--duration-fast) var(--ease-brand);
+  }
+
+  .btn-whatsapp:hover {
+    background: var(--agency-red);
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+  }
+
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: var(--iron);
+  }
+
+  .mobile-nav {
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background: var(--canvas);
+    border-bottom: var(--hairline);
+    padding: var(--space-6) var(--gutter);
+    z-index: var(--z-nav);
+  }
+
+  .mobile-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .mobile-nav-link {
+    font-family: var(--font-text);
+    font-size: var(--text-lg);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron);
+  }
+</style>

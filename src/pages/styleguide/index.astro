@@ -1,0 +1,259 @@
+---
+import Base from '../../layouts/Base.astro';
+import Eyebrow from '../../components/brand/Eyebrow.astro';
+import Badge from '../../components/ui/Badge.astro';
+import Button from '../../components/ui/Button.astro';
+---
+
+<Base
+  title="Styleguide | The Agency Roatán"
+  description="Design tokens, components, and typography — internal reference."
+  noindex={true}
+>
+  <div class="sg-page container">
+    <h1 class="sg-page-title">Styleguide</h1>
+    <p class="sg-intro">Design tokens and component reference. Never indexed.</p>
+
+    <!-- Colors -->
+    <section class="sg-section">
+      <h2 class="sg-section-title">Colors</h2>
+      <div class="sg-swatches">
+        <div class="sg-swatch" style="background:var(--agency-red)">
+          <span class="sg-swatch-label">--agency-red<br/>#ED2127</span>
+        </div>
+        <div class="sg-swatch" style="background:var(--iron);color:var(--canvas)">
+          <span class="sg-swatch-label">--iron<br/>#000000</span>
+        </div>
+        <div class="sg-swatch sg-swatch--bordered" style="background:var(--canvas)">
+          <span class="sg-swatch-label">--canvas<br/>#FFFFFF</span>
+        </div>
+        <div class="sg-swatch sg-swatch--bordered" style="background:var(--plaster)">
+          <span class="sg-swatch-label">--plaster<br/>#F7F8F6</span>
+        </div>
+      </div>
+
+      <div class="sg-swatches sg-swatches--sm">
+        {['--iron-80','--iron-60','--iron-40','--iron-20','--iron-10'].map(v => (
+          <div class="sg-swatch sg-swatch--sm sg-swatch--bordered" style={`background:var(${v})`}>
+            <span class="sg-swatch-label-sm">{v}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Typography -->
+    <section class="sg-section">
+      <h2 class="sg-section-title">Typography</h2>
+      <div class="sg-type-samples">
+        <div>
+          <p class="sg-type-meta">type-chic · Noto Serif · h1</p>
+          <h1 class="type-chic" style="font-size:var(--text-7xl)">Luxury in Roatán</h1>
+        </div>
+        <div>
+          <p class="sg-type-meta">type-chic · h2</p>
+          <h2 class="type-chic" style="font-size:var(--text-5xl)">West Bay Residences</h2>
+        </div>
+        <div>
+          <p class="sg-type-meta">type-chic · h3</p>
+          <h3 class="type-chic" style="font-size:var(--text-3xl)">Ava Towers Living</h3>
+        </div>
+        <div>
+          <p class="sg-type-meta">eyebrow · Barlow Condensed ALL CAPS</p>
+          <span class="eyebrow">+ New Developments</span>
+        </div>
+        <div>
+          <p class="sg-type-meta">body · Roboto 400</p>
+          <p>Roatán offers a rare combination of natural beauty and investment potential. The island's growing infrastructure and proximity to major US cities makes it one of the most accessible Caribbean destinations for foreign buyers.</p>
+        </div>
+        <div>
+          <p class="sg-type-meta">prose sample</p>
+          <div class="prose">
+            <h2>Why Buy in Roatán?</h2>
+            <p>Honduras offers one of the most <strong>buyer-friendly</strong> ownership structures in Central America. Foreign nationals can hold fee-simple title in their own name with no restrictions.</p>
+            <ul>
+              <li>No capital gains tax</li>
+              <li>USD-denominated market</li>
+              <li>Residency by investment pathway</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Buttons -->
+    <section class="sg-section">
+      <h2 class="sg-section-title">Buttons</h2>
+      <div class="sg-row">
+        <Button variant="solid" size="lg">Solid Large</Button>
+        <Button variant="solid" size="md">Solid Medium</Button>
+        <Button variant="solid" size="sm">Solid Small</Button>
+      </div>
+      <div class="sg-row" style="margin-top:var(--space-4)">
+        <Button variant="outline" size="lg">Outline Large</Button>
+        <Button variant="outline" size="md">Outline Medium</Button>
+        <Button variant="outline" size="sm">Outline Small</Button>
+      </div>
+      <div class="sg-row sg-row--dark" style="margin-top:var(--space-4);background:var(--iron);padding:var(--space-6)">
+        <Button variant="solid" size="md">Solid on Dark</Button>
+        <Button variant="outline" size="md">Outline on Dark</Button>
+      </div>
+    </section>
+
+    <!-- Badges -->
+    <section class="sg-section">
+      <h2 class="sg-section-title">Badges</h2>
+      <div class="sg-row">
+        <Badge status="coming-soon" />
+        <Badge status="pre-sale" />
+        <Badge status="under-construction" />
+        <Badge status="delivered" />
+      </div>
+    </section>
+
+    <!-- Eyebrow -->
+    <section class="sg-section">
+      <h2 class="sg-section-title">Eyebrow</h2>
+      <div class="sg-row">
+        <Eyebrow text="New Developments" />
+        <Eyebrow text="Why Roatán" />
+        <Eyebrow text="Get in Touch" />
+      </div>
+    </section>
+
+    <!-- Spacing -->
+    <section class="sg-section">
+      <h2 class="sg-section-title">Spacing Scale</h2>
+      <div class="sg-spacing">
+        {[1,2,3,4,5,6,8,10,12,16,20].map(n => (
+          <div class="sg-space-row">
+            <span class="sg-space-label">--space-{n}</span>
+            <div class="sg-space-bar" style={`width:var(--space-${n});height:var(--space-${n})`}></div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .sg-page {
+    padding-block: var(--space-16);
+  }
+
+  .sg-page-title {
+    font-size: var(--text-5xl);
+    font-family: var(--font-sleek);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    margin-bottom: var(--space-2);
+  }
+
+  .sg-intro {
+    color: var(--iron-40);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-16);
+  }
+
+  .sg-section {
+    margin-bottom: var(--space-20);
+    padding-bottom: var(--space-16);
+    border-bottom: var(--hairline);
+  }
+
+  .sg-section-title {
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-40);
+    margin-bottom: var(--space-8);
+  }
+
+  .sg-swatches {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .sg-swatches--sm {
+    margin-top: var(--space-4);
+  }
+
+  .sg-swatch {
+    width: 140px;
+    height: 90px;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-3);
+  }
+
+  .sg-swatch--sm {
+    width: 100px;
+    height: 60px;
+  }
+
+  .sg-swatch--bordered {
+    border: var(--hairline);
+  }
+
+  .sg-swatch-label {
+    font-family: var(--font-text);
+    font-size: 10px;
+    line-height: 1.4;
+    color: var(--canvas);
+    mix-blend-mode: difference;
+  }
+
+  .sg-swatch-label-sm {
+    font-family: var(--font-text);
+    font-size: 9px;
+    color: var(--iron-60);
+  }
+
+  .sg-type-meta {
+    font-size: var(--text-xs);
+    color: var(--iron-40);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    margin-bottom: var(--space-3);
+  }
+
+  .sg-type-samples {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .sg-row {
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .sg-spacing {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .sg-space-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .sg-space-label {
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    color: var(--iron-60);
+    width: 100px;
+    flex-shrink: 0;
+  }
+
+  .sg-space-bar {
+    background: var(--agency-red);
+    min-width: 1px;
+    min-height: 1px;
+  }
+</style>

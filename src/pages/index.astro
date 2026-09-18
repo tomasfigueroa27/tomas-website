@@ -1,0 +1,362 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Eyebrow from '../components/brand/Eyebrow.astro';
+import Button from '../components/ui/Button.astro';
+import Badge from '../components/ui/Badge.astro';
+
+const devs = await getCollection('developments');
+const featured = devs.slice(0, 3);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'RealEstateAgent',
+  name: 'The Agency – Roatán',
+  url: 'https://www.tomasfigueroa.com',
+  areaServed: {
+    '@type': 'Place',
+    name: 'Roatán, Honduras',
+  },
+  agent: {
+    '@type': 'Person',
+    name: 'Tomas Figueroa',
+  },
+};
+---
+
+<Base
+  title="The Agency Roatán | Luxury Real Estate in Roatán, Honduras"
+  description="The Agency Roatán — luxury condos, beachfront homes, and new developments on Roatán's West Bay and West End. Represented by Tomas Figueroa."
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg" style="background-image: url('/images/hero-roatan.jpg')"></div>
+    <div class="hero-overlay">
+      <div class="container hero-content">
+        <Eyebrow text="The Agency – Roatán" />
+        <h1 class="hero-title type-chic">
+          Find Your Place<br />in Roatán
+        </h1>
+        <p class="hero-sub">
+          Luxury homes, condos, and pre-sale developments on the Bay Islands of Honduras.
+          Represented exclusively by Tomas Figueroa.
+        </p>
+        <div class="hero-actions">
+          <Button href="/new-developments/" variant="solid" size="lg">View Developments</Button>
+          <Button href="/contact/" variant="outline" size="lg" class="btn--canvas">Get in Touch</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Developments -->
+  {featured.length > 0 && (
+    <section class="section featured-devs">
+      <div class="container">
+        <Eyebrow text="New Developments" />
+        <h2 class="section-title type-chic">Pre-Sale Opportunities</h2>
+        <div class="dev-grid">
+          {featured.map(dev => {
+            const d = dev.data;
+            return (
+              <a href={`/new-developments/${d.slug}/`} class="dev-card">
+                <div class="dev-card-image" style={`background-image: url('${d.heroImage}')`}>
+                  <Badge status={d.status} />
+                </div>
+                <div class="dev-card-body">
+                  <p class="dev-card-area eyebrow">{d.area.replace(/-/g, ' ')}</p>
+                  <h3 class="dev-card-title type-chic">{d.title}</h3>
+                  <p class="dev-card-location">{d.location?.address ?? 'Roatán, Honduras'}</p>
+                  {d.priceFrom ? (
+                    <p class="dev-card-price">From USD ${d.priceFrom.toLocaleString()}</p>
+                  ) : (
+                    <p class="dev-card-price dev-card-price--private">Price released to registered buyers</p>
+                  )}
+                </div>
+              </a>
+            );
+          })}
+        </div>
+        <div class="section-cta">
+          <Button href="/new-developments/" variant="outline" size="md">See All Developments</Button>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Why Roatán -->
+  <section class="section section--plaster why-section">
+    <div class="container">
+      <Eyebrow text="Why Roatán" />
+      <h2 class="section-title type-chic">The Caribbean's Best-Kept Secret</h2>
+      <div class="why-grid">
+        <div class="why-item">
+          <p class="why-number type-chic">2nd</p>
+          <p class="why-label">Largest barrier reef in the world</p>
+        </div>
+        <div class="why-item">
+          <p class="why-number type-chic">$0</p>
+          <p class="why-label">Capital gains tax for foreign buyers</p>
+        </div>
+        <div class="why-item">
+          <p class="why-number type-chic">30°C</p>
+          <p class="why-label">Average year-round temperature</p>
+        </div>
+        <div class="why-item">
+          <p class="why-number type-chic">USD</p>
+          <p class="why-label">Widely accepted currency</p>
+        </div>
+      </div>
+      <div class="section-cta">
+        <Button href="/why-roatan/" variant="outline" size="md">Learn More</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Band -->
+  <section class="section contact-band">
+    <div class="container contact-band-inner">
+      <div class="contact-band-text">
+        <Eyebrow text="Get in Touch" />
+        <h2 class="section-title type-chic">Ready to Start Your Search?</h2>
+        <p class="contact-band-sub">
+          I work exclusively in Roatán's luxury and new-development market.
+          Let me find the right property for your goals.
+        </p>
+      </div>
+      <div class="contact-band-actions">
+        <Button href="/contact/" variant="solid" size="lg">Contact Tomas</Button>
+        <a href="https://wa.me/50499999999" class="whatsapp-link" target="_blank" rel="noopener noreferrer" data-event="whatsapp_click">
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    height: 90vh;
+    min-height: 600px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--iron);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,.3) 50%, transparent 100%);
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: var(--space-20);
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    max-width: 700px;
+  }
+
+  .hero-title {
+    font-size: clamp(var(--text-4xl), 7vw, var(--text-7xl));
+    color: var(--canvas);
+    line-height: 1.05;
+  }
+
+  .hero-sub {
+    font-size: var(--text-lg);
+    color: rgba(255,255,255,.85);
+    max-width: 50ch;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-top: var(--space-4);
+  }
+
+  /* Canvas outline button variant for dark bg */
+  :global(.btn--canvas) {
+    color: var(--canvas) !important;
+    border-color: var(--canvas) !important;
+  }
+
+  :global(.btn--canvas:hover) {
+    background: var(--canvas) !important;
+    color: var(--iron) !important;
+  }
+
+  /* ── Section shared ── */
+  .section {
+    padding-block: var(--space-20);
+  }
+
+  .section--plaster {
+    background: var(--plaster);
+  }
+
+  .section-title {
+    font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-12);
+  }
+
+  .section-cta {
+    margin-top: var(--space-12);
+  }
+
+  /* ── Dev cards ── */
+  .dev-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .dev-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    border: var(--hairline);
+    transition: border-color var(--duration-fast);
+  }
+
+  .dev-card:hover { border-color: var(--iron); }
+
+  .dev-card-image {
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--plaster);
+    display: flex;
+    align-items: flex-start;
+    padding: var(--space-4);
+  }
+
+  .dev-card-body {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    flex: 1;
+  }
+
+  .dev-card-area {
+    font-size: var(--text-xs);
+    color: var(--agency-red);
+  }
+
+  .dev-card-title {
+    font-size: var(--text-2xl);
+    line-height: 1.2;
+  }
+
+  .dev-card-location {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+  }
+
+  .dev-card-price {
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: var(--hairline);
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    font-weight: 700;
+  }
+
+  .dev-card-price--private {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--iron-60);
+  }
+
+  /* ── Why Roatán ── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .why-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .why-number {
+    font-size: var(--text-5xl);
+    line-height: 1;
+    color: var(--iron);
+  }
+
+  .why-label {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    max-width: 20ch;
+  }
+
+  /* ── Contact band ── */
+  .contact-band {
+    background: var(--iron);
+  }
+
+  .contact-band-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-12);
+    flex-wrap: wrap;
+  }
+
+  .contact-band :global(.eyebrow-label),
+  .contact-band :global(.eyebrow-plus) {
+    color: rgba(255,255,255,.6);
+  }
+
+  .contact-band .section-title {
+    color: var(--canvas);
+    margin-bottom: var(--space-4);
+  }
+
+  .contact-band-sub {
+    color: rgba(255,255,255,.7);
+    max-width: 45ch;
+  }
+
+  .contact-band-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+
+  .whatsapp-link {
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,.7);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--duration-fast);
+  }
+
+  .whatsapp-link:hover { color: var(--canvas); }
+
+  @media (max-width: 768px) {
+    .hero-overlay { padding-bottom: var(--space-16); }
+    .hero-actions { flex-direction: column; }
+    .contact-band-inner { flex-direction: column; }
+  }
+</style>

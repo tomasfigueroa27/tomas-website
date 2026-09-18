@@ -1,0 +1,348 @@
+---
+import Base from './Base.astro';
+import Badge from '../components/ui/Badge.astro';
+import Eyebrow from '../components/brand/Eyebrow.astro';
+import PriorityListForm from '../components/ui/PriorityListForm.astro';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  dev: CollectionEntry<'developments'>;
+}
+
+const { dev } = Astro.props;
+const d = dev.data;
+
+// Indexing guard: page is noindexed until it meets minimum requirements
+const isIndexable =
+  !!d.developer &&
+  !!d.location &&
+  d.unitTypes && d.unitTypes.length > 0 &&
+  !!d.priceFrom &&
+  !!d.estimatedCompletion;
+// Also requires 300+ words — enforced at build time in check-noindex.ts
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ApartmentComplex',
+  name: d.title,
+  description: d.seo.description,
+  url: `https://www.tomasfigueroa.com/new-developments/${d.slug}/`,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: d.location?.address ?? '',
+    addressCountry: 'HN',
+  },
+  ...(d.location?.lat && d.location?.lng ? {
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: d.location.lat,
+      longitude: d.location.lng,
+    }
+  } : {}),
+  ...(isIndexable && d.priceFrom ? {
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'USD',
+      price: d.priceFrom,
+      availability: 'https://schema.org/InStock',
+    }
+  } : {}),
+};
+---
+
+<Base
+  title={d.seo.title}
+  description={d.seo.description}
+  noindex={!isIndexable}
+  schema={schema}
+>
+  <!-- Hero -->
+  <div class="dev-hero" style={`background-image: url('${d.heroImage}')`}>
+    <div class="dev-hero-overlay">
+      <div class="container">
+        <Eyebrow text={`New Development · ${d.area.replace(/-/g,' ')}`} />
+        <h1 class="dev-hero-title type-chic">{d.title}</h1>
+        <p class="dev-hero-location">{d.location?.address ?? `Roatán, Honduras`}</p>
+        <Badge status={d.status} />
+      </div>
+    </div>
+  </div>
+
+  <div class="container dev-content">
+    <div class="dev-main">
+
+      <!-- Key Facts Table -->
+      <aside class="key-facts" aria-label="Project key facts">
+        <h2 class="key-facts-title eyebrow">Key Facts</h2>
+        <table class="facts-table">
+          <tbody>
+            {d.developer && <tr><th>Developer</th><td>{d.developer}</td></tr>}
+            {d.location?.address && <tr><th>Location</th><td>{d.location.address}</td></tr>}
+            {d.unitTypes && d.unitTypes.length > 0 && (
+              <tr><th>Unit Types</th><td>{d.unitTypes.join(', ')}</td></tr>
+            )}
+            {d.totalUnits && <tr><th>Total Units</th><td>{d.totalUnits}</td></tr>}
+            {d.bedsRange && (
+              <tr><th>Bedrooms</th><td>{d.bedsRange[0]}–{d.bedsRange[1]} BR</td></tr>
+            )}
+            {d.sqmRange && (
+              <tr>
+                <th>Size</th>
+                <td>{d.sqmRange[0]}–{d.sqmRange[1]} m²&nbsp;
+                ({Math.round(d.sqmRange[0] * 10.764)}–{Math.round(d.sqmRange[1] * 10.764)} sq&nbsp;ft)
+                </td>
+              </tr>
+            )}
+            {d.priceFrom ? (
+              <tr><th>Price From</th><td>USD ${d.priceFrom.toLocaleString()}</td></tr>
+            ) : (
+              <tr><th>Price</th><td><em>Released to registered buyers</em></td></tr>
+            )}
+            {d.depositPct && <tr><th>Deposit</th><td>{d.depositPct}%</td></tr>}
+            {d.paymentSchedule && <tr><th>Payment Plan</th><td>{d.paymentSchedule}</td></tr>}
+            {d.constructionStatus && <tr><th>Construction</th><td>{d.constructionStatus}</td></tr>}
+            {d.estimatedCompletion && <tr><th>Est. Completion</th><td>{d.estimatedCompletion}</td></tr>}
+            {d.hoaMonthly && <tr><th>HOA / Month</th><td>USD ${d.hoaMonthly.toLocaleString()}</td></tr>}
+            {d.rentalProgram !== undefined && (
+              <tr><th>Rental Program</th><td>{d.rentalProgram ? 'Yes' : 'No'}</td></tr>
+            )}
+            {d.titleStructure && <tr><th>Title</th><td>{d.titleStructure}</td></tr>}
+            {d.architect && <tr><th>Architect</th><td>{d.architect}</td></tr>}
+          </tbody>
+        </table>
+        <p class="facts-updated">
+          Last updated: {d.lastUpdated.toLocaleDateString('en-US', {month:'long',year:'numeric'})}
+        </p>
+      </aside>
+
+      <!-- Main prose content -->
+      <article class="dev-prose prose">
+        <slot />
+      </article>
+    </div>
+
+    <!-- Amenities -->
+    {d.amenities && d.amenities.length > 0 && (
+      <section class="dev-amenities section--sm">
+        <Eyebrow text="Amenities" />
+        <h2 class="dev-section-title type-chic">What's Included</h2>
+        <ul class="amenities-list">
+          {d.amenities.map(a => <li>{a}</li>)}
+        </ul>
+      </section>
+    )}
+
+    <!-- Priority List form (always shown when no price) -->
+    {!d.priceFrom && (
+      <PriorityListForm projectName={d.title} projectSlug={d.slug} />
+    )}
+
+    <!-- Lead inquiry form (always shown) -->
+    <section class="dev-inquiry section--sm">
+      <Eyebrow text="Get in Touch" />
+      <h2 class="dev-section-title type-chic">Request More Information</h2>
+      <form class="inquiry-form" method="POST" action="/api/lead">
+        <input type="hidden" name="source" value={`development-${d.slug}`} />
+        <input type="hidden" name="project" value={d.title} />
+        <div class="form-row">
+          <label class="form-label" for="inq-name">Full Name *</label>
+          <input id="inq-name" class="form-input" type="text" name="name" required placeholder="Jane Smith" />
+        </div>
+        <div class="form-row">
+          <label class="form-label" for="inq-email">Email *</label>
+          <input id="inq-email" class="form-input" type="email" name="email" required placeholder="jane@example.com" />
+        </div>
+        <div class="form-row">
+          <label class="form-label" for="inq-phone">Phone / WhatsApp</label>
+          <input id="inq-phone" class="form-input" type="tel" name="phone" placeholder="+1 (___) ___-____" />
+        </div>
+        <div class="form-row">
+          <label class="form-label" for="inq-message">Message</label>
+          <textarea id="inq-message" class="form-input" name="message" rows="4" placeholder="Tell me what you're looking for…"></textarea>
+        </div>
+        <div class="cf-turnstile" data-sitekey="TODO_TURNSTILE_SITE_KEY" data-theme="light"></div>
+        <p class="form-consent">
+          By submitting you agree to receive communication from Tomas Figueroa – The Agency Roatán.
+          <a href="/privacy-policy/">Privacy Policy</a>.
+        </p>
+        <button type="submit" class="btn btn--solid btn--lg">Send Message</button>
+      </form>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .dev-hero {
+    height: 70vh;
+    min-height: 480px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .dev-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,.2) 60%, transparent 100%);
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: var(--space-12);
+  }
+
+  .dev-hero-overlay .container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .dev-hero-title {
+    font-size: clamp(var(--text-4xl), 6vw, var(--text-7xl));
+    color: var(--canvas);
+    max-width: 14ch;
+  }
+
+  .dev-hero-location {
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: rgba(255,255,255,.75);
+  }
+
+  .dev-content {
+    padding-block: var(--space-16);
+  }
+
+  .dev-main {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-16);
+    margin-bottom: var(--space-16);
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .dev-main {
+      grid-template-columns: 1fr;
+    }
+    .key-facts {
+      order: -1;
+    }
+  }
+
+  .key-facts {
+    position: sticky;
+    top: calc(var(--nav-height) + var(--space-8));
+    background: var(--plaster);
+    padding: var(--space-8);
+  }
+
+  .key-facts-title {
+    margin-bottom: var(--space-4);
+  }
+
+  .facts-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+
+  .facts-table th,
+  .facts-table td {
+    padding: var(--space-3) 0;
+    border-bottom: var(--hairline);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .facts-table th {
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-60);
+    width: 45%;
+    padding-right: var(--space-4);
+  }
+
+  .facts-updated {
+    font-size: var(--text-xs);
+    color: var(--iron-40);
+    margin-top: var(--space-4);
+  }
+
+  .dev-section-title {
+    font-size: var(--text-3xl);
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
+
+  .amenities-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--space-4);
+    list-style: none;
+  }
+
+  .amenities-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--iron-80);
+  }
+
+  .amenities-list li::before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 1em;
+    background: var(--agency-red);
+    flex-shrink: 0;
+  }
+
+  .inquiry-form {
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .form-label {
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-60);
+  }
+
+  .form-input {
+    font-family: var(--font-text);
+    font-size: var(--text-base);
+    border: var(--hairline);
+    background: var(--canvas);
+    padding: var(--space-3) var(--space-4);
+    width: 100%;
+    color: var(--iron);
+    transition: border-color var(--duration-fast);
+    resize: vertical;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--iron);
+  }
+
+  .form-consent {
+    font-size: var(--text-xs);
+    color: var(--iron-40);
+    line-height: var(--leading-relaxed);
+  }
+
+  .form-consent a { text-decoration: underline; text-underline-offset: 2px; }
+</style>

@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="Thank You | The Agency Roatán"
+  description="We received your message and will be in touch shortly."
+  noindex={true}
+>
+  <div class="ty-page container">
+    <h1 class="type-chic ty-title">Thank you.</h1>
+    <p class="ty-sub">We received your message and will be in touch within one business day.</p>
+    <a href="/" class="btn btn--outline btn--md ty-back">Back to Home</a>
+  </div>
+</Base>
+
+<style>
+  .ty-page {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: var(--space-6);
+    padding-block: var(--space-20);
+  }
+
+  .ty-title { font-size: var(--text-6xl); }
+  .ty-sub { color: var(--iron-60); max-width: 40ch; }
+  .ty-back { margin-top: var(--space-4); }
+</style>

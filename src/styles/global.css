@@ -1,0 +1,212 @@
+/* =============================================================
+   Global styles — The Agency Roatán
+   ============================================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-text);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--iron);
+  background: var(--canvas);
+}
+
+/* ── Focus visible — visible ring, Iron color ── */
+:focus-visible {
+  outline: 2px solid var(--iron);
+  outline-offset: 3px;
+}
+
+/* ── Links ── */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Images ── */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Lists (reset; components re-style as needed) ── */
+ul, ol {
+  list-style: none;
+}
+
+/* ── Typography classes ── */
+
+/* Sleek: ALL CAPS, Barlow Condensed, tight tracking */
+.type-sleek {
+  font-family: var(--font-sleek);
+  font-weight: 400;
+  letter-spacing: var(--tracking-sleek);
+  text-transform: uppercase;
+  line-height: var(--leading-tight);
+}
+
+/* Chic: Title Case, Noto Serif Display */
+.type-chic {
+  font-family: var(--font-chic);
+  font-weight: 400;
+  letter-spacing: var(--tracking-chic);
+  line-height: var(--leading-tight);
+}
+.type-chic-italic {
+  font-family: var(--font-chic);
+  font-style: italic;
+  letter-spacing: var(--tracking-chic);
+  line-height: var(--leading-tight);
+}
+
+/* Text: Roboto, body copy */
+.type-text {
+  font-family: var(--font-text);
+  line-height: var(--leading-relaxed);
+}
+
+/* Eyebrow label */
+.eyebrow {
+  font-family: var(--font-text);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--tracking-sleek);
+  text-transform: uppercase;
+  color: var(--agency-red);
+}
+
+/* ── Layout helpers ── */
+.container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--wide {
+  max-width: var(--content-wide);
+}
+
+/* ── Section spacing ── */
+.section {
+  padding-block: var(--space-24);
+}
+
+.section--sm {
+  padding-block: var(--space-12);
+}
+
+.section--lg {
+  padding-block: var(--space-40);
+}
+
+/* ── Hairline divider ── */
+.hairline {
+  border: none;
+  border-top: var(--hairline);
+  width: 100%;
+}
+
+/* ── Visually hidden (a11y) ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Justified body copy — desktop only ── */
+@media (min-width: 768px) {
+  .prose p {
+    text-align: justify;
+    hyphens: auto;
+  }
+}
+
+/* ── Prose styles for long-form content ── */
+.prose {
+  max-width: 72ch;
+}
+
+.prose h2 {
+  font-family: var(--font-chic);
+  font-size: var(--text-3xl);
+  margin-top: var(--space-12);
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-tight);
+}
+
+.prose h3 {
+  font-family: var(--font-sleek);
+  font-size: var(--text-xl);
+  letter-spacing: var(--tracking-sleek);
+  text-transform: uppercase;
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-3);
+}
+
+.prose p {
+  margin-bottom: var(--space-6);
+  color: var(--iron-80);
+}
+
+.prose ul, .prose ol {
+  list-style: disc;
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.prose li {
+  margin-bottom: var(--space-2);
+  color: var(--iron-80);
+}
+
+.prose strong {
+  font-weight: 700;
+  color: var(--iron);
+}
+
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose a:hover {
+  color: var(--agency-red);
+}
+
+/* ── Mobile: full-width sticky CTA bar ── */
+.mobile-bar {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .mobile-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-nav);
+    background: var(--iron);
+  }
+}

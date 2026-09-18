@@ -1,0 +1,197 @@
+---
+const year = new Date().getFullYear();
+
+const footerLinks = {
+  'Buy': [
+    { label: 'Buying Guide', href: '/buy/buying-property-in-roatan/' },
+    { label: 'Can Americans Buy?', href: '/buy/can-americans-buy-property-in-roatan/' },
+    { label: 'Closing Costs', href: '/buy/closing-costs-roatan/' },
+    { label: 'Pre-Construction', href: '/buy/buying-pre-construction-in-roatan/' },
+    { label: 'Financing', href: '/buy/financing-roatan-property/' },
+    { label: 'Residency', href: '/buy/residency-honduras/' },
+  ],
+  'Explore': [
+    { label: 'New Developments', href: '/new-developments/' },
+    { label: 'Properties', href: '/properties/' },
+    { label: 'Neighborhoods', href: '/neighborhoods/' },
+    { label: 'Market Reports', href: '/market-reports/' },
+    { label: 'Living in Roatán', href: '/living-in-roatan/' },
+    { label: 'Journal', href: '/journal/' },
+  ],
+  'Connect': [
+    { label: 'About Tomas', href: '/about/' },
+    { label: 'Sell / Valuation', href: '/sell/' },
+    { label: 'For Developers', href: '/developers/' },
+    { label: 'Reviews', href: '/reviews/' },
+    { label: 'FAQ', href: '/faq/' },
+    { label: 'Contact', href: '/contact/' },
+  ],
+};
+---
+
+<footer class="site-footer">
+  <div class="container">
+
+    <!-- Top row: brand + links -->
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo type-sleek">The Agency<br /><span class="footer-logo-sub">Roatán</span></span>
+        <p class="footer-tagline">Roatán real estate advisory.<br />Serving US &amp; Canadian buyers since [TODO: year].</p>
+        <div class="footer-contact">
+          <a href="tel:+15049999999" data-event="phone_click">TODO: Phone</a>
+          <a href="mailto:tomas.figueroa@theagencyre.com">tomas.figueroa@theagencyre.com</a>
+          <a href="https://wa.me/15049999999" rel="noopener noreferrer" target="_blank" data-event="whatsapp_click">WhatsApp</a>
+        </div>
+      </div>
+
+      {Object.entries(footerLinks).map(([col, links]) => (
+        <div class="footer-col">
+          <h3 class="footer-col-title eyebrow">{col}</h3>
+          <ul>
+            {links.map(link => (
+              <li><a href={link.href} class="footer-link">{link.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <hr class="hairline" />
+
+    <!-- Bottom row: copyright + disclaimer -->
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        &copy; {year} Tomas Figueroa. All rights reserved.
+      </p>
+      <p class="footer-disclaimer">
+        Independently owned and operated franchisee of The Agency.
+        All information is deemed reliable but not guaranteed. Properties subject to prior sale, change, or withdrawal.
+        <!-- TODO: Insert full franchisee disclaimer wording from The Agency brand manual -->
+      </p>
+      <div class="footer-legal">
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms/">Terms</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--iron);
+    color: var(--canvas);
+    padding-block: var(--space-20);
+    margin-top: var(--space-24);
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr repeat(3, 1fr);
+    gap: var(--space-12);
+    margin-bottom: var(--space-12);
+  }
+
+  @media (max-width: 768px) {
+    .footer-top {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+    }
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .footer-logo {
+    font-size: var(--text-3xl);
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: var(--space-4);
+  }
+
+  .footer-logo-sub {
+    color: var(--agency-red);
+  }
+
+  .footer-tagline {
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,.60);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-6);
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .footer-contact a {
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,.80);
+    transition: color var(--duration-fast);
+  }
+
+  .footer-contact a:hover {
+    color: var(--canvas);
+  }
+
+  .footer-col-title {
+    font-size: var(--text-xs);
+    color: rgba(255,255,255,.50);
+    margin-bottom: var(--space-4);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+  }
+
+  .footer-col ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .footer-link {
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,.70);
+    transition: color var(--duration-fast);
+  }
+
+  .footer-link:hover {
+    color: var(--canvas);
+  }
+
+  .footer-bottom {
+    padding-top: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .footer-copy {
+    font-size: var(--text-xs);
+    color: rgba(255,255,255,.50);
+  }
+
+  .footer-disclaimer {
+    font-size: var(--text-xs);
+    color: rgba(255,255,255,.40);
+    max-width: 72ch;
+    line-height: var(--leading-relaxed);
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: var(--space-6);
+  }
+
+  .footer-legal a {
+    font-size: var(--text-xs);
+    color: rgba(255,255,255,.50);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+  }
+
+  .footer-legal a:hover {
+    color: var(--canvas);
+  }
+</style>

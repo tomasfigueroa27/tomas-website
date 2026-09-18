@@ -1,0 +1,198 @@
+---
+export interface Props {
+  projectName: string;
+  projectSlug: string;
+}
+const { projectName, projectSlug } = Astro.props;
+---
+
+<section class="priority-form-wrap">
+  <div class="priority-form-inner">
+    <p class="priority-form-label eyebrow">Pricing Released to Registered Buyers</p>
+    <h3 class="priority-form-heading type-chic">Join the Priority List</h3>
+    <p class="priority-form-sub">
+      Receive the price list, floor plans, and availability before the public launch.
+    </p>
+    <form class="priority-form" method="POST" action="/api/lead">
+      <input type="hidden" name="source" value={`priority-list-${projectSlug}`} />
+      <input type="hidden" name="project" value={projectName} />
+
+      <div class="form-row">
+        <label class="form-label" for={`pl-name-${projectSlug}`}>Full Name <span aria-hidden="true">*</span></label>
+        <input
+          id={`pl-name-${projectSlug}`}
+          class="form-input"
+          type="text"
+          name="name"
+          required
+          autocomplete="name"
+          placeholder="Jane Smith"
+        />
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for={`pl-email-${projectSlug}`}>Email <span aria-hidden="true">*</span></label>
+        <input
+          id={`pl-email-${projectSlug}`}
+          class="form-input"
+          type="email"
+          name="email"
+          required
+          autocomplete="email"
+          placeholder="jane@example.com"
+        />
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for={`pl-phone-${projectSlug}`}>WhatsApp / Phone</label>
+        <input
+          id={`pl-phone-${projectSlug}`}
+          class="form-input"
+          type="tel"
+          name="phone"
+          autocomplete="tel"
+          placeholder="+1 (___) ___-____"
+        />
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for={`pl-country-${projectSlug}`}>Country</label>
+        <select id={`pl-country-${projectSlug}`} class="form-input" name="country">
+          <option value="">Select…</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+          <option value="HN">Honduras</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for={`pl-use-${projectSlug}`}>Intended Use</label>
+        <select id={`pl-use-${projectSlug}`} class="form-input" name="use">
+          <option value="">Select…</option>
+          <option value="vacation">Vacation Home</option>
+          <option value="rental">Rental Investment</option>
+          <option value="relocation">Relocation / Primary Residence</option>
+          <option value="undecided">Still Deciding</option>
+        </select>
+      </div>
+
+      <!-- Turnstile widget placeholder -->
+      <div class="cf-turnstile" data-sitekey="TODO_TURNSTILE_SITE_KEY" data-theme="light"></div>
+
+      <p class="form-consent">
+        By submitting you agree to receive updates about this project from Tomas Figueroa –
+        The Agency Roatán. <a href="/privacy-policy/">Privacy Policy</a>.
+      </p>
+
+      <button type="submit" class="btn btn--solid btn--lg form-submit">
+        Join the Priority List
+      </button>
+    </form>
+  </div>
+</section>
+
+<script>
+  // Inject UTM params from sessionStorage into the form on submit
+  document.querySelectorAll('.priority-form').forEach(form => {
+    form.addEventListener('submit', () => {
+      try {
+        const utms = JSON.parse(sessionStorage.getItem('utms') ?? '{}');
+        for (const [key, val] of Object.entries(utms)) {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = val as string;
+          form.appendChild(input);
+        }
+        // Source page
+        const srcPage = document.createElement('input');
+        srcPage.type = 'hidden';
+        srcPage.name = 'sourcePage';
+        srcPage.value = window.location.href;
+        form.appendChild(srcPage);
+      } catch (_) { /* silent */ }
+    });
+  });
+</script>
+
+<style>
+  .priority-form-wrap {
+    background: var(--plaster);
+    padding: var(--space-12) var(--space-8);
+    margin-block: var(--space-12);
+  }
+
+  .priority-form-inner {
+    max-width: 520px;
+    margin-inline: auto;
+  }
+
+  .priority-form-label {
+    margin-bottom: var(--space-3);
+  }
+
+  .priority-form-heading {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .priority-form-sub {
+    color: var(--iron-60);
+    margin-bottom: var(--space-8);
+  }
+
+  .priority-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .form-label {
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-60);
+  }
+
+  .form-input {
+    font-family: var(--font-text);
+    font-size: var(--text-base);
+    border: var(--hairline);
+    background: var(--canvas);
+    padding: var(--space-3) var(--space-4);
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    color: var(--iron);
+    transition: border-color var(--duration-fast);
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--iron);
+  }
+
+  .form-consent {
+    font-size: var(--text-xs);
+    color: var(--iron-40);
+    line-height: var(--leading-relaxed);
+  }
+
+  .form-consent a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .form-submit {
+    width: 100%;
+    margin-top: var(--space-2);
+  }
+</style>
