@@ -67,7 +67,7 @@
   --content-max:  1280px;
   --content-wide: 1440px;
   --gutter:       clamp(1rem, 4vw, 3rem);
-  --nav-height:   4.5rem;
+  --nav-height:   6rem;
 
   /* ── Hairline ── */
   --hairline: 1px solid var(--iron-20);
