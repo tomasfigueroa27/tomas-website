@@ -35,7 +35,7 @@ const footerLinks = {
     <!-- Top row: brand + links -->
     <div class="footer-top">
       <div class="footer-brand">
-        <span class="footer-logo type-sleek">The Agency<br /><span class="footer-logo-sub">Roatán</span></span>
+        <img src="/logos/TA_Logotype_Red.png" alt="The Agency Roatán" class="footer-logo-img" />
         <p class="footer-tagline">Roatán real estate advisory.<br />Serving US &amp; Canadian buyers since [TODO: year].</p>
         <div class="footer-contact">
           <a href="tel:+15049999999" data-event="phone_click">TODO: Phone</a>
@@ -100,6 +100,13 @@ const footerLinks = {
     .footer-brand {
       grid-column: 1 / -1;
     }
+  }
+
+  .footer-logo-img {
+    height: 48px;
+    width: auto;
+    display: block;
+    margin-bottom: var(--space-4);
   }
 
   .footer-logo {
