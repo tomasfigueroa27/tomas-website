@@ -1,0 +1,231 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ClosingCalculator from '../../../components/calculator/ClosingCalculator';
+
+const seo = {
+  title: 'Closing Costs in Roatán – Buyer & Seller Guide | The Agency Roatán',
+  description: 'What are the real closing costs when buying or selling property in Roatán? Transfer tax, legal fees, commission, VAT, and capital gains — with a live calculator.',
+};
+---
+
+<Base title={seo.title} description={seo.description}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Buying Guide</p>
+      <h1>Closing Costs in Roatán</h1>
+      <p class="hero-intro">
+        A clear breakdown of what buyers and sellers actually pay at closing —
+        with a live calculator to estimate your transaction costs before you commit.
+      </p>
+    </div>
+  </section>
+
+  <section class="calc-section">
+    <div class="container">
+      <ClosingCalculator client:load />
+    </div>
+  </section>
+
+  <section class="guide-section">
+    <div class="container guide-body">
+
+      <h2>What buyers pay</h2>
+      <p>
+        As a buyer in Roatán, your closing costs typically fall into four categories: transfer tax,
+        legal fees, any prorated items (HOA, insurance, services), and — if you're setting up a
+        Honduran corporation to hold the property — a one-time incorporation cost.
+      </p>
+
+      <h3>Transfer Tax (3%)</h3>
+      <p>
+        When buying a property directly (an "asset purchase"), a 3% transfer tax is levied on the
+        registered value. This is paid at the time of registration with the Honduran Property Registry.
+        If the seller holds the property inside a Honduran corporation and you buy the shares of that
+        corporation rather than the property directly, no transfer tax applies — because ownership of
+        the property itself hasn't changed, only the corporate shareholder has.
+      </p>
+      <p>
+        This is a common structure for higher-value transactions and is completely legal. Your attorney
+        will advise on whether it makes sense for your purchase.
+      </p>
+
+      <h3>Legal Fees (typically 2–3%)</h3>
+      <p>
+        You'll need a licensed Honduran attorney (not just a notary). Your attorney drafts the sales
+        contract, conducts title due diligence at the Property Registry, advises on structure, and
+        registers the transfer. Fees generally run 2–3% of the purchase price; some attorneys charge a
+        flat fee for smaller transactions.
+      </p>
+      <p>
+        Don't skip title due diligence. Honduras uses a public property registry, and most title issues
+        are discoverable with a proper search — but only if someone actually does one.
+      </p>
+
+      <h3>Prorated Items</h3>
+      <p>
+        At closing, the buyer reimburses the seller for prepaid expenses covering the period after the
+        closing date. Common prorated items include HOA fees (typically billed annually), property
+        insurance, and recurring services. The calculator above handles this automatically once you
+        enter a closing date.
+      </p>
+
+      <hr class="section-rule" />
+
+      <h2>What sellers pay</h2>
+      <p>
+        Sellers carry the larger share of closing costs. The three main items are the agent commission,
+        VAT on the commission, and capital gains tax if the property has appreciated.
+      </p>
+
+      <h3>Agent Commission (typically 6%)</h3>
+      <p>
+        In Roatán, commissions are conventionally paid entirely by the seller. The listing agent and the
+        buyer's agent split the commission between them — the buyer does not pay a separate fee. The
+        standard rate is 6%, though this can vary by transaction type and agreement.
+      </p>
+
+      <h3>VAT on Commission (15%)</h3>
+      <p>
+        Honduras charges 15% VAT (Impuesto Sobre Ventas) on services, including real estate
+        commissions. The VAT is applied to the full commission amount and is a seller expense. On a 6%
+        commission, the effective total cost to the seller is 6% × 1.15 = 6.9% of the selling price.
+      </p>
+
+      <h3>Capital Gains Tax</h3>
+      <p>
+        Capital gains are taxed on the net gain — selling price minus commission minus your cost basis
+        (land + improvements + acquisition costs). The applicable rate depends on your structure
+        (individual vs. corporation), residency status, and holding period. A common planning rate is
+        4%, but consult a Honduran tax attorney for your specific situation — especially if you've held
+        the property for many years or made significant improvements.
+      </p>
+
+      <h3>Municipal Taxes</h3>
+      <p>
+        Any unpaid municipal property taxes must typically be cleared at or before closing. The amount
+        varies by municipality and property value. Your attorney will confirm what's owed.
+      </p>
+
+      <hr class="section-rule" />
+
+      <div class="cta-band">
+        <p class="cta-heading">Ready to run the numbers on a specific property?</p>
+        <p class="cta-sub">I can walk you through closing costs for any listing before you make an offer.</p>
+        <a href="/contact/" class="btn-primary">Talk to Tomas</a>
+      </div>
+
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-hero {
+    padding-block: var(--space-16) var(--space-8);
+    background: var(--plaster);
+    border-bottom: var(--hairline);
+  }
+
+  .page-hero h1 {
+    font-family: var(--font-sleek);
+    font-size: var(--text-5xl);
+    font-weight: 700;
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron);
+    margin: var(--space-3) 0 0;
+  }
+
+  .hero-intro {
+    font-size: var(--text-lg);
+    color: var(--iron-60);
+    max-width: 60ch;
+    line-height: var(--leading-relaxed);
+    margin-top: var(--space-4);
+  }
+
+  .calc-section {
+    padding-block: var(--space-16);
+  }
+
+  .guide-section {
+    padding-block: var(--space-16) var(--space-24);
+    background: var(--plaster);
+    border-top: var(--hairline);
+  }
+
+  .guide-body {
+    max-width: 72ch;
+  }
+
+  .guide-body h2 {
+    font-family: var(--font-chic);
+    font-size: var(--text-3xl);
+    color: var(--iron);
+    margin: var(--space-12) 0 var(--space-4);
+  }
+
+  .guide-body h2:first-child {
+    margin-top: 0;
+  }
+
+  .guide-body h3 {
+    font-family: var(--font-sleek);
+    font-size: var(--text-base);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron);
+    margin: var(--space-8) 0 var(--space-3);
+  }
+
+  .guide-body p {
+    font-size: var(--text-base);
+    color: var(--iron-60);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .section-rule {
+    border: none;
+    border-top: var(--hairline);
+    margin: var(--space-12) 0;
+  }
+
+  .cta-band {
+    background: var(--iron);
+    padding: var(--space-10) var(--space-8);
+    margin-top: var(--space-12);
+  }
+
+  .cta-heading {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xl);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--canvas);
+    margin: 0 0 var(--space-2);
+  }
+
+  .cta-sub {
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,.60);
+    margin: 0 0 var(--space-6);
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: var(--space-3) var(--space-8);
+    background: var(--agency-red);
+    color: var(--canvas);
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity var(--duration-fast);
+  }
+
+  .btn-primary:hover {
+    opacity: 0.88;
+  }
+</style>
