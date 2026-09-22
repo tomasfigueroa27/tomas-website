@@ -1,0 +1,132 @@
+---
+import Base from '../../layouts/Base.astro';
+import ClosingCalculator from '../../components/calculator/ClosingCalculator';
+
+const seo = {
+  title: 'Closing Cost Calculator – Roatán | The Agency Roatán',
+  description: 'Estimate buyer and seller closing costs for Roatán real estate. Includes transfer tax, legal fees, commission, VAT, capital gains, and prorated items.',
+};
+---
+
+<Base title={seo.title} description={seo.description}>
+  <section class="calc-hero">
+    <div class="container">
+      <p class="eyebrow">Tools</p>
+      <h1>Closing Cost Calculator</h1>
+      <p class="calc-intro">
+        Get a live estimate of closing costs before you commit. Covers transfer tax, legal fees,
+        commission, VAT, capital gains, and prorated items — for both buyers and sellers.
+      </p>
+    </div>
+  </section>
+
+  <section class="calc-section">
+    <div class="container">
+      <ClosingCalculator client:load />
+    </div>
+  </section>
+
+  <section class="calc-notes">
+    <div class="container">
+      <h2>How closing costs work in Roatán</h2>
+      <div class="notes-grid">
+        <div class="note-card">
+          <h3>Transfer Tax</h3>
+          <p>
+            When buying a property directly (asset purchase), a 3% transfer tax is due on the registered
+            value. Buying shares of a Honduran corporation that owns the property avoids this tax — a common
+            structure for higher-value transactions.
+          </p>
+        </div>
+        <div class="note-card">
+          <h3>Legal Fees</h3>
+          <p>
+            Attorney fees typically run 2–3% of the purchase price. Your attorney drafts the sales contract,
+            conducts title due diligence, registers the transfer, and advises on structure. Use a licensed
+            Honduran attorney — not just a notary.
+          </p>
+        </div>
+        <div class="note-card">
+          <h3>Commission</h3>
+          <p>
+            In Roatán, agent commissions are conventionally paid by the seller (typically 6%). Buyers do
+            not pay a separate buyer-agent fee. The seller's net proceeds are calculated after commission
+            and the 15% VAT applied to the commission amount.
+          </p>
+        </div>
+        <div class="note-card">
+          <h3>Capital Gains</h3>
+          <p>
+            Honduras levies capital gains tax on the net gain (selling price minus commission minus cost
+            basis). The effective rate depends on how long the property was held and whether the seller is
+            a Honduran resident or non-resident entity. Consult a local tax attorney for your situation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .calc-hero {
+    padding-block: var(--space-16) var(--space-8);
+    background: var(--plaster);
+    border-bottom: var(--hairline);
+  }
+
+  .calc-hero h1 {
+    font-family: var(--font-sleek);
+    font-size: var(--text-5xl);
+    font-weight: 700;
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron);
+    margin: var(--space-3) 0 0;
+  }
+
+  .calc-intro {
+    font-size: var(--text-lg);
+    color: var(--iron-60);
+    max-width: 60ch;
+    line-height: var(--leading-relaxed);
+    margin-top: var(--space-4);
+  }
+
+  .calc-section {
+    padding-block: var(--space-16);
+  }
+
+  .calc-notes {
+    padding-block: var(--space-16) var(--space-20);
+    background: var(--plaster);
+    border-top: var(--hairline);
+  }
+
+  .calc-notes h2 {
+    font-family: var(--font-chic);
+    font-size: var(--text-3xl);
+    color: var(--iron);
+    margin-bottom: var(--space-10);
+  }
+
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .note-card h3 {
+    font-family: var(--font-sleek);
+    font-size: var(--text-base);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron);
+    margin-bottom: var(--space-3);
+  }
+
+  .note-card p {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    line-height: var(--leading-relaxed);
+  }
+</style>
