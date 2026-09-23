@@ -1,0 +1,546 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+const seo = {
+  title: 'Roatán Capital Gains Tax & ZOLITUR – Seller\'s Guide | The Agency Roatán',
+  description: 'Every Bay Islands property sale pays a 4% capital gains tax to ZOLITUR — on the gain, not the price. Here\'s exactly how it works, what it costs, and when funds are released.',
+};
+---
+
+<Base title={seo.title} description={seo.description}>
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Seller's Guide</p>
+      <h1>Capital Gains Tax &amp; ZOLITUR in Roatán</h1>
+      <p class="hero-intro">
+        Every property sale in the Bay Islands triggers a 4% capital gains tax paid to ZOLITUR —
+        the Zone of Tourism and Free Trade. Here's how it works, how the gain is calculated,
+        and what to expect at closing.
+      </p>
+    </div>
+  </section>
+
+  <section class="guide-section">
+    <div class="container guide-body">
+
+      <h2>What is ZOLITUR?</h2>
+      <p>
+        ZOLITUR (Zona Libre de Turismo) is the Bay Islands' free-trade and tourism zone authority,
+        established under Decreto 181-2006. Among its functions, it administers the capital gains
+        tax on every real estate sale in the Bay Islands — Roatán, Utila, and Guanaja.
+      </p>
+      <p>
+        The capital gains tax is not a title transfer tax. It's a tax on the profit you made on
+        the sale, and it is separate from the 1.5% transfer tax, legal fees, and commission.
+      </p>
+
+      <div class="callout">
+        <p class="callout-stat">4%</p>
+        <p class="callout-label">Bay Islands capital gains rate — applied to the net gain, not the sale price</p>
+        <p class="callout-note">The mainland Honduras rate is 10%. The reduced Bay Islands rate is set by Decreto 181-2006, Art. 43.</p>
+      </div>
+
+      <h2>How the gain is calculated</h2>
+      <p>
+        ZOLITUR taxes the <strong>net gain</strong> — what's left after deducting your cost basis
+        and the agent commission from the selling price. The formula:
+      </p>
+
+      <div class="formula-block">
+        <div class="formula-line">
+          <span class="formula-label">Selling price</span>
+          <span class="formula-value">$X</span>
+        </div>
+        <div class="formula-line deduct">
+          <span class="formula-label">− Agent commission</span>
+          <span class="formula-value">e.g. 6–8%</span>
+        </div>
+        <div class="formula-line deduct">
+          <span class="formula-label">− Cost basis (land + improvements + acquisition costs)</span>
+          <span class="formula-value">your records</span>
+        </div>
+        <div class="formula-line total">
+          <span class="formula-label">= Taxable gain</span>
+          <span class="formula-value">× 4%</span>
+        </div>
+      </div>
+
+      <p>
+        Your cost basis is the price you originally paid for the property, plus documented
+        improvements and acquisition costs (legal fees, stamps, surveys). Good records lower
+        your tax. If you have no documentation, ZOLITUR may use the registered deed value as
+        the basis, which could be lower than what you actually paid.
+      </p>
+
+      <h2>What it costs in practice</h2>
+      <p>
+        Two line items appear on closing statements for capital gains:
+      </p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Amount</th>
+            <th>Basis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Capital gains tax (ZOLITUR)</td>
+            <td>4%</td>
+            <td>Net gain (selling price − commission − cost basis)</td>
+          </tr>
+          <tr>
+            <td>CG processing + SAR declaration</td>
+            <td>~$350 flat</td>
+            <td>Administrative fee, paid regardless of gain size</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        The ~$350 processing fee covers the ZOLITUR filing and the SAR (Servicio de Administración
+        de Rentas) declaration. It's a flat charge that appears on every closing statement
+        regardless of the size of the gain.
+      </p>
+
+      <h2>Worked examples</h2>
+      <p>
+        These are modeled figures, not real transactions. All prices are in USD.
+      </p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>$270,000 sale</th>
+            <th>$715,000 sale</th>
+            <th>$1,200,000 sale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Modeled cost basis</td>
+            <td>$200,000</td>
+            <td>$550,000</td>
+            <td>$800,000</td>
+          </tr>
+          <tr>
+            <td>Commission (8%)</td>
+            <td>$21,600</td>
+            <td>$57,200</td>
+            <td>$96,000</td>
+          </tr>
+          <tr>
+            <td>Taxable gain</td>
+            <td>$48,400</td>
+            <td>$107,800</td>
+            <td>$304,000</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>Capital gains tax (4%)</td>
+            <td>$1,936</td>
+            <td>$4,312</td>
+            <td>$12,160</td>
+          </tr>
+          <tr>
+            <td>Processing fee (~$350)</td>
+            <td>$350</td>
+            <td>$350</td>
+            <td>$350</td>
+          </tr>
+          <tr class="total-row">
+            <td>Total CG costs</td>
+            <td>$2,286</td>
+            <td>$4,662</td>
+            <td>$12,510</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="table-note">
+        Assumptions: 8% commission, illustrative cost bases. Actual gain depends on your records.
+        Consult a licensed Honduran attorney for your specific transaction.
+      </p>
+
+      <h2>When are funds released?</h2>
+      <p>
+        Seller proceeds are held until two things happen:
+      </p>
+      <ol class="guide-list">
+        <li>ZOLITUR confirms the capital-gains amount — the buyer's attorney or a local accountant
+            typically prepares the filing, and ZOLITUR issues a certificate once the tax is paid.</li>
+        <li>The seller completes the bank's anti-money-laundering due-diligence form (SAR declaration).
+            This is standard for any wire in Honduras above a threshold amount.</li>
+      </ol>
+      <p>
+        Both steps are routine and handled by your closing attorney. In practice, expect 2–5 business
+        days for ZOLITUR to issue the certificate after payment. Build this into your expected
+        closing timeline.
+      </p>
+
+      <h2>Bay Islands vs. mainland Honduras</h2>
+      <p>
+        The 4% Bay Islands rate is a significant advantage over mainland Honduras, which applies
+        the standard income-tax rate to real estate gains — typically 10% for individuals under
+        the simplified regime. The reduced rate is part of the ZOLITUR charter and applies to
+        all Bay Islands municipalities.
+      </p>
+
+      <div class="compare-grid">
+        <div class="compare-card">
+          <p class="compare-location">Bay Islands</p>
+          <p class="compare-rate">4%</p>
+          <p class="compare-basis">On the net gain</p>
+          <p class="compare-law">Decreto 181-2006, Art. 43</p>
+        </div>
+        <div class="compare-card compare-card--muted">
+          <p class="compare-location">Mainland Honduras</p>
+          <p class="compare-rate">10%</p>
+          <p class="compare-basis">On the net gain</p>
+          <p class="compare-law">Standard ISR regime</p>
+        </div>
+      </div>
+
+      <h2>What sellers need to have ready</h2>
+      <p>
+        To keep the closing process smooth, gather these documents before listing:
+      </p>
+      <ul class="guide-list">
+        <li>Your original purchase deed (<em>escritura de compraventa</em>) — establishes the cost basis</li>
+        <li>Receipts or invoices for any improvements made to the property</li>
+        <li>Proof of acquisition costs paid at your original closing (legal fees, stamps, surveys)</li>
+        <li>A valid RTN (Registro Tributario Nacional — Honduran tax ID). If you don't have one, budget ~$150 per person or ~$300 per corporation to obtain it before closing.</li>
+        <li>Current property tax receipts (unpaid taxes must be cleared before the cadastral certificate issues)</li>
+      </ul>
+      <p>
+        If property improvements are not yet registered, a registration fee will apply at closing —
+        about $600 on the transactions we've reviewed. Register improvements early to avoid delays.
+      </p>
+
+      <hr class="section-rule" />
+
+      <div class="cta-band">
+        <p class="cta-heading">Thinking of selling your Roatán property?</p>
+        <p class="cta-sub">I can walk you through all of the seller costs — including capital gains — before you decide to list.</p>
+        <a href="/contact/" class="btn-primary">Talk to Tomas</a>
+      </div>
+
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  /* ── Hero ── */
+  .page-hero {
+    padding-block: var(--space-16) var(--space-10);
+    background: var(--plaster);
+    border-bottom: var(--hairline);
+  }
+
+  .page-hero h1 {
+    font-family: var(--font-sleek);
+    font-size: clamp(var(--text-4xl), 5vw, var(--text-5xl));
+    font-weight: 700;
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron);
+    margin: var(--space-3) 0 0;
+  }
+
+  .hero-intro {
+    font-size: var(--text-lg);
+    color: var(--iron-60);
+    max-width: 60ch;
+    line-height: var(--leading-relaxed);
+    margin-top: var(--space-4);
+  }
+
+  /* ── Guide body ── */
+  .guide-section {
+    padding-block: var(--space-16) var(--space-24);
+  }
+
+  .guide-body {
+    max-width: 72ch;
+  }
+
+  .guide-body h2 {
+    font-family: var(--font-chic);
+    font-size: var(--text-3xl);
+    color: var(--iron);
+    margin: var(--space-12) 0 var(--space-4);
+  }
+
+  .guide-body h2:first-child {
+    margin-top: 0;
+  }
+
+  .guide-body p {
+    font-size: var(--text-base);
+    color: var(--iron-60);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .guide-body strong {
+    color: var(--iron);
+    font-weight: 600;
+  }
+
+  /* ── Callout ── */
+  .callout {
+    background: var(--iron);
+    color: var(--canvas);
+    padding: var(--space-8) var(--space-10);
+    margin: var(--space-8) 0;
+  }
+
+  .callout-stat {
+    font-family: var(--font-sleek);
+    font-size: var(--text-7xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--agency-red);
+    line-height: 1;
+    margin: 0 0 var(--space-2);
+  }
+
+  .callout-label {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xl);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--canvas);
+    margin: 0 0 var(--space-3);
+  }
+
+  .callout-note {
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,.55);
+    margin: 0;
+  }
+
+  /* ── Formula block ── */
+  .formula-block {
+    background: var(--plaster);
+    border-left: 3px solid var(--agency-red);
+    padding: var(--space-6) var(--space-8);
+    margin: var(--space-6) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .formula-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+  }
+
+  .formula-line.deduct {
+    color: var(--iron-60);
+  }
+
+  .formula-line.total {
+    border-top: var(--hairline);
+    padding-top: var(--space-3);
+    font-weight: 700;
+    color: var(--iron);
+    font-size: var(--text-base);
+  }
+
+  .formula-value {
+    font-family: var(--font-sleek);
+    letter-spacing: var(--tracking-sleek);
+    color: var(--iron);
+    white-space: nowrap;
+  }
+
+  /* ── Tables ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-6) 0;
+    font-size: var(--text-sm);
+  }
+
+  .data-table th {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-40);
+    text-align: left;
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--iron-20);
+  }
+
+  .data-table td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--iron-10);
+    color: var(--iron-60);
+    vertical-align: top;
+  }
+
+  .data-table td:first-child {
+    color: var(--iron);
+    font-weight: 500;
+  }
+
+  .data-table tr.highlight-row td {
+    color: var(--agency-red);
+    font-weight: 600;
+  }
+
+  .data-table tr.highlight-row td:first-child {
+    color: var(--agency-red);
+  }
+
+  .data-table tr.total-row td {
+    border-top: 1px solid var(--iron-20);
+    border-bottom: none;
+    font-weight: 700;
+    color: var(--iron);
+  }
+
+  .table-note {
+    font-size: var(--text-xs) !important;
+    color: var(--iron-40) !important;
+    margin-top: calc(-1 * var(--space-2)) !important;
+  }
+
+  /* ── Lists ── */
+  .guide-list {
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .guide-list li {
+    font-size: var(--text-base);
+    color: var(--iron-60);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ── Comparison grid ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    margin: var(--space-6) 0;
+  }
+
+  @media (max-width: 480px) {
+    .compare-grid { grid-template-columns: 1fr; }
+  }
+
+  .compare-card {
+    background: var(--iron);
+    padding: var(--space-6) var(--space-8);
+  }
+
+  .compare-card--muted {
+    background: var(--plaster);
+  }
+
+  .compare-location {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: rgba(255,255,255,.55);
+    margin: 0 0 var(--space-2);
+  }
+
+  .compare-card--muted .compare-location {
+    color: var(--iron-40);
+  }
+
+  .compare-rate {
+    font-family: var(--font-sleek);
+    font-size: var(--text-6xl);
+    font-weight: 700;
+    color: var(--agency-red);
+    margin: 0 0 var(--space-1);
+    line-height: 1;
+  }
+
+  .compare-card--muted .compare-rate {
+    color: var(--iron-40);
+  }
+
+  .compare-basis {
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,.70);
+    margin: 0 0 var(--space-2);
+  }
+
+  .compare-card--muted .compare-basis {
+    color: var(--iron-60);
+  }
+
+  .compare-law {
+    font-size: var(--text-xs);
+    color: rgba(255,255,255,.40);
+    margin: 0;
+    font-style: italic;
+  }
+
+  .compare-card--muted .compare-law {
+    color: var(--iron-40);
+  }
+
+  /* ── Divider & CTA ── */
+  .section-rule {
+    border: none;
+    border-top: var(--hairline);
+    margin: var(--space-12) 0;
+  }
+
+  .cta-band {
+    background: var(--iron);
+    padding: var(--space-10) var(--space-8);
+  }
+
+  .cta-heading {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xl);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--canvas);
+    margin: 0 0 var(--space-2);
+  }
+
+  .cta-sub {
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,.60);
+    margin: 0 0 var(--space-6);
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: var(--space-3) var(--space-8);
+    background: var(--agency-red);
+    color: var(--canvas);
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity var(--duration-fast);
+  }
+
+  .btn-primary:hover {
+    opacity: 0.88;
+  }
+</style>
