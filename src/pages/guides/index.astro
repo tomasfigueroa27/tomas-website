@@ -6,6 +6,14 @@ const seo = {
   description: 'Practical guides for buying and selling property in Roatán — taxes, closing costs, ownership rules, financing, and more.',
 };
 
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Roatán Real Estate Guides',
+  description: seo.description,
+  publisher: { '@type': 'Organization', name: 'The Agency Roatán' },
+};
+
 const guides = [
   {
     category: 'Buying',
@@ -32,7 +40,7 @@ const guides = [
 ];
 ---
 
-<Base title={seo.title} description={seo.description}>
+<Base title={seo.title} description={seo.description} schema={schema}>
 
   <section class="page-hero">
     <div class="container">

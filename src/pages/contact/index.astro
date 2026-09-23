@@ -1,11 +1,26 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Eyebrow from '../../components/brand/Eyebrow.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Tomas Figueroa – The Agency Roatán',
+  description: 'Get in touch with Tomas Figueroa, The Agency Roatán. WhatsApp, email, or use the contact form.',
+  mainEntity: {
+    '@type': 'RealEstateAgent',
+    name: 'Tomas Figueroa',
+    worksFor: { '@type': 'Organization', name: 'The Agency Roatán' },
+    areaServed: { '@type': 'Place', name: 'Roatán, Bay Islands, Honduras' },
+    email: 'tomas.figueroa@theagencyre.com',
+  },
+};
 ---
 
 <Base
   title="Contact Tomas Figueroa | The Agency Roatán"
   description="Get in touch with Tomas Figueroa, The Agency Roatán. WhatsApp, email, or use the contact form."
+  schema={schema}
 >
   <div class="contact-page">
     <div class="contact-hero">

@@ -6,9 +6,27 @@ const seo = {
   title: 'Closing Costs in Roatán – Buyer & Seller Guide | The Agency Roatán',
   description: 'What are the real closing costs when buying or selling property in Roatán? Transfer tax, legal fees, commission, VAT, and capital gains — with a live calculator.',
 };
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: seo.title,
+  description: seo.description,
+  mainEntity: {
+    '@type': 'HowTo',
+    name: 'How to estimate closing costs in Roatán',
+    description: 'Estimate buyer and seller closing costs for a Roatán property transaction.',
+    step: [
+      { '@type': 'HowToStep', name: 'Enter purchase or selling price' },
+      { '@type': 'HowToStep', name: 'Select purchase structure (asset or corporation)' },
+      { '@type': 'HowToStep', name: 'Add legal fees, commissions, and prorated items' },
+      { '@type': 'HowToStep', name: 'Review the itemized breakdown and total cost to close' },
+    ],
+  },
+};
 ---
 
-<Base title={seo.title} description={seo.description}>
+<Base title={seo.title} description={seo.description} schema={schema}>
   <section class="page-hero">
     <div class="container">
       <p class="eyebrow">Buying Guide</p>
