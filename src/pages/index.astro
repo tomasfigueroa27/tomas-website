@@ -39,6 +39,17 @@ const schema = [
       url: 'https://www.tomasfigueroa.com/about/',
     },
   },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Why Buy in Roatán',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '2nd-largest barrier reef in the world', description: "Roatán sits on the Mesoamerican Barrier Reef, the world's second largest." },
+      { '@type': 'ListItem', position: 2, name: '6 nonstop gateways from the U.S. and Canada', description: 'Direct flights from multiple North American cities. Market priced in USD.' },
+      { '@type': 'ListItem', position: 3, name: 'Titled freehold to 3,000 m²', description: 'Foreign nationals hold fee-simple title in their own name under Honduran law.' },
+      { '@type': 'ListItem', position: 4, name: 'English spoken island-wide', description: 'English is the working language of the Bay Islands real estate market.' },
+    ],
+  },
 ];
 ---
 
@@ -125,18 +136,22 @@ const schema = [
         <div class="why-item">
           <p class="why-number type-chic">2nd</p>
           <p class="why-label">Largest barrier reef in the world</p>
+          <p class="why-source">NOAA / Global Coral Reef Atlas</p>
         </div>
         <div class="why-item">
-          <p class="why-number type-chic">$0</p>
-          <p class="why-label">Capital gains tax for foreign buyers</p>
+          <p class="why-number type-chic">6</p>
+          <p class="why-label">Nonstop gateways from the U.S. and Canada — priced in USD</p>
+          <p class="why-source">Published airline schedules, 2026</p>
         </div>
         <div class="why-item">
-          <p class="why-number type-chic">30°C</p>
-          <p class="why-label">Average year-round temperature</p>
+          <p class="why-number type-chic">3,000 m²</p>
+          <p class="why-label">Titled freehold, in your own name</p>
+          <p class="why-source">Honduran Foreign Investment Law</p>
         </div>
         <div class="why-item">
-          <p class="why-number type-chic">USD</p>
-          <p class="why-label">Widely accepted currency</p>
+          <p class="why-number type-chic">English</p>
+          <p class="why-label">Spoken island-wide. Island pace, no traffic.</p>
+          <p class="why-source">Bay Islands demographics</p>
         </div>
       </div>
       <div class="section-cta">
@@ -323,26 +338,49 @@ const schema = [
   /* ── Why Roatán ── */
   .why-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-8);
+  }
+
+  @media (max-width: 1023px) {
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 479px) {
+    .why-grid { grid-template-columns: 1fr; }
   }
 
   .why-item {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
+    padding-top: var(--space-6);
+    border-top: 2px solid var(--iron-20);
   }
 
   .why-number {
-    font-size: var(--text-5xl);
+    font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
     line-height: 1;
     color: var(--iron);
   }
 
   .why-label {
+    font-family: var(--font-sleek);
     font-size: var(--text-sm);
-    color: var(--iron-60);
-    max-width: 20ch;
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron);
+    max-width: 22ch;
+    line-height: 1.35;
+  }
+
+  .why-source {
+    margin-top: auto;
+    padding-top: var(--space-4);
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    color: var(--iron-40);
+    font-style: italic;
   }
 
   /* ── Contact band ── */
