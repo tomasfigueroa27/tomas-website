@@ -134,17 +134,20 @@ ul, ol {
   border: 0;
 }
 
-/* ── Justified body copy — desktop only ── */
-@media (min-width: 768px) {
-  .prose p {
-    text-align: justify;
-    hyphens: auto;
-  }
+/* ── Lede: marketing intro block, ≤4 lines ── */
+.lede {
+  max-width: var(--copy-lede);
+  font-size: clamp(1.25rem, 1.05rem + 0.55vw, 1.5rem);
+  line-height: 1.5;
+  text-wrap: balance;
 }
 
-/* ── Prose styles for long-form content ── */
+/* ── Prose: long-form body text ── */
 .prose {
-  max-width: 72ch;
+  max-width: var(--copy-prose);
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  line-height: 1.6;
+  text-wrap: pretty;
 }
 
 .prose h2 {
