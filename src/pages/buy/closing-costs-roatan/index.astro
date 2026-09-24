@@ -45,9 +45,10 @@ const schema = {
   </section>
 
   <section class="guide-section">
-    <div class="container guide-body prose">
+    <div class="article-layout">
+      <div class="article-main guide-body prose">
 
-      <h2>What buyers pay</h2>
+      <h2 id="what-buyers-pay">What buyers pay</h2>
       <p>
         As a buyer in Roatán, your closing costs typically fall into four categories: transfer tax,
         legal fees, any prorated items (HOA, insurance, services), and — if you're setting up a
@@ -89,7 +90,7 @@ const schema = {
 
       <hr class="section-rule" />
 
-      <h2>What sellers pay</h2>
+      <h2 id="what-sellers-pay">What sellers pay</h2>
       <p>
         Sellers carry the larger share of closing costs. The three main items are the agent commission,
         VAT on the commission, and capital gains tax if the property has appreciated.
@@ -132,6 +133,42 @@ const schema = {
         <a href="/contact/" class="btn-primary">Talk to Tomas</a>
       </div>
 
+      </div>
+
+      <aside class="article-sidebar guide-sidebar">
+
+        <nav class="sidebar-toc" aria-label="Guide contents">
+          <p class="sidebar-label">Contents</p>
+          <ol class="toc-list">
+            <li><a class="toc-link" href="#what-buyers-pay">What buyers pay</a></li>
+            <li><a class="toc-link" href="#what-sellers-pay">What sellers pay</a></li>
+          </ol>
+        </nav>
+
+        <div class="sidebar-agent">
+          <p class="sidebar-label">Your Agent</p>
+          <p class="agent-name">Tomas Figueroa</p>
+          <p class="agent-role">The Agency Roatán</p>
+          <div class="agent-actions">
+            <a href="https://wa.me/50499999999" class="agent-wa" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a href="/contact/" class="agent-contact">Get in Touch</a>
+          </div>
+        </div>
+
+        <div class="sidebar-related">
+          <p class="sidebar-label">Related guides</p>
+          <ul class="related-list">
+            <li class="related-item">
+              <a href="/guides/roatan-capital-gains-tax-zolitur/" class="related-link">
+                <span class="related-cat">Seller's Guide</span>
+                <span class="related-title">Capital Gains Tax &amp; ZOLITUR in Roatán</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </aside>
+
     </div>
   </section>
 </Base>
@@ -171,6 +208,145 @@ const schema = {
     border-top: var(--hairline);
   }
 
+  /* ── Sidebar ── */
+  .guide-sidebar {
+    padding-block: var(--space-6) var(--space-16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .sidebar-label {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-40);
+    margin: 0 0 var(--space-4);
+  }
+
+  .sidebar-toc {
+    border-left: 2px solid var(--iron-10);
+    padding-left: var(--space-5);
+  }
+
+  .toc-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .toc-link {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    text-decoration: none;
+    line-height: var(--leading-snug);
+    display: block;
+  }
+
+  .toc-link:hover { color: var(--iron); }
+
+  .sidebar-agent {
+    background: var(--canvas);
+    padding: var(--space-6);
+    border: var(--hairline);
+  }
+
+  .agent-name {
+    font-family: var(--font-chic);
+    font-size: var(--text-lg);
+    color: var(--iron);
+    margin: 0 0 var(--space-1);
+  }
+
+  .agent-role {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    margin: 0 0 var(--space-5);
+  }
+
+  .agent-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .agent-wa {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    background: var(--iron);
+    color: var(--canvas);
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    transition: opacity var(--duration-fast);
+  }
+
+  .agent-wa:hover { opacity: 0.88; }
+
+  .agent-contact {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    border: var(--hairline);
+    color: var(--iron);
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    transition: border-color var(--duration-fast);
+  }
+
+  .agent-contact:hover { border-color: var(--iron); }
+
+  .related-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .related-item { border-top: var(--hairline); }
+
+  .related-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4) 0;
+    text-decoration: none;
+  }
+
+  .related-cat {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--agency-red);
+  }
+
+  .related-title {
+    font-size: var(--text-sm);
+    color: var(--iron-80);
+    line-height: var(--leading-snug);
+  }
+
+  .related-link:hover .related-title { color: var(--iron); }
+
+  @media (max-width: 1099px) {
+    .guide-sidebar {
+      border-top: var(--hairline);
+      padding-block-start: var(--space-8);
+    }
+  }
+
+  /* ── Guide body ── */
   .guide-body h2 {
     font-family: var(--font-chic);
     font-size: var(--text-3xl);

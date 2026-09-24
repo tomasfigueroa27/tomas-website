@@ -69,9 +69,9 @@
   --gutter:       clamp(1rem, 4vw, 3rem);
   --nav-height:   6rem;
 
-  /* ── Copy widths ── */
-  --copy-lede:  62rem;   /* marketing intro, ≤4 lines */
-  --copy-prose: 68ch;    /* long-form body text */
+  /* ── Measure (column widths for reading text) ── */
+  --measure-prose: 62rem;   /* long-form body column */
+  --measure-lede:  62rem;   /* marketing intro block */
 
   /* ── Hairline ── */
   --hairline: 1px solid var(--iron-20);

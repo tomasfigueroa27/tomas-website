@@ -33,9 +33,10 @@ const schema = {
   </section>
 
   <section class="guide-section">
-    <div class="container guide-body prose">
+    <div class="article-layout">
+      <div class="article-main guide-body prose">
 
-      <h2>What is ZOLITUR?</h2>
+      <h2 id="what-is-zolitur">What is ZOLITUR?</h2>
       <p>
         ZOLITUR (Zona Libre de Turismo) is the Bay Islands' free-trade and tourism zone authority,
         established under Decreto 181-2006. Among its functions, it administers the capital gains
@@ -52,7 +53,7 @@ const schema = {
         <p class="callout-note">The mainland Honduras rate is 10%. The reduced Bay Islands rate is set by Decreto 181-2006, Art. 43.</p>
       </div>
 
-      <h2>How the gain is calculated</h2>
+      <h2 id="how-the-gain-is-calculated">How the gain is calculated</h2>
       <p>
         ZOLITUR taxes the <strong>net gain</strong> — what's left after deducting your cost basis
         and the agent commission from the selling price. The formula:
@@ -84,7 +85,7 @@ const schema = {
         the basis, which could be lower than what you actually paid.
       </p>
 
-      <h2>What it costs in practice</h2>
+      <h2 id="what-it-costs-in-practice">What it costs in practice</h2>
       <p>
         Two line items appear on closing statements for capital gains:
       </p>
@@ -117,7 +118,7 @@ const schema = {
         regardless of the size of the gain.
       </p>
 
-      <h2>Worked examples</h2>
+      <h2 id="worked-examples">Worked examples</h2>
       <p>
         These are modeled figures, not real transactions. All prices are in USD.
       </p>
@@ -176,7 +177,7 @@ const schema = {
         Consult a licensed Honduran attorney for your specific transaction.
       </p>
 
-      <h2>When are funds released?</h2>
+      <h2 id="when-are-funds-released">When are funds released?</h2>
       <p>
         Seller proceeds are held until two things happen:
       </p>
@@ -192,7 +193,7 @@ const schema = {
         closing timeline.
       </p>
 
-      <h2>Bay Islands vs. mainland Honduras</h2>
+      <h2 id="bay-islands-vs-mainland">Bay Islands vs. mainland Honduras</h2>
       <p>
         The 4% Bay Islands rate is a significant advantage over mainland Honduras, which applies
         the standard income-tax rate to real estate gains — typically 10% for individuals under
@@ -215,7 +216,7 @@ const schema = {
         </div>
       </div>
 
-      <h2>What sellers need to have ready</h2>
+      <h2 id="what-sellers-need">What sellers need to have ready</h2>
       <p>
         To keep the closing process smooth, gather these documents before listing:
       </p>
@@ -238,6 +239,47 @@ const schema = {
         <p class="cta-sub">I can walk you through all of the seller costs — including capital gains — before you decide to list.</p>
         <a href="/contact/" class="btn-primary">Talk to Tomas</a>
       </div>
+
+      </div>
+
+      <aside class="article-sidebar guide-sidebar">
+
+        <nav class="sidebar-toc" aria-label="Guide contents">
+          <p class="sidebar-label">Contents</p>
+          <ol class="toc-list">
+            <li><a class="toc-link" href="#what-is-zolitur">What is ZOLITUR?</a></li>
+            <li><a class="toc-link" href="#how-the-gain-is-calculated">How the gain is calculated</a></li>
+            <li><a class="toc-link" href="#what-it-costs-in-practice">What it costs in practice</a></li>
+            <li><a class="toc-link" href="#worked-examples">Worked examples</a></li>
+            <li><a class="toc-link" href="#when-are-funds-released">When are funds released?</a></li>
+            <li><a class="toc-link" href="#bay-islands-vs-mainland">Bay Islands vs. mainland</a></li>
+            <li><a class="toc-link" href="#what-sellers-need">What sellers need ready</a></li>
+          </ol>
+        </nav>
+
+        <div class="sidebar-agent">
+          <p class="sidebar-label">Your Agent</p>
+          <p class="agent-name">Tomas Figueroa</p>
+          <p class="agent-role">The Agency Roatán</p>
+          <div class="agent-actions">
+            <a href="https://wa.me/50499999999" class="agent-wa" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a href="/contact/" class="agent-contact">Get in Touch</a>
+          </div>
+        </div>
+
+        <div class="sidebar-related">
+          <p class="sidebar-label">Related guides</p>
+          <ul class="related-list">
+            <li class="related-item">
+              <a href="/buy/closing-costs-roatan/" class="related-link">
+                <span class="related-cat">Buying Guide</span>
+                <span class="related-title">Closing Costs in Roatán</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </aside>
 
     </div>
   </section>
@@ -270,11 +312,149 @@ const schema = {
     margin-top: var(--space-4);
   }
 
-  /* ── Guide body ── */
+  /* ── Guide layout ── */
   .guide-section {
     padding-block: var(--space-16) var(--space-24);
   }
 
+  /* ── Sidebar ── */
+  .guide-sidebar {
+    padding-block: var(--space-6) var(--space-16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .sidebar-label {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-40);
+    margin: 0 0 var(--space-4);
+  }
+
+  .sidebar-toc {
+    border-left: 2px solid var(--iron-10);
+    padding-left: var(--space-5);
+  }
+
+  .toc-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .toc-link {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    text-decoration: none;
+    line-height: var(--leading-snug);
+    display: block;
+  }
+
+  .toc-link:hover { color: var(--iron); }
+
+  .sidebar-agent {
+    background: var(--plaster);
+    padding: var(--space-6);
+  }
+
+  .agent-name {
+    font-family: var(--font-chic);
+    font-size: var(--text-lg);
+    color: var(--iron);
+    margin: 0 0 var(--space-1);
+  }
+
+  .agent-role {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    margin: 0 0 var(--space-5);
+  }
+
+  .agent-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .agent-wa {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    background: var(--iron);
+    color: var(--canvas);
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    transition: opacity var(--duration-fast);
+  }
+
+  .agent-wa:hover { opacity: 0.88; }
+
+  .agent-contact {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    border: var(--hairline);
+    color: var(--iron);
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    transition: border-color var(--duration-fast);
+  }
+
+  .agent-contact:hover { border-color: var(--iron); }
+
+  .related-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .related-item { border-top: var(--hairline); }
+
+  .related-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4) 0;
+    text-decoration: none;
+  }
+
+  .related-cat {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--agency-red);
+  }
+
+  .related-title {
+    font-size: var(--text-sm);
+    color: var(--iron-80);
+    line-height: var(--leading-snug);
+  }
+
+  .related-link:hover .related-title { color: var(--iron); }
+
+  @media (max-width: 1099px) {
+    .guide-sidebar {
+      border-top: var(--hairline);
+      padding-block-start: var(--space-8);
+    }
+  }
+
+  /* ── Guide body ── */
   .guide-body h2 {
     font-family: var(--font-chic);
     font-size: var(--text-3xl);

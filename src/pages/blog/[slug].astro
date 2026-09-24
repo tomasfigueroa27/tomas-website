@@ -12,7 +12,14 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+const h2s = headings.filter(h => h.depth === 2);
+
+const allPosts = await getCollection('blog');
+const related = allPosts
+  .filter(p => p.id !== post.id)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 
 const d = post.data;
 const slug = post.id;
@@ -81,7 +88,7 @@ const schema = [
   <article class="blog-post">
 
     <header class="post-header">
-      <div class="container post-header-inner">
+      <div class="post-header-inner">
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="/">Home</a>
           <span aria-hidden="true">›</span>
@@ -112,40 +119,87 @@ const schema = [
       </div>
     </header>
 
-    {d.image && (
-      <div class="post-hero-image container">
-        <img
-          src={d.image}
-          alt={d.title}
-          width="1200"
-          height="675"
-          loading="eager"
-          decoding="async"
-          class="hero-img"
-        />
-      </div>
-    )}
+    <div class="article-layout">
 
-    {d.summary && d.summary.length > 0 && (
-      <aside class="post-summary-box container">
-        <p class="summary-label">Key Takeaways</p>
-        <ul class="summary-list">
-          {d.summary.map(item => <li>{item}</li>)}
-        </ul>
+      <div class="article-main">
+        {d.image && (
+          <div class="post-hero-wrap">
+            <img
+              src={d.image}
+              alt={d.title}
+              width="1200"
+              height="675"
+              loading="eager"
+              decoding="async"
+              class="hero-img"
+            />
+          </div>
+        )}
+
+        {d.summary && d.summary.length > 0 && (
+          <aside class="post-summary-box">
+            <p class="summary-label">Key Takeaways</p>
+            <ul class="summary-list">
+              {d.summary.map(item => <li>{item}</li>)}
+            </ul>
+          </aside>
+        )}
+
+        <div class="post-body prose">
+          <Content />
+        </div>
+
+        <footer class="post-footer">
+          <a href="/blog/" class="back-link">← All posts</a>
+          <div class="post-cta">
+            <p class="cta-heading">Questions about the Roatán market?</p>
+            <a href="/contact/" class="btn-cta">Talk to Tomas</a>
+          </div>
+        </footer>
+      </div>
+
+      <aside class="article-sidebar post-sidebar">
+
+        {h2s.length > 0 && (
+          <nav class="sidebar-toc" aria-label="Article contents">
+            <p class="sidebar-label">Contents</p>
+            <ol class="toc-list">
+              {h2s.map(h => (
+                <li><a class="toc-link" href={`#${h.slug}`}>{h.text}</a></li>
+              ))}
+            </ol>
+          </nav>
+        )}
+
+        <div class="sidebar-agent">
+          <p class="sidebar-label">Your Agent</p>
+          <p class="agent-name">Tomas Figueroa</p>
+          <p class="agent-role">The Agency Roatán</p>
+          <div class="agent-actions">
+            <a href="https://wa.me/50499999999" class="agent-wa" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a href="/contact/" class="agent-contact">Get in Touch</a>
+          </div>
+        </div>
+
+        {related.length > 0 && (
+          <div class="sidebar-related">
+            <p class="sidebar-label">More from the blog</p>
+            <ul class="related-list">
+              {related.map(p => (
+                <li class="related-item">
+                  <a href={`/blog/${p.id}/`} class="related-link">
+                    <span class="related-cat">{p.data.category}</span>
+                    <span class="related-title">{p.data.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
       </aside>
-    )}
 
-    <div class="post-body container">
-      <Content />
     </div>
-
-    <footer class="post-footer container">
-      <a href="/blog/" class="back-link">← All posts</a>
-      <div class="post-cta">
-        <p class="cta-heading">Questions about the Roatán market?</p>
-        <a href="/contact/" class="btn-cta">Talk to Tomas</a>
-      </div>
-    </footer>
 
   </article>
 </Base>
@@ -159,7 +213,9 @@ const schema = [
   }
 
   .post-header-inner {
-    max-width: 72ch;
+    max-width: 1500px;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
   }
 
   .breadcrumb {
@@ -202,13 +258,8 @@ const schema = [
     margin-bottom: var(--space-6);
   }
 
-  .post-author {
-    font-weight: 600;
-  }
-
-  .post-sep {
-    color: var(--iron-20);
-  }
+  .post-author { font-weight: 600; }
+  .post-sep { color: var(--iron-20); }
 
   .post-excerpt {
     font-size: var(--text-lg);
@@ -218,10 +269,15 @@ const schema = [
     margin: 0;
   }
 
+  /* ── Main column ─────────────────────────────────────────── */
+  .article-main {
+    min-width: 0;
+    padding-block-end: var(--space-16);
+  }
+
   /* ── Hero image ─────────────────────────────────────────── */
-  .post-hero-image {
-    padding-block: var(--space-10);
-    max-width: 880px;
+  .post-hero-wrap {
+    padding-block: var(--space-10) 0;
   }
 
   .hero-img {
@@ -232,7 +288,6 @@ const schema = [
 
   /* ── Summary box ─────────────────────────────────────────── */
   .post-summary-box {
-    max-width: 72ch;
     background: var(--plaster);
     border-left: 3px solid var(--agency-red);
     padding: var(--space-6) var(--space-8);
@@ -263,9 +318,9 @@ const schema = [
   }
 
   /* ── Body prose ─────────────────────────────────────────── */
+  /* .prose class in global.css sets font-size and line-height */
   .post-body {
-    max-width: 72ch;
-    padding-block: var(--space-10) var(--space-16);
+    padding-block: var(--space-10) 0;
   }
 
   .post-body :global(h2) {
@@ -286,7 +341,6 @@ const schema = [
   }
 
   .post-body :global(p) {
-    font-size: var(--text-base);
     color: var(--iron-80);
     line-height: var(--leading-relaxed);
     margin-bottom: var(--space-5);
@@ -299,7 +353,6 @@ const schema = [
   }
 
   .post-body :global(li) {
-    font-size: var(--text-base);
     color: var(--iron-80);
     line-height: var(--leading-relaxed);
     margin-bottom: var(--space-2);
@@ -332,9 +385,7 @@ const schema = [
     vertical-align: top;
   }
 
-  .post-body :global(tr:last-child td) {
-    border-bottom: none;
-  }
+  .post-body :global(tr:last-child td) { border-bottom: none; }
 
   .post-body :global(strong) {
     font-weight: 700;
@@ -347,19 +398,17 @@ const schema = [
     text-underline-offset: 3px;
   }
 
-  .post-body :global(a:hover) {
-    color: var(--agency-red);
-  }
+  .post-body :global(a:hover) { color: var(--agency-red); }
 
-  /* ── Footer ─────────────────────────────────────────────── */
+  /* ── Post footer ─────────────────────────────────────────── */
   .post-footer {
-    max-width: 72ch;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-8);
-    padding-block: var(--space-10) var(--space-20);
+    padding-block: var(--space-10) var(--space-6);
     border-top: var(--hairline);
+    margin-top: var(--space-10);
     flex-wrap: wrap;
   }
 
@@ -402,4 +451,144 @@ const schema = [
   }
 
   .btn-cta:hover { opacity: 0.88; }
+
+  /* ── Sidebar ─────────────────────────────────────────────── */
+  .post-sidebar {
+    padding-block: var(--space-10) var(--space-16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .sidebar-label {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-40);
+    margin: 0 0 var(--space-4);
+  }
+
+  .sidebar-toc {
+    border-left: 2px solid var(--iron-10);
+    padding-left: var(--space-5);
+  }
+
+  .toc-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .toc-link {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    text-decoration: none;
+    line-height: var(--leading-snug);
+    display: block;
+  }
+
+  .toc-link:hover { color: var(--iron); }
+
+  .sidebar-agent {
+    background: var(--plaster);
+    padding: var(--space-6);
+  }
+
+  .agent-name {
+    font-family: var(--font-chic);
+    font-size: var(--text-lg);
+    color: var(--iron);
+    margin: 0 0 var(--space-1);
+  }
+
+  .agent-role {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    margin: 0 0 var(--space-5);
+  }
+
+  .agent-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .agent-wa {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    background: var(--iron);
+    color: var(--canvas);
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    transition: opacity var(--duration-fast);
+  }
+
+  .agent-wa:hover { opacity: 0.88; }
+
+  .agent-contact {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    border: var(--hairline);
+    color: var(--iron);
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    transition: border-color var(--duration-fast);
+  }
+
+  .agent-contact:hover { border-color: var(--iron); }
+
+  .related-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .related-item {
+    border-top: var(--hairline);
+  }
+
+  .related-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4) 0;
+    text-decoration: none;
+  }
+
+  .related-cat {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--agency-red);
+  }
+
+  .related-title {
+    font-size: var(--text-sm);
+    color: var(--iron-80);
+    line-height: var(--leading-snug);
+  }
+
+  .related-link:hover .related-title { color: var(--iron); }
+
+  @media (max-width: 1099px) {
+    .post-sidebar {
+      padding-block-start: 0;
+      border-top: var(--hairline);
+      padding-block-end: var(--space-16);
+    }
+  }
 </style>
