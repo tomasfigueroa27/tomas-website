@@ -1,0 +1,358 @@
+---
+import Base from '../../layouts/Base.astro';
+import Eyebrow from '../../components/brand/Eyebrow.astro';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Roatan Real Estate Market Guide 2026',
+    description: 'Comprehensive overview of the Roatan, Honduras real estate market.',
+    author: { '@type': 'Person', name: 'Tomás Figueroa', url: 'https://www.tomasfigueroa.com/about/' },
+    publisher: { '@type': 'Organization', name: 'The Agency Roatán', url: 'https://www.tomasfigueroa.com' },
+    url: 'https://www.tomasfigueroa.com/roatan-market/',
+    datePublished: '2026-04-01',
+    dateModified: '2026-05-07',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to Buy Property in Roatan, Honduras',
+    description: 'Step-by-step guide to purchasing real estate in Roatan as a foreign buyer.',
+    totalTime: 'P90D',
+    step: [
+      { '@type': 'HowToStep', position: 1, name: 'Pre-search', text: 'Define your goals, budget, and criteria before you start looking.' },
+      { '@type': 'HowToStep', position: 2, name: 'Engage a qualified real estate agent', text: 'Work with a licensed local agent who understands the Roatan market.' },
+      { '@type': 'HowToStep', position: 3, name: 'Search for a property', text: 'Use the Roatan MLS and off-market inventory through your agent.' },
+      { '@type': 'HowToStep', position: 4, name: 'Make an offer', text: 'Submit a written offer with price, contingencies, and closing date.' },
+      { '@type': 'HowToStep', position: 5, name: 'Engage a Honduran real estate attorney', text: 'A licensed Honduran attorney handles title searches and registration.' },
+      { '@type': 'HowToStep', position: 6, name: 'Conduct due diligence', text: 'Title search, survey review, tax verification, and physical inspection.' },
+      { '@type': 'HowToStep', position: 7, name: 'Closing and title transfer', text: 'Final deed executed before a Honduran notary and registered with the Public Property Registry.' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: 'Can foreigners own property in Roatan?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Honduras allows foreign ownership of urban residential property in Roatan under Decree 90-90, with a 3,000 square meter per-individual cap.' } },
+      { '@type': 'Question', name: 'Do you need to be a resident to buy property in Roatan?', acceptedAnswer: { '@type': 'Answer', text: 'No. Buying property in Roatan does not require Honduran residency, and owning property does not automatically grant residency.' } },
+      { '@type': 'Question', name: 'What is the rental yield on a Roatan property?', acceptedAnswer: { '@type': 'Answer', text: 'Well-located Roatan vacation rentals yield 5–8% annually depending on location, property type, and management quality.' } },
+      { '@type': 'Question', name: 'Who pays the real estate commission in Roatan?', acceptedAnswer: { '@type': 'Answer', text: 'The seller pays. Standard commission across Roatan Realtors Association member agencies is 10% of the sale price.' } },
+      { '@type': 'Question', name: 'How much earnest money do I need to put down?', acceptedAnswer: { '@type': 'Answer', text: 'Standard earnest money on Roatan is 10% of the purchase price, wired within 7–10 business days of acceptance.' } },
+      { '@type': 'Question', name: 'How long does a Roatan closing take?', acceptedAnswer: { '@type': 'Answer', text: 'From signed offer to closing: typically 30 days. From closing to fully registered title: an additional 3–4 months.' } },
+      { '@type': 'Question', name: 'What are the total closing costs for a buyer?', acceptedAnswer: { '@type': 'Answer', text: 'Buyer closing costs typically run 3–6% of the purchase price, covering transfer tax (1.5%), cadastral certificate (1–2%), registry fees (0.5%), and legal fees (2–3%).' } },
+      { '@type': 'Question', name: 'Is the Roatan real estate market safe for foreign buyers?', acceptedAnswer: { '@type': 'Answer', text: 'The legal framework is well-established. Buyers who work with experienced local agents and qualified Honduran attorneys close clean transactions on Roatan every week.' } },
+      { '@type': 'Question', name: 'Can I finance a property purchase in Roatan?', acceptedAnswer: { '@type': 'Answer', text: 'Three primary paths: seller financing, home-country financing, and international banks. Honduran banks generally do not lend to non-residents.' } },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tomasfigueroa.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Roatan Real Estate Market', item: 'https://www.tomasfigueroa.com/roatan-market/' },
+    ],
+  },
+];
+
+const faqs = [
+  { q: 'Can foreigners own property in Roatan?', a: 'Yes. Honduras allows foreign ownership of urban residential property in Roatan under Decree 90-90, with a 3,000 square meter (about 0.74 acre) per-individual cap. Larger holdings or non-urban property are held through a Honduran corporation, which a foreigner can fully control as the registered administrator. There are no nationality-based restrictions and no requirement to use a Honduran citizen as a partner.' },
+  { q: 'Do you need to be a resident to buy property in Roatan?', a: 'No. Buying property in Roatan does not require Honduran residency, and owning property does not automatically grant residency. Tourist visas allow stays of up to 90 days at a time. Honduras offers separate residency programs (rentista, pensionado, investor) for buyers planning to relocate.' },
+  { q: 'What is the rental yield on a Roatan property?', a: 'Well-located Roatan vacation rentals yield 5–8% annually depending on location, property type, and management quality. West Bay and West End beachfront condos typically perform at the higher end of that range. Inland properties produce lower yields but appreciate at competitive rates given limited beachfront supply.' },
+  { q: 'Who pays the real estate commission in Roatan?', a: 'The seller pays. Standard commission across Roatan Realtors Association member agencies is 10% of the sale price, paid by the seller at closing. For the buyer, working with an agent costs nothing out of pocket.' },
+  { q: 'How much earnest money do I need to put down?', a: "Standard earnest money on Roatan is 10% of the purchase price, wired to the listing broker's escrow account within 7–10 business days of the seller accepting your offer. This creates a binding contract." },
+  { q: 'How long does a Roatan closing take?', a: 'From signed offer to closing: typically 30 days. From closing to fully registered title at the Registry House: an additional 3–4 months. You take possession at closing — registration is the administrative tail that follows.' },
+  { q: 'What are the total closing costs for a buyer?', a: 'Buyer closing costs typically run 3–6% of the purchase price, covering transfer tax (1.5%), cadastral certificate (1–2% plus $50 inspection), registry fees (0.5%), legal fees (2–3%), and miscellaneous items. The seller separately pays the 10% real estate commission.' },
+  { q: 'Is the Roatan real estate market safe for foreign buyers?', a: "The legal framework is well-established and Honduras has had a functioning foreign-ownership regime under Decree 90-90 for over three decades. The risks are not legal — they are informational. Buyers who work with experienced local agents and qualified Honduran attorneys close clean transactions on Roatan every week." },
+  { q: 'Can I finance a property purchase in Roatan?', a: "Three primary paths: seller financing (typically 50% down, 3–5 year repayment at US-like rates, property held in a corporation with 50/50 ownership until paid in full), home-country financing (some North American banks lend on foreign properties, others won't — varies by bank), and international banks offering products similar to seller financing. Honduran banks generally do not lend to non-residents for property purchases." },
+];
+
+const steps = [
+  { n: '01', title: 'Pre-search — define your goals', body: "Before you look at a single listing, be clear on what you're optimizing for. Personal use vs. rental income vs. appreciation vs. all three? Your target hold period? Your absolute ceiling on purchase price? Your tolerance for development risk vs. existing inventory? The answers shape everything — which area you target, what product type fits, and whether pre-construction or resale makes more sense for your situation." },
+  { n: '02', title: 'Engage a qualified real estate agent', body: 'Work with a licensed agent who specializes in Roatan and, ideally, in the specific area or product type you are targeting. Look for: RRA membership (Roatan Realtors Association), time on island, bilingual fluency, and a track record with foreign buyers. The seller pays the commission — the buyer pays nothing for agent representation.' },
+  { n: '03', title: 'Search for a property', body: 'Your agent provides access to the Roatan MLS and off-market inventory. Off-market properties represent a meaningful share of the best transactions — estate sales, direct developer pre-sales, and motivated sellers who do not list publicly. An agent who only shows you what is on the MLS is leaving you with an incomplete picture.' },
+  { n: '04', title: 'Make an offer', body: "A written letter of intent outlines price, payment terms, contingencies, and your target closing date. Once the seller accepts, earnest money — typically 10% — is wired to the broker's escrow account. A binding Promesa de Compraventa (purchase agreement) follows within a few days." },
+  { n: '05', title: 'Engage a Honduran real estate attorney', body: 'You need independent legal representation — not the developer\'s recommended attorney, not the listing agent\'s contact. Your attorney should specialize in Honduran property law and foreign buyer transactions. They handle the title search, due diligence, and all legal document review from this point forward.' },
+  { n: '06', title: 'Conduct due diligence', body: 'Key due diligence steps: title search (full ownership history review at the Public Property Registry), boundary survey review (seller provides an updated survey; your attorney confirms it matches the legal description), tax and permit verification (confirm all property taxes are paid and permits are in order), and a physical inspection (hire a licensed inspector — this is not optional for resale properties).' },
+  { n: '07', title: 'Closing and title transfer', body: 'The final deed (Escritura Pública) is executed before a Honduran notary. The buyer must be present or grant a registered Power of Attorney. Final funds wire at least 5 business days before closing. Title registration at the Public Property Registry follows over the next 3–4 months — you take possession at closing, before registration completes.' },
+];
+---
+
+<Base
+  title="Roatán Real Estate Market Guide 2026 | The Agency Roatán"
+  description="Roatán real estate market data for 2026: price benchmarks, rental yields, foreign ownership rules, the 7-step buying process, and closing costs. The Agency Roatán."
+  canonicalUrl="https://www.tomasfigueroa.com/roatan-market/"
+  schema={schema}
+>
+
+  <!-- Hero -->
+  <section class="rm-hero">
+    <div class="container" style="max-width:860px">
+      <Eyebrow text="Market Guide 2026" />
+      <h1 class="rm-title type-chic">Roatan Real Estate Market</h1>
+      <p class="rm-sub">Key data, pricing benchmarks, investment fundamentals, and everything you need to understand the Roatan property market before making a decision.</p>
+      <div class="rm-callout">
+        <p>Roatán's market fundamentals compare favorably to most Caribbean markets — and the catalysts that precede sustained buyer attention are now in place. Average condo prices are $325,000. Average homes are $397,000. Well-located rentals yield 5–8% annually. Foreign ownership is permitted under Decree 90-90, with property over 3,000 square meters held through a Honduran corporation. The catalysts — Air Canada seasonal service from Montréal and Toronto, the Meliá-affiliated Hotel Roatán Media Luna, the Margaritaville all-inclusive opening 2027 — are arriving now, not someday.</p>
+      </div>
+      <a href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30" target="_blank" rel="noopener noreferrer" class="btn-red-sm">Schedule a Strategy Call →</a>
+    </div>
+  </section>
+
+  <div class="article-layout container" style="max-width:1400px">
+
+    <!-- Sidebar -->
+    <aside class="article-sidebar">
+      <div class="sidebar-section">
+        <p class="sidebar-label">Key Stats</p>
+        <ul class="sidebar-stats">
+          <li><span class="stat-label">Avg condo</span><span class="stat-val">$325,000</span></li>
+          <li><span class="stat-label">Avg home</span><span class="stat-val">$397,000</span></li>
+          <li><span class="stat-label">Rental yield</span><span class="stat-val">5–8%/yr</span></li>
+          <li><span class="stat-label">Capital gains</span><span class="stat-val">4% (Bay Is.)</span></li>
+          <li><span class="stat-label">Buyer closing</span><span class="stat-val">3–6%</span></li>
+          <li><span class="stat-label">Commission</span><span class="stat-val">10% (seller)</span></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">On This Page</p>
+        <nav class="toc-nav">
+          <a href="#overview" class="toc-link">Market Overview</a>
+          <a href="#catalysts" class="toc-link">2026 Catalysts</a>
+          <a href="#foreign-ownership" class="toc-link">Foreign Ownership</a>
+          <a href="#comparison" class="toc-link">Caribbean Comparison</a>
+          <a href="#buying-process" class="toc-link">7-Step Process</a>
+          <a href="#closing-costs" class="toc-link">Closing Costs</a>
+          <a href="#faq" class="toc-link">FAQ</a>
+        </nav>
+      </div>
+      <div class="sidebar-cta">
+        <p class="sidebar-cta-heading type-chic">Questions about the market?</p>
+        <p class="sidebar-cta-body">A 20-minute call covers your budget, goals, and the areas that make sense.</p>
+        <a href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30" target="_blank" rel="noopener noreferrer" class="sidebar-cta-btn">Schedule a Call →</a>
+      </div>
+    </aside>
+
+    <!-- Main article -->
+    <main class="rm-body prose">
+
+      <section id="overview">
+        <h2>Market Overview</h2>
+        <p>Roatán's real estate market has matured steadily over the past two decades, evolving from an undiscovered dive destination into a recognized Caribbean investment market. Property values have appreciated consistently, driven by growing international tourism, increasing direct flight connectivity, and a rising pool of foreign buyers seeking alternatives to dramatically more expensive Caribbean markets like the Cayman Islands and Turks and Caicos.</p>
+        <p>The market spans a wide price range — from affordable inland homes in Coxen Hole to premium beachfront properties in West Bay and Pristine Bay. Foreign buyers make up a significant portion of transactions, particularly in the western end of the island where tourism infrastructure is most developed.</p>
+        <p>The legal framework for foreign property acquisition is well-established. The transaction process is materially different from North American closings, but it is navigable, and the protections that exist work — when handled by experienced professionals.</p>
+      </section>
+
+      <section id="catalysts">
+        <h2>2026 Catalysts</h2>
+        <p>Several concrete developments have changed the supply-demand equation for Roatán real estate heading into 2026:</p>
+        <ul>
+          <li><strong>Air Canada</strong> launched seasonal nonstop service from Montréal and Toronto to Roatán for the 2026/27 winter season, expanding Canadian access to the island.</li>
+          <li><strong>Hotel Roatán Media Luna</strong> joined the Meliá portfolio (January 2026), bringing global hospitality network distribution to the island for the first time at scale.</li>
+          <li><strong>Margaritaville Island Reserve Resort Roatán</strong> by Karisma Hotels &amp; Resorts broke ground in March 2025 and is on track to open in 2027 with 170 all-inclusive rooms.</li>
+          <li><strong>Kimpton Grand Roatán Resort &amp; Spa</strong> is established and operating on West Bay Beach with 122 rooms, suites, and bungalows.</li>
+          <li><strong>U.S. carrier connectivity:</strong> United Airlines operates daily year-round service from Houston; American Airlines daily from Miami. Seasonal service from Dallas-Fort Worth, Atlanta, Denver, Minneapolis, and Guatemala City continues to expand.</li>
+        </ul>
+      </section>
+
+      <section id="key-stats">
+        <h2>Key Market Statistics</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td>Average condo price</td><td>$325,000</td></tr>
+              <tr><td>Average home price</td><td>$397,000</td></tr>
+              <tr><td>Rental yield (well-located vacation rentals)</td><td>5–8% per year</td></tr>
+              <tr><td>Annual visitors to Honduras</td><td>2.7M+</td></tr>
+              <tr><td>Property appreciation (CAGR, last 5 years)</td><td>5%</td></tr>
+              <tr><td>Foreign ownership</td><td>Permitted</td></tr>
+              <tr><td>Capital gains tax on resale (Bay Islands)</td><td>4%</td></tr>
+              <tr><td>Standard real estate commission</td><td>10% (paid by seller)</td></tr>
+              <tr><td>Buyer closing costs</td><td>3–6% of purchase price</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="foreign-ownership">
+        <h2>Foreign Ownership Rules</h2>
+        <p>The rules are more permissive than most Caribbean markets — and simpler than many buyers expect:</p>
+        <ul>
+          <li>Up to 3,000 square meters (about 0.74 acres) of urban residential land can be held directly in an individual foreigner's name.</li>
+          <li>Larger holdings, raw land, and tourism or commercial properties are held through a Honduran corporation, which a foreigner can fully control as registered administrator.</li>
+          <li>Foreigners are limited to one residential property held individually; additional properties go through a corporation.</li>
+          <li>There is no requirement to use a Honduran citizen as a partner, intermediary, or front for individually held residential property.</li>
+        </ul>
+        <p>For most foreign buyers — single-family home, condo, or villa for personal use or rental income — direct individual ownership works cleanly. For investors building a portfolio, holding raw land for development, or buying any property over 0.74 acres, the corporation route is the standard path. Both are well-trodden, both close every week on Roatán, and both have protections built in when handled correctly.</p>
+        <p>Owning property in Roatán does not automatically grant residency. Honduras offers separate residency programs (rentista, pensionado, investor) for buyers planning to relocate.</p>
+      </section>
+
+      <section id="comparison">
+        <h2>Caribbean Market Comparison</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Market</th><th>Foreign Ownership</th><th>Capital Gains on Resale</th><th>Annual Property Tax</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Roatán</strong></td><td>Permitted under Decree 90-90 (corporation route for &gt;3,000 sqm)</td><td>4% (Bay Islands)</td><td>Very low</td></tr>
+              <tr><td>Cayman Islands</td><td>Permitted, no cap</td><td>0%</td><td>None</td></tr>
+              <tr><td>Turks &amp; Caicos</td><td>Permitted, no cap</td><td>0%</td><td>Low</td></tr>
+              <tr><td>Belize (Ambergris Caye)</td><td>Permitted, fee simple</td><td>0%</td><td>Very low</td></tr>
+              <tr><td>Costa Rica</td><td>Permitted</td><td>15%</td><td>Moderate</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="buying-process">
+        <h2>The 7-Step Buying Process</h2>
+        <p>A Roatán property purchase moves through seven stages from initial search to registered title. Here is what each step involves:</p>
+        <ol class="steps-list">
+          {steps.map(step => (
+            <li class="step-item">
+              <div class="step-num">{step.n}</div>
+              <div class="step-content">
+                <h3 class="step-title">{step.title}</h3>
+                <p class="step-body">{step.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section id="closing-costs">
+        <h2>Closing Costs</h2>
+        <p>Buyer closing costs on a Roatán property typically run 3–6% of the purchase price. Here is what that covers:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Component</th><th>Cost</th></tr></thead>
+            <tbody>
+              <tr><td>Transfer tax (Impuesto de Tradición)</td><td>1.5% of property value, paid to SAR</td></tr>
+              <tr><td>Cadastral certificate</td><td>1–2% (in Bay Islands), plus $50 inspection</td></tr>
+              <tr><td>Registry fees (stamps, registration)</td><td>0.5%</td></tr>
+              <tr><td>Legal fees</td><td>2–3% (negotiated directly with attorney)</td></tr>
+              <tr><td>Other (wire fees, escrow, RTN cards, security, optional corporation setup)</td><td>Variable</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Model your total acquisition cost before making an offer — use the <a href="/buy/closing-costs-roatan/">closing cost guide</a> or the <a href="/calculator/">closing cost calculator</a>.</p>
+      </section>
+
+      <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+          {faqs.map(item => (
+            <details class="faq-item">
+              <summary class="faq-q">{item.q}</summary>
+              <div class="faq-a"><p>{item.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- About Author -->
+      <section class="author-section">
+        <h2>About the Author</h2>
+        <p>Tomás Figueroa is a licensed realtor on Roatán specializing in foreign buyer transactions for The Agency. He has guided buyers through acquisitions totaling $30M+ in closed volume across West Bay Beach, West End, Sandy Bay, Pristine Bay, and French Harbour. He is a member of the Roatan Realtors Association and holds a Honduran real estate license.</p>
+        <p>For a private conversation about your investment goals, <a href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30" target="_blank" rel="noopener noreferrer">schedule a 30-minute call</a> or <a href="/contact/">send a message</a>.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Final CTA -->
+  <section class="rm-cta">
+    <div class="container" style="max-width:800px; text-align:center">
+      <Eyebrow text="Next Step" />
+      <h2 class="cta-heading type-chic">Ready to move from research to offer?</h2>
+      <p class="cta-sub">A 30-minute strategy call covers your budget, goals, areas that fit, and specific properties worth looking at now.</p>
+      <a href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30" target="_blank" rel="noopener noreferrer" class="btn-red">Schedule a Strategy Call →</a>
+      <div class="cta-links">
+        <a href="/properties/">Browse the MLS →</a>
+        <a href="/new-developments/">New Developments →</a>
+        <a href="/us-buyers-guide-roatan/">U.S. Buyer's Guide →</a>
+        <a href="/calculator/">Closing Calculator →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sources -->
+  <section class="rm-sources">
+    <div class="container" style="max-width:860px">
+      <p class="sources-text">Sources: Tomás Figueroa's own closing records and market observations; Roatan Realtors Association; public MLS data; ZOLITUR filings; Honduras Instituto Nacional de Estadística (INE) visitor data. Market statistics are representative estimates based on available data as of early 2026 and subject to change. This page is for informational purposes only and does not constitute investment or legal advice.</p>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .rm-hero { background: var(--iron); padding-block: var(--space-16) var(--space-13); }
+  .rm-title { font-size: clamp(var(--text-3xl), 3.5vw, var(--text-5xl)); color: var(--canvas); margin: var(--space-3) 0 var(--space-4); }
+  .rm-sub { font-size: var(--text-sm); color: rgba(255,255,255,.65); line-height: var(--leading-relaxed); max-width: 66ch; margin: 0 0 var(--space-6); }
+  .rm-callout { background: rgba(255,255,255,.06); border-left: 3px solid var(--agency-red); padding: var(--space-5) var(--space-6); margin: var(--space-6) 0 var(--space-8); }
+  .rm-callout p { font-size: var(--text-sm); color: rgba(255,255,255,.8); line-height: var(--leading-relaxed); margin: 0; }
+  .btn-red-sm {
+    display: inline-block; padding: var(--space-3) var(--space-6);
+    background: var(--agency-red); color: var(--canvas);
+    font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700;
+    text-decoration: none;
+  }
+
+  .rm-body { padding-block: var(--space-10) var(--space-15); }
+  .rm-body section { margin-bottom: var(--space-14); }
+  .rm-body section:last-child { margin-bottom: 0; }
+
+  .steps-list { list-style: none; padding: 0; margin: var(--space-6) 0; display: flex; flex-direction: column; gap: var(--space-5); }
+  .step-item { display: flex; gap: var(--space-5); align-items: flex-start; }
+  .step-num { font-family: var(--font-sleek); font-size: var(--text-sm); letter-spacing: var(--tracking-sleek); color: var(--agency-red); text-transform: uppercase; flex-shrink: 0; padding-top: 3px; min-width: 2.5rem; }
+  .step-content { flex: 1; }
+  .step-title { font-family: var(--font-chic); font-size: var(--text-lg); color: var(--iron); margin: 0 0 var(--space-2); }
+  .step-body { font-size: var(--text-sm); color: var(--iron-60); line-height: var(--leading-relaxed); margin: 0; }
+
+  .faq-list { display: flex; flex-direction: column; gap: var(--space-2); }
+  .faq-item { border-bottom: var(--hairline); }
+  .faq-q {
+    font-family: var(--font-chic); font-size: var(--text-base); color: var(--iron);
+    padding: var(--space-4) 0; cursor: pointer; list-style: none; display: flex;
+    justify-content: space-between; align-items: center; gap: var(--space-4);
+    line-height: var(--leading-snug);
+  }
+  .faq-q::after { content: '+'; font-family: var(--font-sleek); font-size: var(--text-base); flex-shrink: 0; color: var(--iron-40); }
+  details[open] .faq-q::after { content: '−'; }
+  .faq-a { padding: 0 0 var(--space-4); }
+  .faq-a p { font-size: var(--text-sm); color: var(--iron-60); line-height: var(--leading-relaxed); margin: 0; }
+
+  .author-section { background: var(--plaster); padding: var(--space-8); margin-block: var(--space-10); }
+
+  /* Sidebar */
+  .sidebar-section { margin-bottom: var(--space-8); }
+  .sidebar-label { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; color: var(--iron-40); margin: 0 0 var(--space-3); }
+  .sidebar-stats { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+  .sidebar-stats li { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: var(--space-2); border-bottom: var(--hairline); }
+  .stat-label { font-size: var(--text-xs); color: var(--iron-60); }
+  .stat-val { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); color: var(--iron); text-transform: uppercase; }
+  .toc-nav { display: flex; flex-direction: column; gap: 2px; }
+  .toc-link { font-size: var(--text-xs); color: var(--iron-60); text-decoration: none; padding: var(--space-2) 0 var(--space-2) var(--space-3); border-left: 2px solid transparent; line-height: var(--leading-snug); display: block; }
+  .toc-link:hover { color: var(--iron); border-left-color: var(--agency-red); }
+  .sidebar-cta { background: var(--iron); padding: var(--space-5); }
+  .sidebar-cta-heading { font-size: var(--text-base); color: var(--canvas); margin: 0 0 var(--space-2); }
+  .sidebar-cta-body { font-size: var(--text-xs); color: rgba(255,255,255,.65); line-height: var(--leading-relaxed); margin: 0 0 var(--space-4); }
+  .sidebar-cta-btn { display: block; padding: var(--space-3) var(--space-4); background: var(--agency-red); color: var(--canvas); font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700; text-decoration: none; text-align: center; }
+
+  /* Final CTA */
+  .rm-cta { background: var(--iron); padding-block: var(--space-18); }
+  .cta-heading { font-size: clamp(var(--text-2xl), 2.5vw, var(--text-3xl)); color: var(--canvas); margin: var(--space-3) 0 var(--space-5); }
+  .cta-sub { font-size: var(--text-sm); color: rgba(255,255,255,.65); line-height: var(--leading-relaxed); max-width: 55ch; margin: 0 auto var(--space-8); }
+  .btn-red {
+    display: inline-block; padding: var(--space-4) var(--space-9);
+    background: var(--agency-red); color: var(--canvas);
+    font-family: var(--font-sleek); font-size: var(--text-sm); letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700;
+    text-decoration: none; transition: opacity .15s;
+  }
+  .btn-red:hover { opacity: .88; }
+  .cta-links { display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: center; margin-top: var(--space-8); }
+  .cta-links a { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; color: rgba(255,255,255,.45); text-decoration: none; }
+  .cta-links a:hover { color: rgba(255,255,255,.8); }
+
+  .rm-sources { background: var(--plaster); padding-block: var(--space-8); }
+  .sources-text { font-size: var(--text-xs); color: var(--iron-40); line-height: var(--leading-relaxed); margin: 0; }
+</style>

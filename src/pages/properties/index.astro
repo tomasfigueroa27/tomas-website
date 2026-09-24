@@ -1,0 +1,110 @@
+---
+import Base from '../../layouts/Base.astro';
+import Eyebrow from '../../components/brand/Eyebrow.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tomasfigueroa.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Properties', item: 'https://www.tomasfigueroa.com/properties/' },
+  ],
+};
+---
+
+<Base
+  title="Roatán MLS Property Listings | The Agency Roatán"
+  description="Search all available properties in Roatán, Honduras directly from the MLS. Filter by price, location, and property type to find your ideal Caribbean real estate investment."
+  canonicalUrl="https://www.tomasfigueroa.com/properties/"
+  schema={schema}
+>
+
+  <section class="props-hero">
+    <div class="container" style="text-align:center">
+      <Eyebrow text="MLS Listings" />
+      <h1 class="props-title type-chic">Browse Roatán Properties</h1>
+      <p class="props-sub">Search all available listings in Roatán directly from the MLS — filter by price, neighborhood, and property type.</p>
+    </div>
+  </section>
+
+  <section class="props-intro">
+    <div class="container" style="max-width:900px">
+      <h2 class="intro-heading type-chic">Roatán Property Listings — Direct from the MLS</h2>
+      <div class="prose">
+        <p>The listings below pull directly from the Roatan MLS in real time, covering all property types currently available on the island — beachfront condos, hillside homes, oceanview lots, and investment properties across West Bay, West End, Sandy Bay, Pristine Bay, French Harbour, and Coxen Hole.</p>
+        <p>What you'll find here:</p>
+        <ul>
+          <li>Condos from $150,000 to $1M+ in established beach communities</li>
+          <li>Single-family homes ranging from starter properties to luxury oceanfront estates</li>
+          <li>Raw land and development lots for buyers looking to build</li>
+          <li>New development units with pre-construction pricing in select communities</li>
+        </ul>
+        <p>Before you browse — know this: Not every property in Roatán is listed here. A meaningful portion of the best deals — distressed sales, off-market opportunities, developer pre-sales, and estate listings — never appear on the public MLS. If you're serious about finding the right property at the right price, talking to an agent who works the full market matters.</p>
+        <p>Use the search tools below to filter by price, location, and property type. When something catches your eye — or when you want to know what's available beyond what's shown — reach out directly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="props-idx">
+    <div class="container">
+      <h2 class="idx-heading type-chic">Search All Properties</h2>
+      <p class="idx-sub">Browse all available properties in Roatán directly from the MLS. Use the search tools below to filter by price, location, and more.</p>
+      <div class="idx-frame-wrap">
+        <iframe
+          src="//link.flexmls.com/1tqd8emfew7q,2"
+          frameborder="0"
+          width="100%"
+          height="850"
+          title="Roatan MLS Listings"
+          class="idx-frame"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .props-hero {
+    background: var(--iron);
+    color: var(--canvas);
+    padding-block: var(--space-16);
+  }
+  .props-title {
+    font-size: clamp(var(--text-4xl), 4vw, var(--text-5xl));
+    color: var(--canvas);
+    margin: var(--space-3) 0 var(--space-4);
+  }
+  .props-sub {
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,.65);
+    line-height: var(--leading-relaxed);
+    max-width: 52ch;
+    margin-inline: auto;
+    margin-bottom: 0;
+  }
+  .props-intro { padding-block: var(--space-14) var(--space-10); }
+  .intro-heading {
+    font-size: clamp(var(--text-2xl), 2.5vw, var(--text-3xl));
+    color: var(--iron);
+    margin: 0 0 var(--space-5);
+  }
+  .props-idx { padding-block: var(--space-10) var(--space-16); }
+  .idx-heading {
+    font-size: clamp(var(--text-2xl), 2.5vw, var(--text-3xl));
+    color: var(--iron);
+    margin: 0 0 var(--space-3);
+    text-align: center;
+  }
+  .idx-sub {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    text-align: center;
+    margin: 0 0 var(--space-8);
+    max-width: 52ch;
+    margin-inline: auto;
+  }
+  .idx-frame-wrap { width: 100%; }
+  .idx-frame { display: block; width: 100%; border: none; }
+</style>
