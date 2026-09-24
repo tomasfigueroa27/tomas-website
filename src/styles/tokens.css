@@ -67,7 +67,7 @@
   --content-max:  1280px;
   --content-wide: 1440px;
   --gutter:       clamp(1rem, 4vw, 3rem);
-  --nav-height:   6rem;
+  --nav-height:   calc(6rem + 0.5cm);
 
   /* ── Measure (column widths for reading text) ── */
   --measure-prose: 62rem;   /* long-form body column */

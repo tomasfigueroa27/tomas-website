@@ -97,10 +97,8 @@ const schema = {
                 </td>
               </tr>
             )}
-            {d.priceFrom ? (
-              <tr><th>Price From</th><td>USD ${d.priceFrom.toLocaleString()}</td></tr>
-            ) : (
-              <tr><th>Price</th><td><em>Released to registered buyers</em></td></tr>
+            {d.priceFrom && (
+              <tr><th>Starting From</th><td>USD ${d.priceFrom.toLocaleString()}</td></tr>
             )}
             {d.depositPct && <tr><th>Deposit</th><td>{d.depositPct}%</td></tr>}
             {d.paymentSchedule && <tr><th>Payment Plan</th><td>{d.paymentSchedule}</td></tr>}

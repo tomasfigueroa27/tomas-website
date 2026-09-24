@@ -50,11 +50,11 @@ const schema = {
         </h1>
         <p class="hero-sub lede">
           Luxury homes, condos, and pre-sale developments on the Bay Islands of Honduras.
-          Represented exclusively by Tomas Figueroa.
+          Represented exclusively by THE AGENCY.
         </p>
         <div class="hero-actions">
-          <Button href="/new-developments/" variant="solid" size="lg">View Developments</Button>
-          <Button href="/contact/" variant="outline" size="lg" class="btn--canvas">Get in Touch</Button>
+          <Button href="/properties/" variant="solid" size="lg">Explore MLS</Button>
+          <Button href="/new-developments/" variant="outline" size="lg" class="btn--canvas">View Developments</Button>
         </div>
       </div>
     </div>
@@ -78,10 +78,8 @@ const schema = {
                   <p class="dev-card-area eyebrow">{d.area.replace(/-/g, ' ')}</p>
                   <h3 class="dev-card-title type-chic">{d.title}</h3>
                   <p class="dev-card-location">{d.location?.address ?? 'Roatán, Honduras'}</p>
-                  {d.priceFrom ? (
-                    <p class="dev-card-price">From USD ${d.priceFrom.toLocaleString()}</p>
-                  ) : (
-                    <p class="dev-card-price dev-card-price--private">Price released to registered buyers</p>
+                  {d.priceFrom && (
+                    <p class="dev-card-price">Starting from USD ${d.priceFrom.toLocaleString()}</p>
                   )}
                 </div>
               </a>
