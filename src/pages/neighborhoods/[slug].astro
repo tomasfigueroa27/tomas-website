@@ -1,0 +1,484 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Eyebrow from '../../components/brand/Eyebrow.astro';
+
+export async function getStaticPaths() {
+  const all = await getCollection('neighborhoods');
+  return all.map(n => ({
+    params: { slug: n.data.slug },
+    props: { neighborhood: n },
+  }));
+}
+
+const { neighborhood } = Astro.props;
+const { Content } = await render(neighborhood);
+const d = neighborhood.data;
+
+const canonicalUrl = `https://www.tomasfigueroa.com/neighborhoods/${d.slug}/`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Place',
+    name: d.title,
+    description: d.seo.description,
+    url: canonicalUrl,
+    containedInPlace: {
+      '@type': 'Island',
+      name: 'Roatán',
+      containedInPlace: {
+        '@type': 'Country',
+        name: 'Honduras',
+      },
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: d.faqSchemaItems.map(item => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.tomasfigueroa.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Neighborhoods',
+        item: 'https://www.tomasfigueroa.com/neighborhoods/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: d.title,
+        item: canonicalUrl,
+      },
+    ],
+  },
+];
+---
+
+<Base
+  title={d.seo.title}
+  description={d.seo.description}
+  canonicalUrl={canonicalUrl}
+  schema={schema}
+>
+  <header class="n-hero">
+    <div class="n-hero-inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="/neighborhoods/">Neighborhoods</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">{d.title}</span>
+      </nav>
+      <Eyebrow text="Roatán Neighborhood" />
+      <h1 class="n-title type-chic">{d.title}</h1>
+      <p class="n-tagline lede">{d.tagline}</p>
+    </div>
+  </header>
+
+  <div class="article-layout n-layout">
+
+    <div class="article-main n-main">
+      <div class="n-body prose">
+        <Content />
+      </div>
+
+      <footer class="n-footer">
+        <a href="/neighborhoods/" class="back-link">← All neighborhoods</a>
+        <div class="n-cta">
+          <p class="n-cta-text">Interested in {d.title}?</p>
+          <a href="/contact/" class="btn-cta">Talk to Tomas</a>
+        </div>
+      </footer>
+    </div>
+
+    <aside class="article-sidebar n-sidebar">
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">Key Facts</p>
+        <table class="facts-table">
+          <tbody>
+            {d.facts.map(f => (
+              <tr>
+                <th>{f.label}</th>
+                <td>{f.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">Market Statistics</p>
+        <table class="stats-table">
+          <tbody>
+            <tr>
+              <th>Median Sale Price</th>
+              <td class="stat-highlight">{d.marketStats.medianSalePrice}</td>
+            </tr>
+            <tr>
+              <th>Price Range</th>
+              <td>{d.marketStats.priceRange}</td>
+            </tr>
+            <tr>
+              <th>Avg. $/sqft</th>
+              <td>{d.marketStats.avgPricePerSqft}</td>
+            </tr>
+            <tr>
+              <th>Days on Market</th>
+              <td>{d.marketStats.daysOnMarket}</td>
+            </tr>
+            <tr>
+              <th>YoY Trend</th>
+              <td class="stat-yoy">{d.marketStats.yoyTrend}</td>
+            </tr>
+            <tr>
+              <th>Rental Yield</th>
+              <td>{d.marketStats.rentalYield}</td>
+            </tr>
+            <tr>
+              <th>Best For</th>
+              <td>{d.marketStats.bestBuyerType}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="stats-note">
+          Source: Tomas Figueroa closing records &amp; Roatán MLS data.
+          Last updated {d.lastUpdated.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}.
+        </p>
+      </div>
+
+      <div class="sidebar-agent">
+        <p class="sidebar-label">Your Agent</p>
+        <p class="agent-name">Tomas Figueroa</p>
+        <p class="agent-role">The Agency Roatán</p>
+        <div class="agent-actions">
+          <a href="https://wa.me/50499999999" class="agent-wa" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href="/contact/" class="agent-contact">Get in Touch</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+</Base>
+
+<style>
+  /* ── Hero ── */
+  .n-hero {
+    background: var(--plaster);
+    border-bottom: var(--hairline);
+    padding-block: var(--space-16) var(--space-12);
+  }
+
+  .n-hero-inner {
+    max-width: 1500px;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    color: var(--iron-40);
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb a {
+    color: var(--iron-40);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--iron);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .n-title {
+    font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl));
+    color: var(--iron);
+    margin: var(--space-3) 0 var(--space-5);
+  }
+
+  .n-tagline {
+    color: var(--iron-60);
+  }
+
+  /* ── Layout ── */
+  .n-layout {
+    padding-block: var(--space-16) var(--space-24);
+  }
+
+  /* ── Main prose ── */
+  .n-main {
+    min-width: 0;
+  }
+
+  .n-body {
+    padding-block-end: var(--space-10);
+  }
+
+  .n-body :global(h2) {
+    font-family: var(--font-chic);
+    font-size: var(--text-2xl);
+    color: var(--iron);
+    margin: var(--space-12) 0 var(--space-4);
+    line-height: var(--leading-snug);
+  }
+
+  .n-body :global(h3) {
+    font-family: var(--font-sleek);
+    font-size: var(--text-base);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron);
+    margin: var(--space-8) 0 var(--space-3);
+  }
+
+  .n-body :global(p) {
+    color: var(--iron-80);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-5);
+  }
+
+  .n-body :global(ul),
+  .n-body :global(ol) {
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-5);
+  }
+
+  .n-body :global(li) {
+    color: var(--iron-80);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-2);
+  }
+
+  .n-body :global(strong) {
+    font-weight: 700;
+    color: var(--iron);
+  }
+
+  .n-body :global(a) {
+    color: var(--iron);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .n-body :global(a:hover) { color: var(--agency-red); }
+
+  /* ── Footer ── */
+  .n-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    padding-block: var(--space-8) var(--space-6);
+    border-top: var(--hairline);
+    flex-wrap: wrap;
+  }
+
+  .back-link {
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-60);
+    text-decoration: none;
+  }
+
+  .back-link:hover { color: var(--iron); }
+
+  .n-cta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+  }
+
+  .n-cta-text {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    margin: 0;
+  }
+
+  .btn-cta {
+    display: inline-block;
+    padding: var(--space-3) var(--space-6);
+    background: var(--agency-red);
+    color: var(--canvas);
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity var(--duration-fast);
+  }
+
+  .btn-cta:hover { opacity: 0.88; }
+
+  /* ── Sidebar ── */
+  .n-sidebar {
+    padding-block: var(--space-6) var(--space-16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .sidebar-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .sidebar-label {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-40);
+    margin: 0;
+  }
+
+  .facts-table,
+  .stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+
+  .facts-table th,
+  .stats-table th {
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-60);
+    text-align: left;
+    padding: var(--space-3) var(--space-4) var(--space-3) 0;
+    border-bottom: var(--hairline);
+    width: 45%;
+    vertical-align: top;
+  }
+
+  .facts-table td,
+  .stats-table td {
+    padding: var(--space-3) 0;
+    border-bottom: var(--hairline);
+    color: var(--iron-80);
+    vertical-align: top;
+    font-size: var(--text-sm);
+  }
+
+  .facts-table tr:last-child th,
+  .facts-table tr:last-child td,
+  .stats-table tr:last-child th,
+  .stats-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .stat-highlight {
+    font-weight: 700;
+    color: var(--iron);
+  }
+
+  .stat-yoy {
+    color: #2a7a3b;
+    font-weight: 700;
+  }
+
+  .stats-note {
+    font-size: var(--text-xs);
+    color: var(--iron-40);
+    margin: 0;
+    line-height: var(--leading-relaxed);
+  }
+
+  .sidebar-agent {
+    background: var(--plaster);
+    padding: var(--space-6);
+  }
+
+  .agent-name {
+    font-family: var(--font-chic);
+    font-size: var(--text-lg);
+    color: var(--iron);
+    margin: 0 0 var(--space-1);
+  }
+
+  .agent-role {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    margin: 0 0 var(--space-5);
+  }
+
+  .agent-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .agent-wa {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    background: var(--iron);
+    color: var(--canvas);
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    transition: opacity var(--duration-fast);
+  }
+
+  .agent-wa:hover { opacity: 0.88; }
+
+  .agent-contact {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    border: var(--hairline);
+    color: var(--iron);
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    transition: border-color var(--duration-fast);
+  }
+
+  .agent-contact:hover { border-color: var(--iron); }
+
+  @media (max-width: 1099px) {
+    .n-sidebar {
+      padding-block-start: 0;
+      border-top: var(--hairline);
+      padding-block-end: var(--space-16);
+    }
+  }
+</style>
