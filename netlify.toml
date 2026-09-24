@@ -25,6 +25,12 @@
   status = 301
   force  = true
 
+# Legacy URL redirect — old form success page
+[[redirects]]
+  from   = "/success"
+  to     = "/thank-you/"
+  status = 301
+
 # Astro SSG: serve pre-built HTML, no SPA routing needed.
 # 404 fallback — Astro generates a 404.html
 [[redirects]]

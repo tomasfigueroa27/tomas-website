@@ -3,6 +3,7 @@ export interface Props {
   projectName: string;
   projectSlug: string;
 }
+const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '';
 const { projectName, projectSlug } = Astro.props;
 ---
 
@@ -78,7 +79,7 @@ const { projectName, projectSlug } = Astro.props;
       </div>
 
       <!-- Turnstile widget placeholder -->
-      <div class="cf-turnstile" data-sitekey="TODO_TURNSTILE_SITE_KEY" data-theme="light"></div>
+      {turnstileKey && <div class="cf-turnstile" data-sitekey={turnstileKey} data-theme="light"></div>}
 
       <p class="form-consent">
         By submitting you agree to receive updates about this project from Tomas Figueroa –

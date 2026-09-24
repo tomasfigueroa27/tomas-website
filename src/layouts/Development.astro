@@ -21,6 +21,8 @@ const isIndexable =
   !!d.estimatedCompletion;
 // Also requires 300+ words — enforced at build time in check-noindex.ts
 
+const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '';
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'ApartmentComplex',
@@ -162,7 +164,7 @@ const schema = {
           <label class="form-label" for="inq-message">Message</label>
           <textarea id="inq-message" class="form-input" name="message" rows="4" placeholder="Tell me what you're looking for…"></textarea>
         </div>
-        <div class="cf-turnstile" data-sitekey="TODO_TURNSTILE_SITE_KEY" data-theme="light"></div>
+        {turnstileKey && <div class="cf-turnstile" data-sitekey={turnstileKey} data-theme="light"></div>}
         <p class="form-consent">
           By submitting you agree to receive communication from Tomas Figueroa – The Agency Roatán.
           <a href="/privacy-policy/">Privacy Policy</a>.
