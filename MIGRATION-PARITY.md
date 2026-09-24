@@ -61,7 +61,7 @@ Legend: ✅ Done · ⚠️ Redirect needed · 🔴 404 on launch · ➕ New on A
 
 | Live URL | Astro branch | Status | Plan |
 |----------|-------------|--------|------|
-| `/blog` | — | 🔴 404 | Decide route name first (`/blog/` vs `/journal/`); AGENTS.md footer links to `/journal/` |
+| `/blog` | — | 🔴 404 | Port as `/blog/` |
 | `/blog/bay-islands-market-report-q2-2026` | — | 🔴 404 | Port under chosen blog route |
 | `/blog/roatan-q1-2026-market-report` | — | 🔴 404 | Port |
 | `/blog/roatan-travel-guide-faqs` | — | 🔴 404 | Port |
@@ -123,13 +123,6 @@ These should go in `netlify.toml` `[[redirects]]` blocks (or a `public/_redirect
 8. **`/where-to-buy-in-roatan`** — may merge into `/neighborhoods/` with a redirect
 9. **`/resources`** — assess: if it was thin, redirect to `/guides/`; if substantive, port
 10. **`/properties`** — defer until listing feed / MLS data is wired up
-
-### Routing decision needed (before P0 blog work)
-- **`/blog/` vs `/journal/`** — AGENTS.md footer links to `/journal/`, but 7 live Google-indexed
-  URLs use `/blog/`. Options:
-  - **Keep `/blog/`** and update footer links (zero SEO disruption)
-  - **Use `/journal/`** and add permanent redirects from all `/blog/*` URLs (clean, costs one crawl cycle)
-  - Recommendation: keep `/blog/` unless there's a brand reason for `/journal/`
 
 ---
 

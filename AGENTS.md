@@ -158,7 +158,7 @@ until you have real content to fill them. Until then, do not link to them
 from navigation or internal copy.
 
 `/properties/`, `/neighborhoods/`, `/market-reports/`, `/living-in-roatan/`,
-`/journal/`, `/about/`, `/sell/`, `/developers/`, `/reviews/`, `/faq/`,
+`/blog/`, `/about/`, `/sell/`, `/developers/`, `/reviews/`, `/faq/`,
 `/buy/buying-property-in-roatan/`, `/buy/can-americans-buy-property-in-roatan/`,
 `/buy/buying-pre-construction-in-roatan/`, `/buy/financing-roatan-property/`,
 `/buy/residency-honduras/`
