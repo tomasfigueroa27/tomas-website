@@ -8,29 +8,48 @@ import Badge from '../components/ui/Badge.astro';
 const devs = await getCollection('developments');
 const featured = devs.slice(0, 3);
 
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'RealEstateAgent',
-  name: 'The Agency – Roatán',
-  url: 'https://www.tomasfigueroa.com',
-  areaServed: {
-    '@type': 'Place',
-    name: 'Roatán, Honduras',
+const PAGE_TITLE = 'Roatán Real Estate & New Developments | Tomás Figueroa – The Agency';
+const PAGE_DESC  = 'Luxury homes, beachfront condos and pre-construction developments in Roatán, Bay Islands. Buyer and developer representation from Tomás Figueroa, The Agency – Roatán.';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: PAGE_TITLE,
+    description: PAGE_DESC,
+    url: 'https://www.tomasfigueroa.com/',
+    author: {
+      '@type': 'Person',
+      name: 'Tomás Figueroa',
+      url: 'https://www.tomasfigueroa.com/about/',
+    },
   },
-  agent: {
-    '@type': 'Person',
-    name: 'Tomas Figueroa',
+  {
+    '@context': 'https://schema.org',
+    '@type': 'RealEstateAgent',
+    name: 'The Agency – Roatán',
+    url: 'https://www.tomasfigueroa.com',
+    areaServed: {
+      '@type': 'Place',
+      name: 'Roatán, Bay Islands, Honduras',
+    },
+    agent: {
+      '@type': 'Person',
+      name: 'Tomás Figueroa',
+      url: 'https://www.tomasfigueroa.com/about/',
+    },
   },
-};
+];
 ---
 
 <Base
-  title="The Agency Roatán | Luxury Real Estate in Roatán, Honduras"
-  description="The Agency Roatán — luxury condos, beachfront homes, and new developments on Roatán's West Bay and West End. Represented by Tomas Figueroa."
+  title={PAGE_TITLE}
+  description={PAGE_DESC}
+  canonicalUrl="https://www.tomasfigueroa.com/"
   schema={schema}
   heroOverlap={true}
 >
-  <!-- Hero -->
+  <!-- ── Hero ── -->
   <section class="hero">
     <video
       class="hero-video"
@@ -43,30 +62,33 @@ const schema = {
     >
       <source src="/videos/Tomas%20Figueroa%20-%20Roatan%2030%20Seg_compressed-2.mp4" type="video/mp4" />
     </video>
-    <div class="hero-overlay">
-      <div class="container hero-content">
-        <Eyebrow text="Find your place in Roatán" />
-        <h1 class="hero-title type-chic">
-          Roatán Luxury Real Estate &amp; New Developments
-        </h1>
-        <p class="hero-sub lede">
-          Beachfront homes, resort condos and pre-construction projects
-          in the Bay Islands — with Tomás Figueroa, The Agency – Roatán.
-        </p>
-        <div class="hero-actions">
-          <Button href="/properties/" variant="solid" size="lg">Explore MLS</Button>
-          <Button href="/new-developments/" variant="outline" size="lg" class="btn--canvas">View Developments</Button>
-        </div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <Eyebrow text="Global reach. Island fluency." />
+      <h1 class="hero-title type-chic">Your Window to Roatán</h1>
+      <p class="hero-sub lede">
+        Luxury homes, beachfront condos and new developments in the Bay Islands
+        — with Tomás Figueroa, The Agency – Roatán.
+      </p>
+      <div class="hero-actions">
+        <Button href="/properties/" variant="solid" size="lg">Explore MLS</Button>
+        <Button href="/new-developments/" variant="outline" size="lg" class="btn--canvas">View Developments</Button>
       </div>
     </div>
   </section>
 
-  <!-- Featured Developments -->
-  {featured.length > 0 && (
-    <section class="section featured-devs">
-      <div class="container">
-        <Eyebrow text="New Developments" />
-        <h2 class="section-title type-chic">Pre-Sale Opportunities</h2>
+  <!-- ── New Developments ── first section: carries the keyword H2 + answer-first para ── -->
+  <section class="section featured-devs">
+    <div class="container">
+      <Eyebrow text="Pre-Sale Now Open" />
+      <h2 class="section-title type-chic">Roatán Luxury Real Estate &amp; New Developments</h2>
+      <p class="section-intro lede">
+        Roatán real estate spans luxury beachfront estates on West Bay, gated communities
+        in Pristine Bay, and a growing pipeline of new developments across the Bay Islands.
+        Whether you are buying a home, a rental property, or entering pre-construction,
+        Tomás Figueroa provides full-service buyer and developer representation through The Agency.
+      </p>
+      {featured.length > 0 && (
         <div class="dev-grid">
           {featured.map(dev => {
             const d = dev.data;
@@ -87,14 +109,14 @@ const schema = {
             );
           })}
         </div>
-        <div class="section-cta">
-          <Button href="/new-developments/" variant="outline" size="md">See All Developments</Button>
-        </div>
+      )}
+      <div class="section-cta">
+        <Button href="/new-developments/" variant="outline" size="md">See All Developments</Button>
       </div>
-    </section>
-  )}
+    </div>
+  </section>
 
-  <!-- Why Roatán -->
+  <!-- ── Why Roatán ── -->
   <section class="section section--plaster why-section">
     <div class="container">
       <Eyebrow text="Why Roatán" />
@@ -123,7 +145,7 @@ const schema = {
     </div>
   </section>
 
-  <!-- Contact Band -->
+  <!-- ── Contact Band ── -->
   <section class="section contact-band">
     <div class="container contact-band-inner">
       <div class="contact-band-text">
@@ -136,7 +158,7 @@ const schema = {
       </div>
       <div class="contact-band-actions">
         <Button href="/contact/" variant="solid" size="lg">Contact Tomas</Button>
-        <a href="https://wa.me/50499999999" class="whatsapp-link" target="_blank" rel="noopener noreferrer" data-event="whatsapp_click">
+        <a href="https://wa.me/50488483226" class="whatsapp-link" target="_blank" rel="noopener noreferrer" data-event="whatsapp_click">
           WhatsApp
         </a>
       </div>
@@ -148,8 +170,12 @@ const schema = {
   /* ── Hero ── */
   .hero {
     position: relative;
-    height: 90vh;
-    min-height: 600px;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: calc(var(--nav-height) + var(--space-8));
+    padding-bottom: var(--space-20);
   }
 
   .hero-video {
@@ -159,34 +185,37 @@ const schema = {
     height: 100%;
     object-fit: cover;
     object-position: center;
+    z-index: 0;
   }
 
-  .hero-overlay {
+  .hero-scrim {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,.3) 50%, transparent 100%);
-    display: flex;
-    align-items: flex-end;
-    padding-bottom: var(--space-24);
+    background: linear-gradient(to top, rgba(0,0,0,0.55), transparent 60%);
+    z-index: 1;
   }
 
   .hero-content {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     gap: var(--space-5);
-    max-width: 700px;
   }
 
   .hero-title {
-    font-size: clamp(var(--text-4xl), 7vw, var(--text-7xl));
+    font-size: clamp(2.5rem, 5.4vw, 5rem);
+    line-height: 1.02;
+    max-width: 24ch;
+    text-wrap: balance;
     color: var(--canvas);
-    line-height: 1.05;
   }
 
   .hero-sub {
-    font-size: var(--text-lg);
+    max-width: 44rem;
+    font-size: clamp(1.0625rem, 0.95rem + 0.45vw, 1.375rem);
+    line-height: 1.5;
     color: rgba(255,255,255,.85);
-    max-width: 50ch;
   }
 
   .hero-actions {
@@ -201,7 +230,6 @@ const schema = {
     color: var(--canvas) !important;
     border-color: var(--canvas) !important;
   }
-
   :global(.btn--canvas:hover) {
     background: var(--canvas) !important;
     color: var(--iron) !important;
@@ -219,6 +247,12 @@ const schema = {
   .section-title {
     font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
     margin-top: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .section-intro {
+    max-width: 72ch;
+    color: var(--iron-80);
     margin-bottom: var(--space-12);
   }
 
@@ -284,12 +318,6 @@ const schema = {
     font-family: var(--font-text);
     font-size: var(--text-sm);
     font-weight: 700;
-  }
-
-  .dev-card-price--private {
-    font-weight: 400;
-    font-style: italic;
-    color: var(--iron-60);
   }
 
   /* ── Why Roatán ── */
@@ -361,11 +389,10 @@ const schema = {
     text-underline-offset: 3px;
     transition: color var(--duration-fast);
   }
-
   .whatsapp-link:hover { color: var(--canvas); }
 
   @media (max-width: 768px) {
-    .hero-overlay { padding-bottom: var(--space-16); }
+    .hero { padding-bottom: var(--space-16); }
     .hero-actions { flex-direction: column; }
     .contact-band-inner { flex-direction: column; }
   }
