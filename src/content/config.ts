@@ -139,6 +139,21 @@ const testimonials = defineCollection({
   }),
 });
 
+// ── Blog ─────────────────────────────────────────────────────
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    seoTitle: z.string().optional(),
+    date: z.coerce.date(),
+    dateModified: z.coerce.date().optional(),
+    category: z.string(),
+    excerpt: z.string(),
+    image: z.string().optional(),
+    summary: z.array(z.string()).optional(),
+  }),
+});
+
 // ── FAQs ────────────────────────────────────────────────────
 const faqs = defineCollection({
   loader: glob({ pattern: '**/*.{json,yaml}', base: './src/content/faqs' }),
@@ -159,4 +174,5 @@ export const collections = {
   videos,
   testimonials,
   faqs,
+  blog,
 };
