@@ -1,15 +1,67 @@
 ---
-const navLinks = [
-  { label: 'New Developments', href: '/new-developments/' },
-  { label: 'Properties',       href: '/properties/' },
-  { label: 'Neighborhoods',    href: '/neighborhoods/' },
-  { label: 'Guides',           href: '/guides/' },
-  { label: 'Market',           href: '/market-reports/' },
-  { label: 'About',            href: '/about/' },
-  { label: 'Contact',          href: '/contact/' },
+const currentPath = Astro.url.pathname;
+
+/**
+ * Nav structure — every group parent links to its hub; every destination in exactly one group.
+ * Groups and destinations map directly to §3 of the SEO/AEO/GEO roadmap URL architecture.
+ */
+const nav = [
+  {
+    label: 'Buy',
+    href: '/properties/',
+    children: [
+      { label: 'Properties',        href: '/properties/' },
+      { label: 'Neighborhoods',     href: '/neighborhoods/' },
+      { label: 'Where to Buy',      href: '/where-to-buy-in-roatan/' },
+      { label: "U.S. Buyer's Guide", href: '/us-buyers-guide-roatan/' },
+      { label: 'Calculator',        href: '/calculator/' },
+      { label: 'FAQ',               href: '/faq/' },
+    ],
+  },
+  {
+    label: 'Sell',
+    href: '/sell-in-roatan/',
+    children: [
+      { label: 'Seller Guide & Net Proceeds', href: '/sell-in-roatan/' },
+      { label: 'Capital Gains Tax',           href: '/guides/roatan-capital-gains-tax-zolitur/' },
+      { label: 'Closing Costs Guide',         href: '/buy/closing-costs-roatan/' },
+    ],
+  },
+  {
+    label: 'New Developments',
+    href: '/new-developments/',
+  },
+  {
+    label: 'Developers',
+    href: '/developers/',
+  },
+  {
+    label: 'Market',
+    href: '/roatan-market/',
+    children: [
+      { label: 'Market Guide 2026', href: '/roatan-market/' },
+      { label: 'Blog',             href: '/blog/' },
+      { label: 'Guides',           href: '/guides/' },
+      { label: 'Resources',        href: '/resources/' },
+    ],
+  },
+  {
+    label: 'About',
+    href: '/about/',
+    children: [
+      { label: 'About Tomas', href: '/about/' },
+      { label: 'Contact',     href: '/contact/' },
+    ],
+  },
 ];
 
-const currentPath = Astro.url.pathname;
+const isGroupActive = (item: typeof nav[number]) => {
+  if (currentPath === item.href) return true;
+  if (item.children) {
+    return item.children.some(c => currentPath.startsWith(c.href));
+  }
+  return currentPath.startsWith(item.href);
+};
 ---
 
 <header class="site-header" id="site-header">
@@ -28,20 +80,48 @@ const currentPath = Astro.url.pathname;
     <!-- Desktop nav -->
     <nav class="header-nav" aria-label="Main navigation">
       <ul class="nav-list">
-        {navLinks.map(link => (
-          <li>
+        {nav.map(item => (
+          <li class:list={['nav-item', { 'nav-item--has-dropdown': item.children }]}>
             <a
-              href={link.href}
-              class:list={['nav-link', { 'nav-link--active': currentPath.startsWith(link.href) }]}
+              href={item.href}
+              class:list={['nav-link', { 'nav-link--active': isGroupActive(item) }]}
+              aria-haspopup={item.children ? 'true' : undefined}
             >
-              {link.label}
+              {item.label}
+              {item.children && (
+                <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                  <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              )}
             </a>
+            {item.children && (
+              <div class="nav-dropdown" role="region">
+                {item.children.map(child => (
+                  <a
+                    href={child.href}
+                    class:list={['nav-dropdown-link', { 'nav-dropdown-link--active': currentPath === child.href }]}
+                  >
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            )}
           </li>
         ))}
+        <li class="nav-item nav-item--cta">
+          <a
+            href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30"
+            class="nav-cta"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Book a Call
+          </a>
+        </li>
       </ul>
     </nav>
 
-    <!-- Hamburger (always visible — opens mobile drawer) -->
+    <!-- Hamburger (mobile) -->
     <button
       class="hamburger"
       aria-controls="mobile-nav"
@@ -55,14 +135,48 @@ const currentPath = Astro.url.pathname;
 
   <!-- Mobile nav drawer -->
   <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
-    <ul>
-      {navLinks.map(link => (
-        <li><a href={link.href} class="mobile-nav-link">{link.label}</a></li>
+    <ul class="mobile-nav-list">
+      {nav.map(item => (
+        <li class="mobile-item">
+          {item.children ? (
+            <details class="mobile-details">
+              <summary class="mobile-summary">
+                <a href={item.href} class:list={['mobile-nav-link', { 'mobile-nav-link--active': isGroupActive(item) }]}>
+                  {item.label}
+                </a>
+                <svg class="mobile-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                  <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </summary>
+              <ul class="mobile-sub">
+                {item.children.map(child => (
+                  <li>
+                    <a href={child.href} class:list={['mobile-sub-link', { 'mobile-sub-link--active': currentPath === child.href }]}>
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ) : (
+            <a href={item.href} class:list={['mobile-nav-link', { 'mobile-nav-link--active': isGroupActive(item) }]}>
+              {item.label}
+            </a>
+          )}
+        </li>
       ))}
-      <li>
+      <li class="mobile-item mobile-item--actions">
         <a
-          href="https://wa.me/50499999999"
-          class="mobile-nav-link mobile-nav-whatsapp"
+          href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30"
+          class="mobile-cta"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Book a Strategy Call
+        </a>
+        <a
+          href="https://wa.me/50488483226"
+          class="mobile-whatsapp"
           target="_blank"
           rel="noopener noreferrer"
           data-event="whatsapp_click"
@@ -79,40 +193,50 @@ const currentPath = Astro.url.pathname;
   const hamburger = document.querySelector('.hamburger') as HTMLButtonElement;
   const mobileNav = document.getElementById('mobile-nav');
 
-  // Mobile drawer toggle
+  // ── Mobile drawer toggle ──
   if (hamburger && mobileNav) {
     hamburger.addEventListener('click', () => {
       const open = hamburger.getAttribute('aria-expanded') === 'true';
       hamburger.setAttribute('aria-expanded', String(!open));
       mobileNav.hidden = open;
     });
+    // Close drawer when a link inside is clicked
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileNav.hidden = true;
+      });
+    });
   }
 
-  // Scroll behavior: transparent → red → hidden → red (on scroll up)
+  // ── Close desktop dropdowns on Escape ──
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      (document.activeElement as HTMLElement)?.blur();
+    }
+  });
+
+  // ── Close dropdown when clicking outside nav ──
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest('.site-header')) {
+      // Blur active element to collapse :focus-within dropdowns
+      (document.activeElement as HTMLElement)?.blur();
+    }
+  });
+
+  // ── Scroll behavior: transparent → red → hide on down, show on up ──
   let lastY = 0;
   let ticking = false;
 
   function updateHeader() {
     const y = window.scrollY;
-
-    // Transparent at top, red after 60px
-    if (y > 60) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-
-    // Hide on scroll down past 300px, reveal on scroll up
+    header.classList.toggle('scrolled', y > 60);
     if (y > 300) {
-      if (y > lastY) {
-        header.classList.add('header-hidden');
-      } else {
-        header.classList.remove('header-hidden');
-      }
+      header.classList.toggle('header-hidden', y > lastY);
     } else {
       header.classList.remove('header-hidden');
     }
-
     lastY = y;
     ticking = false;
   }
@@ -124,7 +248,7 @@ const currentPath = Astro.url.pathname;
     }
   }, { passive: true });
 
-  // WhatsApp GA4 tracking
+  // ── WhatsApp GA4 tracking ──
   document.querySelectorAll('[data-event="whatsapp_click"]').forEach(el => {
     el.addEventListener('click', () => {
       if (typeof gtag !== 'undefined') {
@@ -135,26 +259,17 @@ const currentPath = Astro.url.pathname;
 </script>
 
 <style>
+  /* ── Header shell ── */
   .site-header {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: var(--z-nav);
     height: var(--nav-height);
     background: transparent;
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition: background var(--duration-base) ease, transform var(--duration-base) ease;
   }
-
-  /* Solid red once user has scrolled past the hero */
-  .site-header.scrolled {
-    background: var(--agency-red);
-  }
-
-  /* Slide up when scrolling down deep into the page */
-  .site-header.header-hidden {
-    transform: translateY(-100%);
-  }
+  .site-header.scrolled { background: var(--agency-red); }
+  .site-header.header-hidden { transform: translateY(-100%); }
 
   .header-inner {
     display: flex;
@@ -164,39 +279,29 @@ const currentPath = Astro.url.pathname;
   }
 
   /* ── Logo ── */
-  .header-logo {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-  }
-
-  .logo-img {
-    display: block;
-    height: 84px;
-    width: auto;
-    object-fit: contain;
-  }
+  .header-logo { flex-shrink: 0; display: flex; align-items: center; text-decoration: none; }
+  .logo-img { display: block; height: 84px; width: auto; object-fit: contain; }
 
   /* ── Desktop nav ── */
-  .header-nav {
-    flex: 1;
-    display: none;
-  }
-
-  @media (min-width: 1024px) {
-    .header-nav { display: block; }
-  }
+  .header-nav { flex: 1; display: none; }
+  @media (min-width: 1024px) { .header-nav { display: block; } }
 
   .nav-list {
     display: flex;
-    gap: var(--space-6);
+    gap: var(--space-2);
     align-items: center;
     justify-content: flex-end;
     list-style: none;
   }
 
+  /* ── Nav item & dropdown wrapper ── */
+  .nav-item { position: relative; }
+
   .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: var(--space-2) var(--space-3);
     font-family: var(--font-text);
     font-size: var(--text-xs);
     letter-spacing: var(--tracking-sleek);
@@ -204,12 +309,70 @@ const currentPath = Astro.url.pathname;
     color: rgba(255,255,255,.80);
     transition: color var(--duration-fast);
     white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-link:hover,
+  .nav-link--active { color: var(--canvas); }
+  .nav-link--active { font-weight: 700; }
+
+  .nav-chevron {
+    transition: transform var(--duration-fast);
+    opacity: .6;
+    flex-shrink: 0;
+  }
+  .nav-item--has-dropdown:hover .nav-chevron,
+  .nav-item--has-dropdown:focus-within .nav-chevron { transform: rotate(180deg); opacity: 1; }
+
+  /* ── Dropdown panel ── */
+  .nav-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 220px;
+    background: var(--iron);
+    border-top: 2px solid var(--agency-red);
+    padding: var(--space-3) 0;
+    z-index: calc(var(--z-nav) + 1);
+    box-shadow: var(--shadow-md);
   }
 
-  .nav-link:hover,
-  .nav-link--active {
-    color: var(--canvas);
+  .nav-item--has-dropdown:hover .nav-dropdown,
+  .nav-item--has-dropdown:focus-within .nav-dropdown { display: block; }
+
+  .nav-dropdown-link {
+    display: block;
+    padding: var(--space-2) var(--space-5);
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.65);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color var(--duration-fast), background var(--duration-fast);
   }
+  .nav-dropdown-link:hover,
+  .nav-dropdown-link--active { color: var(--canvas); background: rgba(255,255,255,.06); }
+
+  /* ── CTA button in nav ── */
+  .nav-item--cta { margin-left: var(--space-3); }
+  .nav-cta {
+    display: inline-block;
+    padding: var(--space-2) var(--space-5);
+    background: var(--canvas);
+    color: var(--iron);
+    font-family: var(--font-sleek);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity var(--duration-fast);
+    white-space: nowrap;
+  }
+  .nav-cta:hover { opacity: .88; }
 
   /* ── Hamburger ── */
   .hamburger {
@@ -221,52 +384,73 @@ const currentPath = Astro.url.pathname;
     border: none;
     cursor: pointer;
     padding: var(--space-2);
-    margin-left: var(--space-4);
+    margin-left: auto;
     flex-shrink: 0;
   }
-
-  .hamburger span {
-    display: block;
-    width: 24px;
-    height: 1.5px;
-    background: var(--canvas);
-    transition: background var(--duration-fast);
-  }
+  @media (min-width: 1024px) { .hamburger { display: none; } }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--canvas); transition: background var(--duration-fast); }
 
   /* ── Mobile drawer ── */
   .mobile-nav {
     position: fixed;
     top: var(--nav-height);
-    left: 0;
-    right: 0;
+    left: 0; right: 0;
     background: var(--agency-red);
-    padding: var(--space-8) var(--gutter) var(--space-10);
+    padding: var(--space-6) var(--gutter) var(--space-10);
     z-index: var(--z-nav);
     border-top: 1px solid rgba(255,255,255,.15);
+    max-height: calc(100dvh - var(--nav-height));
+    overflow-y: auto;
   }
 
-  .mobile-nav ul {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
-    list-style: none;
-  }
+  .mobile-nav-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
 
   .mobile-nav-link {
+    display: block;
     font-family: var(--font-text);
     font-size: var(--text-lg);
     letter-spacing: var(--tracking-sleek);
     text-transform: uppercase;
     color: rgba(255,255,255,.85);
+    text-decoration: none;
     transition: color var(--duration-fast);
   }
+  .mobile-nav-link:hover,
+  .mobile-nav-link--active { color: var(--canvas); }
+  .mobile-nav-link--active { font-weight: 700; }
 
-  .mobile-nav-link:hover {
-    color: var(--canvas);
+  /* Mobile expandable groups */
+  .mobile-details { border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: var(--space-3); }
+  .mobile-details[open] .mobile-chevron { transform: rotate(180deg); }
+
+  .mobile-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    list-style: none;
   }
+  .mobile-summary::-webkit-details-marker { display: none; }
 
-  .mobile-nav-whatsapp {
-    color: var(--canvas);
-    font-weight: 700;
+  .mobile-chevron { opacity: .6; transition: transform var(--duration-fast); }
+
+  .mobile-sub { list-style: none; padding-left: var(--space-4); margin-top: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
+  .mobile-sub-link { font-family: var(--font-text); font-size: var(--text-base); color: rgba(255,255,255,.65); text-decoration: none; }
+  .mobile-sub-link:hover,
+  .mobile-sub-link--active { color: var(--canvas); }
+
+  .mobile-item--actions { display: flex; flex-direction: column; gap: var(--space-3); padding-top: var(--space-4); border-top: 1px solid rgba(255,255,255,.15); margin-top: var(--space-3); }
+  .mobile-cta {
+    display: block; text-align: center;
+    padding: var(--space-4);
+    background: var(--canvas); color: var(--agency-red);
+    font-family: var(--font-sleek); font-size: var(--text-sm); letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700;
+    text-decoration: none;
+  }
+  .mobile-whatsapp {
+    display: block; text-align: center;
+    font-family: var(--font-text); font-size: var(--text-base);
+    letter-spacing: var(--tracking-sleek); text-transform: uppercase;
+    color: var(--canvas); font-weight: 700; text-decoration: none;
   }
 </style>

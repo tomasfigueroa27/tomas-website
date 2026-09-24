@@ -1,0 +1,360 @@
+---
+import Base from '../../layouts/Base.astro';
+import Eyebrow from '../../components/brand/Eyebrow.astro';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tomasfigueroa.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Developer Services', item: 'https://www.tomasfigueroa.com/developers/' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Roatán New Development Project Marketing',
+    description: 'Project marketing and sales services for residential real estate developers in Roatán, Honduras — pricing strategy, launch campaigns, U.S./Canada distribution, and reservation management through The Agency.',
+    provider: {
+      '@type': 'Person',
+      name: 'Tomás Figueroa',
+      url: 'https://www.tomasfigueroa.com/about/',
+      worksFor: { '@type': 'Organization', name: 'The Agency', url: 'https://theagencyre.com' },
+    },
+    areaServed: { '@type': 'Place', name: 'Roatán, Bay Islands, Honduras' },
+    serviceType: 'Real Estate Project Marketing',
+  },
+];
+
+const services = [
+  {
+    num: '01',
+    title: 'Pricing strategy & product mix',
+    body: 'Market-calibrated pricing based on comparable project sales, buyer willingness-to-pay research, and absorption modeling. Product mix advice (unit count, sizing, bedroom configuration, amenity trade-offs) to maximize sellable value before you commit to final design.',
+  },
+  {
+    num: '02',
+    title: 'Launch campaign & brand positioning',
+    body: "Project identity, naming (where applicable), and launch marketing — photography, renderings, video, digital advertising, and email campaigns targeting your highest-probability buyer pool. The Agency's positioning for pre-launch and priority registration phases.",
+  },
+  {
+    num: '03',
+    title: 'U.S. and Canada distribution',
+    body: "Access to The Agency's 80+ offices across North America, Europe, and the Caribbean — agents representing buyers who are actively seeking Caribbean investment properties at your price point. International buyer distribution is where Roatán developers are weakest; it's where this partnership adds the most.",
+  },
+  {
+    num: '04',
+    title: 'Reservation management',
+    body: 'Structured reservation and deposit process with documented buyer commitments before construction begins. Reduces execution risk by validating absorption before significant capital is deployed. Provides a clean conversion path from priority list → signed contract → closing.',
+  },
+  {
+    num: '05',
+    title: 'Film production & content',
+    body: "Cinematic property and lifestyle films optimized for the North American buyer's decision process. Location films that answer the questions buyers ask before they book a flight: What does the beach look like at 7am? What's a 5-minute drive? What does $400K actually buy here?",
+  },
+  {
+    num: '06',
+    title: 'Sell-out advisory',
+    body: 'From first reservation to final closing — managing pipeline, buyer follow-up, contract execution, and coordination with your legal and construction teams. Milestone-based reporting so you always know where the project stands against absorption targets.',
+  },
+];
+
+const process = [
+  { phase: 'Discovery', duration: '1–2 weeks', description: "Review your project brief, site, unit mix, pricing, and timeline. Assess market positioning and identify gaps. Honest assessment of what it will take to sell out — including what needs to change before launch." },
+  { phase: 'Strategy', duration: '2–4 weeks', description: "Pricing matrix, absorption schedule, buyer persona definition, competitive positioning. Launch sequencing: private preview → priority list → public launch. Marketing brief and budget framework." },
+  { phase: 'Pre-launch', duration: '4–8 weeks', description: "Brand and sales materials. Photography and film production. Priority registration page. Targeted digital campaigns to build the buyer pipeline before public launch." },
+  { phase: 'Launch', duration: 'Ongoing', description: "Public MLS listing. Agency network distribution. Buyer showings, virtual tours, and reservation execution. Weekly pipeline reporting." },
+  { phase: 'Sell-out', duration: 'Until complete', description: "Pipeline conversion, contract management, and handoff support as units close. Final sold reporting for marketing materials." },
+];
+
+const STAGE_OPTIONS = [
+  'Concept / Pre-design',
+  'Design & Permitting',
+  'Under Construction',
+  'Sales Ready — Not Yet Launched',
+  'In Market — Seeking New Strategy',
+];
+
+const GDV_OPTIONS = [
+  'Under $5M',
+  '$5M – $15M',
+  '$15M – $50M',
+  '$50M+',
+];
+---
+
+<Base
+  title="Developer Services — Roatán Project Marketing | The Agency Roatán"
+  description="Sell out your Roatán development with The Agency's U.S. and Canada distribution. Pricing strategy, launch campaigns, reservation management, and film production."
+  canonicalUrl="https://www.tomasfigueroa.com/developers/"
+  schema={schema}
+>
+
+  <!-- Hero -->
+  <section class="dev-hero">
+    <div class="container" style="max-width:900px">
+      <Eyebrow text="For Developers" />
+      <h1 class="dev-title type-chic">Sell out your Roatán project with The Agency's global distribution.</h1>
+      <p class="dev-sub">Pricing strategy, launch campaigns, U.S. and Canada buyer network, reservation management, and film production — from first priority registration to final closing.</p>
+      <div class="hero-actions">
+        <a href="#qualify" class="btn-red">Request a Project Consultation</a>
+        <a href="/contact/" class="btn-outline-dark">Download Capabilities Deck</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Positioning strip -->
+  <section class="dev-position">
+    <div class="container" style="max-width:1100px">
+      <div class="position-grid">
+        <div class="position-item">
+          <span class="position-num type-chic">80+</span>
+          <p class="position-label">Agency offices across North America, Europe, and the Caribbean</p>
+        </div>
+        <div class="position-item">
+          <span class="position-num type-chic">$30M+</span>
+          <p class="position-label">Roatán transactions advised — closed volume by Tomás Figueroa</p>
+        </div>
+        <div class="position-item">
+          <span class="position-num type-chic">50+</span>
+          <p class="position-label">Foreign buyer transactions on Roatán since 2020</p>
+        </div>
+        <div class="position-item">
+          <span class="position-num type-chic">Dec '26</span>
+          <p class="position-label">Air Canada nonstop Toronto/Montréal–Roatán — new buyer pool launching</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who this is for -->
+  <section class="dev-who">
+    <div class="container" style="max-width:900px">
+      <Eyebrow text="Who This Is For" />
+      <h2 class="section-heading type-chic">Roatán developers building 10–200 unit residential projects.</h2>
+      <p class="section-body">Pre-launch to sell-out advisory for developers who understand that distribution — not just a Roatán MLS listing — determines whether a project sells. If your project is targeting U.S. and Canadian buyers, those buyers are not walking into your construction site in Coxen Hole. They are reading about you, watching your film, and talking to an agent 3,000 miles away. This is where The Agency partnership matters.</p>
+      <p class="section-body">This is not a listing agreement. It is a co-developer relationship focused on one outcome: fully subscribed before you break ground, and sold out before your last unit delivers.</p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="dev-services">
+    <div class="container" style="max-width:1100px">
+      <Eyebrow text="Services" />
+      <h2 class="section-heading type-chic">What's included.</h2>
+      <div class="services-grid">
+        {services.map(svc => (
+          <div class="svc-card">
+            <span class="svc-num type-chic">{svc.num}</span>
+            <h3 class="svc-title type-chic">{svc.title}</h3>
+            <p class="svc-body">{svc.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="dev-process">
+    <div class="container" style="max-width:1100px">
+      <Eyebrow text="Process" />
+      <h2 class="section-heading type-chic">From consultation to sell-out.</h2>
+      <div class="process-track">
+        {process.map((step, i) => (
+          <div class="process-step">
+            <div class="process-marker">
+              <span class="process-dot"></span>
+              {i < process.length - 1 && <span class="process-line"></span>}
+            </div>
+            <div class="process-content">
+              <div class="process-header">
+                <h3 class="process-phase type-chic">{step.phase}</h3>
+                <span class="process-duration">{step.duration}</span>
+              </div>
+              <p class="process-desc">{step.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects advised placeholder -->
+  <section class="dev-projects">
+    <div class="container" style="max-width:900px">
+      <Eyebrow text="Projects Advised" />
+      <h2 class="section-heading type-chic">Track record available on request.</h2>
+      <p class="section-body">Project details and developer references are shared privately with qualified developers during consultation. The developments currently active on this site — including Sunset Vista Condos and Ava Towers — are representative of the projects we advise and market to international buyers.</p>
+      <p class="section-body">If you would like specifics: project names, absorption timelines, and buyer demographics are available in the capabilities deck.</p>
+      <a href="/contact/" class="btn-iron">Request the Capabilities Deck →</a>
+    </div>
+  </section>
+
+  <!-- Qualification form -->
+  <section id="qualify" class="dev-form-section">
+    <div class="container" style="max-width:720px">
+      <Eyebrow text="Get Started" />
+      <h2 class="section-heading type-chic" style="color: var(--canvas)">Tell us about your project.</h2>
+      <p class="form-intro">Fill in the brief below and Tomás will follow up within one business day with a proposed agenda for a discovery call.</p>
+
+      <form
+        action="/api/lead"
+        method="POST"
+        class="dev-form"
+      >
+        <input type="hidden" name="source" value="developers" />
+        <input type="hidden" name="sourcePage" value="/developers/" />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name" class="form-label">Your Name *</label>
+            <input id="name" name="name" type="text" required autocomplete="name" class="form-input" placeholder="Firstname Lastname" />
+          </div>
+          <div class="form-group">
+            <label for="email" class="form-label">Email *</label>
+            <input id="email" name="email" type="email" required autocomplete="email" class="form-input" placeholder="you@example.com" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" class="form-input" placeholder="+1 (555) 000-0000" />
+          </div>
+          <div class="form-group">
+            <label for="project" class="form-label">Project Name</label>
+            <input id="project" name="project" type="text" class="form-input" placeholder="e.g. Sunset Vista Phase 2" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="dev_stage" class="form-label">Project Stage *</label>
+          <select id="dev_stage" name="dev_stage" required class="form-input form-select">
+            <option value="" disabled selected>Select current stage…</option>
+            {STAGE_OPTIONS.map(opt => <option value={opt}>{opt}</option>)}
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dev_units" class="form-label">Approximate Units</label>
+            <input id="dev_units" name="dev_units" type="number" min="1" class="form-input" placeholder="e.g. 48" />
+          </div>
+          <div class="form-group">
+            <label for="dev_gdv" class="form-label">Estimated GDV (USD)</label>
+            <select id="dev_gdv" name="dev_gdv" class="form-input form-select">
+              <option value="" selected>Select range…</option>
+              {GDV_OPTIONS.map(opt => <option value={opt}>{opt}</option>)}
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="dev_launch" class="form-label">Target Launch / Delivery</label>
+          <input id="dev_launch" name="dev_launch" type="text" class="form-input" placeholder="e.g. Q3 2027 or Dec 2026" />
+        </div>
+
+        <div class="form-group">
+          <label for="message" class="form-label">Anything else to share?</label>
+          <textarea id="message" name="message" rows="4" class="form-input form-textarea" placeholder="Site location, current stage, goals, constraints, any specific questions…"></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Send Project Brief →</button>
+        <p class="form-fine">Your information is used only to respond to this inquiry. No spam, no sharing.</p>
+      </form>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .dev-hero { background: var(--iron); padding-block: var(--space-16) var(--space-12); }
+  .dev-title { font-size: clamp(var(--text-3xl), 3.5vw, var(--text-5xl)); color: var(--canvas); margin: var(--space-3) 0 var(--space-4); max-width: 20ch; }
+  .dev-sub { font-size: var(--text-sm); color: rgba(255,255,255,.65); line-height: var(--leading-relaxed); max-width: 60ch; margin: 0 0 var(--space-8); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+  .btn-red {
+    display: inline-block; padding: var(--space-4) var(--space-8);
+    background: var(--agency-red); color: var(--canvas);
+    font-family: var(--font-sleek); font-size: var(--text-sm); letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700;
+    text-decoration: none; transition: opacity .15s;
+  }
+  .btn-red:hover { opacity: .88; }
+  .btn-outline-dark {
+    display: inline-block; padding: var(--space-4) var(--space-8);
+    background: transparent; color: rgba(255,255,255,.7);
+    font-family: var(--font-sleek); font-size: var(--text-sm); letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700;
+    text-decoration: none; border: 1px solid rgba(255,255,255,.25); transition: border-color .15s;
+  }
+  .btn-outline-dark:hover { border-color: rgba(255,255,255,.6); }
+
+  .dev-position { background: var(--agency-red); padding-block: var(--space-8); }
+  .position-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-8); }
+  .position-num { font-size: clamp(var(--text-3xl), 3vw, var(--text-5xl)); color: var(--canvas); display: block; line-height: 1; margin-bottom: var(--space-2); }
+  .position-label { font-family: var(--font-text); font-size: var(--text-xs); color: rgba(255,255,255,.75); line-height: var(--leading-relaxed); margin: 0; }
+
+  .dev-who { background: var(--canvas); padding-block: var(--space-16); }
+  .dev-services { background: var(--plaster); padding-block: var(--space-16); }
+  .dev-process { background: var(--canvas); padding-block: var(--space-16); }
+  .dev-projects { background: var(--plaster); padding-block: var(--space-16); }
+
+  .section-heading { font-size: clamp(var(--text-2xl), 2.5vw, var(--text-3xl)); color: var(--iron); margin: var(--space-3) 0 var(--space-5); }
+  .section-body { font-size: var(--text-base); color: var(--iron-60); line-height: var(--leading-relaxed); max-width: 68ch; margin: 0 0 var(--space-4); }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2px; background: var(--iron-10); margin-top: var(--space-8); }
+  .svc-card { background: var(--plaster); padding: var(--space-8); }
+  .svc-card:nth-child(odd) { background: var(--canvas); }
+  .svc-num { font-size: var(--text-2xl); color: var(--iron-10); display: block; line-height: 1; margin-bottom: var(--space-4); }
+  .svc-title { font-size: var(--text-xl); color: var(--iron); margin: 0 0 var(--space-3); line-height: var(--leading-snug); }
+  .svc-body { font-size: var(--text-sm); color: var(--iron-60); line-height: var(--leading-relaxed); margin: 0; }
+
+  .process-track { display: flex; flex-direction: column; gap: 0; margin-top: var(--space-8); }
+  .process-step { display: flex; gap: var(--space-5); align-items: flex-start; }
+  .process-marker { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; padding-top: 6px; }
+  .process-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--agency-red); flex-shrink: 0; }
+  .process-line { width: 1px; flex: 1; min-height: var(--space-12); background: var(--iron-20); margin-block: var(--space-2); }
+  .process-content { flex: 1; padding-bottom: var(--space-8); }
+  .process-step:last-child .process-content { padding-bottom: 0; }
+  .process-header { display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-2); }
+  .process-phase { font-size: var(--text-lg); color: var(--iron); margin: 0; }
+  .process-duration { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; color: var(--iron-40); }
+  .process-desc { font-size: var(--text-sm); color: var(--iron-60); line-height: var(--leading-relaxed); margin: 0; max-width: 65ch; }
+
+  .btn-iron { display: inline-block; padding: var(--space-4) var(--space-8); background: var(--iron); color: var(--canvas); font-family: var(--font-sleek); font-size: var(--text-sm); letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700; text-decoration: none; margin-top: var(--space-5); transition: opacity .15s; }
+  .btn-iron:hover { opacity: .85; }
+
+  /* Form section */
+  .dev-form-section { background: var(--iron); padding-block: var(--space-20); }
+  .form-intro { font-size: var(--text-sm); color: rgba(255,255,255,.65); line-height: var(--leading-relaxed); margin: 0 0 var(--space-8); }
+
+  .dev-form { display: flex; flex-direction: column; gap: var(--space-5); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+  .form-group { display: flex; flex-direction: column; gap: var(--space-2); }
+  .form-label { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; color: rgba(255,255,255,.65); }
+  .form-input {
+    padding: var(--space-3) var(--space-4);
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.15);
+    color: var(--canvas);
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    outline: none;
+    transition: border-color .15s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .form-input::placeholder { color: rgba(255,255,255,.3); }
+  .form-input:focus { border-color: var(--agency-red); }
+  .form-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right var(--space-4) center; padding-right: var(--space-10); cursor: pointer; }
+  .form-select option { background: var(--iron); color: var(--canvas); }
+  .form-textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    align-self: flex-start; padding: var(--space-4) var(--space-10);
+    background: var(--agency-red); color: var(--canvas);
+    font-family: var(--font-sleek); font-size: var(--text-sm); letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700;
+    border: none; cursor: pointer; transition: opacity .15s; margin-top: var(--space-3);
+  }
+  .form-submit:hover { opacity: .88; }
+  .form-fine { font-size: var(--text-xs); color: rgba(255,255,255,.3); margin: var(--space-3) 0 0; }
+</style>

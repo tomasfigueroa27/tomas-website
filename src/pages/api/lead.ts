@@ -13,6 +13,11 @@ export const POST: APIRoute = async ({ request }) => {
     const country = data.get('country')?.toString() ?? '';
     const use = data.get('use')?.toString() ?? '';
     const sourcePage = data.get('sourcePage')?.toString() ?? '';
+    // Developer qualification fields
+    const devStage = data.get('dev_stage')?.toString() ?? '';
+    const devUnits = data.get('dev_units')?.toString() ?? '';
+    const devGdv = data.get('dev_gdv')?.toString() ?? '';
+    const devLaunch = data.get('dev_launch')?.toString() ?? '';
 
     if (!name || !email) {
       return new Response(JSON.stringify({ error: 'Name and email required' }), {
@@ -45,6 +50,11 @@ export const POST: APIRoute = async ({ request }) => {
       project ? `Project: ${project}` : null,
       `Source: ${source}`,
       sourcePage ? `Source page: ${sourcePage}` : null,
+      devStage ? `\n--- Developer Qualification ---` : null,
+      devStage ? `Project stage: ${devStage}` : null,
+      devUnits ? `Approx. units: ${devUnits}` : null,
+      devGdv ? `GDV range: ${devGdv}` : null,
+      devLaunch ? `Target launch: ${devLaunch}` : null,
       message ? `\nMessage:\n${message}` : null,
     ].filter(Boolean).join('\n');
 

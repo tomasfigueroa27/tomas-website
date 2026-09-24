@@ -451,8 +451,8 @@ const BuyerPanel = () => {
 };
 
 /* ── Main export ── */
-export default function ClosingCalculator() {
-  const [role, setRole] = useState<'buyer' | 'seller'>('buyer');
+export default function ClosingCalculator({ defaultRole = 'buyer' }: { defaultRole?: 'buyer' | 'seller' }) {
+  const [role, setRole] = useState<'buyer' | 'seller'>(defaultRole);
 
   return (
     <div style={{
