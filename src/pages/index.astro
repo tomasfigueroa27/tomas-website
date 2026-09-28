@@ -29,6 +29,7 @@ const schema = [
     '@type': 'RealEstateAgent',
     name: 'The Agency – Roatán',
     url: 'https://www.tomasfigueroa.com',
+    description: 'The Agency – Roatán advises individuals and companies buying, investing, or relocating to Roatán, Bay Islands. An independently owned and operated franchisee of The Agency, led by Tomás Figueroa.',
     areaServed: {
       '@type': 'Place',
       name: 'Roatán, Bay Islands, Honduras',
@@ -37,6 +38,9 @@ const schema = [
       '@type': 'Person',
       name: 'Tomás Figueroa',
       url: 'https://www.tomasfigueroa.com/about/',
+      description: 'Tomás Figueroa relocated from Chile to Roatán in 2021. He advises individuals and companies on buying, investing, and relocating to the Bay Islands through The Agency – Roatán.',
+      knowsLanguage: ['en', 'es'],
+      image: 'https://www.tomasfigueroa.com/images/tomas-figueroa.avif',
     },
   },
   {
@@ -84,6 +88,45 @@ const schema = [
       <div class="hero-actions">
         <Button href="/properties/" variant="solid" size="lg">Explore MLS</Button>
         <Button href="/new-developments/" variant="outline" size="lg" class="btn--canvas">View Developments</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Credibility Band ── -->
+  <section class="cred-band">
+    <div class="container cred-inner">
+      <div class="cred-photo-col">
+        <img
+          src="/images/tomas-figueroa.avif"
+          alt="Tomás Figueroa on Roatán"
+          width="480"
+          height="600"
+          class="cred-photo"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="cred-copy">
+        <p class="cred-body lede">
+          I'm Tomás Figueroa. I came from Chile in 2021 with my wife and our three boys.
+          I don't just sell real estate here — I've done what you're about to do: moved a
+          family, bought a home, invested, and built a business on this island. With The
+          Agency, we advise individuals and companies buying, investing, or relocating
+          to Roatán.
+        </p>
+        <div class="cred-proof">
+          <p class="cred-proof-items">
+            <span>Top-producing team since 2024</span>
+            <span class="cred-sep" aria-hidden="true">·</span>
+            <span>60+ closings</span>
+            <span class="cred-sep" aria-hidden="true">·</span>
+            <span>USD 30M+ in volume</span>
+            <span class="cred-sep" aria-hidden="true">·</span>
+            <span>English &amp; Spanish</span>
+          </p>
+          <p class="cred-proof-source">[SOURCE]</p>
+        </div>
+        <a href="/about/" class="cred-link">More about how I work →</a>
       </div>
     </div>
   </section>
@@ -256,6 +299,96 @@ const schema = [
   :global(.btn--canvas:hover) {
     background: var(--canvas) !important;
     color: var(--iron) !important;
+  }
+
+  /* ── Credibility Band ── */
+  .cred-band {
+    padding-block: var(--space-24);
+    border-top: 1px solid var(--iron-10);
+  }
+
+  .cred-inner {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  .cred-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .cred-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    padding-top: var(--space-4);
+  }
+
+  .cred-body {
+    color: var(--iron-80);
+    max-width: 52ch;
+  }
+
+  .cred-proof {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-top: var(--space-8);
+    border-top: 2px solid var(--iron-20);
+  }
+
+  .cred-proof-items {
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: center;
+    margin: 0;
+  }
+
+  .cred-sep {
+    color: var(--iron-40);
+  }
+
+  .cred-proof-source {
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    color: var(--iron-40);
+    font-style: italic;
+    margin: 0;
+  }
+
+  .cred-link {
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    color: var(--iron);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--duration-fast);
+    align-self: flex-start;
+  }
+
+  .cred-link:hover {
+    color: var(--agency-red);
+  }
+
+  @media (max-width: 900px) {
+    .cred-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+    .cred-photo-col {
+      max-width: 320px;
+    }
   }
 
   /* ── Section shared ── */
