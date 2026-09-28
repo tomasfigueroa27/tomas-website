@@ -34,6 +34,13 @@ const schema = [
       '@type': 'Place',
       name: 'Roatán, Bay Islands, Honduras',
     },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+50488483226',
+      email: 'tomas.figueroa@theagencyre.com',
+      contactType: 'sales',
+      availableLanguage: ['English', 'Spanish'],
+    },
     agent: {
       '@type': 'Person',
       name: 'Tomás Figueroa',
@@ -64,7 +71,7 @@ const schema = [
   schema={schema}
   heroOverlap={true}
 >
-  <!-- ── Hero ── -->
+  <!-- ── 1. Hero (Iron / video) ── -->
   <section class="hero">
     <video
       class="hero-video"
@@ -92,7 +99,7 @@ const schema = [
     </div>
   </section>
 
-  <!-- ── Credibility Band ── -->
+  <!-- ── 2. About band (Canvas) ── -->
   <section class="cred-band">
     <div class="container cred-inner">
       <div class="cred-photo-col">
@@ -131,7 +138,64 @@ const schema = [
     </div>
   </section>
 
-  <!-- ── New Developments ── first section: carries the keyword H2 + answer-first para ── -->
+  <!-- ── 3. Three paths (Plaster) ── -->
+  <section class="section section--plaster paths-section">
+    <div class="container">
+      <Eyebrow text="How I Can Help" />
+      <div class="paths-grid">
+        <a href="/properties/" class="path-card">
+          <span class="path-label type-chic">Buy</span>
+          <p class="path-desc">Browse MLS listings and off-market properties with a buyer's agent who knows what doesn't make it online.</p>
+          <span class="path-cta">Browse properties →</span>
+        </a>
+        <a href="/sell-in-roatan/" class="path-card">
+          <span class="path-label type-chic">Sell</span>
+          <p class="path-desc">Priced right, marketed to the right buyers. Full-service listing from valuation to closing.</p>
+          <span class="path-cta">Sell your property →</span>
+        </a>
+        <a href="/developers/" class="path-card">
+          <span class="path-label type-chic">Develop</span>
+          <p class="path-desc">Land, entitlements, pricing strategy and sales — from concept to sellout.</p>
+          <span class="path-cta">Developer services →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4. Why Roatán (Iron) ── -->
+  <section class="section section--iron why-section">
+    <div class="container">
+      <Eyebrow text="Why Roatán" />
+      <h2 class="section-title type-chic why-heading">Easy to reach. Easy to own.</h2>
+      <div class="why-grid">
+        <div class="why-item">
+          <p class="why-number type-chic">2nd</p>
+          <p class="why-label">Largest barrier reef in the world</p>
+          <p class="why-source">NOAA / Global Coral Reef Atlas</p>
+        </div>
+        <div class="why-item">
+          <p class="why-number type-chic">6</p>
+          <p class="why-label">Nonstop gateways from the U.S. and Canada — priced in USD</p>
+          <p class="why-source">Published airline schedules, 2026</p>
+        </div>
+        <div class="why-item">
+          <p class="why-number type-chic">3,000 m²</p>
+          <p class="why-label">Titled freehold, in your own name</p>
+          <p class="why-source">Honduran Foreign Investment Law</p>
+        </div>
+        <div class="why-item">
+          <p class="why-number type-chic">English</p>
+          <p class="why-label">Spoken island-wide. Island pace, no traffic.</p>
+          <p class="why-source">Bay Islands demographics</p>
+        </div>
+      </div>
+      <div class="section-cta">
+        <Button href="/roatan-market/" variant="outline" size="md" class="btn--canvas">Roatán Market Guide</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5. New Developments (Canvas) ── -->
   <section class="section featured-devs">
     <div class="container">
       <Eyebrow text="Pre-Sale Now Open" />
@@ -165,51 +229,56 @@ const schema = [
     </div>
   </section>
 
-  <!-- ── Why Roatán ── -->
-  <section class="section section--plaster why-section">
+  <!-- ── 6. Market / Insights (Plaster) — hairline separates from Canvas above ── -->
+  <section class="section section--plaster market-section">
     <div class="container">
-      <Eyebrow text="Why Roatán" />
-      <h2 class="section-title type-chic">The Caribbean's Best-Kept Secret</h2>
-      <div class="why-grid">
-        <div class="why-item">
-          <p class="why-number type-chic">2nd</p>
-          <p class="why-label">Largest barrier reef in the world</p>
-          <p class="why-source">NOAA / Global Coral Reef Atlas</p>
-        </div>
-        <div class="why-item">
-          <p class="why-number type-chic">6</p>
-          <p class="why-label">Nonstop gateways from the U.S. and Canada — priced in USD</p>
-          <p class="why-source">Published airline schedules, 2026</p>
-        </div>
-        <div class="why-item">
-          <p class="why-number type-chic">3,000 m²</p>
-          <p class="why-label">Titled freehold, in your own name</p>
-          <p class="why-source">Honduran Foreign Investment Law</p>
-        </div>
-        <div class="why-item">
-          <p class="why-number type-chic">English</p>
-          <p class="why-label">Spoken island-wide. Island pace, no traffic.</p>
-          <p class="why-source">Bay Islands demographics</p>
-        </div>
-      </div>
-      <div class="section-cta">
-        <Button href="/roatan-market/" variant="outline" size="md">Roatán Market Guide</Button>
+      <Eyebrow text="Market Intelligence" />
+      <h2 class="section-title type-chic">Know the numbers.</h2>
+      <div class="market-guides">
+        <a href="/buy/closing-costs-roatan/" class="market-guide-item">
+          <span class="market-guide-title">Closing costs in Roatán</span>
+          <span class="market-guide-sub">Transfer tax, legal fees and what to expect at the table</span>
+          <span class="market-guide-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/guides/roatan-capital-gains-tax-zolitur/" class="market-guide-item">
+          <span class="market-guide-title">Capital gains &amp; ZOLITUR</span>
+          <span class="market-guide-sub">The 4% tax, how it is calculated, and what is exempt</span>
+          <span class="market-guide-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/roatan-market/" class="market-guide-item">
+          <span class="market-guide-title">Roatán market overview</span>
+          <span class="market-guide-sub">Prices, trends and what is moving in 2026</span>
+          <span class="market-guide-arrow" aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ── Contact Band ── -->
-  <section class="section contact-band">
-    <div class="container contact-band-inner">
-      <div class="contact-band-text">
+  <!-- ── 7. Get in Touch (Iron) ── -->
+  <section class="section section--iron contact-section">
+    <div class="container contact-inner">
+      <div class="contact-text">
         <Eyebrow text="Get in Touch" />
-        <h2 class="section-title type-chic">Let's talk before you shortlist.</h2>
-        <p class="contact-band-sub lede">
+        <h2 class="section-title contact-heading type-chic">Let's talk before you shortlist.</h2>
+        <p class="contact-sub lede">
           Tell me what you're weighing — a property, a project, or whether Roatán
           makes sense at all. Twenty minutes, no pitch.
         </p>
+        <p class="contact-response">I reply the same day, usually within a few hours (CST).</p>
       </div>
-      <div class="contact-band-actions">
+      <div class="contact-channels">
+        <a
+          href="https://wa.me/50488483226"
+          class="wa-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-event="whatsapp_click"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          WhatsApp
+        </a>
         <Button
           href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=20"
           variant="outline"
@@ -219,9 +288,10 @@ const schema = [
           rel="noopener noreferrer"
           data-event="book_call_click"
         >Book a 20-minute call</Button>
-        <a href="https://wa.me/50488483226" class="whatsapp-link" target="_blank" rel="noopener noreferrer" data-event="whatsapp_click">
-          WhatsApp
-        </a>
+        <div class="contact-tertiary">
+          <a href="mailto:tomas.figueroa@theagencyre.com" class="contact-tertiary-link">tomas.figueroa@theagencyre.com</a>
+          <a href="tel:+50488483226" class="contact-tertiary-link">+504 8848-3226</a>
+        </div>
       </div>
     </div>
   </section>
@@ -264,7 +334,6 @@ const schema = [
     gap: var(--space-5);
   }
 
-  /* Eyebrow inside hero: white text, Barlow Condensed 600, wider tracking, text-shadow */
   .hero-content :global(.eyebrow-label) {
     font-family: var(--font-sleek);
     font-size: clamp(0.8125rem, 0.75rem + 0.2vw, 0.9375rem);
@@ -274,7 +343,6 @@ const schema = [
     text-shadow: 0 1px 3px rgba(0,0,0,.45);
   }
 
-  /* Keep the "+" accent red — it's decorative, not readable text */
   .hero-content :global(.eyebrow-plus) {
     color: var(--agency-red);
   }
@@ -301,7 +369,6 @@ const schema = [
     margin-top: var(--space-4);
   }
 
-  /* Canvas outline button variant for dark bg */
   :global(.btn--canvas) {
     color: var(--canvas) !important;
     border-color: var(--canvas) !important;
@@ -311,9 +378,10 @@ const schema = [
     color: var(--iron) !important;
   }
 
-  /* ── Credibility Band ── */
+  /* ── About band (Canvas) ── */
   .cred-band {
     padding-block: var(--space-24);
+    background: var(--canvas);
     border-top: 1px solid var(--iron-10);
   }
 
@@ -365,9 +433,7 @@ const schema = [
     margin: 0;
   }
 
-  .cred-sep {
-    color: var(--iron-40);
-  }
+  .cred-sep { color: var(--iron-40); }
 
   .cred-proof-source {
     font-family: var(--font-text);
@@ -386,29 +452,22 @@ const schema = [
     transition: color var(--duration-fast);
     align-self: flex-start;
   }
-
-  .cred-link:hover {
-    color: var(--agency-red);
-  }
+  .cred-link:hover { color: var(--agency-red); }
 
   @media (max-width: 900px) {
-    .cred-inner {
-      grid-template-columns: 1fr;
-      gap: var(--space-10);
-    }
-    .cred-photo-col {
-      max-width: 320px;
-    }
+    .cred-inner { grid-template-columns: 1fr; gap: var(--space-10); }
+    .cred-photo-col { max-width: 320px; }
   }
 
   /* ── Section shared ── */
-  .section {
-    padding-block: var(--space-24);
-  }
+  .section { padding-block: var(--space-24); }
+  .section--plaster { background: var(--plaster); }
+  .section--iron { background: var(--iron); }
 
-  .section--plaster {
-    background: var(--plaster);
-  }
+  /* Iron section text defaults */
+  .section--iron .section-title { color: var(--canvas); }
+  .section--iron :global(.eyebrow-label) { color: rgba(255,255,255,.60); }
+  .section--iron :global(.eyebrow-plus) { color: var(--agency-red); }
 
   .section-title {
     font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
@@ -422,8 +481,105 @@ const schema = [
     margin-bottom: var(--space-12);
   }
 
-  .section-cta {
-    margin-top: var(--space-12);
+  .section-cta { margin-top: var(--space-12); }
+
+  /* ── Three paths — hairline separates adjacent Canvas (About) from Plaster ── */
+  .paths-section {
+    padding-block: var(--space-20);
+    border-top: var(--hairline);
+  }
+
+  .paths-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .path-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-8);
+    text-decoration: none;
+    color: inherit;
+    background: var(--canvas);
+    border-top: 3px solid var(--agency-red);
+    border-right: var(--hairline);
+    border-bottom: var(--hairline);
+    border-left: var(--hairline);
+    transition: box-shadow var(--duration-fast);
+  }
+  .path-card:hover { box-shadow: var(--shadow-md); }
+
+  .path-label {
+    font-size: var(--text-3xl);
+    color: var(--iron);
+    line-height: 1;
+  }
+
+  .path-desc {
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    line-height: var(--leading-relaxed);
+    flex: 1;
+    margin: 0;
+  }
+
+  .path-cta {
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron);
+  }
+
+  @media (max-width: 768px) {
+    .paths-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Why Roatán (Iron) ── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
+  }
+
+  @media (max-width: 1023px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 479px)  { .why-grid { grid-template-columns: 1fr; } }
+
+  .why-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-top: var(--space-6);
+    border-top: 1px solid rgba(255,255,255,.15);
+  }
+
+  .why-number {
+    font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
+    line-height: 1;
+    color: var(--canvas);
+  }
+
+  .why-label {
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--plaster);
+    max-width: 22ch;
+    line-height: 1.35;
+  }
+
+  .why-source {
+    margin-top: auto;
+    padding-top: var(--space-4);
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    color: rgba(255,255,255,.50);
+    font-style: italic;
   }
 
   /* ── Dev cards ── */
@@ -441,7 +597,6 @@ const schema = [
     border: var(--hairline);
     transition: border-color var(--duration-fast);
   }
-
   .dev-card:hover { border-color: var(--iron); }
 
   .dev-card-image {
@@ -462,20 +617,9 @@ const schema = [
     flex: 1;
   }
 
-  .dev-card-area {
-    font-size: var(--text-xs);
-    color: var(--agency-red);
-  }
-
-  .dev-card-title {
-    font-size: var(--text-2xl);
-    line-height: 1.2;
-  }
-
-  .dev-card-location {
-    font-size: var(--text-sm);
-    color: var(--iron-60);
-  }
+  .dev-card-area { font-size: var(--text-xs); color: var(--agency-red); }
+  .dev-card-title { font-size: var(--text-2xl); line-height: 1.2; }
+  .dev-card-location { font-size: var(--text-sm); color: var(--iron-60); }
 
   .dev-card-price {
     margin-top: var(--space-4);
@@ -486,103 +630,136 @@ const schema = [
     font-weight: 700;
   }
 
-  /* ── Why Roatán ── */
-  .why-grid {
+  /* ── Market / Insights ── hairline separates Canvas above from Plaster ── */
+  .market-section { border-top: var(--hairline); }
+
+  .market-guides {
+    margin-top: var(--space-8);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .market-guide-item {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-8);
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: var(--space-6);
+    padding-block: var(--space-6);
+    border-bottom: var(--hairline);
+    text-decoration: none;
+    color: inherit;
+    transition: background var(--duration-fast);
+  }
+  .market-guide-item:first-child { border-top: var(--hairline); }
+  .market-guide-item:hover { background: var(--canvas); padding-inline: var(--space-4); margin-inline: calc(-1 * var(--space-4)); }
+
+  .market-guide-title {
+    font-family: var(--font-chic);
+    font-size: var(--text-xl);
+    color: var(--iron);
   }
 
-  @media (max-width: 1023px) {
-    .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .market-guide-sub {
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    color: var(--iron-60);
   }
 
-  @media (max-width: 479px) {
-    .why-grid { grid-template-columns: 1fr; }
+  .market-guide-arrow {
+    font-family: var(--font-text);
+    font-size: var(--text-lg);
+    color: var(--iron-40);
+    transition: color var(--duration-fast), transform var(--duration-fast);
+    display: inline-block;
+  }
+  .market-guide-item:hover .market-guide-arrow { color: var(--iron); transform: translateX(4px); }
+
+  @media (max-width: 640px) {
+    .market-guide-item { grid-template-columns: 1fr auto; }
+    .market-guide-sub { display: none; }
   }
 
-  .why-item {
+  /* ── Get in Touch (Iron) ── */
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  .contact-heading { color: var(--canvas); margin-bottom: var(--space-4); }
+
+  .contact-sub {
+    color: rgba(255,255,255,.70);
+    max-width: 42ch;
+  }
+
+  .contact-response {
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    color: rgba(255,255,255,.55);
+    font-style: italic;
+    margin-top: var(--space-4);
+  }
+
+  .contact-channels {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding-top: var(--space-12);
+  }
+
+  /* Primary: WhatsApp — canvas fill, iron text, full-width */
+  .wa-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: 1rem 2rem;
+    background: var(--canvas);
+    color: var(--iron);
+    font-family: var(--font-text);
+    font-weight: 700;
+    font-size: var(--text-base);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--canvas);
+    transition: background var(--duration-fast), color var(--duration-fast), border-color var(--duration-fast);
+  }
+  .wa-btn:hover {
+    background: transparent;
+    color: var(--canvas);
+  }
+
+  /* Tertiary: plain text links — rgba(255,255,255,.55) → 6.27:1 on Iron ✓ */
+  .contact-tertiary {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
     padding-top: var(--space-6);
-    border-top: 2px solid var(--iron-20);
+    border-top: 1px solid rgba(255,255,255,.10);
   }
 
-  .why-number {
-    font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
-    line-height: 1;
-    color: var(--iron);
-  }
-
-  .why-label {
-    font-family: var(--font-sleek);
-    font-size: var(--text-sm);
-    letter-spacing: var(--tracking-sleek);
-    text-transform: uppercase;
-    color: var(--iron);
-    max-width: 22ch;
-    line-height: 1.35;
-  }
-
-  .why-source {
-    margin-top: auto;
-    padding-top: var(--space-4);
-    font-family: var(--font-text);
-    font-size: var(--text-xs);
-    color: var(--iron-40);
-    font-style: italic;
-  }
-
-  /* ── Contact band ── */
-  .contact-band {
-    background: var(--iron);
-  }
-
-  .contact-band-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-12);
-    flex-wrap: wrap;
-  }
-
-  .contact-band :global(.eyebrow-label),
-  .contact-band :global(.eyebrow-plus) {
-    color: rgba(255,255,255,.6);
-  }
-
-  .contact-band .section-title {
-    color: var(--canvas);
-    margin-bottom: var(--space-4);
-  }
-
-  .contact-band-sub {
-    color: rgba(255,255,255,.7);
-    max-width: 45ch;
-  }
-
-  .contact-band-actions {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-    align-items: flex-start;
-    flex-shrink: 0;
-  }
-
-  .whatsapp-link {
+  .contact-tertiary-link {
     font-family: var(--font-text);
     font-size: var(--text-sm);
-    color: rgba(255,255,255,.7);
+    color: rgba(255,255,255,.55);
     text-decoration: underline;
     text-underline-offset: 3px;
     transition: color var(--duration-fast);
   }
-  .whatsapp-link:hover { color: var(--canvas); }
+  .contact-tertiary-link:hover { color: var(--canvas); }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .contact-inner { grid-template-columns: 1fr; }
+    .contact-channels { padding-top: 0; }
+    .wa-btn { width: 100%; }
+  }
 
   @media (max-width: 768px) {
     .hero { padding-bottom: var(--space-16); }
     .hero-actions { flex-direction: column; }
-    .contact-band-inner { flex-direction: column; }
   }
 </style>
