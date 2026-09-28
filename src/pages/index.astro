@@ -252,7 +252,7 @@ const schema = [
   .hero-scrim {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.55), transparent 60%);
+    background: linear-gradient(to top, rgba(0,0,0,.6) 0%, rgba(0,0,0,.15) 45%, rgba(0,0,0,.35) 100%);
     z-index: 1;
   }
 
@@ -262,6 +262,21 @@ const schema = [
     display: flex;
     flex-direction: column;
     gap: var(--space-5);
+  }
+
+  /* Eyebrow inside hero: white text, Barlow Condensed 600, wider tracking, text-shadow */
+  .hero-content :global(.eyebrow-label) {
+    font-family: var(--font-sleek);
+    font-size: clamp(0.8125rem, 0.75rem + 0.2vw, 0.9375rem);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--canvas);
+    text-shadow: 0 1px 3px rgba(0,0,0,.45);
+  }
+
+  /* Keep the "+" accent red — it's decorative, not readable text */
+  .hero-content :global(.eyebrow-plus) {
+    color: var(--agency-red);
   }
 
   .hero-title {
