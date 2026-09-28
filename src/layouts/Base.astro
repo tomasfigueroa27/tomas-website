@@ -14,7 +14,7 @@ export interface Props {
   ogImage?: string;
   noindex?: boolean;
   schema?: object | object[];
-  headerVariant?: 'overlay' | 'solid';
+  heroOverlap?: boolean;
 }
 
 const {
@@ -24,7 +24,7 @@ const {
   ogImage,
   noindex = false,
   schema,
-  headerVariant = 'solid',
+  heroOverlap = false,
 } = Astro.props;
 
 // SITE_MODE guard — staging forces noindex on every page
@@ -59,9 +59,9 @@ const forceNoindex = isStaging || noindex;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
   </head>
   <body>
-    <Header variant={headerVariant} />
+    <Header />
     <main id="main-content">
-      {headerVariant !== 'overlay' && <div style={`height: var(--nav-height)`} aria-hidden="true"></div>}
+      {!heroOverlap && <div style={`height: var(--nav-height)`} aria-hidden="true"></div>}
       <slot />
     </main>
     <Footer />

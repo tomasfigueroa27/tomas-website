@@ -46,22 +46,19 @@ const schema = {
   </section>
 
   <section class="props-idx">
-    <div class="container">
-      <h2 class="idx-heading type-chic">Search All Properties</h2>
-      <p class="idx-sub">Browse all available properties in Roatán directly from the MLS. Use the search tools below to filter by price, location, and more.</p>
-      <div class="idx-frame-wrap">
-        <iframe
-          src="https://omni.mlsmatrix.com/Matrix/public/IDX.aspx?idx=99e3178"
-          width="100%"
-          height="100%"
-          frameborder="0"
-          marginwidth="0"
-          marginheight="0"
-          title="Roatán MLS Listings"
-          class="idx-frame"
-          loading="lazy"
-        ></iframe>
-      </div>
+    <!-- Full-bleed: NOT inside .container — breaks out of prose width -->
+    <div class="idx-outer">
+      <iframe
+        src="https://omni.mlsmatrix.com/Matrix/public/IDX.aspx?idx=99e3178"
+        width="100%"
+        frameborder="0"
+        marginwidth="0"
+        marginheight="0"
+        title="Roatán MLS Listings"
+        id="idx-frame"
+        class="idx-frame"
+        loading="lazy"
+      ></iframe>
     </div>
   </section>
 
@@ -92,21 +89,21 @@ const schema = {
     color: var(--iron);
     margin: 0 0 var(--space-5);
   }
-  .props-idx { padding-block: var(--space-10) var(--space-16); }
-  .idx-heading {
-    font-size: clamp(var(--text-2xl), 2.5vw, var(--text-3xl));
-    color: var(--iron);
-    margin: 0 0 var(--space-3);
-    text-align: center;
-  }
-  .idx-sub {
-    font-size: var(--text-sm);
-    color: var(--iron-60);
-    text-align: center;
-    margin: 0 0 var(--space-8);
-    max-width: 52ch;
+  .props-idx { padding-block: var(--space-10) 0; }
+
+  /* Full-bleed wrapper: max 1600px, gutter padding, NOT .container */
+  .idx-outer {
+    width: 100%;
+    max-width: 1600px;
     margin-inline: auto;
+    padding-inline: var(--gutter);
   }
-  .idx-frame-wrap { width: 100%; }
-  .idx-frame { display: block; width: 100%; border: none; }
+
+  .idx-frame {
+    display: block;
+    width: 100%;
+    border: none;
+    /* Grows with viewport; 700px floor keeps it usable on small screens */
+    min-height: max(700px, calc(100svh - var(--nav-height)));
+  }
 </style>

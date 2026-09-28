@@ -1,9 +1,4 @@
 ---
-export interface Props {
-  variant?: 'overlay' | 'solid';
-}
-const { variant = 'solid' } = Astro.props;
-
 const currentPath = Astro.url.pathname;
 
 const nav = [
@@ -65,21 +60,13 @@ const isGroupActive = (item: typeof nav[number]) => {
 };
 ---
 
-<header class="site-header" id="site-header" data-variant={variant}>
+<header class="site-header" id="site-header">
   <div class="header-inner container">
-    <!-- Logo: white for overlay, dark (red) for solid -->
     <a href="/" class="header-logo" aria-label="The Agency Roatán – Home">
       <img
         src="/logos/TA_Logotype_Wht.png"
         alt="The Agency Roatán"
-        class="logo-img logo-white"
-        width="120"
-        height="48"
-      />
-      <img
-        src="/logos/TA_Logotype_Red.png"
-        alt="The Agency Roatán"
-        class="logo-img logo-dark"
+        class="logo-img"
         width="120"
         height="48"
       />
@@ -197,12 +184,10 @@ const isGroupActive = (item: typeof nav[number]) => {
 </header>
 
 <script>
-  const header = document.getElementById('site-header') as HTMLElement;
   const hamburger = document.querySelector('.hamburger') as HTMLButtonElement;
   const mobileNav = document.getElementById('mobile-nav');
-  const variant = header?.dataset.variant ?? 'solid';
 
-  // ── Mobile drawer toggle ──
+  // Mobile drawer toggle
   if (hamburger && mobileNav) {
     hamburger.addEventListener('click', () => {
       const open = hamburger.getAttribute('aria-expanded') === 'true';
@@ -217,93 +202,55 @@ const isGroupActive = (item: typeof nav[number]) => {
     });
   }
 
-  // ── Close desktop dropdowns on Escape ──
+  // Close desktop dropdowns on Escape
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      (document.activeElement as HTMLElement)?.blur();
-    }
+    if (e.key === 'Escape') (document.activeElement as HTMLElement)?.blur();
   });
 
-  // ── Close dropdown when clicking outside nav ──
+  // Close dropdown when clicking outside nav
   document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    if (!target.closest('.site-header')) {
+    if (!(e.target as HTMLElement).closest('.site-header')) {
       (document.activeElement as HTMLElement)?.blur();
     }
   });
 
-  // ── Scroll behaviour ──
+  // Hide header on scroll down past 300px; show on scroll up
+  const header = document.getElementById('site-header') as HTMLElement;
   let lastY = 0;
   let ticking = false;
-
   function updateHeader() {
     const y = window.scrollY;
-
-    if (variant === 'overlay') {
-      // Overlay: switch to solid treatment once scrolled past 80px
-      header.classList.toggle('is-solid', y > 80);
-    }
-
-    // Hide on scroll down past 300px, show on scroll up
     if (y > 300) {
       header.classList.toggle('header-hidden', y > lastY);
     } else {
       header.classList.remove('header-hidden');
     }
-
     lastY = y;
     ticking = false;
   }
-
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(updateHeader);
-      ticking = true;
-    }
+    if (!ticking) { requestAnimationFrame(updateHeader); ticking = true; }
   }, { passive: true });
 
-  // ── WhatsApp GA4 tracking ──
+  // WhatsApp GA4 tracking
   document.querySelectorAll('[data-event="whatsapp_click"]').forEach(el => {
     el.addEventListener('click', () => {
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'whatsapp_click', { event_category: 'engagement' });
-      }
+      if (typeof gtag !== 'undefined') gtag('event', 'whatsapp_click', { event_category: 'engagement' });
     });
   });
 </script>
 
 <style>
-  /* ── Header shell ── */
+  /* ── Shell — always Agency Red ── */
   .site-header {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: var(--z-nav);
     height: var(--nav-height);
-    transition:
-      background var(--duration-base) ease,
-      border-color var(--duration-base) ease,
-      transform var(--duration-base) ease;
+    background: var(--agency-red);
+    transition: transform var(--duration-base) ease;
   }
-
   .site-header.header-hidden { transform: translateY(-100%); }
-
-  /* ── Solid variant (default) ── */
-  [data-variant="solid"] {
-    background: var(--canvas);
-    border-bottom: var(--hairline);
-  }
-
-  /* ── Overlay variant — transparent until scrolled ── */
-  [data-variant="overlay"] {
-    background: transparent;
-    border-bottom: 1px solid transparent;
-  }
-
-  /* Overlay scrolled past threshold → solid treatment */
-  [data-variant="overlay"].is-solid {
-    background: var(--canvas);
-    border-bottom: var(--hairline);
-  }
 
   .header-inner {
     display: flex;
@@ -315,13 +262,6 @@ const isGroupActive = (item: typeof nav[number]) => {
   /* ── Logo ── */
   .header-logo { flex-shrink: 0; display: flex; align-items: center; text-decoration: none; }
   .logo-img { display: block; height: 84px; width: auto; object-fit: contain; }
-
-  /* White logo: visible on overlay (unscrolled), hidden otherwise */
-  .logo-white { display: none; }
-  .logo-dark  { display: block; }
-
-  [data-variant="overlay"]:not(.is-solid) .logo-white { display: block; }
-  [data-variant="overlay"]:not(.is-solid) .logo-dark  { display: none; }
 
   /* ── Desktop nav ── */
   .header-nav { flex: 1; display: none; }
@@ -335,60 +275,38 @@ const isGroupActive = (item: typeof nav[number]) => {
     list-style: none;
   }
 
-  /* ── Nav item & dropdown wrapper ── */
   .nav-item { position: relative; }
 
+  /* Barlow Condensed 600 16px — passes contrast at large/bold per WCAG */
   .nav-link {
     display: inline-flex;
     align-items: center;
     gap: 4px;
     padding: var(--space-2) var(--space-3);
-    font-family: var(--font-text);
-    font-size: var(--text-xs);
+    font-family: var(--font-sleek);
+    font-size: var(--text-base); /* 16px min */
+    font-weight: 600;
     letter-spacing: var(--tracking-sleek);
     text-transform: uppercase;
+    color: rgba(255,255,255,.85);
     text-decoration: none;
     white-space: nowrap;
     transition: color var(--duration-fast);
   }
+  .nav-link:hover,
+  .nav-link--active { color: var(--canvas); }
+  .nav-link--active { font-weight: 700; }
   .nav-link:focus-visible {
-    outline: 2px solid currentColor;
+    outline: 2px solid rgba(255,255,255,.80);
     outline-offset: 2px;
     border-radius: 2px;
   }
 
-  /* Solid: iron text */
-  [data-variant="solid"] .nav-link,
-  [data-variant="overlay"].is-solid .nav-link {
-    color: rgba(0,0,0,.60);
-  }
-  [data-variant="solid"] .nav-link:hover,
-  [data-variant="solid"] .nav-link--active,
-  [data-variant="overlay"].is-solid .nav-link:hover,
-  [data-variant="overlay"].is-solid .nav-link--active {
-    color: var(--iron);
-  }
-
-  /* Overlay unscrolled: canvas text */
-  [data-variant="overlay"]:not(.is-solid) .nav-link {
-    color: rgba(255,255,255,.80);
-  }
-  [data-variant="overlay"]:not(.is-solid) .nav-link:hover,
-  [data-variant="overlay"]:not(.is-solid) .nav-link--active {
-    color: var(--canvas);
-  }
-
-  .nav-link--active { font-weight: 700; }
-
-  .nav-chevron {
-    transition: transform var(--duration-fast);
-    opacity: .6;
-    flex-shrink: 0;
-  }
+  .nav-chevron { transition: transform var(--duration-fast); opacity: .7; flex-shrink: 0; }
   .nav-item--has-dropdown:hover .nav-chevron,
   .nav-item--has-dropdown:focus-within .nav-chevron { transform: rotate(180deg); opacity: 1; }
 
-  /* ── Dropdown panel — always iron, always solid ── */
+  /* ── Dropdown — Canvas bg, Iron text (own solid bg) ── */
   .nav-dropdown {
     display: none;
     position: absolute;
@@ -396,70 +314,59 @@ const isGroupActive = (item: typeof nav[number]) => {
     left: 50%;
     transform: translateX(-50%);
     min-width: 220px;
-    background: var(--iron);
+    background: var(--canvas);
     border-top: 2px solid var(--agency-red);
     padding: var(--space-3) 0;
     z-index: calc(var(--z-nav) + 1);
     box-shadow: var(--shadow-md);
   }
-
   .nav-item--has-dropdown:hover .nav-dropdown,
   .nav-item--has-dropdown:focus-within .nav-dropdown { display: block; }
 
   .nav-dropdown-link {
     display: block;
     padding: var(--space-2) var(--space-5);
-    font-family: var(--font-text);
-    font-size: var(--text-xs);
-    letter-spacing: .04em;
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: var(--tracking-sleek);
     text-transform: uppercase;
-    color: rgba(255,255,255,.65);
+    color: rgba(0,0,0,.70);
     text-decoration: none;
     white-space: nowrap;
     transition: color var(--duration-fast), background var(--duration-fast);
   }
   .nav-dropdown-link:hover,
-  .nav-dropdown-link--active { color: var(--canvas); background: rgba(255,255,255,.06); }
+  .nav-dropdown-link--active { color: var(--iron); background: var(--plaster); }
+  .nav-dropdown-link--active { font-weight: 700; }
   .nav-dropdown-link:focus-visible {
-    outline: 2px solid rgba(255,255,255,.60);
+    outline: 2px solid var(--agency-red);
     outline-offset: -2px;
   }
 
-  /* ── CTA button in nav ── */
+  /* ── CTA in nav ── */
   .nav-item--cta { margin-left: var(--space-3); }
   .nav-cta {
     display: inline-block;
     padding: var(--space-2) var(--space-5);
+    background: var(--canvas);
+    color: var(--agency-red);
     font-family: var(--font-sleek);
-    font-size: var(--text-xs);
+    font-size: var(--text-base);
+    font-weight: 700;
     letter-spacing: var(--tracking-sleek);
     text-transform: uppercase;
-    font-weight: 700;
     text-decoration: none;
     transition: opacity var(--duration-fast);
     white-space: nowrap;
   }
+  .nav-cta:hover { opacity: .88; }
   .nav-cta:focus-visible {
-    outline: 2px solid currentColor;
+    outline: 2px solid rgba(255,255,255,.80);
     outline-offset: 3px;
   }
 
-  /* Solid / scrolled overlay: iron button, canvas text */
-  [data-variant="solid"] .nav-cta,
-  [data-variant="overlay"].is-solid .nav-cta {
-    background: var(--iron);
-    color: var(--canvas);
-  }
-
-  /* Overlay unscrolled: canvas button, iron text */
-  [data-variant="overlay"]:not(.is-solid) .nav-cta {
-    background: var(--canvas);
-    color: var(--iron);
-  }
-
-  .nav-cta:hover { opacity: .85; }
-
-  /* ── Hamburger ── */
+  /* ── Hamburger — always white on red ── */
   .hamburger {
     display: flex;
     flex-direction: column;
@@ -472,40 +379,23 @@ const isGroupActive = (item: typeof nav[number]) => {
     margin-left: auto;
     flex-shrink: 0;
   }
+  @media (min-width: 1024px) { .hamburger { display: none; } }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--canvas); }
   .hamburger:focus-visible {
-    outline: 2px solid currentColor;
+    outline: 2px solid rgba(255,255,255,.80);
     outline-offset: 4px;
     border-radius: 2px;
   }
-  @media (min-width: 1024px) { .hamburger { display: none; } }
 
-  .hamburger span {
-    display: block;
-    width: 24px;
-    height: 1.5px;
-    transition: background var(--duration-base) ease;
-  }
-
-  /* Solid / scrolled overlay: iron bars */
-  [data-variant="solid"] .hamburger span,
-  [data-variant="overlay"].is-solid .hamburger span {
-    background: var(--iron);
-  }
-
-  /* Overlay unscrolled: canvas bars */
-  [data-variant="overlay"]:not(.is-solid) .hamburger span {
-    background: var(--canvas);
-  }
-
-  /* ── Mobile drawer — always iron/red, independent of header variant ── */
+  /* ── Mobile drawer — Agency Red bg, continuous with header ── */
   .mobile-nav {
     position: fixed;
     top: var(--nav-height);
     left: 0; right: 0;
-    background: var(--iron);
+    background: var(--agency-red);
     padding: var(--space-6) var(--gutter) var(--space-10);
     z-index: var(--z-nav);
-    border-top: 2px solid var(--agency-red);
+    border-top: 1px solid rgba(255,255,255,.20);
     max-height: calc(100dvh - var(--nav-height));
     overflow-y: auto;
   }
@@ -514,11 +404,12 @@ const isGroupActive = (item: typeof nav[number]) => {
 
   .mobile-nav-link {
     display: block;
-    font-family: var(--font-text);
+    font-family: var(--font-sleek);
     font-size: var(--text-lg);
+    font-weight: 600;
     letter-spacing: var(--tracking-sleek);
     text-transform: uppercase;
-    color: rgba(255,255,255,.85);
+    color: rgba(255,255,255,.90);
     text-decoration: none;
     transition: color var(--duration-fast);
   }
@@ -527,37 +418,43 @@ const isGroupActive = (item: typeof nav[number]) => {
   .mobile-nav-link--active { font-weight: 700; }
   .mobile-nav-link:focus-visible { outline: 2px solid rgba(255,255,255,.70); outline-offset: 2px; }
 
-  .mobile-details { border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: var(--space-3); }
+  .mobile-details { border-bottom: 1px solid rgba(255,255,255,.15); padding-bottom: var(--space-3); }
   .mobile-details[open] .mobile-chevron { transform: rotate(180deg); }
-
   .mobile-summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    list-style: none;
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer; list-style: none;
   }
   .mobile-summary::-webkit-details-marker { display: none; }
-
-  .mobile-chevron { opacity: .6; color: var(--canvas); transition: transform var(--duration-fast); }
+  .mobile-chevron { opacity: .7; color: var(--canvas); transition: transform var(--duration-fast); }
 
   .mobile-sub { list-style: none; padding-left: var(--space-4); margin-top: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
-  .mobile-sub-link { font-family: var(--font-text); font-size: var(--text-base); color: rgba(255,255,255,.65); text-decoration: none; }
+  .mobile-sub-link {
+    font-family: var(--font-sleek);
+    font-size: var(--text-base);
+    font-weight: 500;
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: rgba(255,255,255,.75);
+    text-decoration: none;
+  }
   .mobile-sub-link:hover,
   .mobile-sub-link--active { color: var(--canvas); }
 
-  .mobile-item--actions { display: flex; flex-direction: column; gap: var(--space-3); padding-top: var(--space-4); border-top: 1px solid rgba(255,255,255,.15); margin-top: var(--space-3); }
+  .mobile-item--actions {
+    display: flex; flex-direction: column; gap: var(--space-3);
+    padding-top: var(--space-4); border-top: 1px solid rgba(255,255,255,.20); margin-top: var(--space-3);
+  }
   .mobile-cta {
-    display: block; text-align: center;
-    padding: var(--space-4);
-    background: var(--agency-red); color: var(--canvas);
-    font-family: var(--font-sleek); font-size: var(--text-sm); letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700;
+    display: block; text-align: center; padding: var(--space-4);
+    background: var(--canvas); color: var(--agency-red);
+    font-family: var(--font-sleek); font-size: var(--text-sm);
+    font-weight: 700; letter-spacing: var(--tracking-sleek); text-transform: uppercase;
     text-decoration: none;
   }
   .mobile-whatsapp {
     display: block; text-align: center;
-    font-family: var(--font-text); font-size: var(--text-base);
-    letter-spacing: var(--tracking-sleek); text-transform: uppercase;
-    color: rgba(255,255,255,.80); font-weight: 700; text-decoration: none;
+    font-family: var(--font-sleek); font-size: var(--text-base);
+    font-weight: 600; letter-spacing: var(--tracking-sleek); text-transform: uppercase;
+    color: rgba(255,255,255,.90); text-decoration: none;
   }
 </style>
