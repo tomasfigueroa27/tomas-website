@@ -1,10 +1,11 @@
 ---
+export interface Props {
+  variant?: 'overlay' | 'solid';
+}
+const { variant = 'solid' } = Astro.props;
+
 const currentPath = Astro.url.pathname;
 
-/**
- * Nav structure — every group parent links to its hub; every destination in exactly one group.
- * Groups and destinations map directly to §3 of the SEO/AEO/GEO roadmap URL architecture.
- */
 const nav = [
   {
     label: 'Buy',
@@ -64,14 +65,21 @@ const isGroupActive = (item: typeof nav[number]) => {
 };
 ---
 
-<header class="site-header" id="site-header">
+<header class="site-header" id="site-header" data-variant={variant}>
   <div class="header-inner container">
-    <!-- Logo -->
+    <!-- Logo: white for overlay, dark (red) for solid -->
     <a href="/" class="header-logo" aria-label="The Agency Roatán – Home">
       <img
         src="/logos/TA_Logotype_Wht.png"
         alt="The Agency Roatán"
-        class="logo-img"
+        class="logo-img logo-white"
+        width="120"
+        height="48"
+      />
+      <img
+        src="/logos/TA_Logotype_Red.png"
+        alt="The Agency Roatán"
+        class="logo-img logo-dark"
         width="120"
         height="48"
       />
@@ -192,6 +200,7 @@ const isGroupActive = (item: typeof nav[number]) => {
   const header = document.getElementById('site-header') as HTMLElement;
   const hamburger = document.querySelector('.hamburger') as HTMLButtonElement;
   const mobileNav = document.getElementById('mobile-nav');
+  const variant = header?.dataset.variant ?? 'solid';
 
   // ── Mobile drawer toggle ──
   if (hamburger && mobileNav) {
@@ -200,7 +209,6 @@ const isGroupActive = (item: typeof nav[number]) => {
       hamburger.setAttribute('aria-expanded', String(!open));
       mobileNav.hidden = open;
     });
-    // Close drawer when a link inside is clicked
     mobileNav.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         hamburger.setAttribute('aria-expanded', 'false');
@@ -220,23 +228,29 @@ const isGroupActive = (item: typeof nav[number]) => {
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
     if (!target.closest('.site-header')) {
-      // Blur active element to collapse :focus-within dropdowns
       (document.activeElement as HTMLElement)?.blur();
     }
   });
 
-  // ── Scroll behavior: transparent → red → hide on down, show on up ──
+  // ── Scroll behaviour ──
   let lastY = 0;
   let ticking = false;
 
   function updateHeader() {
     const y = window.scrollY;
-    header.classList.toggle('scrolled', y > 60);
+
+    if (variant === 'overlay') {
+      // Overlay: switch to solid treatment once scrolled past 80px
+      header.classList.toggle('is-solid', y > 80);
+    }
+
+    // Hide on scroll down past 300px, show on scroll up
     if (y > 300) {
       header.classList.toggle('header-hidden', y > lastY);
     } else {
       header.classList.remove('header-hidden');
     }
+
     lastY = y;
     ticking = false;
   }
@@ -265,11 +279,31 @@ const isGroupActive = (item: typeof nav[number]) => {
     top: 0; left: 0; right: 0;
     z-index: var(--z-nav);
     height: var(--nav-height);
-    background: transparent;
-    transition: background var(--duration-base) ease, transform var(--duration-base) ease;
+    transition:
+      background var(--duration-base) ease,
+      border-color var(--duration-base) ease,
+      transform var(--duration-base) ease;
   }
-  .site-header.scrolled { background: var(--agency-red); }
+
   .site-header.header-hidden { transform: translateY(-100%); }
+
+  /* ── Solid variant (default) ── */
+  [data-variant="solid"] {
+    background: var(--canvas);
+    border-bottom: var(--hairline);
+  }
+
+  /* ── Overlay variant — transparent until scrolled ── */
+  [data-variant="overlay"] {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+  }
+
+  /* Overlay scrolled past threshold → solid treatment */
+  [data-variant="overlay"].is-solid {
+    background: var(--canvas);
+    border-bottom: var(--hairline);
+  }
 
   .header-inner {
     display: flex;
@@ -281,6 +315,13 @@ const isGroupActive = (item: typeof nav[number]) => {
   /* ── Logo ── */
   .header-logo { flex-shrink: 0; display: flex; align-items: center; text-decoration: none; }
   .logo-img { display: block; height: 84px; width: auto; object-fit: contain; }
+
+  /* White logo: visible on overlay (unscrolled), hidden otherwise */
+  .logo-white { display: none; }
+  .logo-dark  { display: block; }
+
+  [data-variant="overlay"]:not(.is-solid) .logo-white { display: block; }
+  [data-variant="overlay"]:not(.is-solid) .logo-dark  { display: none; }
 
   /* ── Desktop nav ── */
   .header-nav { flex: 1; display: none; }
@@ -306,13 +347,37 @@ const isGroupActive = (item: typeof nav[number]) => {
     font-size: var(--text-xs);
     letter-spacing: var(--tracking-sleek);
     text-transform: uppercase;
-    color: rgba(255,255,255,.80);
-    transition: color var(--duration-fast);
-    white-space: nowrap;
     text-decoration: none;
+    white-space: nowrap;
+    transition: color var(--duration-fast);
   }
-  .nav-link:hover,
-  .nav-link--active { color: var(--canvas); }
+  .nav-link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Solid: iron text */
+  [data-variant="solid"] .nav-link,
+  [data-variant="overlay"].is-solid .nav-link {
+    color: rgba(0,0,0,.60);
+  }
+  [data-variant="solid"] .nav-link:hover,
+  [data-variant="solid"] .nav-link--active,
+  [data-variant="overlay"].is-solid .nav-link:hover,
+  [data-variant="overlay"].is-solid .nav-link--active {
+    color: var(--iron);
+  }
+
+  /* Overlay unscrolled: canvas text */
+  [data-variant="overlay"]:not(.is-solid) .nav-link {
+    color: rgba(255,255,255,.80);
+  }
+  [data-variant="overlay"]:not(.is-solid) .nav-link:hover,
+  [data-variant="overlay"]:not(.is-solid) .nav-link--active {
+    color: var(--canvas);
+  }
+
   .nav-link--active { font-weight: 700; }
 
   .nav-chevron {
@@ -323,7 +388,7 @@ const isGroupActive = (item: typeof nav[number]) => {
   .nav-item--has-dropdown:hover .nav-chevron,
   .nav-item--has-dropdown:focus-within .nav-chevron { transform: rotate(180deg); opacity: 1; }
 
-  /* ── Dropdown panel ── */
+  /* ── Dropdown panel — always iron, always solid ── */
   .nav-dropdown {
     display: none;
     position: absolute;
@@ -355,14 +420,16 @@ const isGroupActive = (item: typeof nav[number]) => {
   }
   .nav-dropdown-link:hover,
   .nav-dropdown-link--active { color: var(--canvas); background: rgba(255,255,255,.06); }
+  .nav-dropdown-link:focus-visible {
+    outline: 2px solid rgba(255,255,255,.60);
+    outline-offset: -2px;
+  }
 
   /* ── CTA button in nav ── */
   .nav-item--cta { margin-left: var(--space-3); }
   .nav-cta {
     display: inline-block;
     padding: var(--space-2) var(--space-5);
-    background: var(--canvas);
-    color: var(--iron);
     font-family: var(--font-sleek);
     font-size: var(--text-xs);
     letter-spacing: var(--tracking-sleek);
@@ -372,7 +439,25 @@ const isGroupActive = (item: typeof nav[number]) => {
     transition: opacity var(--duration-fast);
     white-space: nowrap;
   }
-  .nav-cta:hover { opacity: .88; }
+  .nav-cta:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  /* Solid / scrolled overlay: iron button, canvas text */
+  [data-variant="solid"] .nav-cta,
+  [data-variant="overlay"].is-solid .nav-cta {
+    background: var(--iron);
+    color: var(--canvas);
+  }
+
+  /* Overlay unscrolled: canvas button, iron text */
+  [data-variant="overlay"]:not(.is-solid) .nav-cta {
+    background: var(--canvas);
+    color: var(--iron);
+  }
+
+  .nav-cta:hover { opacity: .85; }
 
   /* ── Hamburger ── */
   .hamburger {
@@ -387,18 +472,40 @@ const isGroupActive = (item: typeof nav[number]) => {
     margin-left: auto;
     flex-shrink: 0;
   }
+  .hamburger:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
   @media (min-width: 1024px) { .hamburger { display: none; } }
-  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--canvas); transition: background var(--duration-fast); }
 
-  /* ── Mobile drawer ── */
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    transition: background var(--duration-base) ease;
+  }
+
+  /* Solid / scrolled overlay: iron bars */
+  [data-variant="solid"] .hamburger span,
+  [data-variant="overlay"].is-solid .hamburger span {
+    background: var(--iron);
+  }
+
+  /* Overlay unscrolled: canvas bars */
+  [data-variant="overlay"]:not(.is-solid) .hamburger span {
+    background: var(--canvas);
+  }
+
+  /* ── Mobile drawer — always iron/red, independent of header variant ── */
   .mobile-nav {
     position: fixed;
     top: var(--nav-height);
     left: 0; right: 0;
-    background: var(--agency-red);
+    background: var(--iron);
     padding: var(--space-6) var(--gutter) var(--space-10);
     z-index: var(--z-nav);
-    border-top: 1px solid rgba(255,255,255,.15);
+    border-top: 2px solid var(--agency-red);
     max-height: calc(100dvh - var(--nav-height));
     overflow-y: auto;
   }
@@ -418,8 +525,8 @@ const isGroupActive = (item: typeof nav[number]) => {
   .mobile-nav-link:hover,
   .mobile-nav-link--active { color: var(--canvas); }
   .mobile-nav-link--active { font-weight: 700; }
+  .mobile-nav-link:focus-visible { outline: 2px solid rgba(255,255,255,.70); outline-offset: 2px; }
 
-  /* Mobile expandable groups */
   .mobile-details { border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: var(--space-3); }
   .mobile-details[open] .mobile-chevron { transform: rotate(180deg); }
 
@@ -432,7 +539,7 @@ const isGroupActive = (item: typeof nav[number]) => {
   }
   .mobile-summary::-webkit-details-marker { display: none; }
 
-  .mobile-chevron { opacity: .6; transition: transform var(--duration-fast); }
+  .mobile-chevron { opacity: .6; color: var(--canvas); transition: transform var(--duration-fast); }
 
   .mobile-sub { list-style: none; padding-left: var(--space-4); margin-top: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
   .mobile-sub-link { font-family: var(--font-text); font-size: var(--text-base); color: rgba(255,255,255,.65); text-decoration: none; }
@@ -443,7 +550,7 @@ const isGroupActive = (item: typeof nav[number]) => {
   .mobile-cta {
     display: block; text-align: center;
     padding: var(--space-4);
-    background: var(--canvas); color: var(--agency-red);
+    background: var(--agency-red); color: var(--canvas);
     font-family: var(--font-sleek); font-size: var(--text-sm); letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700;
     text-decoration: none;
   }
@@ -451,6 +558,6 @@ const isGroupActive = (item: typeof nav[number]) => {
     display: block; text-align: center;
     font-family: var(--font-text); font-size: var(--text-base);
     letter-spacing: var(--tracking-sleek); text-transform: uppercase;
-    color: var(--canvas); font-weight: 700; text-decoration: none;
+    color: rgba(255,255,255,.80); font-weight: 700; text-decoration: none;
   }
 </style>
