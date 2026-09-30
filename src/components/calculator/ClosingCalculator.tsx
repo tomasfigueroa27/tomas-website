@@ -45,19 +45,28 @@ const MoneyInput = ({ label, value, onChange, hint }: {
       <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: IRON40 }}>$</span>
       <input
         type="text"
+        inputMode="numeric"
         value={value}
         onChange={(e) => {
-          const raw = e.target.value.replace(/[^0-9.]/g, '');
-          onChange(raw ? Number(raw).toLocaleString('en-US', { maximumFractionDigits: 0 }) : '');
+          // Strip everything except digits while typing — no comma insertion mid-input
+          // so the cursor never jumps and the field stays responsive.
+          onChange(e.target.value.replace(/[^0-9]/g, ''));
         }}
+        onBlur={(e) => {
+          // Format with commas only after the user leaves the field.
+          const n = parseFloat(e.currentTarget.value.replace(/[^0-9]/g, ''));
+          if (!isNaN(n) && n > 0) {
+            onChange(n.toLocaleString('en-US', { maximumFractionDigits: 0 }));
+          }
+          e.currentTarget.style.borderColor = IRON20;
+        }}
+        onFocus={(e) => (e.currentTarget.style.borderColor = RED)}
         placeholder="0"
         style={{
           width: '100%', paddingLeft: 28, paddingRight: 12, paddingTop: 10, paddingBottom: 10,
           border: `1px solid ${IRON20}`, fontSize: 14, outline: 'none', boxSizing: 'border-box',
-          fontFamily: 'inherit', color: IRON,
+          fontFamily: 'inherit', color: IRON, background: CANVAS,
         }}
-        onFocus={(e) => (e.currentTarget.style.borderColor = RED)}
-        onBlur={(e) => (e.currentTarget.style.borderColor = IRON20)}
       />
     </div>
   </div>
@@ -380,19 +389,25 @@ const BuyerPanel = () => {
                     <span style={{ position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)', color: IRON40, fontSize: 13 }}>$</span>
                     <input
                       type="text"
+                      inputMode="numeric"
                       value={row.fullAmount}
                       onChange={(e) => {
-                        const raw = e.target.value.replace(/[^0-9.]/g, '');
-                        updateRow(row.id, 'fullAmount', raw ? Number(raw).toLocaleString('en-US', { maximumFractionDigits: 0 }) : '');
+                        updateRow(row.id, 'fullAmount', e.target.value.replace(/[^0-9]/g, ''));
+                      }}
+                      onBlur={(e) => {
+                        const n = parseFloat(e.currentTarget.value.replace(/[^0-9]/g, ''));
+                        if (!isNaN(n) && n > 0) {
+                          updateRow(row.id, 'fullAmount', n.toLocaleString('en-US', { maximumFractionDigits: 0 }));
+                        }
+                        e.currentTarget.style.borderColor = IRON20;
                       }}
                       placeholder="0"
                       style={{
                         width: '100%', paddingLeft: 22, paddingRight: 8, paddingTop: 7, paddingBottom: 7,
                         border: `1px solid ${IRON20}`, fontSize: 13, outline: 'none',
-                        boxSizing: 'border-box', fontFamily: 'inherit', color: IRON,
+                        boxSizing: 'border-box', fontFamily: 'inherit', color: IRON, background: CANVAS,
                       }}
                       onFocus={(e) => (e.currentTarget.style.borderColor = RED)}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = IRON20)}
                     />
                   </div>
                   <button
