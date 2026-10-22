@@ -1,0 +1,92 @@
+---
+import Base from '../../layouts/Base.astro';
+import Eyebrow from '../../components/brand/Eyebrow.astro';
+import ClosingCalculator from '../../components/calculator/ClosingCalculator';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tomasfigueroa.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Closing Cost Calculator', item: 'https://www.tomasfigueroa.com/calculator/' },
+  ],
+};
+---
+
+<Base
+  title="Roatán Closing Cost Calculator | The Agency Roatán"
+  description="Estimate your total closing costs before making an offer on Roatán property. Calculate transfer tax, attorney fees, and registration costs for direct or corporate share purchases."
+  canonicalUrl="https://www.tomasfigueroa.com/calculator/"
+  schema={schema}
+>
+
+  <section class="calc-hero">
+    <div class="container" style="text-align:center">
+      <Eyebrow text="Free Tool" />
+      <h1 class="calc-title type-chic">Closing Cost Calculator</h1>
+      <p class="calc-sub">Estimate your total closing costs for a Roatán property purchase in seconds.</p>
+    </div>
+  </section>
+
+  <section class="calc-explainer">
+    <div class="container" style="max-width:800px">
+      <h2 class="exp-heading type-chic">What This Calculator Does</h2>
+      <div class="prose">
+        <p>Buying property in Roatán involves more than just the listing price. Closing costs in Honduras are real and need to be factored into your budget before you make an offer — not after.</p>
+        <p>This calculator estimates your total acquisition cost based on purchase price, purchase structure (asset vs. corporation), legal fees, transfer taxes, and prorated items like HOA dues or property taxes. It covers both buyer and seller cost scenarios.</p>
+        <p>Key costs to know before you run the numbers:</p>
+        <ul>
+          <li><strong>Transfer tax:</strong> 3% of the purchase price (applies to asset purchases)</li>
+          <li><strong>Legal fees:</strong> Typically 2–3% of the purchase price, paid to your Honduran attorney</li>
+          <li><strong>Corporation setup:</strong> If buying through a new Honduran entity, expect an additional $700–$1,500</li>
+          <li><strong>Property taxes in Roatán:</strong> Very low — generally 0.3–0.5% of assessed value annually</li>
+        </ul>
+        <p>Local bank financing is not available for foreign buyers. Most transactions are cash or home-country financed, so knowing your full out-of-pocket number matters from day one.</p>
+        <p class="calc-disclaimer">These are estimates. Always confirm exact costs with a licensed Honduran attorney before closing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="calc-widget">
+    <div class="container">
+      <ClosingCalculator client:load />
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .calc-hero {
+    background: var(--iron);
+    color: var(--canvas);
+    padding-block: var(--space-16);
+  }
+  .calc-title {
+    font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
+    color: var(--canvas);
+    margin: var(--space-3) 0 var(--space-4);
+  }
+  .calc-sub {
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,.65);
+    line-height: var(--leading-relaxed);
+    max-width: 40ch;
+    margin-inline: auto;
+    margin-bottom: 0;
+  }
+  .calc-explainer {
+    padding-block: var(--space-14) var(--space-10);
+  }
+  .exp-heading {
+    font-size: clamp(var(--text-2xl), 2.5vw, var(--text-3xl));
+    color: var(--iron);
+    margin: 0 0 var(--space-6);
+  }
+  .calc-disclaimer {
+    font-style: italic;
+    color: var(--iron-40) !important;
+  }
+  .calc-widget {
+    padding-block: 0 var(--space-16);
+  }
+</style>

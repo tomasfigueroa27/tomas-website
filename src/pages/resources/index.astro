@@ -1,0 +1,187 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Eyebrow from '../../components/brand/Eyebrow.astro';
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3);
+
+const fmt = (iso: string | Date) =>
+  new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+const CATEGORY_ACCENT: Record<string, string> = {
+  'Buying Guide': '#000000',
+  'Market Report': '#000000',
+  'Travel Guide': '#000000',
+  'About Roatán': '#000000',
+};
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tomasfigueroa.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://www.tomasfigueroa.com/resources/' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Roatán Real Estate Resources',
+    description: 'Guides, tools, and market data for buying property in Roatán, Honduras.',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, item: { '@type': 'WebPage', name: "U.S. Buyer's Guide to Roatán Real Estate", url: 'https://www.tomasfigueroa.com/us-buyers-guide-roatan/', description: 'Legal ownership, buying process, due diligence, rentals, and pre-construction basics for American buyers.' } },
+      { '@type': 'ListItem', position: 2, item: { '@type': 'WebPage', name: 'Where to Buy in Roatán', url: 'https://www.tomasfigueroa.com/where-to-buy-in-roatan/', description: 'Comparison of five lifestyle nodes in Roatán: West Bay, West End, Sandy Bay, Pristine Bay, and French Harbour.' } },
+      { '@type': 'ListItem', position: 3, item: { '@type': 'WebPage', name: 'New Developments in Roatán', url: 'https://www.tomasfigueroa.com/new-developments/', description: 'Active and upcoming real estate projects in Roatán with project evaluation criteria.' } },
+      { '@type': 'ListItem', position: 4, item: { '@type': 'WebPage', name: 'Roatán Market Guide 2026', url: 'https://www.tomasfigueroa.com/roatan-market/', description: 'Pricing benchmarks, rental yields, and investment fundamentals for the Roatán market.' } },
+      { '@type': 'ListItem', position: 5, item: { '@type': 'WebPage', name: 'Roatán Closing Cost Calculator', url: 'https://www.tomasfigueroa.com/calculator/', description: 'Estimate transfer tax, attorney fees, and registration costs for a Roatán property purchase.' } },
+    ],
+  },
+];
+
+const startHere = [
+  { num: '01', title: "U.S. Buyer's Guide to Roatán", desc: 'Legal ownership, buying process, due diligence, rentals, and pre-construction basics — written for American buyers.', cta: 'Read the Guide', href: '/us-buyers-guide-roatan/' },
+  { num: '02', title: 'Where to Buy in Roatán', desc: 'Five lifestyle nodes compared: West Bay, West End, Sandy Bay, Pristine Bay, and French Harbour & East.', cta: 'Explore the Map', href: '/where-to-buy-in-roatan/' },
+  { num: '03', title: 'New Developments', desc: 'Active and upcoming projects with criteria for evaluating developer track records and pre-construction risk.', cta: 'Browse Projects', href: '/new-developments/' },
+  { num: '04', title: 'Get the Investor Briefing', desc: 'PDF overview of the Roatán investment thesis — market structure, pricing, rental logic, and entry points.', cta: 'Contact Tomas', href: '/contact/' },
+];
+
+const secondary = [
+  { href: '/roatan-market/', title: 'Market Guide 2026', desc: 'Pricing benchmarks, rental yields, and investment fundamentals.' },
+  { href: '/blog/', title: 'Blog', desc: 'Market reports, buyer guides, and neighborhood analysis.' },
+  { href: '/neighborhoods/', title: 'Neighborhood Profiles', desc: 'Deep-dives on every major area of the island.' },
+  { href: '/calculator/', title: 'Closing Calculator', desc: 'Model your total acquisition cost before you make an offer.' },
+  { href: '/faq/', title: 'FAQ', desc: 'Answers to the most common buyer questions about Roatán.' },
+];
+---
+
+<Base
+  title="Roatán Real Estate Resources | The Agency Roatán"
+  description="Buyer's guides, market data, neighborhood profiles, closing calculator, and blog — everything you need to make a confident decision about Roatán, Honduras real estate."
+  canonicalUrl="https://www.tomasfigueroa.com/resources/"
+  schema={schema}
+>
+
+  <!-- Hero -->
+  <section class="res-hero">
+    <div class="container" style="max-width:800px">
+      <Eyebrow text="Resources" />
+      <h1 class="res-title type-chic">Everything you need to buy in Roatán.</h1>
+      <p class="res-sub">Guides, market data, neighborhood profiles, and tools — built for buyers who want to understand the market before they commit.</p>
+    </div>
+  </section>
+
+  <!-- Start Here -->
+  <section class="start-section">
+    <div class="container" style="max-width:1100px">
+      <Eyebrow text="Start Here" />
+      <div class="start-grid">
+        {startHere.map(card => (
+          <a href={card.href} class="start-card">
+            <span class="start-num type-chic">{card.num}</span>
+            <h2 class="start-card-title type-chic">{card.title}</h2>
+            <p class="start-card-desc">{card.desc}</p>
+            <span class="start-card-cta">{card.cta} →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- All Resources -->
+  <section class="all-resources">
+    <div class="container" style="max-width:1100px">
+      <Eyebrow text="All Resources" />
+      <div class="secondary-grid">
+        {secondary.map(r => (
+          <a href={r.href} class="secondary-card">
+            <div>
+              <h3 class="secondary-title type-chic">{r.title}</h3>
+              <p class="secondary-desc">{r.desc}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest from Blog -->
+  {sortedPosts.length > 0 && (
+    <section class="blog-section">
+      <div class="container" style="max-width:1100px">
+        <div class="blog-header">
+          <span class="blog-eyebrow">+ LATEST FROM THE BLOG</span>
+          <a href="/blog/" class="all-articles">All articles →</a>
+        </div>
+        <div class="blog-grid">
+          {sortedPosts.map(post => {
+            const accent = CATEGORY_ACCENT[post.data.category] ?? 'var(--iron)';
+            return (
+              <a href={`/blog/${post.data.slug}/`} class="blog-card" style={`border-top-color: ${accent}`}>
+                <div class="blog-card-inner">
+                  <div class="blog-meta">
+                    <span class="blog-cat" style={`color: ${accent}`}>{post.data.category}</span>
+                    <span class="blog-date">{fmt(post.data.date)}</span>
+                  </div>
+                  <h3 class="blog-card-title type-chic">{post.data.title}</h3>
+                  <p class="blog-excerpt">{post.data.excerpt}</p>
+                  <span class="blog-read">Read →</span>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
+</Base>
+
+<style>
+  .res-hero { background: var(--iron); padding-block: var(--space-16) var(--space-13); }
+  .res-title { font-size: clamp(var(--text-3xl), 3.5vw, var(--text-5xl)); color: var(--canvas); margin: var(--space-3) 0 var(--space-4); }
+  .res-sub { font-size: var(--text-sm); color: rgba(255,255,255,.6); line-height: var(--leading-relaxed); max-width: 66ch; margin: 0; }
+
+  .start-section { background: var(--canvas); padding-block: var(--space-15) var(--space-14); }
+  .start-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2px; background: var(--plaster); margin-top: var(--space-5); }
+  .start-card {
+    display: flex; flex-direction: column; padding: var(--space-9) var(--space-10);
+    background: var(--canvas); text-decoration: none;
+    transition: background .15s;
+  }
+  .start-card:hover { background: var(--plaster); }
+  .start-num { font-size: clamp(var(--text-3xl), 3vw, var(--text-4xl)); color: var(--iron-10); line-height: 1; display: block; margin-bottom: var(--space-4); }
+  .start-card-title { font-size: clamp(var(--text-xl), 1.8vw, var(--text-2xl)); color: var(--iron); margin: 0 0 var(--space-3); line-height: var(--leading-snug); }
+  .start-card-desc { font-size: var(--text-sm); color: var(--iron-60); line-height: var(--leading-relaxed); margin: 0 0 var(--space-6); flex: 1; }
+  .start-card-cta { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; color: var(--iron); }
+
+  .all-resources { background: var(--plaster); padding-block: var(--space-13) var(--space-15); }
+  .secondary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-4); margin-top: var(--space-5); }
+  .secondary-card {
+    display: flex; align-items: flex-start; gap: var(--space-4);
+    padding: var(--space-5) var(--space-5); background: var(--canvas);
+    text-decoration: none; transition: box-shadow .15s;
+  }
+  .secondary-card:hover { box-shadow: 0 0 0 1px var(--iron); }
+  .secondary-title { font-size: var(--text-base); color: var(--iron); margin: 0 0 var(--space-2); line-height: var(--leading-snug); }
+  .secondary-desc { font-size: var(--text-xs); color: var(--iron-60); line-height: var(--leading-relaxed); margin: 0; }
+
+  .blog-section { background: var(--canvas); padding-block: var(--space-15) var(--space-20); }
+  .blog-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: var(--space-8); flex-wrap: wrap; gap: var(--space-3); }
+  .blog-eyebrow { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); color: var(--iron-40); }
+  .all-articles { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; color: var(--iron-40); text-decoration: none; }
+  .all-articles:hover { color: var(--iron); }
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-5); }
+  .blog-card { display: block; text-decoration: none; border-top: 2px solid var(--iron); background: var(--plaster); transition: box-shadow .15s; }
+  .blog-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+  .blog-card-inner { padding: var(--space-5) var(--space-5) var(--space-6); }
+  .blog-meta { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); }
+  .blog-cat { font-family: var(--font-sleek); font-size: 9px; letter-spacing: .13em; text-transform: uppercase; font-weight: 700; }
+  .blog-date { font-size: var(--text-xs); color: var(--iron-20); }
+  .blog-card-title { font-size: var(--text-base); color: var(--iron); margin: 0 0 var(--space-2); line-height: var(--leading-snug); }
+  .blog-excerpt { font-size: var(--text-xs); color: var(--iron-60); line-height: var(--leading-relaxed); margin: 0 0 var(--space-4); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .blog-read { font-family: var(--font-sleek); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--iron); }
+</style>

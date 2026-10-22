@@ -1,0 +1,59 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  canonicalUrl: string;
+  ogImage?: string;
+  noindex?: boolean;
+  schema?: object | object[];
+}
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  ogImage = '/og-default.jpg',
+  noindex = false,
+  schema,
+} = Astro.props;
+
+const siteMode = import.meta.env.SITE_MODE ?? 'production';
+const isStaging = siteMode === 'staging';
+
+// Normalise schema to an array
+const schemas = schema
+  ? Array.isArray(schema) ? schema : [schema]
+  : [];
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+
+{/* Canonical */}
+<link rel="canonical" href={canonicalUrl} />
+
+{/* Noindex — always on in staging */}
+{(noindex || isStaging) && (
+  <meta name="robots" content="noindex, nofollow" />
+)}
+
+{/* Open Graph */}
+{!isStaging && (
+  <>
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tomas Figueroa – The Agency Roatán" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+  </>
+)}
+
+{/* JSON-LD */}
+{schemas.map((s) => (
+  <script type="application/ld+json" set:html={JSON.stringify(s)} />
+))}

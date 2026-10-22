@@ -1,0 +1,256 @@
+---
+import Base from '../../layouts/Base.astro';
+import Eyebrow from '../../components/brand/Eyebrow.astro';
+
+const themes = [
+  {
+    id: 'ownership-legal',
+    title: 'Foreign Ownership & Legal',
+    faqs: [
+      { q: 'Can foreigners buy property in Roatán?', a: "Yes. Foreigners can own property in Honduras and hold title directly in their own name. In general, an individual foreign buyer can purchase up to 3,000 square meters (approximately 0.74 acres) in their personal name. For larger parcels or more complex holdings, a Honduran legal structure may be used, depending on the buyer's goals and legal advice." },
+      { q: 'Do I need a lawyer to buy property in Honduras?', a: 'Yes — a licensed Honduran attorney is essential for any real estate transaction. Your attorney will conduct the title search, draft and review legal documents, represent you at closing, and register the title transfer with the Public Property Registry. Attempting to purchase without proper legal representation in Honduras carries significant risk.' },
+      { q: 'Is title insurance available in Honduras?', a: 'Title insurance is available in Honduras but is not as widely used as in the United States. The primary protection comes from a thorough title search conducted by your Honduran attorney, who will verify that the property has clean title and no encumbrances, liens, or competing claims before the purchase is completed.' },
+      { q: 'What taxes apply to property owners in Roatan?', a: 'Property owners in Roatan pay annual municipal property taxes (impuesto sobre bienes inmuebles), which are generally very low compared to North American standards. A transfer tax applies at the time of purchase. Foreign owners are also subject to Honduran income tax on any rental income generated in Honduras, though rates and obligations vary by situation.' },
+    ],
+  },
+  {
+    id: 'buying-process',
+    title: 'The Buying Process',
+    faqs: [
+      { q: 'What is the process for buying property in Roatán?', a: 'The process starts with working with a knowledgeable realtor, followed by submitting an offer. Once accepted, a 10% earnest money deposit is typically wired within 7 business days to escrow. Your attorney then conducts due diligence, and closing usually takes place around 30 days later with the deed executed before a Honduran notary.' },
+      { q: 'How long does the buying process take in Roatan?', a: 'A typical Roatan property transaction takes 90–180 days from signed agreement to completed title transfer. The process includes a title search by a licensed Honduran attorney, due diligence period, deposit payment, and final closing before a notary.' },
+      { q: 'What fees should I expect when buying property in Roatan?', a: 'Closing costs are typically 3–6%, depending on whether the purchase is structured as a direct transfer or a corporate share transfer. This generally includes taxes, legal fees, and registration costs, while agent commissions are paid by the seller.' },
+    ],
+  },
+  {
+    id: 'financing',
+    title: 'Financing',
+    faqs: [
+      { q: 'Can I get financing for a new development in Roatán?', a: 'Financing for foreigners is more limited than in other markets, but options are growing. Some developments offer payment plans (typically 30–50% down, with balances spread over 3–5 years), while traditional bank financing in Honduras is generally not available.' },
+      { q: 'What is the process for purchasing a pre-construction property?', a: 'Pre-construction purchases typically begin with a reservation deposit to lock in pricing, followed by a purchase agreement and a construction draw schedule. A Honduran attorney should review all documents before you commit. Title is transferred after construction is completed and the property is registered. It is critical to work with reputable developers and have legal representation throughout the process.' },
+    ],
+  },
+  {
+    id: 'investment-market',
+    title: 'Investment & Market',
+    faqs: [
+      { q: 'Is Roatán a good real estate investment?', a: 'It depends on your goals. Roatán can deliver strong returns for vacation rentals, steady appreciation over time, or lifestyle value — but the outcome comes down to buying the right property in the right location.' },
+      { q: 'What types of properties are available in Roatán?', a: 'Roatán offers a broad range of properties — from simple island homes in secluded locations to beachfront condos, hillside homes, luxury villas, gated communities, private cays, pre-construction opportunities, and properties with stunning ocean views.' },
+      { q: 'What is the typical price range for new developments in Roatan?', a: 'New development prices in Roatan vary widely by location and project type. Entry-level units in emerging areas can start around $150,000–$200,000, while luxury units in established communities like Pristine Bay or premium West Bay projects can reach $1 million or more. Pre-construction pricing typically offers a discount relative to completed units.' },
+      { q: 'What new developments are currently available in Roatan?', a: 'Roatan has several active new development projects across different price points and locations — from luxury resort-style communities on the west end to emerging residential projects further east. The development landscape changes frequently. Contact Tomas directly for an up-to-date overview of what is available and coming to market.' },
+    ],
+  },
+  {
+    id: 'neighborhoods',
+    title: 'Neighborhoods',
+    faqs: [
+      { q: 'What areas of Roatán have the best new developments?', a: "The west side of the island continues to have the highest concentration of new developments, as it's where demand is strongest. That said, we're now seeing new projects expanding across the entire island, all the way to the East End, offering a wider range of opportunities depending on your goals." },
+      { q: 'Which Roatan neighborhood is best for vacation rental investment?', a: 'West Bay Beach consistently delivers the highest short-term rental yields on Roatan, driven by its world-class beach and proximity to the cruise port. West End is a strong second for budget-conscious travelers. For premium long-term appreciation, Pristine Bay is the top pick.' },
+      { q: 'What is the most affordable neighborhood in Roatan?', a: 'Coxen Hole and French Harbour offer the most affordable real estate on the island, with condos starting under $100,000 and homes below $200,000 in some cases. These neighborhoods are popular with buyers who prioritize value and local character over beachfront luxury.' },
+      { q: 'Which neighborhood in Roatan is best for expat living?', a: 'West End is widely regarded as the most expat-friendly neighborhood on Roatan. It has a walkable village atmosphere, a well-established community of foreign residents, numerous restaurants and dive shops, and relatively affordable real estate compared to West Bay Beach.' },
+      { q: 'Are there gated communities in Roatan?', a: 'Yes — Pristine Bay Resort is the premier master-planned gated community on the island, offering resort-style amenities, 18-hole golf, and branded residences. Sandy Bay and other areas also have smaller gated or managed residential developments with security and shared facilities.' },
+      { q: 'Can I find beachfront property in Roatan under $300,000?', a: 'Beachfront properties in Roatan range from around $150,000 for smaller condos in developing areas to several million for luxury oceanfront villas. Entry-level beachfront condos in West End or Sandy Bay can occasionally be found under $300,000, though inventory is limited. West Bay Beach beachfront typically starts above that threshold.' },
+    ],
+  },
+  {
+    id: 'getting-started',
+    title: 'Getting Started with Tomás',
+    faqs: [
+      { q: 'How do I get started with Tomás Figueroa?', a: 'The best first step is a 20-minute strategy call. Tomás will listen to your goals, walk you through current market conditions, and explain how to approach finding the right property in Roatán.' },
+    ],
+  },
+];
+
+const allFaqs = themes.flatMap(t => t.faqs);
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: allFaqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: { '@type': 'Answer', text: faq.a },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tomasfigueroa.com/' },
+      { '@type': 'ListItem', position: 2, name: 'FAQ', item: 'https://www.tomasfigueroa.com/faq/' },
+    ],
+  },
+];
+---
+
+<Base
+  title="Roatán Real Estate FAQ | The Agency Roatán"
+  description="Answers to the most common questions about buying, investing, and living in Roatán, Honduras — foreign ownership, the buying process, closing costs, financing, and neighborhood selection."
+  canonicalUrl="https://www.tomasfigueroa.com/faq/"
+  schema={schema}
+>
+
+  <section class="faq-hero">
+    <div class="container">
+      <Eyebrow text="Frequently Asked Questions" />
+      <h1 class="faq-title type-chic">Roatán Real Estate FAQ</h1>
+      <p class="faq-meta">Last reviewed: May 2026 · Roatán Real Estate FAQ</p>
+      <p class="faq-intro">Common questions about buying, investing, and living in Roatán — organized by topic.</p>
+    </div>
+  </section>
+
+  <!-- Quick answers -->
+  <section class="quick-answers">
+    <div class="container" style="max-width:900px">
+      <Eyebrow text="Quick Answers" />
+      <div class="quick-grid">
+        {[
+          { q: 'Can foreigners own property in Roatán?', a: 'Yes. Foreigners can own property directly in Roatán. Individual buyers can hold up to 3,000 m² in their personal name. Larger parcels are held through a Honduran corporation — which a foreigner can fully control.' },
+          { q: 'What do buyers pay at closing?', a: 'Buyer closing costs run 3–6% of the purchase price: transfer tax (1.5%), cadastral certificate (1–2%), registry fees (~0.5%), and legal fees (2–3%). Agent commissions are paid by the seller.' },
+          { q: 'How long does the purchase take?', a: 'Typically 30–60 days from signed offer to closing. Full title registration at the Public Property Registry takes an additional 3–4 months after the deed is executed.' },
+        ].map(qa => (
+          <div class="quick-card">
+            <p class="quick-eyebrow">Quick Answer</p>
+            <p class="quick-q">{qa.q}</p>
+            <p class="quick-a">{qa.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Topic nav -->
+  <nav class="topic-nav" aria-label="FAQ topics">
+    <div class="container">
+      <div class="topic-links">
+        {themes.map(t => (
+          <a href={`#${t.id}`} class="topic-link">{t.title}</a>
+        ))}
+      </div>
+    </div>
+  </nav>
+
+  <!-- FAQ sections -->
+  <section class="faq-body">
+    <div class="container" style="max-width:760px">
+      {themes.map(theme => (
+        <div id={theme.id} class="faq-group">
+          <h2 class="faq-group-title type-chic">{theme.title}</h2>
+          <div class="accordion">
+            {theme.faqs.map(faq => (
+              <details class="accordion-item">
+                <summary class="accordion-q">{faq.q}</summary>
+                <div class="accordion-a">{faq.a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Related guides -->
+  <section class="related-guides">
+    <div class="container" style="max-width:900px">
+      <Eyebrow text="Go Deeper" />
+      <div class="guide-grid">
+        {[
+          { href: '/us-buyers-guide-roatan/', label: 'For U.S. Buyers', title: "U.S. Buyer's Guide", cta: 'Read the guide →' },
+          { href: '/where-to-buy-in-roatan/', label: 'Location', title: 'Where to Buy in Roatán', cta: 'Explore the map →' },
+          { href: '/roatan-market/', label: 'Market Data', title: 'Market Guide 2026', cta: 'View market data →' },
+          { href: '/neighborhoods/', label: 'Neighborhoods', title: 'Neighborhood Profiles', cta: 'Compare areas →' },
+        ].map(g => (
+          <a href={g.href} class="guide-card">
+            <span class="guide-label">{g.label}</span>
+            <p class="guide-title type-chic">{g.title}</p>
+            <span class="guide-cta">{g.cta}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="faq-cta">
+    <div class="container" style="max-width:760px">
+      <div class="cta-box">
+        <h2 class="cta-heading type-chic">Still have questions?</h2>
+        <p class="cta-sub">Schedule a free 30-minute call with Tomás and get straight answers for your specific situation.</p>
+        <a href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30" target="_blank" rel="noopener noreferrer" class="btn-red">Schedule a Strategy Call</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  /* ── Hero ── */
+  .faq-hero { background: var(--iron); color: var(--canvas); padding-block: var(--space-16); }
+  .faq-title { font-size: clamp(var(--text-4xl), 4vw, var(--text-5xl)); color: var(--canvas); margin: var(--space-3) 0 0; }
+  .faq-meta { font-size: var(--text-xs); color: rgba(255,255,255,.4); font-style: italic; margin: var(--space-2) 0 var(--space-3); }
+  .faq-intro { font-size: var(--text-sm); color: rgba(255,255,255,.65); line-height: var(--leading-relaxed); max-width: 56ch; margin: 0; }
+
+  /* ── Quick answers ── */
+  .quick-answers { background: var(--plaster); padding-block: var(--space-10); border-bottom: var(--hairline); }
+  .quick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4); margin-top: var(--space-5); }
+  .quick-card { background: var(--canvas); border-left: 3px solid var(--iron-20); padding: var(--space-5) var(--space-5); }
+  .quick-eyebrow { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; color: var(--iron-40); margin: 0 0 var(--space-2); }
+  .quick-q { font-family: var(--font-chic); font-size: var(--text-sm); color: var(--iron); margin: 0 0 var(--space-2); line-height: var(--leading-snug); }
+  .quick-a { font-size: var(--text-sm); color: var(--iron-60); line-height: var(--leading-relaxed); margin: 0; }
+
+  /* ── Topic nav ── */
+  .topic-nav { border-bottom: var(--hairline); background: var(--canvas); position: sticky; top: 0; z-index: 10; }
+  .topic-links { display: flex; gap: var(--space-6); overflow-x: auto; padding-block: var(--space-4); }
+  .topic-link {
+    white-space: nowrap; font-family: var(--font-sleek); font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek); text-transform: uppercase;
+    color: var(--iron-40); text-decoration: none; flex-shrink: 0;
+    transition: color .15s;
+  }
+  .topic-link:hover { color: var(--iron); }
+
+  /* ── FAQ body ── */
+  .faq-body { padding-block: var(--space-12) var(--space-12); }
+  .faq-group { margin-bottom: var(--space-12); }
+  .faq-group-title { font-size: clamp(var(--text-2xl), 3vw, var(--text-3xl)); color: var(--iron); margin: 0 0 var(--space-5); }
+
+  /* Accordion via <details> */
+  .accordion { display: flex; flex-direction: column; gap: var(--space-2); }
+  .accordion-item { border: var(--hairline); overflow: hidden; }
+  .accordion-q {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--space-5) var(--space-6); cursor: pointer; list-style: none;
+    font-family: var(--font-text); font-size: var(--text-sm); font-weight: 700;
+    color: var(--iron); background: var(--canvas);
+    transition: background .15s;
+  }
+  .accordion-q:hover { background: var(--plaster); }
+  .accordion-q::after { content: '+'; font-size: var(--text-lg); font-weight: 300; color: var(--iron-40); flex-shrink: 0; }
+  details[open] .accordion-q::after { content: '−'; }
+  details[open] .accordion-q { background: var(--plaster); }
+  .accordion-a { padding: var(--space-4) var(--space-6); background: var(--plaster); font-size: var(--text-sm); color: var(--iron-60); line-height: var(--leading-relaxed); border-top: var(--hairline); }
+
+  /* ── Related guides ── */
+  .related-guides { background: var(--plaster); padding-block: var(--space-13); }
+  .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-3); margin-top: var(--space-5); }
+  .guide-card { display: flex; flex-direction: column; background: var(--canvas); padding: var(--space-5) var(--space-5); text-decoration: none; transition: border-color .15s; border: var(--hairline); }
+  .guide-card:hover { border-color: var(--iron); }
+  .guide-label { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; color: var(--iron-40); display: block; margin-bottom: var(--space-2); }
+  .guide-title { font-size: var(--text-base); color: var(--iron); margin: 0 0 var(--space-3); line-height: var(--leading-snug); flex: 1; }
+  .guide-cta { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; color: var(--iron); }
+
+  /* ── CTA ── */
+  .faq-cta { padding-block: var(--space-6) var(--space-16); }
+  .cta-box { background: var(--iron); padding: var(--space-10) var(--space-8); text-align: center; }
+  .cta-heading { font-size: clamp(var(--text-2xl), 3vw, var(--text-3xl)); color: var(--canvas); margin: 0 0 var(--space-3); }
+  .cta-sub { font-size: var(--text-sm); color: rgba(255,255,255,.65); line-height: var(--leading-relaxed); margin: 0 0 var(--space-6); }
+  .btn-red {
+    display: inline-block; padding: var(--space-4) var(--space-8);
+    background: var(--agency-red); color: var(--canvas);
+    font-family: var(--font-sleek); font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700;
+    text-decoration: none; transition: opacity .15s;
+  }
+  .btn-red:hover { opacity: .88; }
+</style>

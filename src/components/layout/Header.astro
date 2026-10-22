@@ -1,0 +1,509 @@
+---
+const currentPath = Astro.url.pathname;
+const isHomepage = currentPath === '/';
+
+const nav = [
+  {
+    label: 'Buy',
+    href: '/properties/',
+    children: [
+      { label: 'Properties',        href: '/properties/' },
+      { label: 'Neighborhoods',     href: '/neighborhoods/' },
+      { label: 'Where to Buy',      href: '/where-to-buy-in-roatan/' },
+      { label: "U.S. Buyer's Guide", href: '/us-buyers-guide-roatan/' },
+      { label: 'Calculator',        href: '/calculator/' },
+      { label: 'FAQ',               href: '/faq/' },
+    ],
+  },
+  {
+    label: 'Sell',
+    href: '/sell-in-roatan/',
+    children: [
+      { label: 'Seller Guide & Net Proceeds', href: '/sell-in-roatan/' },
+      { label: 'Capital Gains Tax',           href: '/guides/roatan-capital-gains-tax-zolitur/' },
+      { label: 'Closing Costs Guide',         href: '/buy/closing-costs-roatan/' },
+    ],
+  },
+  {
+    label: 'New Developments',
+    href: '/new-developments/',
+  },
+  {
+    label: 'Developers',
+    href: '/developers/',
+  },
+  {
+    label: 'Market',
+    href: '/roatan-market/',
+    children: [
+      { label: 'Market Guide 2026', href: '/roatan-market/' },
+      { label: 'Blog',             href: '/blog/' },
+      { label: 'Guides',           href: '/guides/' },
+      { label: 'Resources',        href: '/resources/' },
+    ],
+  },
+  {
+    label: 'About',
+    href: '/about/',
+    children: [
+      { label: 'About Tomas', href: '/about/' },
+      { label: 'Contact',     href: '/contact/' },
+    ],
+  },
+];
+
+const isGroupActive = (item: typeof nav[number]) => {
+  if (currentPath === item.href) return true;
+  if (item.children) {
+    return item.children.some(c => currentPath.startsWith(c.href));
+  }
+  return currentPath.startsWith(item.href);
+};
+---
+
+<header
+  class:list={['site-header', { 'header--solid': !isHomepage }]}
+  id="site-header"
+  data-homepage={isHomepage ? 'true' : 'false'}
+>
+  <div class="header-inner container">
+    <a href="/" class="header-logo" aria-label="The Agency Roatán – Home">
+      <img
+        src="/logos/TA_Logotype_Wht.png"
+        alt="The Agency Roatán"
+        class="logo-img logo-img--overlay"
+        width="120"
+        height="48"
+      />
+      <img
+        src="/logos/TA_Logotype_Red.png"
+        alt="The Agency Roatán"
+        class="logo-img logo-img--solid"
+        width="120"
+        height="48"
+      />
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="header-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        {nav.map(item => (
+          <li class:list={['nav-item', { 'nav-item--has-dropdown': item.children }]}>
+            <a
+              href={item.href}
+              class:list={['nav-link', { 'nav-link--active': isGroupActive(item) }]}
+              aria-haspopup={item.children ? 'true' : undefined}
+            >
+              {item.label}
+              {item.children && (
+                <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                  <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              )}
+            </a>
+            {item.children && (
+              <div class="nav-dropdown" role="region">
+                {item.children.map(child => (
+                  <a
+                    href={child.href}
+                    class:list={['nav-dropdown-link', { 'nav-dropdown-link--active': currentPath === child.href }]}
+                  >
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </li>
+        ))}
+        <li class="nav-item nav-item--cta">
+          <a
+            href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30"
+            class="nav-cta"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Book a Call
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Hamburger (mobile) -->
+    <button
+      class="hamburger"
+      aria-controls="mobile-nav"
+      aria-expanded="false"
+      aria-label="Open menu"
+    >
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile nav drawer -->
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+    <ul class="mobile-nav-list">
+      {nav.map(item => (
+        <li class="mobile-item">
+          {item.children ? (
+            <details class="mobile-details">
+              <summary class="mobile-summary">
+                <a href={item.href} class:list={['mobile-nav-link', { 'mobile-nav-link--active': isGroupActive(item) }]}>
+                  {item.label}
+                </a>
+                <svg class="mobile-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                  <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </summary>
+              <ul class="mobile-sub">
+                {item.children.map(child => (
+                  <li>
+                    <a href={child.href} class:list={['mobile-sub-link', { 'mobile-sub-link--active': currentPath === child.href }]}>
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ) : (
+            <a href={item.href} class:list={['mobile-nav-link', { 'mobile-nav-link--active': isGroupActive(item) }]}>
+              {item.label}
+            </a>
+          )}
+        </li>
+      ))}
+      <li class="mobile-item mobile-item--actions">
+        <a
+          href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30"
+          class="mobile-cta"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Book a Strategy Call
+        </a>
+        <a
+          href="https://wa.me/50488483226"
+          class="mobile-whatsapp"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-event="whatsapp_click"
+        >
+          WhatsApp
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const hamburger = document.querySelector('.hamburger') as HTMLButtonElement;
+  const mobileNav = document.getElementById('mobile-nav');
+  const header = document.getElementById('site-header') as HTMLElement;
+
+  // Mobile drawer toggle
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!open));
+      mobileNav.hidden = open;
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileNav.hidden = true;
+      });
+    });
+  }
+
+  // Close desktop dropdowns on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') (document.activeElement as HTMLElement)?.blur();
+  });
+
+  // Close dropdown when clicking outside nav
+  document.addEventListener('click', (e) => {
+    if (!(e.target as HTMLElement).closest('.site-header')) {
+      (document.activeElement as HTMLElement)?.blur();
+    }
+  });
+
+  // Overlay → solid on scroll (homepage only); hide on scroll-down past 300px
+  const isHomepage = header.dataset.homepage === 'true';
+  const SCROLL_THRESHOLD = 60;
+  let lastY = 0;
+  let ticking = false;
+
+  function updateHeader() {
+    const y = window.scrollY;
+
+    // Overlay → solid transition (homepage only)
+    if (isHomepage) {
+      header.classList.toggle('header--solid', y > SCROLL_THRESHOLD);
+    }
+
+    // Hide on scroll-down past 300px; show on scroll-up
+    if (y > 300) {
+      header.classList.toggle('header-hidden', y > lastY);
+    } else {
+      header.classList.remove('header-hidden');
+    }
+
+    lastY = y;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(updateHeader); ticking = true; }
+  }, { passive: true });
+
+  // Run once on load to set initial state
+  updateHeader();
+
+  // WhatsApp GA4 tracking
+  document.querySelectorAll('[data-event="whatsapp_click"]').forEach(el => {
+    el.addEventListener('click', () => {
+      if (typeof gtag !== 'undefined') gtag('event', 'whatsapp_click', { event_category: 'engagement' });
+    });
+  });
+</script>
+
+<style>
+  /* ── Shell — overlay by default, solid when .header--solid ── */
+  .site-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: var(--z-nav);
+    height: var(--nav-height);
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+      background var(--duration-base) ease,
+      border-color var(--duration-base) ease,
+      transform var(--duration-base) ease;
+  }
+  .site-header.header--solid {
+    background: var(--canvas);
+    border-bottom: var(--hairline);
+  }
+  .site-header.header-hidden { transform: translateY(-100%); }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: var(--space-8);
+  }
+
+  /* ── Logo — overlay shows white, solid shows red ── */
+  .header-logo { flex-shrink: 0; display: flex; align-items: center; text-decoration: none; }
+  .logo-img { display: block; height: 84px; width: auto; object-fit: contain; }
+
+  .logo-img--solid   { display: none; }
+  .logo-img--overlay { display: block; }
+
+  .header--solid .logo-img--overlay { display: none; }
+  .header--solid .logo-img--solid   { display: block; }
+
+  /* ── Desktop nav ── */
+  .header-nav { flex: 1; display: none; }
+  @media (min-width: 1024px) { .header-nav { display: block; } }
+
+  .nav-list {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+    justify-content: flex-end;
+    list-style: none;
+  }
+
+  .nav-item { position: relative; }
+
+  /* Overlay: white text */
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: var(--space-2) var(--space-3);
+    font-family: var(--font-sleek);
+    font-size: var(--text-base);
+    font-weight: 600;
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: rgba(255,255,255,.85);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color var(--duration-fast);
+  }
+  .nav-link:hover,
+  .nav-link--active { color: var(--canvas); }
+  .nav-link--active { font-weight: 700; }
+  .nav-link:focus-visible {
+    outline: 2px solid rgba(255,255,255,.80);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Solid: iron/dark text */
+  .header--solid .nav-link { color: var(--iron-60); }
+  .header--solid .nav-link:hover,
+  .header--solid .nav-link--active { color: var(--iron); }
+  .header--solid .nav-link:focus-visible { outline-color: var(--agency-red); }
+
+  .nav-chevron { transition: transform var(--duration-fast); opacity: .7; flex-shrink: 0; }
+  .nav-item--has-dropdown:hover .nav-chevron,
+  .nav-item--has-dropdown:focus-within .nav-chevron { transform: rotate(180deg); opacity: 1; }
+
+  /* ── Dropdown — always canvas bg, own solid background ── */
+  .nav-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 220px;
+    background: var(--canvas);
+    border-top: 2px solid var(--agency-red);
+    padding: var(--space-3) 0;
+    z-index: calc(var(--z-nav) + 1);
+    box-shadow: var(--shadow-md);
+  }
+  .nav-item--has-dropdown:hover .nav-dropdown,
+  .nav-item--has-dropdown:focus-within .nav-dropdown { display: block; }
+
+  .nav-dropdown-link {
+    display: block;
+    padding: var(--space-2) var(--space-5);
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: rgba(0,0,0,.70);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color var(--duration-fast), background var(--duration-fast);
+  }
+  .nav-dropdown-link:hover,
+  .nav-dropdown-link--active { color: var(--iron); background: var(--plaster); }
+  .nav-dropdown-link--active { font-weight: 700; }
+  .nav-dropdown-link:focus-visible {
+    outline: 2px solid var(--agency-red);
+    outline-offset: -2px;
+  }
+
+  /* ── CTA — always Agency Red bg, white text ── */
+  .nav-item--cta { margin-left: var(--space-3); }
+  .nav-cta {
+    display: inline-block;
+    padding: var(--space-2) var(--space-5);
+    background: var(--agency-red);
+    color: var(--canvas);
+    font-family: var(--font-sleek);
+    font-size: var(--text-base);
+    font-weight: 700;
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: opacity var(--duration-fast);
+    white-space: nowrap;
+  }
+  .nav-cta:hover { opacity: .88; }
+  .nav-cta:focus-visible {
+    outline: 2px solid rgba(255,255,255,.80);
+    outline-offset: 3px;
+  }
+
+  /* ── Hamburger — white on overlay, dark on solid ── */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  @media (min-width: 1024px) { .hamburger { display: none; } }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--canvas); transition: background var(--duration-fast); }
+  .header--solid .hamburger span { background: var(--iron); }
+  .hamburger:focus-visible {
+    outline: 2px solid rgba(255,255,255,.80);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+  .header--solid .hamburger:focus-visible { outline-color: var(--agency-red); }
+
+  /* ── Mobile drawer — always dark iron, independent of header state ── */
+  .mobile-nav {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0; right: 0;
+    background: var(--iron);
+    padding: var(--space-6) var(--gutter) var(--space-10);
+    z-index: var(--z-nav);
+    border-top: 2px solid var(--agency-red);
+    max-height: calc(100dvh - var(--nav-height));
+    overflow-y: auto;
+  }
+
+  .mobile-nav-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
+
+  .mobile-nav-link {
+    display: block;
+    font-family: var(--font-sleek);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: rgba(255,255,255,.85);
+    text-decoration: none;
+    transition: color var(--duration-fast);
+  }
+  .mobile-nav-link:hover,
+  .mobile-nav-link--active { color: var(--canvas); }
+  .mobile-nav-link--active { font-weight: 700; }
+  .mobile-nav-link:focus-visible { outline: 2px solid rgba(255,255,255,.70); outline-offset: 2px; }
+
+  .mobile-details { border-bottom: 1px solid rgba(255,255,255,.10); padding-bottom: var(--space-3); }
+  .mobile-details[open] .mobile-chevron { transform: rotate(180deg); }
+  .mobile-summary {
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer; list-style: none;
+  }
+  .mobile-summary::-webkit-details-marker { display: none; }
+  .mobile-chevron { opacity: .5; color: var(--canvas); transition: transform var(--duration-fast); }
+
+  .mobile-sub { list-style: none; padding-left: var(--space-4); margin-top: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
+  .mobile-sub-link {
+    font-family: var(--font-sleek);
+    font-size: var(--text-base);
+    font-weight: 500;
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: rgba(255,255,255,.55);
+    text-decoration: none;
+  }
+  .mobile-sub-link:hover,
+  .mobile-sub-link--active { color: var(--canvas); }
+
+  .mobile-item--actions {
+    display: flex; flex-direction: column; gap: var(--space-3);
+    padding-top: var(--space-4); border-top: 1px solid rgba(255,255,255,.15); margin-top: var(--space-3);
+  }
+  .mobile-cta {
+    display: block; text-align: center; padding: var(--space-4);
+    background: var(--agency-red); color: var(--canvas);
+    font-family: var(--font-sleek); font-size: var(--text-sm);
+    font-weight: 700; letter-spacing: var(--tracking-sleek); text-transform: uppercase;
+    text-decoration: none;
+  }
+  .mobile-whatsapp {
+    display: block; text-align: center;
+    font-family: var(--font-sleek); font-size: var(--text-base);
+    font-weight: 600; letter-spacing: var(--tracking-sleek); text-transform: uppercase;
+    color: rgba(255,255,255,.75); text-decoration: none;
+  }
+</style>
