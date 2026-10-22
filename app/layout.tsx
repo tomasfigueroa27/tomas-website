@@ -159,7 +159,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${ebGaramond.variable} ${inter.variable}`}>
       <head>
-        <meta name="theme-color" content="#093f4f" />
+        <meta name="theme-color" content="#ffffff" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <script
           type="application/ld+json"
