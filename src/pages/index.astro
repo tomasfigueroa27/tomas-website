@@ -139,7 +139,7 @@ const schema = [
   </section>
 
   <!-- ── 3. Three paths (Plaster) ── -->
-  <section class="section section--plaster paths-section">
+  <section class="section section--chambray paths-section">
     <div class="container">
       <Eyebrow text="How I Can Help" />
       <div class="paths-grid">
@@ -230,7 +230,7 @@ const schema = [
   </section>
 
   <!-- ── 6. Market / Insights (Plaster) — hairline separates from Canvas above ── -->
-  <section class="section section--plaster market-section">
+  <section class="section section--chambray market-section">
     <div class="container">
       <Eyebrow text="Market Intelligence" />
       <h2 class="section-title type-chic">Know the numbers.</h2>
@@ -463,6 +463,11 @@ const schema = [
   .section { padding-block: var(--space-24); }
   .section--plaster { background: var(--plaster); }
   .section--iron { background: var(--iron); }
+  .section--chambray { background: var(--chambray); }
+  /* Chambray section text defaults — iron on light blue */
+  .section--chambray .section-title { color: var(--iron); }
+  .section--chambray :global(.eyebrow-label) { color: var(--iron-60); }
+  .section--chambray :global(.eyebrow-plus) { color: var(--velvet); }
 
   /* Iron section text defaults */
   .section--iron .section-title { color: var(--canvas); }

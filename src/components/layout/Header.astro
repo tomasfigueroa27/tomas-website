@@ -268,7 +268,7 @@ const isGroupActive = (item: typeof nav[number]) => {
 </script>
 
 <style>
-  /* ── Shell — overlay by default, solid when .header--solid ── */
+  /* ── Shell — overlay by default, velvet when .header--solid ── */
   .site-header {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -282,8 +282,8 @@ const isGroupActive = (item: typeof nav[number]) => {
       transform var(--duration-base) ease;
   }
   .site-header.header--solid {
-    background: var(--canvas);
-    border-bottom: var(--hairline);
+    background: var(--velvet);
+    border-bottom: 1px solid rgba(255,255,255,.08);
   }
   .site-header.header-hidden { transform: translateY(-100%); }
 
@@ -298,11 +298,9 @@ const isGroupActive = (item: typeof nav[number]) => {
   .header-logo { flex-shrink: 0; display: flex; align-items: center; text-decoration: none; }
   .logo-img { display: block; height: 84px; width: auto; object-fit: contain; }
 
+  /* Velvet bg is dark — white logo works in both overlay and solid states */
   .logo-img--solid   { display: none; }
   .logo-img--overlay { display: block; }
-
-  .header--solid .logo-img--overlay { display: none; }
-  .header--solid .logo-img--solid   { display: block; }
 
   /* ── Desktop nav ── */
   .header-nav { flex: 1; display: none; }
@@ -343,11 +341,11 @@ const isGroupActive = (item: typeof nav[number]) => {
     border-radius: 2px;
   }
 
-  /* Solid: iron/dark text */
-  .header--solid .nav-link { color: var(--iron-60); }
+  /* Solid (velvet bg): keep white text, same as overlay */
+  .header--solid .nav-link { color: rgba(255,255,255,.80); }
   .header--solid .nav-link:hover,
-  .header--solid .nav-link--active { color: var(--iron); }
-  .header--solid .nav-link:focus-visible { outline-color: var(--agency-red); }
+  .header--solid .nav-link--active { color: var(--canvas); }
+  .header--solid .nav-link:focus-visible { outline-color: var(--chambray); }
 
   .nav-chevron { transition: transform var(--duration-fast); opacity: .7; flex-shrink: 0; }
   .nav-item--has-dropdown:hover .nav-chevron,
@@ -391,13 +389,13 @@ const isGroupActive = (item: typeof nav[number]) => {
     outline-offset: -2px;
   }
 
-  /* ── CTA — always Agency Red bg, white text ── */
+  /* ── CTA — chambray bg, iron text (works on both transparent and velvet) ── */
   .nav-item--cta { margin-left: var(--space-3); }
   .nav-cta {
     display: inline-block;
     padding: var(--space-2) var(--space-5);
-    background: var(--agency-red);
-    color: var(--canvas);
+    background: var(--chambray);
+    color: var(--iron);
     font-family: var(--font-sleek);
     font-size: var(--text-base);
     font-weight: 700;
@@ -427,14 +425,13 @@ const isGroupActive = (item: typeof nav[number]) => {
     flex-shrink: 0;
   }
   @media (min-width: 1024px) { .hamburger { display: none; } }
-  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--canvas); transition: background var(--duration-fast); }
-  .header--solid .hamburger span { background: var(--iron); }
+  /* Velvet bg is dark — white bars in both states */
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--canvas); }
   .hamburger:focus-visible {
     outline: 2px solid rgba(255,255,255,.80);
     outline-offset: 4px;
     border-radius: 2px;
   }
-  .header--solid .hamburger:focus-visible { outline-color: var(--agency-red); }
 
   /* ── Mobile drawer — always dark iron, independent of header state ── */
   .mobile-nav {
@@ -495,7 +492,7 @@ const isGroupActive = (item: typeof nav[number]) => {
   }
   .mobile-cta {
     display: block; text-align: center; padding: var(--space-4);
-    background: var(--agency-red); color: var(--canvas);
+    background: var(--chambray); color: var(--iron);
     font-family: var(--font-sleek); font-size: var(--text-sm);
     font-weight: 700; letter-spacing: var(--tracking-sleek); text-transform: uppercase;
     text-decoration: none;
