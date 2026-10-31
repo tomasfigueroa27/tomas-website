@@ -1,27 +1,43 @@
 /* =============================================================
    THE AGENCY – ROATÁN  |  Design Tokens
-   Colors: only these four. No tints, no new hues.
+   Source: The Agency 2026 Branding Refresh (August 2026)
    ============================================================= */
 
 :root {
-  /* ── Brand palette ── */
-  --agency-red: #ED2127;   /* Pantone 199C — accent only */
-  --iron:       #000000;   /* Primary text, dark sections, buttons */
+  /* ── Primary accent (Velvet — Pantone 1817 C) ── */
+  --agency-red: #470300;   /* Main accent: Velvet. All CTAs, active states, key rules. */
+  --velvet:     #470300;   /* Alias — use either name */
+
+  /* ── Secondary accent ── */
+  --chambray:   #C2D7E6;   /* Tertiary accent — editorial panels, light highlights. Iron text only. */
+
+  /* ── Full 2026 palette ── */
+  --agency-red-true: #D8091B;  /* The Agency Red 2026 (Pantone 3546 C) — kept for logo/brand marks only */
+  --ecru:       #F5F1E9;   /* Warm neutral ground — default page bg for long-form */
+  --alabaster:  #EBE3D6;   /* Warm off-white — reversed type on velvet/jacquard */
+  --brownstone: #906F57;   /* Warm mid-tone — blocks and rules. White text only. */
+  --jacquard:   #6B0507;   /* Tonal dark red — depth in layered red compositions */
+  --travertine: #BAA288;   /* Tonal neutral — panels and photographic mats */
+  --cashmere:   #90060E;   /* Tonal red — hover states, secondary red fills */
+  --quartzite:  #D5C5B1;   /* Light tonal neutral — bands and cards */
+  --satin:      #B40814;   /* Tonal red — layered red-on-red treatments */
+
+  /* ── Neutral foundation ── */
+  --iron:       #1C1C1B;   /* Primary text, dark sections (Pantone 419 C) */
   --canvas:     #FFFFFF;   /* Main background */
   --plaster:    #F7F8F6;   /* Alt section bg, cards */
 
-  /* Iron at reduced opacity (borders, secondary text — no new hues) */
-  --iron-80:  rgba(0, 0, 0, .80);
-  --iron-60:  rgba(0, 0, 0, .60);
-  --iron-40:  rgba(0, 0, 0, .40);
-  --iron-20:  rgba(0, 0, 0, .20);
-  --iron-10:  rgba(0, 0, 0, .10);
+  /* Iron at reduced opacity */
+  --iron-80:  rgba(28, 28, 27, .80);
+  --iron-60:  rgba(28, 28, 27, .60);
+  --iron-40:  rgba(28, 28, 27, .40);
+  --iron-20:  rgba(28, 28, 27, .20);
+  --iron-10:  rgba(28, 28, 27, .10);
 
-  /* ── Typography stacks ──
-     Replace top value with licensed font file when supplied.  */
+  /* ── Typography stacks ── */
   --font-sleek: "Barlow Condensed", system-ui, sans-serif;
-  --font-chic:  "Noto Serif", Georgia, serif;
-  --font-text:  "Roboto", system-ui, sans-serif;
+  --font-chic:  "EB Garamond", "Noto Serif", Georgia, serif;
+  --font-text:  "Inter", "Roboto", system-ui, sans-serif;
 
   /* Tracking */
   --tracking-sleek: 0.075em;   /* ALL CAPS, used for sleek headlines & labels */
@@ -96,6 +112,8 @@
   --z-top:     400;
 }
 
-/* ── Accessibility: red text only at safe sizes ──
-   Red on canvas/plaster is 4.33:1 — passes only at ≥24px regular or ≥19px bold.
-   Components enforce this; this note documents the rule for future contributors. */
+/* ── Accessibility notes ──
+   Velvet (#470300) on canvas/white: 16.6:1 — passes at all sizes.
+   Chambray (#C2D7E6) ground: iron text only (11.5:1). Never agency-red on chambray (3.56:1).
+   Brownstone on canvas: 4.57:1 — white text only on brownstone backgrounds.
+   Velvet backgrounds: set canvas/white or alabaster text (both pass 4.5:1). */
