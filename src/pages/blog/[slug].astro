@@ -1,0 +1,594 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Eyebrow from '../../components/brand/Eyebrow.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const h2s = headings.filter(h => h.depth === 2);
+
+const allPosts = await getCollection('blog');
+const related = allPosts
+  .filter(p => p.id !== post.id)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const d = post.data;
+const slug = post.id;
+const canonicalUrl = `https://www.tomasfigueroa.com/blog/${slug}/`;
+const pubDate = d.date.toISOString();
+const modDate = d.dateModified ? d.dateModified.toISOString() : pubDate;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: d.seoTitle ?? d.title,
+    description: d.excerpt,
+    datePublished: pubDate,
+    dateModified: modDate,
+    url: canonicalUrl,
+    image: d.image ? `https://www.tomasfigueroa.com${d.image}` : undefined,
+    author: {
+      '@type': 'Person',
+      name: 'Tomas Figueroa',
+      url: 'https://www.tomasfigueroa.com/about/',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'The Agency Roatán',
+      url: 'https://www.tomasfigueroa.com/',
+    },
+    about: {
+      '@type': 'Place',
+      name: 'Roatán, Bay Islands, Honduras',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.tomasfigueroa.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://www.tomasfigueroa.com/blog/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: d.title,
+        item: canonicalUrl,
+      },
+    ],
+  },
+];
+---
+
+<Base
+  title={`${d.seoTitle ?? d.title} | The Agency Roatán`}
+  description={d.excerpt.slice(0, 155)}
+  canonicalUrl={canonicalUrl}
+  schema={schema}
+>
+  <article class="blog-post">
+
+    <header class="post-header">
+      <div class="post-header-inner">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">›</span>
+          <a href="/blog/">Blog</a>
+          <span aria-hidden="true">›</span>
+          <span aria-current="page">{d.category}</span>
+        </nav>
+        <Eyebrow text={d.category} />
+        <h1 class="post-title">{d.title}</h1>
+        <div class="post-meta">
+          <span class="post-author">By Tomas Figueroa</span>
+          <span class="post-sep" aria-hidden="true">·</span>
+          <time datetime={pubDate}>
+            {d.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+          {d.dateModified && (
+            <>
+              <span class="post-sep" aria-hidden="true">·</span>
+              <span>
+                Updated <time datetime={modDate}>
+                  {d.dateModified.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+              </span>
+            </>
+          )}
+        </div>
+        <p class="post-excerpt">{d.excerpt}</p>
+      </div>
+    </header>
+
+    <div class="article-layout">
+
+      <div class="article-main">
+        {d.image && (
+          <div class="post-hero-wrap">
+            <img
+              src={d.image}
+              alt={d.title}
+              width="1200"
+              height="675"
+              loading="eager"
+              decoding="async"
+              class="hero-img"
+            />
+          </div>
+        )}
+
+        {d.summary && d.summary.length > 0 && (
+          <aside class="post-summary-box">
+            <p class="summary-label">Key Takeaways</p>
+            <ul class="summary-list">
+              {d.summary.map(item => <li>{item}</li>)}
+            </ul>
+          </aside>
+        )}
+
+        <div class="post-body prose">
+          <Content />
+        </div>
+
+        <footer class="post-footer">
+          <a href="/blog/" class="back-link">← All posts</a>
+          <div class="post-cta">
+            <p class="cta-heading">Questions about the Roatán market?</p>
+            <a href="/contact/" class="btn-cta">Talk to Tomas</a>
+          </div>
+        </footer>
+      </div>
+
+      <aside class="article-sidebar post-sidebar">
+
+        {h2s.length > 0 && (
+          <nav class="sidebar-toc" aria-label="Article contents">
+            <p class="sidebar-label">Contents</p>
+            <ol class="toc-list">
+              {h2s.map(h => (
+                <li><a class="toc-link" href={`#${h.slug}`}>{h.text}</a></li>
+              ))}
+            </ol>
+          </nav>
+        )}
+
+        <div class="sidebar-agent">
+          <p class="sidebar-label">Your Agent</p>
+          <p class="agent-name">Tomas Figueroa</p>
+          <p class="agent-role">The Agency Roatán</p>
+          <div class="agent-actions">
+            <a href="https://wa.me/50499999999" class="agent-wa" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a href="/contact/" class="agent-contact">Get in Touch</a>
+          </div>
+        </div>
+
+        {related.length > 0 && (
+          <div class="sidebar-related">
+            <p class="sidebar-label">More from the blog</p>
+            <ul class="related-list">
+              {related.map(p => (
+                <li class="related-item">
+                  <a href={`/blog/${p.id}/`} class="related-link">
+                    <span class="related-cat">{p.data.category}</span>
+                    <span class="related-title">{p.data.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+      </aside>
+
+    </div>
+
+  </article>
+</Base>
+
+<style>
+  /* ── Header ─────────────────────────────────────────────── */
+  .post-header {
+    background: var(--plaster);
+    border-bottom: var(--hairline);
+    padding-block: var(--space-16) var(--space-12);
+  }
+
+  .post-header-inner {
+    max-width: 1500px;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    color: var(--iron-40);
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb a {
+    color: var(--iron-40);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--iron);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .post-title {
+    font-family: var(--font-chic);
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+    color: var(--iron);
+    line-height: var(--leading-snug);
+    margin: var(--space-3) 0 var(--space-5);
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-6);
+  }
+
+  .post-author { font-weight: 600; }
+  .post-sep { color: var(--iron-20); }
+
+  .post-excerpt {
+    font-size: var(--text-lg);
+    color: var(--iron-60);
+    line-height: var(--leading-relaxed);
+    max-width: 68ch;
+    margin: 0;
+  }
+
+  /* ── Main column ─────────────────────────────────────────── */
+  .article-main {
+    min-width: 0;
+    padding-block-end: var(--space-16);
+  }
+
+  /* ── Hero image ─────────────────────────────────────────── */
+  .post-hero-wrap {
+    padding-block: var(--space-10) 0;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ── Summary box ─────────────────────────────────────────── */
+  .post-summary-box {
+    background: var(--plaster);
+    border-left: 3px solid var(--agency-red);
+    padding: var(--space-6) var(--space-8);
+    margin-block: var(--space-10);
+  }
+
+  .summary-label {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-60);
+    margin: 0 0 var(--space-4);
+  }
+
+  .summary-list {
+    margin: 0;
+    padding: 0 0 0 var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .summary-list li {
+    font-size: var(--text-sm);
+    color: var(--iron-80);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ── Body prose ─────────────────────────────────────────── */
+  /* .prose class in global.css sets font-size and line-height */
+  .post-body {
+    padding-block: var(--space-10) 0;
+  }
+
+  .post-body :global(h2) {
+    font-family: var(--font-chic);
+    font-size: var(--text-2xl);
+    color: var(--iron);
+    margin: var(--space-12) 0 var(--space-4);
+    line-height: var(--leading-snug);
+  }
+
+  .post-body :global(h3) {
+    font-family: var(--font-sleek);
+    font-size: var(--text-base);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron);
+    margin: var(--space-8) 0 var(--space-3);
+  }
+
+  .post-body :global(p) {
+    color: var(--iron-80);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-5);
+  }
+
+  .post-body :global(ul),
+  .post-body :global(ol) {
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-5);
+  }
+
+  .post-body :global(li) {
+    color: var(--iron-80);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-2);
+  }
+
+  .post-body :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-8);
+    overflow-x: auto;
+    display: block;
+  }
+
+  .post-body :global(th) {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-60);
+    border-bottom: 2px solid var(--iron-20);
+    padding: var(--space-2) var(--space-4) var(--space-2) 0;
+    text-align: left;
+  }
+
+  .post-body :global(td) {
+    padding: var(--space-3) var(--space-4) var(--space-3) 0;
+    border-bottom: var(--hairline);
+    color: var(--iron-80);
+    vertical-align: top;
+  }
+
+  .post-body :global(tr:last-child td) { border-bottom: none; }
+
+  .post-body :global(strong) {
+    font-weight: 700;
+    color: var(--iron);
+  }
+
+  .post-body :global(a) {
+    color: var(--iron);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .post-body :global(a:hover) { color: var(--agency-red); }
+
+  /* ── Post footer ─────────────────────────────────────────── */
+  .post-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    padding-block: var(--space-10) var(--space-6);
+    border-top: var(--hairline);
+    margin-top: var(--space-10);
+    flex-wrap: wrap;
+  }
+
+  .back-link {
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-60);
+    text-decoration: none;
+  }
+
+  .back-link:hover { color: var(--iron); }
+
+  .post-cta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+  }
+
+  .cta-heading {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    margin: 0;
+  }
+
+  .btn-cta {
+    display: inline-block;
+    padding: var(--space-3) var(--space-6);
+    background: var(--agency-red);
+    color: var(--canvas);
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity var(--duration-fast);
+  }
+
+  .btn-cta:hover { opacity: 0.88; }
+
+  /* ── Sidebar ─────────────────────────────────────────────── */
+  .post-sidebar {
+    padding-block: var(--space-10) var(--space-16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .sidebar-label {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--iron-40);
+    margin: 0 0 var(--space-4);
+  }
+
+  .sidebar-toc {
+    border-left: 2px solid var(--iron-10);
+    padding-left: var(--space-5);
+  }
+
+  .toc-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .toc-link {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    text-decoration: none;
+    line-height: var(--leading-snug);
+    display: block;
+  }
+
+  .toc-link:hover { color: var(--iron); }
+
+  .sidebar-agent {
+    background: var(--plaster);
+    padding: var(--space-6);
+  }
+
+  .agent-name {
+    font-family: var(--font-chic);
+    font-size: var(--text-lg);
+    color: var(--iron);
+    margin: 0 0 var(--space-1);
+  }
+
+  .agent-role {
+    font-size: var(--text-sm);
+    color: var(--iron-60);
+    margin: 0 0 var(--space-5);
+  }
+
+  .agent-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .agent-wa {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    background: var(--iron);
+    color: var(--canvas);
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    transition: opacity var(--duration-fast);
+  }
+
+  .agent-wa:hover { opacity: 0.88; }
+
+  .agent-contact {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    border: var(--hairline);
+    color: var(--iron);
+    font-family: var(--font-sleek);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    transition: border-color var(--duration-fast);
+  }
+
+  .agent-contact:hover { border-color: var(--iron); }
+
+  .related-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .related-item {
+    border-top: var(--hairline);
+  }
+
+  .related-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4) 0;
+    text-decoration: none;
+  }
+
+  .related-cat {
+    font-family: var(--font-sleek);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    color: var(--agency-red);
+  }
+
+  .related-title {
+    font-size: var(--text-sm);
+    color: var(--iron-80);
+    line-height: var(--leading-snug);
+  }
+
+  .related-link:hover .related-title { color: var(--iron); }
+
+  @media (max-width: 1099px) {
+    .post-sidebar {
+      padding-block-start: 0;
+      border-top: var(--hairline);
+      padding-block-end: var(--space-16);
+    }
+  }
+</style>

@@ -1,0 +1,89 @@
+---
+export interface Props {
+  href?: string;
+  variant?: 'solid' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  'aria-label'?: string;
+  'data-event'?: string;
+}
+
+const {
+  href,
+  variant = 'solid',
+  size = 'md',
+  type = 'button',
+  class: extraClass,
+  ...rest
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+---
+
+{href ? (
+  <a
+    href={href}
+    class:list={['btn', `btn--${variant}`, `btn--${size}`, extraClass]}
+    {...rest}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    class:list={['btn', `btn--${variant}`, `btn--${size}`, extraClass]}
+    {...rest}
+  >
+    <slot />
+  </button>
+)}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-family: var(--font-text);
+    font-weight: 700;
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition:
+      background var(--duration-fast) var(--ease-brand),
+      color var(--duration-fast) var(--ease-brand),
+      border-color var(--duration-fast) var(--ease-brand);
+  }
+
+  /* Sizes */
+  .btn--sm { font-size: var(--text-xs);  padding: 0.5rem 1.25rem; }
+  .btn--md { font-size: var(--text-sm);  padding: 0.75rem 1.75rem; }
+  .btn--lg { font-size: var(--text-base); padding: 1rem 2.5rem; }
+
+  /* Solid: Iron bg, canvas text; hover → Agency Red */
+  .btn--solid {
+    background: var(--iron);
+    color: var(--canvas);
+    border-color: var(--iron);
+  }
+  .btn--solid:hover,
+  .btn--solid:focus-visible {
+    background: var(--agency-red);
+    border-color: var(--agency-red);
+  }
+
+  /* Outline: Iron border, transparent bg; hover → Iron fill */
+  .btn--outline {
+    background: transparent;
+    color: var(--iron);
+    border-color: var(--iron);
+  }
+  .btn--outline:hover,
+  .btn--outline:focus-visible {
+    background: var(--iron);
+    color: var(--canvas);
+  }
+</style>

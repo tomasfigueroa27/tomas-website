@@ -1,0 +1,275 @@
+---
+import Base from '../../layouts/Base.astro';
+import Eyebrow from '../../components/brand/Eyebrow.astro';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': 'https://www.tomasfigueroa.com/#person',
+    name: 'Tomás Figueroa',
+    jobTitle: 'Licensed Real Estate Agent',
+    url: 'https://www.tomasfigueroa.com',
+    image: 'https://www.tomasfigueroa.com/tomas-about.jpg',
+    telephone: '+50488483226',
+    email: 'tomas@tomasfigueroa.com',
+    knowsAbout: ['Roatán real estate', 'Caribbean property investment', 'Honduras property law'],
+    worksFor: { '@type': 'RealEstateAgent', name: 'The Agency Roatán', url: 'https://www.tomasfigueroa.com' },
+    sameAs: [
+      'https://www.facebook.com/profile.php?id=61557310059412',
+      'https://www.instagram.com/roatanbytomas/',
+      'https://www.linkedin.com/in/roatanbytomas/',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tomasfigueroa.com/' },
+      { '@type': 'ListItem', position: 2, name: 'About', item: 'https://www.tomasfigueroa.com/about/' },
+    ],
+  },
+];
+
+const stats = [
+  { number: '20+', label: 'Years of Sales Experience' },
+  { number: '50+', label: 'Properties Sold' },
+  { number: '30MM+', label: 'Sales Volume' },
+];
+
+const values = [
+  { title: 'Positioning Roatan Correctly', description: 'Roatan remains under the radar for many serious investors and relocation buyers.\n\nMy role is to help you evaluate the island in context — alongside other Caribbean markets — based on infrastructure, growth trajectory, regulation, and long-term potential.\n\nBefore choosing a property, the first question is whether Roatan is the right market for you.' },
+  { title: 'Goal-Driven Strategy', description: 'Every buyer has a different objective — cash flow, long-term appreciation, lifestyle flexibility, or permanent relocation.\n\nWe define your goal first, then align strategy, location, and timing accordingly.' },
+  { title: 'Forward-Looking Market Insight', description: 'Through active involvement with developers, business leaders, and investment groups, we track what is coming — not just what exists today.\n\nUnderstanding how the island will evolve is essential to giving informed, forward-looking advice.' },
+  { title: 'Long-Term Perspective', description: 'This is not transactional. I aim to build relationships based on clarity, professionalism, and strategic thinking — so years from now, you feel confident in the decision you made.' },
+  { title: 'Professionalism & Continuous Expertise', description: 'Buying property in Roatan is a significant financial decision. We approach it with structure, transparency, and discipline — continuously refining our knowledge through exposure to other markets and emerging trends.' },
+];
+---
+
+<Base
+  title="About Tomas Figueroa – Licensed Realtor | The Agency Roatán"
+  description="Tomás Figueroa is a licensed real estate agent at The Agency Roatán with 20+ years in international sales and 4 years on the ground in the Bay Islands. He helps U.S. buyers choose the right location, project, and strategy in Roatán, Honduras."
+  canonicalUrl="https://www.tomasfigueroa.com/about/"
+  schema={schema}
+>
+
+  <!-- Hero -->
+  <section class="about-hero">
+    <div class="container about-hero-inner">
+      <div class="about-hero-text">
+        <Eyebrow text="About Me" />
+        <h1 class="about-name type-chic">Tomás Figueroa</h1>
+        <div class="about-bios">
+          <div class="bio-item">
+            <span class="bio-label">The Practice</span>
+            <p class="bio-body">Buyer and seller representation, developer partnerships, and investment sourcing across Roatan and the Bay Islands — focused on the premium segment.</p>
+          </div>
+          <div class="bio-item">
+            <span class="bio-label">The Background</span>
+            <p class="bio-body">20+ years in international sales and business development across Latin America and the Caribbean, including 4 years as a boots-on-ground Realtor on Roatan.</p>
+          </div>
+          <div class="bio-item">
+            <span class="bio-label">The Market Thesis</span>
+            <p class="bio-body">Roatán is in a clear improvement arc: airlift is expanding, branded hospitality has arrived, and a new development cycle is underway. The market is still quiet enough that buyers who take the time to understand it can choose well — without competing against mainstream real estate awareness.</p>
+          </div>
+          <p class="bio-meta">Last reviewed: May 2026 · Licensed Realtor, The Agency Roatán, Bay Islands, Honduras.</p>
+        </div>
+        <div class="about-ctas">
+          <a href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30" target="_blank" rel="noopener noreferrer" class="btn-red">Schedule a Strategy Call</a>
+          <a href="tel:+50488483226" class="btn-ghost">(504) 8848-3226</a>
+        </div>
+      </div>
+      <div class="about-portrait-wrap">
+        <img src="/tomas-portrait.jpg" alt="Tomas Figueroa licensed Realtor The Agency Roatán" width="480" height="640" class="about-portrait" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        {stats.map(s => (
+          <div class="stat-card">
+            <div class="stat-number type-chic">{s.number}</div>
+            <div class="stat-label-text">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Work With Me -->
+  <section class="why-section">
+    <div class="container">
+      <div class="why-grid">
+        <div>
+          <Eyebrow text="Why Work With Me" />
+          <h2 class="section-heading type-chic">Why Work With Me?</h2>
+          <div class="prose">
+            <p>With over 20 years of experience in international sales, business development, and leadership, I bring a strategic and disciplined approach to real estate in Roatan. As a licensed agent with The Agency Roatán — and formerly with RE/MAX and Keller Williams — I advise buyers, sellers, and developers with clarity, structure, and a long-term perspective.</p>
+            <p>For buyers and investors, I focus on aligning property selection with clearly defined objectives — whether that means cash flow, long-term appreciation, lifestyle flexibility, or relocation. Every opportunity is evaluated through market fundamentals, positioning, and future development patterns.</p>
+            <p>For sellers and developers, I combine strategic pricing, global exposure, professional marketing, and strong negotiation to maximize positioning and value in Roatan's evolving market.</p>
+          </div>
+        </div>
+        <div>
+          <Eyebrow text="My Approach" />
+          <h2 class="section-heading type-chic">My Approach to Roatan Real Estate</h2>
+          <div class="values-list">
+            {values.map(v => (
+              <div class="value-item">
+                <h3 class="value-title">{v.title}</h3>
+                <p class="value-body">{v.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services-section">
+    <div class="container">
+      <div class="services-header">
+        <Eyebrow text="What I Offer" />
+        <h2 class="section-heading type-chic">Services I Offer</h2>
+        <p class="services-sub">Comprehensive real estate services tailored to your needs.</p>
+      </div>
+      <div class="services-grid">
+        {[
+          { title: 'Property Sales', desc: 'Sell your property with strategic marketing and negotiation.' },
+          { title: 'Buyer Representation', desc: 'Find the right property with objective guidance and strategic evaluation.' },
+          { title: 'Investment Consulting', desc: 'Identify high-quality opportunities through disciplined analysis and forward-looking market insight.' },
+          { title: 'Relocation Services', desc: 'Relocate with confidence through structured guidance and local insight.' },
+        ].map(s => (
+          <div class="service-card">
+            <h3 class="service-title">{s.title}</h3>
+            <p class="service-desc">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ link -->
+  <div class="faq-link-band">
+    <div class="container" style="text-align:center">
+      <p class="faq-link-text">Have questions about buying in Roatan? <a href="/faq/">Browse our full FAQ →</a></p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2 class="cta-heading type-chic">Ready to Explore Roatan Real Estate?</h2>
+        <p class="cta-sub">Let's define your objectives and build a strategy aligned with your long-term goals.</p>
+        <div class="cta-actions">
+          <a href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30" target="_blank" rel="noopener noreferrer" class="btn-red">Schedule a Call</a>
+          <a href="mailto:tomas@tomasfigueroa.com" class="btn-ghost-dark">tomas@tomasfigueroa.com</a>
+        </div>
+        <p class="cta-location">Lawson Rock, Sandy Bay, Roatan, Honduras</p>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  /* ── Hero ── */
+  .about-hero {
+    background: var(--iron);
+    color: var(--canvas);
+    padding-block: var(--space-16);
+  }
+  .about-hero-inner {
+    display: grid;
+    gap: var(--space-12);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .about-hero-inner { grid-template-columns: 1fr auto; }
+  }
+  .about-name {
+    font-size: clamp(var(--text-4xl), 4vw, var(--text-6xl));
+    color: var(--canvas);
+    margin: var(--space-3) 0 var(--space-8);
+  }
+  .about-bios { display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-8); }
+  .bio-item { display: flex; flex-direction: column; gap: var(--space-2); }
+  .bio-label {
+    font-family: var(--font-sleek); font-size: var(--text-xs);
+    letter-spacing: var(--tracking-sleek); text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .bio-body { font-size: var(--text-sm); color: rgba(255,255,255,0.7); line-height: var(--leading-relaxed); margin: 0; }
+  .bio-meta { font-size: var(--text-xs); color: rgba(255,255,255,0.35); font-style: italic; margin: 0; }
+  .about-ctas { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+  .btn-red {
+    display: inline-block; padding: var(--space-4) var(--space-6);
+    background: var(--agency-red); color: var(--canvas);
+    font-family: var(--font-sleek); font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700;
+    text-decoration: none; transition: opacity .15s;
+  }
+  .btn-red:hover { opacity: .88; }
+  .btn-ghost {
+    display: inline-block; padding: var(--space-4) var(--space-6);
+    background: rgba(255,255,255,.1); color: var(--canvas);
+    font-family: var(--font-sleek); font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700;
+    text-decoration: none; transition: background .15s;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,.18); }
+  .about-portrait-wrap { overflow: hidden; max-width: 360px; width: 100%; }
+  .about-portrait { width: 100%; height: auto; display: block; object-fit: cover; }
+
+  /* ── Stats ── */
+  .stats-section { background: var(--plaster); padding-block: var(--space-16); }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-6); }
+  .stat-card { background: var(--canvas); padding: var(--space-8); text-align: center; }
+  .stat-number { font-size: clamp(var(--text-4xl), 4vw, var(--text-5xl)); color: var(--iron); }
+  .stat-label-text { font-size: var(--text-sm); color: var(--iron-60); margin-top: var(--space-2); }
+
+  /* ── Why / Values ── */
+  .why-section { padding-block: var(--space-16); }
+  .why-grid { display: grid; gap: var(--space-12); }
+  @media (min-width: 1024px) { .why-grid { grid-template-columns: 1fr 1fr; } }
+  .section-heading { font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl)); color: var(--iron); margin: var(--space-3) 0 var(--space-5); }
+  .values-list { border-top: var(--hairline); }
+  .value-item { padding: var(--space-4) 0; border-bottom: var(--hairline); }
+  .value-title { font-family: var(--font-text); font-size: var(--text-sm); font-weight: 700; color: var(--iron); margin: 0 0 var(--space-2); }
+  .value-body { font-size: var(--text-sm); color: var(--iron-60); line-height: var(--leading-relaxed); margin: 0; white-space: pre-line; }
+
+  /* ── Services ── */
+  .services-section { background: var(--plaster); padding-block: var(--space-16); }
+  .services-header { text-align: center; margin-bottom: var(--space-10); }
+  .services-sub { font-size: var(--text-sm); color: var(--iron-60); max-width: 40ch; margin: 0 auto; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4); }
+  .service-card { background: var(--canvas); padding: var(--space-6); }
+  .service-title { font-family: var(--font-text); font-size: var(--text-sm); font-weight: 700; color: var(--iron); margin: 0 0 var(--space-2); }
+  .service-desc { font-size: var(--text-sm); color: var(--iron-60); line-height: var(--leading-relaxed); margin: 0; }
+
+  /* ── FAQ link band ── */
+  .faq-link-band { padding-block: var(--space-8); }
+  .faq-link-text { font-size: var(--text-sm); color: var(--iron-60); margin: 0; }
+  .faq-link-text a { color: var(--iron); font-weight: 700; text-decoration: none; }
+  .faq-link-text a:hover { text-decoration: underline; }
+
+  /* ── CTA ── */
+  .cta-section { padding-block: var(--space-8) var(--space-16); }
+  .cta-box { background: var(--iron); padding: var(--space-12); text-align: center; max-width: 800px; margin-inline: auto; }
+  .cta-heading { font-size: clamp(var(--text-2xl), 3vw, var(--text-3xl)); color: var(--canvas); margin: 0 0 var(--space-3); }
+  .cta-sub { font-size: var(--text-sm); color: rgba(255,255,255,.7); line-height: var(--leading-relaxed); max-width: 44ch; margin: 0 auto var(--space-8); }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
+  .btn-ghost-dark {
+    display: inline-block; padding: var(--space-4) var(--space-6);
+    background: rgba(255,255,255,.1); color: var(--canvas);
+    font-family: var(--font-sleek); font-size: var(--text-sm);
+    letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700;
+    text-decoration: none; transition: background .15s;
+  }
+  .btn-ghost-dark:hover { background: rgba(255,255,255,.18); }
+  .cta-location { font-size: var(--text-xs); color: rgba(255,255,255,.4); margin-top: var(--space-6); margin-bottom: 0; }
+</style>

@@ -1,0 +1,28 @@
+---
+export interface Props {
+  text: string;
+  class?: string;
+}
+const { text, class: extraClass } = Astro.props;
+// Eyebrow text with "+" prefix — e.g. "+ NEW DEVELOPMENTS"
+---
+<span class:list={['eyebrow-label', extraClass]}>
+  <span class="eyebrow-plus" aria-hidden="true">+&nbsp;</span>{text.toUpperCase()}
+</span>
+
+<style>
+  .eyebrow-label {
+    display: inline-block;
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    letter-spacing: var(--tracking-sleek);
+    text-transform: uppercase;
+    /* Red is safe here: decorative element, not body text */
+    color: var(--agency-red);
+  }
+
+  .eyebrow-plus {
+    color: var(--agency-red);
+  }
+</style>

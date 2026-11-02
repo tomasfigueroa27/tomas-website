@@ -1,0 +1,257 @@
+---
+import Base from '../../layouts/Base.astro';
+import Eyebrow from '../../components/brand/Eyebrow.astro';
+import ClosingCalculator from '../../components/calculator/ClosingCalculator';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.tomasfigueroa.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Sell in Roatán', item: 'https://www.tomasfigueroa.com/sell-in-roatan/' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to Sell Property in Roatán, Honduras',
+    description: 'Step-by-step guide to listing and selling real estate in Roatán as a foreign property owner.',
+    totalTime: 'P90D',
+    step: [
+      { '@type': 'HowToStep', position: 1, name: 'Price your property', text: 'Get a comparative market analysis based on recent closed transactions, not asking prices.' },
+      { '@type': 'HowToStep', position: 2, name: 'Prepare listing documentation', text: 'Title deed, survey, tax receipts, permits, HOA status, and rental history if applicable.' },
+      { '@type': 'HowToStep', position: 3, name: 'List on the Roatán MLS and international channels', text: "Full MLS exposure plus The Agency's global network and digital marketing." },
+      { '@type': 'HowToStep', position: 4, name: 'Negotiate and accept an offer', text: 'Review the Letter of Intent, earnest money terms, and contingencies with your agent and attorney.' },
+      { '@type': 'HowToStep', position: 5, name: 'Due diligence period', text: "Buyer's attorney conducts title search and inspection; prepare for any required remediation." },
+      { '@type': 'HowToStep', position: 6, name: 'Closing and funds disbursement', text: 'Sign the Escritura Pública before a Honduran notary; net proceeds wire to your account after deductions.' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: "Sell Property in Roatán — Seller's Guide & Net Proceeds Calculator",
+    description: 'Everything you need to sell property in Roatán: commission structure, capital gains tax, the 6-step process, and an interactive net proceeds calculator.',
+    url: 'https://www.tomasfigueroa.com/sell-in-roatan/',
+    author: { '@type': 'Person', name: 'Tomás Figueroa', url: 'https://www.tomasfigueroa.com/about/' },
+  },
+];
+
+const steps = [
+  { n: '01', title: 'Price your property', body: 'Roatán pricing is driven by comparable closed transactions, not asking prices. Your agent pulls recent sales in the same area, product type, and price band — not what similar properties are listed for. Overpricing relative to the market means longer days-on-market and a weaker negotiating position when serious buyers arrive.' },
+  { n: '02', title: 'Prepare listing documentation', body: 'Required before you go to market: clean title (or a path to it), current survey, proof of paid property taxes and municipal fees, all permits for improvements, HOA financials if applicable, and rental income history if the property has been active on Airbnb or VRBO.' },
+  { n: '03', title: 'MLS listing and marketing', body: "The Roatán MLS puts your property in front of every cooperating brokerage. Beyond the MLS, The Agency's global network — 80+ offices across North America, Europe, and the Caribbean — distributes listings internationally. Marketing includes professional photography, video, social media, and digital advertising targeting U.S. and Canadian buyers actively searching for Caribbean properties." },
+  { n: '04', title: 'Negotiate and accept an offer', body: "The buyer submits a Letter of Intent with price, payment terms, and contingencies. Your agent advises on market-context for the offer — when to counter, when to accept, and what terms are standard. Earnest money (typically 10% of sale price) is wired to the broker's escrow account once both parties sign." },
+  { n: '05', title: 'Due diligence period', body: "The buyer's attorney runs a title search and property inspection. If issues surface — unpermitted work, tax arrears, survey discrepancies — address them proactively. Transparency during due diligence protects the deal. Most deals that fall apart do so because a problem was hidden rather than disclosed." },
+  { n: '06', title: 'Closing and funds disbursement', body: "The final deed (Escritura Pública) is executed before a Honduran notary. You must be present or provide a notarized Power of Attorney. After deducting commission, VAT on commission, capital gains tax (4% on the net gain), and any outstanding taxes, net proceeds are wired to your bank account. The buyer pays separately for their closing costs (transfer tax, legal fees)." },
+];
+---
+
+<Base
+  title="Sell Property in Roatán — Seller's Guide | The Agency Roatán"
+  description="Sell your Roatán property with confidence: 6-step selling process, commission structure, capital gains tax explained, and an interactive net proceeds calculator."
+  canonicalUrl="https://www.tomasfigueroa.com/sell-in-roatan/"
+  schema={schema}
+>
+
+  <!-- Hero -->
+  <section class="sell-hero">
+    <div class="container" style="max-width:800px">
+      <Eyebrow text="Selling in Roatán" />
+      <h1 class="sell-title type-chic">Sell your Roatán property. Know your net before you list.</h1>
+      <p class="sell-sub">Commission structure, capital gains tax, and the 6-step process — plus an interactive net proceeds calculator so there are no surprises at closing.</p>
+      <a href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30" target="_blank" rel="noopener noreferrer" class="btn-red-sm">Request a Free CMA →</a>
+    </div>
+  </section>
+
+  <div class="article-layout container" style="max-width:1400px">
+
+    <!-- Sidebar -->
+    <aside class="article-sidebar">
+      <div class="sidebar-section">
+        <p class="sidebar-label">Seller Quick Facts</p>
+        <ul class="sidebar-stats">
+          <li><span class="stat-label">Commission</span><span class="stat-val">10% (seller pays)</span></li>
+          <li><span class="stat-label">Capital gains</span><span class="stat-val">4% net gain</span></li>
+          <li><span class="stat-label">VAT on commission</span><span class="stat-val">15% of commission</span></li>
+          <li><span class="stat-label">Avg DOM</span><span class="stat-val">90–180 days</span></li>
+          <li><span class="stat-label">Closing timeline</span><span class="stat-val">30–60 days</span></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">On This Page</p>
+        <nav class="toc-nav">
+          <a href="#cost-summary" class="toc-link">Seller Cost Summary</a>
+          <a href="#capital-gains" class="toc-link">Capital Gains Tax</a>
+          <a href="#process" class="toc-link">6-Step Selling Process</a>
+          <a href="#calculator" class="toc-link">Net Proceeds Calculator</a>
+        </nav>
+      </div>
+      <div class="sidebar-cta">
+        <p class="sidebar-cta-heading type-chic">Thinking about selling?</p>
+        <p class="sidebar-cta-body">A 20-minute call covers pricing strategy, timing, and what your net proceeds look like.</p>
+        <a href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30" target="_blank" rel="noopener noreferrer" class="sidebar-cta-btn">Book a Call →</a>
+      </div>
+    </aside>
+
+    <!-- Main article -->
+    <main class="sell-body prose">
+
+      <!-- Cost summary -->
+      <section id="cost-summary">
+        <h2>What a Roatán seller pays at closing</h2>
+        <p>Unlike many markets where seller costs are limited to agent commission, Roatán sellers pay several mandatory items. Here is the complete list:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Cost Item</th><th>Rate</th><th>Basis</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Agent commission</strong></td><td>10%</td><td>Gross sale price</td></tr>
+              <tr><td>VAT (ISV) on commission</td><td>15%</td><td>Applied to 100% of commission amount</td></tr>
+              <tr><td>Capital gains tax</td><td>4%</td><td>Net gain (price − commission − cost basis)</td></tr>
+              <tr><td>Outstanding municipal taxes</td><td>Varies</td><td>Any unpaid balance transfers to seller at closing</td></tr>
+              <tr><td>Attorney fees (optional)</td><td>1–2%</td><td>If you retain separate legal counsel</td></tr>
+              <tr><td>Power of Attorney</td><td>$300–$600</td><td>If you cannot attend closing in person</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The buyer pays separately: transfer tax (3% on asset purchase), their own legal fees, registration fees, and any HOA/utility proration at closing. Commission is not split — the listing agent and buyer's agent split the 10% between them from the seller's payment.</p>
+      </section>
+
+      <!-- Capital gains -->
+      <section id="capital-gains">
+        <h2>Capital gains tax in Roatán (Bay Islands)</h2>
+        <p>The Bay Islands have a preferential capital gains tax rate of <strong>4%</strong>, applied to the net gain — not the gross sale price. The net gain is calculated as:</p>
+        <div class="formula-box">
+          <span class="formula-label">Net Gain</span>
+          <span class="formula">= Selling Price − Agent Commission − Cost Basis</span>
+        </div>
+        <p>Your <strong>cost basis</strong> is the total you originally paid to acquire and improve the property: purchase price, acquisition costs (legal fees, transfer taxes), and documented capital improvements (construction, major renovations). Keep receipts — a higher documented basis reduces your taxable gain.</p>
+        <p>If you sell at a loss — or if commission and basis exceed the selling price — there is no capital gains tax liability on that transaction.</p>
+        <p>For the full technical treatment: <a href="/guides/roatan-capital-gains-tax-zolitur/">Roatán Capital Gains Tax & ZOLITUR — Complete Guide</a>.</p>
+      </section>
+
+      <!-- Process -->
+      <section id="process">
+        <h2>The 6-step selling process</h2>
+        <ol class="steps-list">
+          {steps.map(step => (
+            <li class="step-item">
+              <div class="step-num">{step.n}</div>
+              <div class="step-content">
+                <h3 class="step-title">{step.title}</h3>
+                <p class="step-body">{step.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <!-- Closing costs cross-link -->
+      <div class="crosslink-card">
+        <p class="crosslink-label">Related Guide</p>
+        <p class="crosslink-heading type-chic">What does the buyer pay at closing?</p>
+        <p class="crosslink-body">Transfer tax, legal fees, registry costs, and prorated HOA — broken down for buyers of all structure types.</p>
+        <a href="/buy/closing-costs-roatan/" class="crosslink-link">Read: Closing Costs in Roatán →</a>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Calculator section — full width -->
+  <section id="calculator" class="calc-section">
+    <div class="container" style="max-width:860px; text-align:center; margin-bottom: var(--space-10)">
+      <Eyebrow text="Free Tool" />
+      <h2 class="calc-heading type-chic">Seller Net Proceeds Calculator</h2>
+      <p class="calc-sub">Enter your expected selling price, cost basis, and commission rate. The calculator shows your net proceeds after all deductions — including commission, VAT, and capital gains tax.</p>
+    </div>
+    <div class="container">
+      <ClosingCalculator client:load defaultRole="seller" />
+    </div>
+    <p class="calc-disclaimer">Estimates only. Actual costs vary. Confirm exact figures with a licensed Honduran attorney before listing.</p>
+  </section>
+
+  <!-- CTA -->
+  <section class="sell-cta">
+    <div class="container" style="max-width:720px; text-align:center">
+      <Eyebrow text="Next Step" />
+      <h2 class="cta-heading type-chic">Get a free comparative market analysis.</h2>
+      <p class="cta-sub">Before you list, know what your property is worth in today's market — not what you paid, not what the neighbour listed theirs for. A CMA is based on recent closed transactions.</p>
+      <a href="https://savvycal.com/Tomas-Figueroa-24db422b/chat-with-tomas?d=30" target="_blank" rel="noopener noreferrer" class="btn-red">Book a 30-Minute Call →</a>
+      <div class="cta-meta">
+        <a href="/guides/roatan-capital-gains-tax-zolitur/">Capital Gains Tax Guide →</a>
+        <a href="/buy/closing-costs-roatan/">Buyer Closing Costs →</a>
+        <a href="/calculator/">Full Calculator →</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .sell-hero { background: var(--iron); padding-block: var(--space-16) var(--space-12); }
+  .sell-title { font-size: clamp(var(--text-3xl), 3.5vw, var(--text-5xl)); color: var(--canvas); margin: var(--space-3) 0 var(--space-4); }
+  .sell-sub { font-size: var(--text-sm); color: rgba(255,255,255,.65); line-height: var(--leading-relaxed); max-width: 66ch; margin: 0 0 var(--space-8); }
+  .btn-red-sm {
+    display: inline-block; padding: var(--space-3) var(--space-6);
+    background: var(--agency-red); color: var(--canvas);
+    font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700;
+    text-decoration: none;
+  }
+
+  .sell-body { padding-block: var(--space-10) var(--space-16); }
+  .sell-body section { margin-bottom: var(--space-16); }
+
+  .formula-box { background: var(--plaster); border-left: 3px solid var(--agency-red); padding: var(--space-4) var(--space-5); margin: var(--space-5) 0; display: flex; gap: var(--space-4); align-items: baseline; flex-wrap: wrap; }
+  .formula-label { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; color: var(--agency-red); flex-shrink: 0; }
+  .formula { font-family: var(--font-chic); font-size: var(--text-base); color: var(--iron); }
+
+  .steps-list { list-style: none; padding: 0; margin: var(--space-6) 0; display: flex; flex-direction: column; gap: var(--space-5); }
+  .step-item { display: flex; gap: var(--space-5); align-items: flex-start; }
+  .step-num { font-family: var(--font-sleek); font-size: var(--text-sm); letter-spacing: var(--tracking-sleek); color: var(--agency-red); text-transform: uppercase; flex-shrink: 0; padding-top: 3px; min-width: 2.5rem; }
+  .step-content { flex: 1; }
+  .step-title { font-family: var(--font-chic); font-size: var(--text-lg); color: var(--iron); margin: 0 0 var(--space-2); }
+  .step-body { font-size: var(--text-sm); color: var(--iron-60); line-height: var(--leading-relaxed); margin: 0; }
+
+  .crosslink-card { background: var(--plaster); padding: var(--space-6) var(--space-8); border-left: 3px solid var(--iron); margin-top: var(--space-8); }
+  .crosslink-label { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; color: var(--iron-40); margin: 0 0 var(--space-2); }
+  .crosslink-heading { font-size: var(--text-lg); color: var(--iron); margin: 0 0 var(--space-2); }
+  .crosslink-body { font-size: var(--text-sm); color: var(--iron-60); line-height: var(--leading-relaxed); margin: 0 0 var(--space-4); }
+  .crosslink-link { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; color: var(--iron); text-decoration: none; }
+  .crosslink-link:hover { color: var(--agency-red); }
+
+  /* Sidebar */
+  .sidebar-section { margin-bottom: var(--space-8); }
+  .sidebar-label { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; color: var(--iron-40); margin: 0 0 var(--space-3); }
+  .sidebar-stats { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+  .sidebar-stats li { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: var(--space-2); border-bottom: var(--hairline); }
+  .stat-label { font-size: var(--text-xs); color: var(--iron-60); }
+  .stat-val { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); color: var(--iron); text-transform: uppercase; }
+  .toc-nav { display: flex; flex-direction: column; gap: 2px; }
+  .toc-link { font-size: var(--text-xs); color: var(--iron-60); text-decoration: none; padding: var(--space-2) 0 var(--space-2) var(--space-3); border-left: 2px solid transparent; display: block; }
+  .toc-link:hover { color: var(--iron); border-left-color: var(--agency-red); }
+  .sidebar-cta { background: var(--iron); padding: var(--space-5); }
+  .sidebar-cta-heading { font-size: var(--text-base); color: var(--canvas); margin: 0 0 var(--space-2); }
+  .sidebar-cta-body { font-size: var(--text-xs); color: rgba(255,255,255,.65); line-height: var(--leading-relaxed); margin: 0 0 var(--space-4); }
+  .sidebar-cta-btn { display: block; padding: var(--space-3) var(--space-4); background: var(--agency-red); color: var(--canvas); font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700; text-decoration: none; text-align: center; }
+
+  /* Calculator */
+  .calc-section { background: var(--plaster); padding-block: var(--space-16) var(--space-12); }
+  .calc-heading { font-size: clamp(var(--text-2xl), 2.5vw, var(--text-3xl)); color: var(--iron); margin: var(--space-3) 0 var(--space-4); }
+  .calc-sub { font-size: var(--text-sm); color: var(--iron-60); line-height: var(--leading-relaxed); max-width: 60ch; margin: 0 auto; }
+  .calc-disclaimer { font-size: var(--text-xs); color: var(--iron-40); text-align: center; margin-top: var(--space-6); font-style: italic; }
+
+  /* CTA */
+  .sell-cta { background: var(--iron); padding-block: var(--space-20); }
+  .cta-heading { font-size: clamp(var(--text-2xl), 2.5vw, var(--text-3xl)); color: var(--canvas); margin: var(--space-3) 0 var(--space-5); }
+  .cta-sub { font-size: var(--text-sm); color: rgba(255,255,255,.65); line-height: var(--leading-relaxed); max-width: 55ch; margin: 0 auto var(--space-8); }
+  .btn-red {
+    display: inline-block; padding: var(--space-4) var(--space-10);
+    background: var(--agency-red); color: var(--canvas);
+    font-family: var(--font-sleek); font-size: var(--text-sm); letter-spacing: var(--tracking-sleek); text-transform: uppercase; font-weight: 700;
+    text-decoration: none; transition: opacity .15s;
+  }
+  .btn-red:hover { opacity: .88; }
+  .cta-meta { display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: center; margin-top: var(--space-8); }
+  .cta-meta a { font-family: var(--font-sleek); font-size: var(--text-xs); letter-spacing: var(--tracking-sleek); text-transform: uppercase; color: rgba(255,255,255,.4); text-decoration: none; }
+  .cta-meta a:hover { color: rgba(255,255,255,.8); }
+</style>
