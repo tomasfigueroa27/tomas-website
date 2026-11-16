@@ -2,15 +2,13 @@
    Imported in Base.astro, never via Google Fonts CDN at runtime.
    Subset: Latin only. display: swap for performance. */
 
-/* Barlow Condensed (Sleek — headlines, labels, nav) */
-@import "@fontsource/barlow-condensed/400.css";
-@import "@fontsource/barlow-condensed/700.css";
+/* EB Garamond (Chic — editorial headings, pull quotes) */
+@import "@fontsource/eb-garamond/400.css";
+@import "@fontsource/eb-garamond/400-italic.css";
+@import "@fontsource/eb-garamond/600.css";
 
-/* Noto Serif (Chic — hero headlines, luxury body) */
-@import "@fontsource/noto-serif/400.css";
-@import "@fontsource/noto-serif/400-italic.css";
-
-/* Roboto (Text — body, captions, labels) */
-@import "@fontsource/roboto/400.css";
-@import "@fontsource/roboto/400-italic.css";
-@import "@fontsource/roboto/700.css";
+/* Inter (Sleek ALL CAPS labels + Text body copy) */
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/400-italic.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";

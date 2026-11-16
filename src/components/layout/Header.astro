@@ -3,53 +3,7 @@ const currentPath = Astro.url.pathname;
 const isHomepage = currentPath === '/';
 
 const nav = [
-  {
-    label: 'Buy',
-    href: '/properties/',
-    children: [
-      { label: 'Properties',        href: '/properties/' },
-      { label: 'Neighborhoods',     href: '/neighborhoods/' },
-      { label: 'Where to Buy',      href: '/where-to-buy-in-roatan/' },
-      { label: "U.S. Buyer's Guide", href: '/us-buyers-guide-roatan/' },
-      { label: 'Calculator',        href: '/calculator/' },
-      { label: 'FAQ',               href: '/faq/' },
-    ],
-  },
-  {
-    label: 'Sell',
-    href: '/sell-in-roatan/',
-    children: [
-      { label: 'Seller Guide & Net Proceeds', href: '/sell-in-roatan/' },
-      { label: 'Capital Gains Tax',           href: '/guides/roatan-capital-gains-tax-zolitur/' },
-      { label: 'Closing Costs Guide',         href: '/buy/closing-costs-roatan/' },
-    ],
-  },
-  {
-    label: 'New Developments',
-    href: '/new-developments/',
-  },
-  {
-    label: 'Developers',
-    href: '/developers/',
-  },
-  {
-    label: 'Market',
-    href: '/roatan-market/',
-    children: [
-      { label: 'Market Guide 2026', href: '/roatan-market/' },
-      { label: 'Blog',             href: '/blog/' },
-      { label: 'Guides',           href: '/guides/' },
-      { label: 'Resources',        href: '/resources/' },
-    ],
-  },
-  {
-    label: 'About',
-    href: '/about/',
-    children: [
-      { label: 'About Tomas', href: '/about/' },
-      { label: 'Contact',     href: '/contact/' },
-    ],
-  },
+  { label: 'About', href: '/about/' },
 ];
 
 const isGroupActive = (item: typeof nav[number]) => {

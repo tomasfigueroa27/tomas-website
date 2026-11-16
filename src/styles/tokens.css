@@ -35,9 +35,9 @@
   --iron-10:  rgba(28, 28, 27, .10);
 
   /* ── Typography stacks ── */
-  --font-sleek: "Barlow Condensed", system-ui, sans-serif;
-  --font-chic:  "EB Garamond", "Noto Serif", Georgia, serif;
-  --font-text:  "Inter", "Roboto", system-ui, sans-serif;
+  --font-sleek: "Inter", system-ui, sans-serif;
+  --font-chic:  "EB Garamond", Georgia, serif;
+  --font-text:  "Inter", system-ui, sans-serif;
 
   /* Tracking */
   --tracking-sleek: 0.075em;   /* ALL CAPS, used for sleek headlines & labels */

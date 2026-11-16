@@ -21,7 +21,7 @@ body {
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);
   color: var(--iron);
-  background: var(--canvas);
+  background: var(--ecru);
 }
 
 /* ── Focus visible — visible ring, Iron color ── */
