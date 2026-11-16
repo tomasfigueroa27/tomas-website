@@ -92,10 +92,7 @@ const schema = [
         Luxury homes, beachfront condos and new developments in the Bay Islands
         — with Tomás Figueroa, The Agency – Roatán.
       </p>
-      <div class="hero-actions">
-        <Button href="/properties/" variant="solid" size="lg">Explore MLS</Button>
-        <Button href="/new-developments/" variant="outline" size="lg" class="btn--canvas">View Developments</Button>
-      </div>
+      {/* hero-actions hidden for landing page */}
     </div>
   </section>
 
@@ -133,7 +130,7 @@ const schema = [
           </p>
           <p class="cred-proof-source">Roatán MLS data, Jan 2024–Sep 2026 — top-producing team by closed transaction volume, Roatán, Bay Islands</p>
         </div>
-        <a href="/about/" class="cred-link">More about how I work →</a>
+        {/* cred-link hidden for landing page */}
       </div>
     </div>
   </section>
@@ -143,21 +140,18 @@ const schema = [
     <div class="container">
       <Eyebrow text="How I Can Help" />
       <div class="paths-grid">
-        <a href="/properties/" class="path-card">
+        <div class="path-card">
           <span class="path-label type-chic">Buy</span>
           <p class="path-desc">Browse MLS listings and off-market properties with a buyer's agent who knows what doesn't make it online.</p>
-          <span class="path-cta">Browse properties →</span>
-        </a>
-        <a href="/sell-in-roatan/" class="path-card">
+        </div>
+        <div class="path-card">
           <span class="path-label type-chic">Sell</span>
           <p class="path-desc">Priced right, marketed to the right buyers. Full-service listing from valuation to closing.</p>
-          <span class="path-cta">Sell your property →</span>
-        </a>
-        <a href="/developers/" class="path-card">
+        </div>
+        <div class="path-card">
           <span class="path-label type-chic">Develop</span>
           <p class="path-desc">Land, entitlements, pricing strategy and sales — from concept to sellout.</p>
-          <span class="path-cta">Developer services →</span>
-        </a>
+        </div>
       </div>
     </div>
   </section>
@@ -189,70 +183,11 @@ const schema = [
           <p class="why-source">Bay Islands demographics</p>
         </div>
       </div>
-      <div class="section-cta">
-        <Button href="/roatan-market/" variant="outline" size="md" class="btn--canvas">Roatán Market Guide</Button>
-      </div>
     </div>
   </section>
 
-  <!-- ── 5. New Developments (Canvas) ── -->
-  <section class="section featured-devs">
-    <div class="container">
-      <Eyebrow text="Pre-Sale Now Open" />
-      <h2 class="section-title type-chic">New Developments</h2>
-      <p class="section-intro lede">Explore the new projects that redefine island living.</p>
-      {featured.length > 0 && (
-        <div class="dev-grid">
-          {featured.map(dev => {
-            const d = dev.data;
-            return (
-              <a href={`/new-developments/${d.slug}/`} class="dev-card">
-                <div class="dev-card-image" style={`background-image: url('${d.heroImage}')`}>
-                  <Badge status={d.status} />
-                </div>
-                <div class="dev-card-body">
-                  <p class="dev-card-area eyebrow">{d.area.replace(/-/g, ' ')}</p>
-                  <h3 class="dev-card-title type-chic">{d.title}</h3>
-                  <p class="dev-card-location">{d.location?.address ?? 'Roatán, Honduras'}</p>
-                  {d.priceFrom && (
-                    <p class="dev-card-price">Starting from USD ${d.priceFrom.toLocaleString()}</p>
-                  )}
-                </div>
-              </a>
-            );
-          })}
-        </div>
-      )}
-      <div class="section-cta">
-        <Button href="/new-developments/" variant="outline" size="md">See All Developments</Button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 6. Market / Insights (Plaster) — hairline separates from Canvas above ── -->
-  <section class="section section--chambray market-section">
-    <div class="container">
-      <Eyebrow text="Market Intelligence" />
-      <h2 class="section-title type-chic">Know the numbers.</h2>
-      <div class="market-guides">
-        <a href="/buy/closing-costs-roatan/" class="market-guide-item">
-          <span class="market-guide-title">Closing costs in Roatán</span>
-          <span class="market-guide-sub">Transfer tax, legal fees and what to expect at the table</span>
-          <span class="market-guide-arrow" aria-hidden="true">→</span>
-        </a>
-        <a href="/guides/roatan-capital-gains-tax-zolitur/" class="market-guide-item">
-          <span class="market-guide-title">Capital gains &amp; ZOLITUR</span>
-          <span class="market-guide-sub">The 4% tax, how it is calculated, and what is exempt</span>
-          <span class="market-guide-arrow" aria-hidden="true">→</span>
-        </a>
-        <a href="/roatan-market/" class="market-guide-item">
-          <span class="market-guide-title">Roatán market overview</span>
-          <span class="market-guide-sub">Prices, trends and what is moving in 2026</span>
-          <span class="market-guide-arrow" aria-hidden="true">→</span>
-        </a>
-      </div>
-    </div>
-  </section>
+  {/* Section 5 (New Developments) — hidden for landing page */}
+  {/* Section 6 (Market Intelligence) — hidden for landing page */}
 
   <!-- ── 7. Get in Touch (Iron) ── -->
   <section class="section section--iron contact-section">
