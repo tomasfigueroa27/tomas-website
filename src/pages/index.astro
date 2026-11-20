@@ -140,10 +140,10 @@ const schema = [
     <div class="container">
       <Eyebrow text="How I Can Help" />
       <div class="paths-grid">
-        <div class="path-card">
+        <a href="/properties/" class="path-card path-card--link">
           <span class="path-label type-chic">Buy</span>
           <p class="path-desc">Browse MLS listings and off-market properties with a buyer's agent who knows what doesn't make it online.</p>
-        </div>
+        </a>
         <div class="path-card">
           <span class="path-label type-chic">Sell</span>
           <p class="path-desc">Priced right, marketed to the right buyers. Full-service listing from valuation to closing.</p>
@@ -451,6 +451,7 @@ const schema = [
     transition: box-shadow var(--duration-fast);
   }
   .path-card:hover { box-shadow: var(--shadow-md); }
+  .path-card--link:hover { border-top-color: var(--velvet); }
 
   .path-label {
     font-size: var(--text-3xl);
